@@ -1,0 +1,18 @@
+{
+  "/api": {
+    "target": "http://localhost:3050",
+    "secure": false,
+    "ws": true,
+    "pathRewrite": {
+      "^/api": "/api"
+    }
+  },
+  "/rails/active_storage": {
+    "target": "http://localhost:3050",
+    "secure": false
+  },
+  "/sidekiq": {
+    "target": "http://localhost:3050",
+    "secure": false
+  }
+}
