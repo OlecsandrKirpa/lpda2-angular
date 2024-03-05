@@ -1,0 +1,17 @@
+:host{
+  height: 100%;
+  overflow: auto;
+
+  .active-link {
+    box-shadow: inset 4px 0 #526ed3;
+    color: #526ed3;
+  }
+
+  .expanded {
+    max-width: 1000px; // dont care
+  }
+
+  .collapsed {
+    max-width: 1px;
+  }
+}

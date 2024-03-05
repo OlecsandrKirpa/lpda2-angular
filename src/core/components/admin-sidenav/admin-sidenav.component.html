@@ -1,3 +1,62 @@
-<p>admin-sidenav works!</p>
+<div class="flex flex-row h-full overflow-hidden">
+  <div
+      [ngClass]="{'collapsed': !isOpen, 'expanded': isOpen}"
+      class="flex flex-col animation-speed-2 justify-between grow-1 bg-slate-50 py-5 overflow-auto">
+    <div class="flex flex-col">
+      <a routerLink="/admin/"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         [routerLinkActiveOptions]="{exact: true}"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <mat-icon class="me-1">dashboard</mat-icon>
+        <span class="text-lg" i18n>Dashboard</span>
+      </a>
 
-<router-outlet></router-outlet>
+      <a routerLink="/admin/reservations"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <mat-icon class="me-1">menu_book</mat-icon>
+        <span class="text-lg" i18n>Prenotazioni</span>
+      </a>
+
+      <a routerLink="/admin/menu"
+         #menuLink="routerLinkActive"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         [routerLinkActiveOptions]="{exact: true}"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <mat-icon class="me-1">restaurant</mat-icon>
+        <span class="text-lg" i18n>Menu</span>
+      </a>
+
+      <a routerLink="/admin/menu/tags"
+         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive}"
+         #menuTagsLink="routerLinkActive"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <span class="ms-5 text-md" i18n>Menu tag</span>
+      </a>
+    </div>
+
+    <div class="flex flex-col">
+
+      <button
+          class="cursor-pointer bg-transparent border-0 outline-0 flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <mat-icon class="me-1">add_circle</mat-icon>
+        <span class="text-lg" i18n>Crea prenotazione</span>
+      </button>
+
+      <hr class="w-1/2">
+
+      <a routerLink="/admin/settings"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <mat-icon class="me-1">settings</mat-icon>
+        <span class="text-lg" i18n>Impostazioni</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="grow overflow-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

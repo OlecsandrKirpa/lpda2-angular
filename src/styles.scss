@@ -4,5 +4,9 @@
 // @tailwind base;
 // @tailwind components;
 @tailwind utilities;
+
+@import "assets/styles/rotations.scss";
+@import "assets/styles/responsive-table.scss";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

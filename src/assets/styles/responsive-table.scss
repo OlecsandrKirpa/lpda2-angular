@@ -1,0 +1,119 @@
+/*
+ * Implements a collapsable table, which can be collapsed on a specified screen size
+ * to become a list.
+ */
+:root {
+  --responsive-table-td-padding: 0.7rem 1rem;
+}
+
+.responsive-table {
+  --table-border: solid 1px #eee;
+
+  width: 100%;
+  margin-bottom: 1rem;
+
+  thead {
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.12);
+    font-weight: bold;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+    td, th {
+      padding: 1rem;
+    }
+  }
+
+  tbody {
+    td, th {
+      padding: var(--responsive-table-td-padding);
+      border-bottom: var(--table-border);
+    }
+
+    .collapse-header {
+      display: none;
+    }
+
+    .collapse-actions {
+      text-align: right;
+      font-size: 16px;
+    }
+  }
+}
+
+
+$thresholds: 576px, 768px, 992px, 1200px, 1400px;
+$threshold-names: "xs", "sm", "md", "lg", "xl";
+@for $i from 0 to length($thresholds) {
+  @media screen and (max-width: #{nth($thresholds, $i + 1) - 1}) {
+    .responsive-table.collapse-#{nth($threshold-names, $i + 1)} {
+      thead { display: none; }
+      tbody {
+        display: block;
+        padding: 0;
+
+        .collapse-header {
+          display: inline-block;
+          padding-right: 10px;
+          white-space: nowrap;
+        }
+
+        .hide-collapsed {
+          display: none;
+        }
+
+        tr {
+          display: flex;
+          flex-direction: column;
+          border-bottom: var(--table-border);
+          padding: 1rem 0;
+
+          &.collapse-bordered {
+            border-bottom: none;
+
+            td:not(.collapse-actions), th:not(.collapse-actions) {
+              border-left: var(--table-border);
+              border-right: var(--table-border);
+              padding: 5px 15px;
+            }
+
+            td:first-child {
+              padding-top: 15px;
+            }
+
+            td:nth-last-child(2) {
+              padding-bottom: 15px;
+              border-bottom: var(--table-border);
+            }
+          }
+        }
+
+        td, th {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 5px 5px;
+          border: none;
+          order: 5;
+        }
+
+        td.collapse-actions {
+          order: 0;
+          padding: 1rem;
+          justify-content: flex-end;
+          border: var(--table-border);
+          min-height: 50px;
+        }
+
+        div.collapse-content {
+          text-align: right;
+        }
+
+        @for $i from 1 to 10 {
+          td.collapse-order-#{$i} {
+            order: #{$i};
+          }
+        }
+      }
+    }
+  }
+}
