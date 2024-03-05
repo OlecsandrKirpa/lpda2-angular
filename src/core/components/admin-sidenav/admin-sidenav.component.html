@@ -28,11 +28,27 @@
       </a>
 
       <a routerLink="/admin/menu/tags"
-         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive}"
+         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
          #menuTagsLink="routerLinkActive"
          [routerLinkActive]="'bg-slate-100 active-link'"
          class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
         <span class="ms-5 text-md" i18n>Menu tag</span>
+      </a>
+
+      <a routerLink="/admin/menu/ingredients"
+         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
+         #menuIngredientsLink="routerLinkActive"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <span class="ms-5 text-md" i18n>Ingredienti</span>
+      </a>
+
+      <a routerLink="/admin/menu/allergens"
+         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
+         #menuAllergensLink="routerLinkActive"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+        <span class="ms-5 text-md" i18n>Allergeni</span>
       </a>
     </div>
 
