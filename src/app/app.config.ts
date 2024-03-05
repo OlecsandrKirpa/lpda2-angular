@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule, provideAnimations } from "@angular/platform-browser/animations";
 import { TuiRootModule } from "@taiga-ui/core";
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -10,5 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
-  ]
+    provideAnimations()
+]
 };

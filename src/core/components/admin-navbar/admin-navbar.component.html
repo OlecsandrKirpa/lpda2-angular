@@ -1,0 +1,22 @@
+<ng-template #loginDropdownContent>
+
+</ng-template>
+
+<div class="flex flex-wrap justify-between sticky top-0 shadow-sm px-3">
+  <div class="flex items-center">
+    <h3>
+      <a routerLink="/admin">Lpda2</a>
+    </h3>
+  </div>
+
+  <div class="flex items-center">
+    <a routerLink="/auth" size="m" tuiButton appearance="outline">
+        <span class="flex items-center">
+          <mat-icon class="me-1">account_circle</mat-icon>
+          <ng-container i18n>Login</ng-container>
+        </span>
+    </a>
+<!--    <tui-hosted-dropdown [content]="loginDropdownContent">-->
+<!--    </tui-hosted-dropdown>-->
+  </div>
+</div>
