@@ -1,20 +1,54 @@
-<div class="flex flex-row h-full overflow-hidden">
+<div class="bg-white flex flex-wrap justify-between sticky top-0 shadow-sm px-3 z-20">
+  <div class="flex items-center">
+
+    @if (showMenuButton) {
+      <button (click)="triggerSidenav()" tuiIconButton appearance="icon" type="button">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
+
+    <a routerLink="/admin">
+      <img src="assets/img/logo.png" alt="Lpda2" class="max-h-[60px]"/>
+    </a>
+  </div>
+
+  <div class="flex items-center">
+    @if (cu() == null) {
+      <a routerLink="/auth" size="m" tuiButton appearance="outline">
+        <span class="flex items-center">
+          <mat-icon class="me-1">account_circle</mat-icon>
+          <ng-container i18n>Login</ng-container>
+        </span>
+      </a>
+    } @else {
+      <app-navbar-user-badge [user]="cu()" ></app-navbar-user-badge>
+    }
+  </div>
+</div>
+
+<div class="flex flex-row h-full overflow-hidden relative">
+
+  @if(isMobile && isOpen) {
+    <div (click)="overlayClick($event)" class="block fixed top-0 bottom-0 left-0 right-0 z-10" style="background-color: black; opacity: 0.4;" ></div>
+  }
+
   <div
-      [ngClass]="{'collapsed': !isOpen, 'expanded': isOpen}"
-      class="flex flex-col animation-speed-2 justify-between grow-1 bg-slate-50 py-5 overflow-auto">
+      [ngClass]="{'collapsed': !isOpen, 'expanded': isOpen, 'absolute top-0 bottom-0 z-20': isMobile}"
+      class="flex flex-col justify-between grow-1 bg-slate-50 py-5 overflow-y-auto">
+
     <div class="flex flex-col">
       <a routerLink="/admin/"
          [routerLinkActive]="'bg-slate-100 active-link'"
          [routerLinkActiveOptions]="{exact: true}"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
-        <mat-icon class="me-1">dashboard</mat-icon>
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <mat-icon class="me-2">dashboard</mat-icon>
         <span class="text-lg" i18n>Dashboard</span>
       </a>
 
       <a routerLink="/admin/reservations"
          [routerLinkActive]="'bg-slate-100 active-link'"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
-        <mat-icon class="me-1">menu_book</mat-icon>
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <mat-icon class="me-2">menu_book</mat-icon>
         <span class="text-lg" i18n>Prenotazioni</span>
       </a>
 
@@ -22,8 +56,8 @@
          #menuLink="routerLinkActive"
          [routerLinkActive]="'bg-slate-100 active-link'"
          [routerLinkActiveOptions]="{exact: true}"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
-        <mat-icon class="me-1">restaurant</mat-icon>
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <mat-icon class="me-2">restaurant</mat-icon>
         <span class="text-lg" i18n>Menu</span>
       </a>
 
@@ -31,7 +65,7 @@
          [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
          #menuTagsLink="routerLinkActive"
          [routerLinkActive]="'bg-slate-100 active-link'"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
         <span class="ms-5 text-md" i18n>Menu tag</span>
       </a>
 
@@ -39,7 +73,7 @@
          [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
          #menuIngredientsLink="routerLinkActive"
          [routerLinkActive]="'bg-slate-100 active-link'"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
         <span class="ms-5 text-md" i18n>Ingredienti</span>
       </a>
 
@@ -47,7 +81,7 @@
          [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
          #menuAllergensLink="routerLinkActive"
          [routerLinkActive]="'bg-slate-100 active-link'"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
         <span class="ms-5 text-md" i18n>Allergeni</span>
       </a>
     </div>
@@ -55,8 +89,8 @@
     <div class="flex flex-col">
 
       <button
-          class="cursor-pointer bg-transparent border-0 outline-0 flex items-center no-underline text-black hover:bg-slate-200 p-3">
-        <mat-icon class="me-1">add_circle</mat-icon>
+          class="cursor-pointer bg-transparent border-0 outline-0 flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <mat-icon class="me-2">add_circle</mat-icon>
         <span class="text-lg" i18n>Crea prenotazione</span>
       </button>
 
@@ -64,15 +98,14 @@
 
       <a routerLink="/admin/settings"
          [routerLinkActive]="'bg-slate-100 active-link'"
-         class="flex items-center no-underline text-black hover:bg-slate-200 p-3">
-        <mat-icon class="me-1">settings</mat-icon>
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <mat-icon class="me-2">settings</mat-icon>
         <span class="text-lg" i18n>Impostazioni</span>
       </a>
     </div>
   </div>
 
-  <div class="grow overflow-auto">
+  <div class="grow overflow-auto p-5">
     <router-outlet></router-outlet>
   </div>
 </div>
-

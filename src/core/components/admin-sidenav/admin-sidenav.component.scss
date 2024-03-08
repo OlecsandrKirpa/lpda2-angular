@@ -1,17 +1,30 @@
-:host{
-  height: 100%;
-  overflow: auto;
+:host {
+  --blue: rgb(75, 75, 163);
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
   .active-link {
-    box-shadow: inset 4px 0 #526ed3;
-    color: #526ed3;
+    box-shadow: inset 4px 0 var(--blue);
+    color: var(--blue);
+    font-weight: bold;
   }
 
   .expanded {
-    max-width: 1000px; // dont care
+    animation: expand 0.75s;
   }
 
   .collapsed {
     max-width: 1px;
+  }
+}
+
+@keyframes expand {
+  from {
+    max-width: 1px;
+  }
+  to {
+    max-width: 1000px;
   }
 }

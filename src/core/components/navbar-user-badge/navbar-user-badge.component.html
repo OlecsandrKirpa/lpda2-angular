@@ -1,0 +1,17 @@
+<ng-template #loginDropdownContent>
+  <tui-data-list>
+    <a routerLink="/admin/profile" tuiOption i18n>Profilo</a>
+    <button (click)="logout()" tuiOption i18n>Esci</button>
+  </tui-data-list>
+</ng-template>
+
+<tui-hosted-dropdown [tuiDropdownAlign]="'right'" #dropdown [content]="loginDropdownContent">
+  <span class="flex items-center">
+    <span class="flex flex-col items-end me-3">
+      <span class="font-bold text-lg mb-1 text-slate-800" i18n>{{ user?.fullname ?? user?.email }}</span>
+    </span>
+
+    <mat-icon class="text-slate-600" style="font-size: 50px; height: 50px; width: 50px;" >account_circle</mat-icon>
+    <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': dropdown.open}" >expand_more</mat-icon>
+  </span>
+</tui-hosted-dropdown>
