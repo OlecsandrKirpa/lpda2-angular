@@ -4,7 +4,7 @@
     "secure": false,
     "ws": true,
     "pathRewrite": {
-      "^/api": "/api"
+      "^/api": "/"
     }
   },
   "/rails/active_storage": {

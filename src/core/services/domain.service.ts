@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { ConfigsService } from './configs.service';
 import { cleanUrl } from '../lib/clean-url';
-import { Observable, combineLatest, filter, forkJoin, map, switchMap, tap } from 'rxjs';
+import {Observable, combineLatest, filter, forkJoin, map, switchMap, tap, take} from 'rxjs';
 import { HttpClient, HttpEvent, HttpHandler, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { HttpCustomDomain } from '../lib/http-custom-domain';
 
@@ -16,12 +16,14 @@ import { HttpCustomDomain } from '../lib/http-custom-domain';
 @Injectable({
   providedIn: 'root',
 })
-export class DomainService extends HttpCustomDomain {
-  protected readonly version: number = 1;
-
+export abstract class DomainService extends HttpCustomDomain {
   private readonly configs: ConfigsService = inject(ConfigsService);
 
-  constructor(){
+  protected readonly version: number = 1;
+
+  protected constructor(
+    protected basePath: string,
+  ){
     super((path: string) => this.url(path));
   }
 
@@ -38,15 +40,16 @@ export class DomainService extends HttpCustomDomain {
       this.configs.get(`api.path`),
     ).pipe(
       filter(([d, s, p]) => d !== null && s !== null && p !== null),
-      map(([d, s, p]) => {
-        const domain = d as string;
-        const secure: boolean = s ? s === `true` : false;
-        const apiPath = p as string;
-        const protocol = `http${secure ? `s` : ``}://`;
-        const versionNamespace = `/v${this.version}/`;
+      map(([d, s, p]: [string, string, string]): string => {
+        const domain: string = d as string;
+        const secure: boolean = s === `true`;
+        const apiPath: string = p as string;
+        const protocol: string = `http${secure ? `s` : ``}://`;
+        const versionNamespace: string = `/v${this.version}/`;
 
-        return `${protocol}${domain}${apiPath}${versionNamespace}`;
+        return `${protocol}${domain}${apiPath}${versionNamespace}${this.basePath}`;
       }),
+      take(1),
     );
   }
 }
