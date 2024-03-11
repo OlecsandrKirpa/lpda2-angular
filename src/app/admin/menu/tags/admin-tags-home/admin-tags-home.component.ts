@@ -1,25 +1,46 @@
-import {Component, computed, inject, Signal, signal, WritableSignal} from '@angular/core';
-import {Ingredient} from "@core/models/ingredient";
-import {CommonModule} from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 import {TuiInputModule} from "@taiga-ui/kit";
 import {TuiAutoFocusModule, TuiDestroyService} from "@taiga-ui/cdk";
 import {TuiButtonModule, TuiLinkModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
+import {SearchResult} from "@core/lib/search-result.model";
+import {
+  debounceTime,
+  delay,
+  distinctUntilChanged,
+  filter,
+  finalize,
+  map,
+  merge,
+  Subject,
+  Subscription,
+  takeUntil,
+  tap
+} from "rxjs";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {ShowImageComponent} from "@core/components/show-image/show-image.component";
 import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
-import {SearchResult} from "@core/lib/search-result.model";
-import {IngredientsService} from "@core/services/http/ingredients.service";
-import {NotificationsService} from "@core/services/notifications.service";
-import {debounceTime, delay, filter, finalize, map, merge, Subject, Subscription, takeUntil, tap} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {nue} from "@core/lib/nue";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NotificationsService} from "@core/services/notifications.service";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
+import {Tag} from "@core/models/tag";
+import {TagsService} from "@core/services/http/tags.service";
 
 @Component({
-  selector: 'app-admin-ingredients-home',
+  selector: 'app-admin-tags-home',
   standalone: true,
   imports: [
     CommonModule,
@@ -34,16 +55,16 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
     ShowImageComponent,
     TuiTablePaginationModule,
   ],
-  templateUrl: './admin-ingredients-home.component.html',
+  templateUrl: './admin-tags-home.component.html',
   providers: [
     TuiDestroyService
   ]
 })
-export class AdminIngredientsHomeComponent {
-readonly loading: WritableSignal<boolean> = signal(false);
-  readonly data: WritableSignal<SearchResult<Ingredient> | null> = signal(null);
-  readonly items: Signal<Ingredient[]> = computed(() => this.data()?.items || []);
-  private readonly service: IngredientsService = inject(IngredientsService);
+export class AdminTagsHomeComponent implements OnInit {
+  readonly loading: WritableSignal<boolean> = signal(false);
+  readonly data: WritableSignal<SearchResult<Tag> | null> = signal(null);
+  readonly items: Signal<Tag[]> = computed(() => this.data()?.items || []);
+  private readonly service: TagsService = inject(TagsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
 
@@ -100,12 +121,12 @@ readonly loading: WritableSignal<boolean> = signal(false);
     this.search();
   }
 
-  delete(ingredientId: number | undefined): void {
-    if (!(ingredientId)) return;
+  delete(tagId: number | undefined): void {
+    if (!(tagId)) return;
 
-    this.notifications.confirm($localize`Sei sicuro di voler cancellare questo ingrediente?`).subscribe({
+    this.notifications.confirm($localize`Sei sicuro di voler cancellare questo tag?`).subscribe({
       next: (confirmed: boolean): void => {
-        if (confirmed) this.confirmedDelete(ingredientId);
+        if (confirmed) this.confirmedDelete(tagId);
       }
     });
   }
@@ -131,7 +152,7 @@ readonly loading: WritableSignal<boolean> = signal(false);
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false)),
     ).subscribe({
-      next: (result: SearchResult<Ingredient>) => {
+      next: (result: SearchResult<Tag>) => {
         this.data.set(result);
       },
     });

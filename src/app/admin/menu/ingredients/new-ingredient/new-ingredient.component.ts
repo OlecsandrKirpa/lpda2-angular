@@ -1,25 +1,25 @@
-import {ChangeDetectionStrategy, Component, inject, signal, ViewChild, WritableSignal} from '@angular/core';
+import {Component, inject, signal, ViewChild, WritableSignal} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {TuiButtonModule, TuiLinkModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
-import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from "@angular/forms";
-import {AllergensService} from "@core/services/http/allergens.service";
-import {TuiDestroyService} from "@taiga-ui/cdk";
-import {finalize, takeUntil} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
-import {Allergen} from "@core/models/allergen";
+import {ReactiveFormsModule} from "@angular/forms";
 import {I18nInputComponent} from "@core/components/i18n-input/i18n-input.component";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
 import {JsonPipe} from "@angular/common";
 import {TuiInputModule, TuiTextareaModule} from "@taiga-ui/kit";
-import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
+import {IngredientFormComponent} from "@core/components/ingredient-form/ingredient-form.component";
+import {TuiDestroyService} from "@taiga-ui/cdk";
+import {IngredientsService} from "@core/services/http/ingredients.service";
 import {NotificationsService} from "@core/services/notifications.service";
+import {takeUntil} from "rxjs";
+import {Ingredient} from "@core/models/ingredient";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
-import {AllergenFormComponent} from "@core/components/allergen-form/allergen-form.component";
 
 @Component({
-  selector: 'app-new-allergen',
+  selector: 'app-new-ingredient',
   standalone: true,
   imports: [
     RouterLink,
@@ -33,16 +33,15 @@ import {AllergenFormComponent} from "@core/components/allergen-form/allergen-for
     JsonPipe,
     TuiInputModule,
     TuiTextareaModule,
-    AllergenFormComponent,
+    IngredientFormComponent,
   ],
-  templateUrl: './new-allergen.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './new-ingredient.component.html',
   providers: [
     TuiDestroyService
   ]
 })
-export class NewAllergenComponent {
-  private readonly service: AllergensService = inject(AllergensService);
+export class NewIngredientComponent {
+private readonly service: IngredientsService = inject(IngredientsService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
@@ -50,15 +49,15 @@ export class NewAllergenComponent {
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
-  @ViewChild(AllergenFormComponent) formComponent?: AllergenFormComponent;
+  @ViewChild(IngredientFormComponent) formComponent?: IngredientFormComponent;
 
   submit(formVal: FormData): void {
     this.loading.set(true);
     this.service.create(formVal).pipe(
       takeUntil(this.destroy$),
     ).subscribe({
-      next: (item: Allergen): void => {
-        this.notifications.fireSnackBar($localize`Allergene salvato`);
+      next: (item: Ingredient): void => {
+        this.notifications.fireSnackBar($localize`Ingrediente salvato`);
         this.router.navigate([`..`], {relativeTo: this.route});
       },
       error: (errors: HttpErrorResponse): void => {

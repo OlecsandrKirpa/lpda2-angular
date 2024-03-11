@@ -1,0 +1,11 @@
+<div class="flex items-center justify-between">
+  <h1>
+    <ng-container i18n>Crea ingrediente</ng-container>
+  </h1>
+
+  <button (click)="cancel()" type="button" tuiIconButton appearance="icon">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<app-ingredient-form [loading]="loading()" (cancelled)="cancel()" (formSubmit)="submit($event)" ></app-ingredient-form>

@@ -3,11 +3,9 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {TuiButtonModule, TuiLinkModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from "@angular/forms";
-import {AllergensService} from "@core/services/http/allergens.service";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {finalize, takeUntil} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Allergen} from "@core/models/allergen";
 import {I18nInputComponent} from "@core/components/i18n-input/i18n-input.component";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
@@ -16,10 +14,12 @@ import {TuiInputModule, TuiTextareaModule} from "@taiga-ui/kit";
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {NotificationsService} from "@core/services/notifications.service";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
-import {AllergenFormComponent} from "@core/components/allergen-form/allergen-form.component";
+import {TagsService} from "@core/services/http/tags.service";
+import {TagFormComponent} from "@core/components/tag-form/tag-form.component";
+import {Tag} from "@core/models/tag";
 
 @Component({
-  selector: 'app-new-allergen',
+  selector: 'app-new-tag',
   standalone: true,
   imports: [
     RouterLink,
@@ -33,16 +33,16 @@ import {AllergenFormComponent} from "@core/components/allergen-form/allergen-for
     JsonPipe,
     TuiInputModule,
     TuiTextareaModule,
-    AllergenFormComponent,
+    TagFormComponent,
   ],
-  templateUrl: './new-allergen.component.html',
+  templateUrl: './new-tag.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService
   ]
 })
-export class NewAllergenComponent {
-  private readonly service: AllergensService = inject(AllergensService);
+export class NewTagComponent {
+  private readonly service: TagsService = inject(TagsService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
@@ -50,15 +50,15 @@ export class NewAllergenComponent {
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
-  @ViewChild(AllergenFormComponent) formComponent?: AllergenFormComponent;
+  @ViewChild(TagFormComponent) formComponent?: TagFormComponent;
 
   submit(formVal: FormData): void {
     this.loading.set(true);
     this.service.create(formVal).pipe(
       takeUntil(this.destroy$),
     ).subscribe({
-      next: (item: Allergen): void => {
-        this.notifications.fireSnackBar($localize`Allergene salvato`);
+      next: (item: Tag): void => {
+        this.notifications.fireSnackBar($localize`Tage salvato`);
         this.router.navigate([`..`], {relativeTo: this.route});
       },
       error: (errors: HttpErrorResponse): void => {

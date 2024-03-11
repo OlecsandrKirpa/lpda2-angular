@@ -18,7 +18,7 @@ import {
 } from "@angular/forms";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {BehaviorSubject, filter, Subject, takeUntil} from "rxjs";
-import {TuiInputModule} from "@taiga-ui/kit";
+import {TuiInputModule, TuiTextareaModule} from "@taiga-ui/kit";
 import {NgClass, NgFor} from "@angular/common";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {LanguageNames} from "@core/lib/language-names";
@@ -31,7 +31,8 @@ import {LanguageNames} from "@core/lib/language-names";
     TuiInputModule,
     NgFor,
     ErrorsComponent,
-    NgClass
+    NgClass,
+    TuiTextareaModule
   ],
   templateUrl: './i18n-input.component.html',
   styleUrl: './i18n-input.component.scss',

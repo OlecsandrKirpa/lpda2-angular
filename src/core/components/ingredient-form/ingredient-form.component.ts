@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationsService} from "@core/services/notifications.service";
 import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors} from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {Allergen} from "@core/models/allergen";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
@@ -12,9 +11,10 @@ import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {I18nInputComponent} from "@core/components/i18n-input/i18n-input.component";
 import {TuiButtonModule} from "@taiga-ui/core";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
+import {Ingredient} from "@core/models/ingredient";
 
 @Component({
-  selector: 'app-allergen-form',
+  selector: 'app-ingredient-form',
   standalone: true,
   imports: [
     ErrorsComponent,
@@ -23,13 +23,13 @@ import {ImageInputComponent} from "@core/components/image-input/image-input.comp
     TuiButtonModule,
     ImageInputComponent,
   ],
-  templateUrl: './allergen-form.component.html',
+  templateUrl: './ingredient-form.component.html',
 })
-export class AllergenFormComponent {
+export class IngredientFormComponent {
   @Output() formSubmit: EventEmitter<FormData> = new EventEmitter<FormData>();
   @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
 
-  @Input() set item(value: Allergen | null) {
+  @Input() set item(value: Ingredient | null) {
     if (!(value)) {
       this.form.reset();
       return;
@@ -56,7 +56,6 @@ export class AllergenFormComponent {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    // console.log(`allergenForm`, this.form.value, this.formData());
     this.formSubmit.emit(this.formData());
   }
 

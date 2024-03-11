@@ -8,19 +8,19 @@ import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
 import {JsonPipe} from "@angular/common";
 import {TuiInputModule, TuiTextareaModule} from "@taiga-ui/kit";
-import {AllergenFormComponent} from "@core/components/allergen-form/allergen-form.component";
-import {AllergensService} from "@core/services/http/allergens.service";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {NotificationsService} from "@core/services/notifications.service";
 import {BehaviorSubject, distinctUntilChanged, filter, finalize, Observable, switchMap, takeUntil, tap} from "rxjs";
-import {Allergen} from "@core/models/allergen";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {nue} from "@core/lib/nue";
+import {IngredientsService} from "@core/services/http/ingredients.service";
+import {IngredientFormComponent} from "@core/components/ingredient-form/ingredient-form.component";
+import {Ingredient} from "@core/models/ingredient";
 
 @Component({
-  selector: 'app-edit-allergen',
+  selector: 'app-edit-ingredient',
   standalone: true,
   imports: [
     RouterLink,
@@ -34,12 +34,12 @@ import {nue} from "@core/lib/nue";
     JsonPipe,
     TuiInputModule,
     TuiTextareaModule,
-    AllergenFormComponent,
+    IngredientFormComponent,
   ],
-  templateUrl: './edit-allergen.component.html',
+  templateUrl: './edit-ingredient.component.html',
 })
-export class EditAllergenComponent implements OnInit {
-  private readonly service: AllergensService = inject(AllergensService);
+export class EditIngredientComponent {
+  private readonly service: IngredientsService = inject(IngredientsService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
@@ -47,18 +47,18 @@ export class EditAllergenComponent implements OnInit {
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
-  @ViewChild(AllergenFormComponent) formComponent?: AllergenFormComponent;
+  @ViewChild(IngredientFormComponent) formComponent?: IngredientFormComponent;
 
-  readonly item: WritableSignal<Allergen | null> = signal(null);
+  readonly item: WritableSignal<Ingredient | null> = signal(null);
 
   readonly id$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
-  readonly item$: Observable<Allergen> = this.id$.pipe(
+  readonly item$: Observable<Ingredient> = this.id$.pipe(
     takeUntil(this.destroy$),
     filter((id): id is number => id !== null),
     distinctUntilChanged(),
     switchMap((id: number) => this.service.show(id)),
     tap(() => this.loading.set(false)),
-    tap((item: Allergen) => this.item.set(item))
+    tap((item: Ingredient) => this.item.set(item))
   )
 
   ngOnInit(): void {
@@ -74,17 +74,17 @@ export class EditAllergenComponent implements OnInit {
   }
 
   submit(formVal: FormData): void {
-    // console.log(`EditAllergenComponent.submit`, formVal);
+    // console.log(`EditIngredientComponent.submit`, formVal);
     const id = this.id$.value;
 
-    if (!(id)) throw new Error(`Allergen ID is not set`);
+    if (!(id)) throw new Error(`Ingredient ID is not set`);
 
     this.loading.set(true);
     this.service.update(id, formVal).pipe(
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false)),
     ).subscribe({
-      next: (item: Allergen): void => {
+      next: (item: Ingredient): void => {
         this.notifications.fireSnackBar($localize`Modifiche salvate.`);
         this.router.navigate([`..`], {relativeTo: this.route});
       },

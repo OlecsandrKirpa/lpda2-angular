@@ -56,7 +56,6 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
     TuiTablePaginationModule,
   ],
   templateUrl: './admin-allergens-home.component.html',
-  styleUrl: './admin-allergens-home.component.scss',
   providers: [
     TuiDestroyService
   ]
@@ -98,11 +97,6 @@ export class AdminAllergensHomeComponent implements OnInit {
     map((source: string) => {
       return [source, this.form.value]
     }),
-    // distinctUntilChanged((old: any, latest: any) => {
-    //   if (latest[0] !== `search`) return areObjectsEqual(old[1], latest[1]);
-    //
-    //   return false;
-    // }),
     map(() => this.form.value),
     takeUntilDestroyed(),
     filter(() => this.form.valid),
