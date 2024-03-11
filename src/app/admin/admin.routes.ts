@@ -11,7 +11,6 @@ export const routes: Routes = [
   },
   {
     path: `reservations`,
-    loadComponent: () => import(`./reservations/admin-reservations-home/admin-reservations-home.component`).then(m => m.AdminReservationsHomeComponent),
     loadChildren: () => import(`./reservations/reservations.routes`).then(m => m.routes)
   },
   {

@@ -1,0 +1,21 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+<!--  <div class="mb-3">-->
+<!--    <app-i18n-input formControlName="name">-->
+<!--      <ng-container i18n>Nome dell'allergene</ng-container>-->
+<!--    </app-i18n-input>-->
+
+<!--    <app-errors [errors]="e('name')"></app-errors>-->
+<!--  </div>-->
+
+  <h3>TODO admin-side form for reservation</h3>
+
+  <div class="flex">
+    <button [showLoader]="loading" class="me-2" tuiButton type="submit" size="l">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button [showLoader]="loading" (click)="cancel()" tuiButton type="button" appearance="icon" size="l">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

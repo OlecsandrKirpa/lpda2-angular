@@ -1,3 +1,174 @@
-<p>admin-reservations-home works!</p>
+<h1>
+  <ng-container i18n>Prenotazioni</ng-container>
+</h1>
 
-<img style="opacity: 0.3;" src="https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg" >
+<div class="flex items-center mb-3">
+  <form class="me-2" (ngSubmit)="formSubmit()" [formGroup]="form">
+    <tui-input class="!inline-block min-w-[250px]" [tuiAutoFocus]="true" formControlName="query">
+      <ng-container i18n>Filtra prenotazioni</ng-container>
+      <input tuiTextfield>
+    </tui-input>
+
+    <button [showLoader]="loading()" class="ms-2" type="submit" tuiIconButton appearance="flat">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
+  <a routerLink="new" tuiLink>
+    <span class="flex items-center">
+      <mat-icon>add</mat-icon>
+      <ng-container i18n>Nuovo</ng-container>
+    </span>
+  </a>
+</div>
+
+<ng-template #datetimeCol>
+  <ng-container i18n>Orario</ng-container>
+</ng-template>
+
+<ng-template #nameCol>
+  <ng-container i18n>Nome</ng-container>
+</ng-template>
+
+<ng-template #emailCol>
+  <ng-container i18n>Email</ng-container>
+</ng-template>
+
+<ng-template #peopleCol>
+  <ng-container i18n>N°</ng-container>
+</ng-template>
+
+<ng-template #statusCol>
+  <ng-container i18n>Stato</ng-container>
+</ng-template>
+
+<ng-template #tableCol>
+  <ng-container i18n>Tavolo</ng-container>
+</ng-template>
+
+<ng-template #notesCol>
+  <ng-container i18n>Note</ng-container>
+</ng-template>
+
+<ng-template #phoneCol>
+  <ng-container i18n>Cellulare</ng-container>
+</ng-template>
+
+@if (data()) {
+  <table class="responsive-table collapse-md">
+    <thead>
+    <tr>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="tableCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="phoneCol"></ng-container>
+      </th>
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (item of items(); track item.id) {
+        <tr>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
+                </span>
+
+            <ng-template #detailDatetime>
+              {{ item.datetime | date: 'full' }}
+            </ng-template>
+
+            <span [tuiHint]="detailDatetime" > {{ item.datetime | date: 'HH:mm' }} </span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+                </span>
+
+            <span>{{ item.fullname }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+                </span>
+
+            <span>{{ item.email }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
+                </span>
+
+            <span>{{ item.people }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+                </span>
+
+            <span>{{ item.status }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="tableCol"></ng-container>
+                </span>
+
+            <span>{{ item.table }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+                </span>
+
+            <span>{{ item.notes }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="phoneCol"></ng-container>
+                </span>
+
+            <span>{{ item.phone }}</span>
+          </td>
+          <td>
+            <div class="flex items-baseline">
+              <a class="me-1" size="m" routerLink="{{ item.id }}" tuiIconButton appearance="flat">
+                <mat-icon>edit</mat-icon>
+              </a>
+
+              <button (click)="delete(item.id)" size="m" type="button" tuiIconButton appearance="secondary-destructive">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <tui-table-pagination class="my-2"
+                        [items]="[10, 20, 50, 100]" [total]="data()?.metadata?.total_count ?? 0"
+                        (paginationChange)="paginationChange($event)">
+  </tui-table-pagination>
+}
+
+<router-outlet></router-outlet>

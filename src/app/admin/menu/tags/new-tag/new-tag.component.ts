@@ -58,7 +58,7 @@ export class NewTagComponent {
       takeUntil(this.destroy$),
     ).subscribe({
       next: (item: Tag): void => {
-        this.notifications.fireSnackBar($localize`Tage salvato`);
+        this.notifications.fireSnackBar($localize`Tag salvato`);
         this.router.navigate([`..`], {relativeTo: this.route});
       },
       error: (errors: HttpErrorResponse): void => {
