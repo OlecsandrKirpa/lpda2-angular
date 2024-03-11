@@ -3,16 +3,27 @@ import {ImageData, ImageStatus} from "../lib/interfaces/image-data";
 
 export class Image extends BaseModel {
   filename?: string;
-  title?: string; // Translated short description of the image.
-  description?: string; // Translated long description of the image.
   status?: ImageStatus;
+  key?: string;
+  original_id?: number;
+  tag?: string;
+  url?: string;
 
   constructor(data: ImageData) {
     super(data);
 
-    this.filename    = data.filename;
-    this.title       = data.title;
-    this.description = data.description;
-    this.status      = data.status;
+    this.filename = data.filename;
+    this.status = data.status;
+    this.key = data.key;
+    this.original_id = data.original_id;
+    this.tag = data.tag;
+    this.url = data.url;
   }
+
+  // genFile(): File | null {
+  //   if (!(this.url)) return null;
+  //   if (!(this.filename)) return null;
+  //
+  //   return new File([new Blob([this.url])], this.filename, { type: 'image/jpeg' });
+  // }
 }

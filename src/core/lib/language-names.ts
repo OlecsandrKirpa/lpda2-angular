@@ -1,0 +1,16 @@
+export const LanguageNames: Record<string, string> = {
+  it: $localize`Italiano`,
+  en: $localize`Inglese`,
+  es: $localize`Spagnolo`,
+  fr: $localize`Francese`,
+  de: $localize`Tedesco`,
+  pt: $localize`Portoghese`,
+  ru: $localize`Russo`,
+  zh: $localize`Cinese`,
+  ja: $localize`Giapponese`,
+  ar: $localize`Arabo`,
+  hi: $localize`Hindi`,
+  bn: $localize`Bengalese`,
+  pa: $localize`Punjabi`,
+  ms: $localize`Malese`,
+};

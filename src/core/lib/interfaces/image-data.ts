@@ -2,8 +2,10 @@ import {BaseModelData} from "./base-model-data";
 
 export interface ImageData extends BaseModelData {
   filename?: string;
-  title?: string; // Translated short description of the image.
-  description?: string; // Translated long description of the image.
+  key?: string;
+  original_id?: number;
+  tag?: string;
+  url?: string;
   status?: ImageStatus;
 }
 

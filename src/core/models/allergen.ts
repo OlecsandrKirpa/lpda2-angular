@@ -9,6 +9,11 @@ export class Allergen extends BaseModel {
   status: AllergenStatus;
   other: Record<string, any>;
 
+  translations: {
+    name?: Record<string, string>;
+    description?: Record<string, string>;
+  }
+
   constructor(data: AllergenData) {
     super(data);
 
@@ -16,6 +21,7 @@ export class Allergen extends BaseModel {
     this.description = data.description;
     this.status = data.status;
     this.other = data.other;
+    this.translations = {...data.translations};
 
     if (data.image) this.image = new Image(data.image);
   }

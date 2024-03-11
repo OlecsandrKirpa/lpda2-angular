@@ -34,6 +34,12 @@ export abstract class CommonHttpService<T> extends DomainService {
     )
   }
 
+  // createWithFormData(params: Record<string, any>): Observable<T> {
+  //   return this.postWithFormData(``, params).pipe(
+  //     map((data: unknown): T => this.mapItem(data))
+  //   )
+  // }
+
   update(id: number, params: Record<string, any>): Observable<T> {
     return this.patch(`${id}`, params).pipe(
       map((data: unknown): T => this.mapItem(data))
@@ -47,8 +53,9 @@ export abstract class CommonHttpService<T> extends DomainService {
   protected mapItem(data: unknown): T {
     if (!this.type) throw new Error(`this.type is not defined for ${this.constructor.name}!`);
     if (!(typeof data === 'object' && data != null)) throw new Error(`Invalid data type for ${this.constructor.name}!`);
+    if (!(typeof (data as any)['item'] === 'object' && (data as any)['item'] != null)) console.error(`Invalid data type for ${this.constructor.name}!`, data);
 
-    return new this.type(data as any);
+    return new this.type((data as any)['item']);
   }
 
   protected mapItems(data: unknown): SearchResult<T> {
@@ -57,4 +64,21 @@ export abstract class CommonHttpService<T> extends DomainService {
 
     return new SearchResult<T>(data, this.type);
   }
+
+  // private postWithFormData(path: string, params: Record<string, any>) {
+  //   let formData = new FormData();
+  //   for (let key in params) {
+  //     if (params.hasOwnProperty(key)) {
+  //       let value = params[key];
+  //
+  //       if (typeof value === 'object' && value != null) {
+  //         value = JSON.stringify(value);
+  //       }
+  //
+  //       formData.append(key, value);
+  //     }
+  //   }
+  //
+  //   return this.post(path, formData);
+  // }
 }

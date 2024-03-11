@@ -5,6 +5,7 @@ import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {TuiRoutableDialogModule} from "@taiga-ui/kit";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
     provideAnimations(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    importProvidersFrom(TuiRoutableDialogModule),
 ]
 };

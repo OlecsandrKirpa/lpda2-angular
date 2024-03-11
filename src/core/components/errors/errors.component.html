@@ -1,0 +1,6 @@
+@for (msg of errorsToStr(); track msg) {
+  <tui-error [error]="msg"></tui-error>
+}
+@for (temp of errorsToTemplates(); track temp) {
+  <ng-container *ngTemplateOutlet="temp"></ng-container>
+}

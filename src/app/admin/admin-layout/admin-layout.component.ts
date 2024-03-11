@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterOutlet} from "@angular/router";
-import {AdminSidenavComponent} from "../../../core/components/admin-sidenav/admin-sidenav.component";
+import {AdminSidenavComponent} from "@core/components/admin-sidenav/admin-sidenav.component";
 
 @Component({
   selector: 'app-admin-layout',

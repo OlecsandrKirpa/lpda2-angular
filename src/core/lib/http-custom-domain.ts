@@ -4,6 +4,17 @@ import {Observable, switchMap, tap} from "rxjs";
 import {DomainService} from "../services/domain.service";
 
 /**
+ * TODO:
+ * may try to create a custom http client that uses the domain service to get the domain.
+ * This way, you could do something like this:
+ * ```typescript
+ * private readonly http: HttpClientWithDomain = inject(HttpClientWithDomain);
+ *
+ * search: this.http.get<SearchResult<Allergen>>(`/allergens/`, { params: this.filters() });
+ * ```
+ */
+
+/**
  * This class, when extended, allows you to use a custom domain for your http requests.
  */
 export abstract class HttpCustomDomain {

@@ -23,6 +23,11 @@
       "ES2022",
       "dom"
     ],
+    "paths": {
+      "@core/*": [
+        "src/core/*"
+      ],
+    },
     "types": [
       "node",
       "@angular/localize"

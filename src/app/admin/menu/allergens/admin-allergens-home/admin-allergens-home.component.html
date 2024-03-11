@@ -3,7 +3,7 @@
 </h1>
 
 <div class="flex items-center">
-  <form [formGroup]="form">
+  <form class="me-2" (ngSubmit)="formSubmit()" [formGroup]="form">
     <tui-input class="!inline-block min-w-[250px]" [tuiAutoFocus]="true" formControlName="query">
       <ng-container i18n>Filtra allergeni</ng-container>
       <input tuiTextfield>
@@ -13,4 +13,89 @@
       <mat-icon>search</mat-icon>
     </button>
   </form>
+
+  <a routerLink="new" tuiLink>
+    <span class="flex items-center">
+      <mat-icon>add</mat-icon>
+      <ng-container i18n>Nuovo</ng-container>
+    </span>
+  </a>
 </div>
+
+<ng-template #nameCol>
+  <ng-container i18n>Nome</ng-container>
+</ng-template>
+
+<ng-template #descriptionCol>
+  <ng-container i18n>Descrizione</ng-container>
+</ng-template>
+
+<ng-template #imageCol>
+  <ng-container i18n>Immagine</ng-container>
+</ng-template>
+@if (data()) {
+
+
+  <table class="responsive-table collapse-md">
+    <thead>
+    <tr>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="imageCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="descriptionCol"></ng-container>
+      </th>
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (item of items(); track item.id) {
+        <tr>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="imageCol"></ng-container>
+                </span>
+
+            <app-show-image style="max-width: 100px;" [image]="item.image"></app-show-image>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+                </span>
+
+            <span>{{ item.name }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="descriptionCol"></ng-container>
+                </span>
+
+            <span>{{ item.description }}</span>
+          </td>
+          <td>
+            <div class="flex items-baseline">
+              <a class="me-1" size="m" routerLink="{{ item.id }}" tuiIconButton appearance="flat">
+                <mat-icon>edit</mat-icon>
+              </a>
+
+              <button (click)="delete(item.id)" size="m" type="button" tuiIconButton appearance="secondary-destructive">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <tui-table-pagination class="my-2"
+                        [items]="[10, 20, 50, 100]" [total]="data()?.metadata?.total_count ?? 0"
+                        (paginationChange)="paginationChange($event)">
+  </tui-table-pagination>
+}
+
+<router-outlet></router-outlet>

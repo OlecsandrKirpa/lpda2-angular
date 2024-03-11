@@ -3,9 +3,6 @@ import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ConfigsService } from "src/core/services/configs.service";
-import { DomainService } from "src/core/services/domain.service";
-import { SettingsService } from "src/core/services/settings.service";
 
 @Component({
   selector: 'app-root',

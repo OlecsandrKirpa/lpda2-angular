@@ -1,0 +1,35 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="mb-3">
+    <app-i18n-input formControlName="name">
+      <ng-container i18n>Nome dell'allergene</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('name')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <app-i18n-input [long]="true" formControlName="description">
+      <ng-container i18n>Descrizione dell'allergene</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('description')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <app-image-input formControlName="image">
+      <ng-container i18n>Immagine associata all'allergene</ng-container>
+    </app-image-input>
+
+    <app-errors [errors]="e('image')"></app-errors>
+  </div>
+
+  <div class="flex">
+    <button [showLoader]="loading" class="me-2" tuiButton type="submit" size="l">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button [showLoader]="loading" (click)="cancel()" tuiButton type="button" appearance="icon" size="l">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

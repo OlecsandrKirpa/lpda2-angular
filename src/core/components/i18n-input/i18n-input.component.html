@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+
+<ng-container *ngFor="let item of controlsArr(); last as isLast">
+  <div [ngClass]="{'mb-3': !isLast}">
+    <tui-input [formControl]="item.control">
+      {{ getFullLang(item.lang) }}
+    </tui-input>
+
+    <app-errors [errors]="item.control.errors"></app-errors>
+  </div>
+</ng-container>
