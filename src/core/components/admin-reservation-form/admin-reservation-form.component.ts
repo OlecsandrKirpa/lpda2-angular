@@ -1,11 +1,25 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, inject, Input, OnInit, Output, signal, WritableSignal} from '@angular/core';
 import {ErrorsComponent} from "@core/components/errors/errors.component";
-import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from "@angular/forms";
 import {I18nInputComponent} from "@core/components/i18n-input/i18n-input.component";
-import {TuiButtonModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiDropdownModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
 import {Allergen} from "@core/models/allergen";
 import {Reservation} from "@core/models/reservation";
+import {
+  tuiCreateTimePeriods,
+  TuiInputDateModule,
+  TuiInputDateTimeModule,
+  TuiInputModule,
+  TuiInputNumberModule,
+  TuiInputTimeModule
+} from "@taiga-ui/kit";
+import {TUI_IS_MOBILE, TuiAutoFocusModule, TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
+import {ReservationsService} from "@core/services/http/reservations.service";
+import {filter, finalize, switchMap, takeUntil, takeWhile, tap} from "rxjs";
+import {ReservationTurn} from "@core/models/reservation-turn";
+import {nue} from "@core/lib/nue";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-admin-reservation-form',
@@ -16,31 +30,104 @@ import {Reservation} from "@core/models/reservation";
     I18nInputComponent,
     TuiButtonModule,
     ImageInputComponent,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    TuiInputNumberModule,
+    TuiInputDateTimeModule,
+    TuiInputDateModule,
+    TuiInputTimeModule,
+    TuiAutoFocusModule,
+    TuiDropdownModule,
+    MatIcon,
   ],
   templateUrl: './admin-reservation-form.component.html',
+  providers: [
+    TuiDestroyService
+  ]
 })
-export class AdminReservationFormComponent {
+export class AdminReservationFormComponent implements OnInit {
+  private readonly reservationsService: ReservationsService = inject(ReservationsService);
+  private readonly destroy$ = inject(TuiDestroyService);
+
   @Output() formSubmit: EventEmitter<Record<string, any>> = new EventEmitter<Record<string, any>>();
   @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
 
-  @Input() set item(value: Reservation | null) {
+  readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
+
+  readonly today: TuiDay = TuiDay.currentLocal();
+
+  readonly inputSize = 'l';
+
+  @Input() set item(value: Reservation | null | undefined) {
     if (!(value)) {
       this.form.reset();
       return;
     }
 
     this.form.patchValue({
-      // TODO
+      date: value.datetime,
+      time: value.datetime,
+      fullname: value.fullname,
+      people: value.people,
+      email: value.email,
+      table: value.table,
+      notes: value.notes,
+      phone: value.phone,
     })
   }
 
   readonly form: FormGroup = new FormGroup({
-    // TODO
+    date: new FormControl(null, [Validators.required]),
+    time: new FormControl(null, [Validators.required]),
+    fullname: new FormControl(null, [Validators.required]),
+    people: new FormControl(null, [Validators.required, Validators.min(1)]),
+
+    email: new FormControl(null, [Validators.email]),
+    table: new FormControl(null),
+    notes: new FormControl(null),
+    phone: new FormControl(null),
   });
 
   @Input() loading: boolean = false;
 
+  readonly dateOpen: WritableSignal<boolean> = signal(false);
+  readonly timeOpen: WritableSignal<boolean> = signal(false);
+
+  readonly loadingTimes: WritableSignal<boolean> = signal(false);
+  readonly isMobile: WritableSignal<boolean> = signal<boolean>(false);
+
   private submitted: boolean = false;
+
+  constructor(
+    @Inject(TUI_IS_MOBILE) isMobile: boolean,
+  ) {
+    this.isMobile.set(isMobile);
+  }
+
+  ngOnInit(): void {
+    this.dateOpen.set(true);
+    this.timeOpen.set(false);
+
+    this.form.get(`date`)!.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      filter((date: TuiDay | null): date is TuiDay => date instanceof TuiDay),
+      tap(() => this.dateOpen.set(false)),
+      tap(() => this.timeOpen.set(true)),
+      tap(() => this.loadingTimes.set(true)),
+      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date.toLocalNativeDate())),
+      finalize(() => this.loadingTimes.set(false)),
+    ).subscribe({
+      next: (turns: ReservationTurn[]) => {
+        const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
+        this.validTimes.set(times.map((time: string) => TuiTime.fromString(time)));
+      }
+    });
+
+    this.form.get(`time`)!.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      tap(() => this.timeOpen.set(false)),
+    ).subscribe(nue())
+  }
 
   submit(): void {
     this.submitted = true;
@@ -52,7 +139,15 @@ export class AdminReservationFormComponent {
   private formVal(): Record<string, any> {
     const json = this.form.value;
 
-    // TODO remove unchanged fields, ...
+    const str = `${(json.date as TuiDay).formattedYear}-${(json.date as TuiDay).formattedMonthPart}-${(json.date as TuiDay).formattedDayPart} ${(json.time as TuiTime).toString()}`;
+    json.datetime = str;
+    // json.datetime = new Date(str);
+    delete json.date;
+    delete json.time;
+
+    if (!(json.table && json.table.length > 0)) delete json.table;
+    if (!(json.notes && json.notes.length > 0)) delete json.notes;
+    if (!(json.email && json.email.length > 0)) delete json.notes;
 
     return json;
   }
