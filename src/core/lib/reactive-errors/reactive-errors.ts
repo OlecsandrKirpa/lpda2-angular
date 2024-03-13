@@ -16,11 +16,37 @@ export class ReactiveErrors {
   static assignErrorsToForm(form: UntypedFormGroup, error: HttpErrorResponse, userParams: Partial<ReactiveErrorsParams> = {}): void {
     // const params: Required<ReactiveErrorsParams> = { ...ReactiveErrorsParamsDefaults, ...userParams };
     const errors: ActiveError[] = error.error?.details;
-    if (!(errors && Array.isArray(errors))) return;
+    if (!(errors && Array.isArray(errors))) {
+      if (typeof errors === 'object' && Object.keys(errors).length > 0) return this.assignErrorsToFormFromJson(form, errors, userParams);
+
+      console.warn(`invalid errors provided to assignErrorsToForm`, errors);
+      return;
+    }
 
     this.assignErrorsToFormFromArray(form, errors, userParams);
   }
 
+  static assignErrorsToFormFromJson(form: UntypedFormGroup, errors: { [attribute: string]: ActiveError[]}, userParams: Partial<ReactiveErrorsParams> = {}): void {
+    const params: Required<ReactiveErrorsParams> = { ...ReactiveErrorsParamsDefaults, ...userParams };
+
+    Object.keys(errors).forEach((attribute: string) => {
+      const error: ActiveError[] = errors[attribute];
+      if (!(error && Array.isArray(error))) {
+        console.warn(`assignErrorsToFormFromJson expected an array of ActiveError, but got:`, error);
+        return;
+      }
+
+      error.forEach((e: ActiveError) => {
+        const control: UntypedFormControl = form.controls[attribute] as UntypedFormControl;
+        if (control) {
+          control.setErrors({ [e.attribute]: e.message });
+          return;
+        }
+
+        if (params.assignToFormUnlessControl) form.setErrors({ [e.attribute]: e.message });
+      });
+    });
+  }
 
   static assignErrorsToFormFromArray(form: UntypedFormGroup, errors: ActiveError[], userParams: Partial<ReactiveErrorsParams> = {}): void{
     const params: Required<ReactiveErrorsParams> = { ...ReactiveErrorsParamsDefaults, ...userParams };

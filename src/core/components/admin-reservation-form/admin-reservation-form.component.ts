@@ -20,6 +20,7 @@ import {filter, finalize, switchMap, takeUntil, takeWhile, tap} from "rxjs";
 import {ReservationTurn} from "@core/models/reservation-turn";
 import {nue} from "@core/lib/nue";
 import {MatIcon} from "@angular/material/icon";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-admin-reservation-form',
@@ -39,15 +40,18 @@ import {MatIcon} from "@angular/material/icon";
     TuiAutoFocusModule,
     TuiDropdownModule,
     MatIcon,
+    DatePipe,
   ],
   templateUrl: './admin-reservation-form.component.html',
   providers: [
-    TuiDestroyService
+    TuiDestroyService,
+    DatePipe
   ]
 })
 export class AdminReservationFormComponent implements OnInit {
   private readonly reservationsService: ReservationsService = inject(ReservationsService);
   private readonly destroy$ = inject(TuiDestroyService);
+  private readonly datePipe = inject(DatePipe);
 
   @Output() formSubmit: EventEmitter<Record<string, any>> = new EventEmitter<Record<string, any>>();
   @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
@@ -65,8 +69,8 @@ export class AdminReservationFormComponent implements OnInit {
     }
 
     this.form.patchValue({
-      date: value.datetime,
-      time: value.datetime,
+      date: value.datetime ? new TuiDay(value.datetime?.getFullYear(), value.datetime?.getMonth(), value.datetime?.getDate()) : null,
+      time: value.datetime ? new TuiTime(value.datetime?.getHours(), value.datetime?.getMinutes()) : null,
       fullname: value.fullname,
       people: value.people,
       email: value.email,
@@ -77,7 +81,7 @@ export class AdminReservationFormComponent implements OnInit {
   }
 
   readonly form: FormGroup = new FormGroup({
-    date: new FormControl(null, [Validators.required]),
+    date: new FormControl<TuiDay | null>(null, [Validators.required]),
     time: new FormControl(null, [Validators.required]),
     fullname: new FormControl(null, [Validators.required]),
     people: new FormControl(null, [Validators.required, Validators.min(1)]),
@@ -94,14 +98,12 @@ export class AdminReservationFormComponent implements OnInit {
   readonly timeOpen: WritableSignal<boolean> = signal(false);
 
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
-  readonly isMobile: WritableSignal<boolean> = signal<boolean>(false);
 
   private submitted: boolean = false;
 
   constructor(
-    @Inject(TUI_IS_MOBILE) isMobile: boolean,
+    @Inject(TUI_IS_MOBILE) public readonly isMobile: boolean,
   ) {
-    this.isMobile.set(isMobile);
   }
 
   ngOnInit(): void {
@@ -126,7 +128,7 @@ export class AdminReservationFormComponent implements OnInit {
     this.form.get(`time`)!.valueChanges.pipe(
       takeUntil(this.destroy$),
       tap(() => this.timeOpen.set(false)),
-    ).subscribe(nue())
+    ).subscribe(nue());
   }
 
   submit(): void {

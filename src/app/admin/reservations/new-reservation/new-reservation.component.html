@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between">
   <h1>
-    <ng-container i18n>New reservation</ng-container>
+    <ng-container i18n>Nuova prenotazione</ng-container>
   </h1>
 
   <button (click)="cancel()" type="button" tuiIconButton appearance="icon">
@@ -9,5 +9,3 @@
 </div>
 
 <app-admin-reservation-form [loading]="loading()" (cancelled)="cancel()" (formSubmit)="submit($event)"></app-admin-reservation-form>
-
-<!--<app-reservation-form [loading]="loading()" (cancelled)="cancel()" (formSubmit)="submit($event)" ></app-reservation-form>-->

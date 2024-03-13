@@ -1,1 +1,11 @@
-<p>edit-reservation works!</p>
+<div class="flex items-center justify-between">
+  <h1>
+    <ng-container i18n>Modifica prenotazione</ng-container>
+  </h1>
+
+  <button (click)="cancel()" type="button" tuiIconButton appearance="icon">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<app-admin-reservation-form [item]="item()" [loading]="loading()" (cancelled)="cancel()" (formSubmit)="submit($event)"></app-admin-reservation-form>
