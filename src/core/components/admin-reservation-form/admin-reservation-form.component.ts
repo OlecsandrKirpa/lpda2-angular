@@ -139,8 +139,16 @@ export class AdminReservationFormComponent implements OnInit {
   private formVal(): Record<string, any> {
     const json = this.form.value;
 
-    const str = `${(json.date as TuiDay).formattedYear}-${(json.date as TuiDay).formattedMonthPart}-${(json.date as TuiDay).formattedDayPart} ${(json.time as TuiTime).toString()}`;
-    json.datetime = str;
+    /**
+     * Here we have an issue.
+     * User's browser timezone will be probably different from server's timezone.
+     * So we need to convert in UTC before sending to server.
+     *
+     * new Date(...) will create a date in user's timezone.
+     *
+     */
+    const currentTimezoneDate = new Date(`${(json.date as TuiDay).formattedYear}-${(json.date as TuiDay).formattedMonthPart}-${(json.date as TuiDay).formattedDayPart} ${(json.time as TuiTime).toString()}`);
+    json.datetime = currentTimezoneDate.toISOString();
     // json.datetime = new Date(str);
     delete json.date;
     delete json.time;
