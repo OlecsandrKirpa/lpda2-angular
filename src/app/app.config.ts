@@ -8,7 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {TuiRoutableDialogModule} from "@taiga-ui/kit";
 import { of } from 'rxjs';
 import {TUI_LANGUAGE, TUI_ITALIAN_LANGUAGE} from '@taiga-ui/i18n';
-import { registerLocaleData } from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 import localeIT from '@angular/common/locales/it';
 
 registerLocaleData(localeIT);
@@ -17,6 +17,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
+    DatePipe,
     importProvidersFrom(HttpClientModule),
     provideAnimations(),
     provideAnimationsAsync(),

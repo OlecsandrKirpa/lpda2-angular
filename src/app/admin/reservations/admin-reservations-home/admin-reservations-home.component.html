@@ -2,25 +2,40 @@
   <ng-container i18n>Prenotazioni</ng-container>
 </h1>
 
-<div class="flex items-center mb-3">
-  <form class="me-2" (ngSubmit)="formSubmit()" [formGroup]="form">
-    <tui-input class="!inline-block min-w-[250px]" [tuiAutoFocus]="true" formControlName="query">
+<form class="flex flex-col mb-3" (ngSubmit)="formSubmit()" [formGroup]="form">
+  <div class="flex items-center mb-2">
+    <button [showLoader]="loading()" class="me-2" type="submit" tuiIconButton appearance="flat">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <tui-input class="!inline-block min-w-[250px] me-2" [tuiAutoFocus]="true" formControlName="query">
       <ng-container i18n>Filtra prenotazioni</ng-container>
       <input tuiTextfield>
     </tui-input>
 
-    <button [showLoader]="loading()" class="ms-2" type="submit" tuiIconButton appearance="flat">
-      <mat-icon>search</mat-icon>
-    </button>
-  </form>
-
-  <a routerLink="new" tuiLink>
+    <a routerLink="new" tuiLink>
     <span class="flex items-center">
       <mat-icon>add</mat-icon>
       <ng-container i18n>Nuovo</ng-container>
     </span>
-  </a>
-</div>
+    </a>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <app-reservation-status-select [inputSize]="inputSize" formControlName="status">
+      <ng-container i18n>Stato</ng-container>
+    </app-reservation-status-select>
+
+    <app-reservation-turn-select [filters]="dateStr() ? {date: dateStr()} : null" [inputSize]="inputSize" style="min-width: 150px;" class="mx-2" formControlName="turn">
+      <ng-container i18n>Turno</ng-container>
+    </app-reservation-turn-select>
+
+    <app-reservation-date-select [inputSize]="inputSize" formControlName="date">
+      <ng-container i18n>Data</ng-container>
+    </app-reservation-date-select>
+  </div>
+</form>
+
 
 <ng-template #datetimeCol>
   <ng-container i18n>Orario</ng-container>
@@ -98,7 +113,7 @@
               {{ item.datetime | date: 'full' }}
             </ng-template>
 
-            <span [tuiHint]="detailDatetime" > {{ item.datetime | date: 'HH:mm' }} </span>
+            <span [tuiHint]="detailDatetime"> {{ item.datetime | date: 'HH:mm' }} </span>
           </td>
           <td>
                 <span class="collapse-header">

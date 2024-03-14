@@ -1,0 +1,144 @@
+<!-- 
+
+  TEMPLATES
+
+ -->
+
+<ng-template #loadMoreDefault>
+  <ng-container i18n>Load more</ng-container>
+</ng-template>
+
+<ng-template #valueContent let-data>
+  @switch (optionTemplateType$()){
+    @case("text"){
+      <ng-container *polymorpheusOutlet="optionTemplate$() as text"> {{ text }} </ng-container>
+    }
+
+    @case("template"){
+      <ng-container *polymorpheusOutlet="optionTemplate$(); context: {$implicit: data, injector: injector}"></ng-container>
+    }
+
+    @case("component"){
+      <ng-container *polymorpheusOutlet="optionTemplate$(); context: { data: data }"></ng-container>
+    }
+
+    @default {
+      <div [innerText]="stringify(data)"></div>
+    }
+  }
+</ng-template>
+
+<ng-template #nativeOptionTemplate let-data>
+  @switch (nativeOptionTemplateType$()){
+    @case("text"){
+      <ng-container *polymorpheusOutlet="nativeOptionTemplate$() as text"> {{ text }} </ng-container>
+    }
+
+    @case("template"){
+      <ng-container *polymorpheusOutlet="nativeOptionTemplate$(); context: {$implicit: data, injector: injector}"></ng-container>
+    }
+
+    @case("component"){
+      <ng-container *polymorpheusOutlet="nativeOptionTemplate$(); context: { data: data }"></ng-container>
+    }
+
+    @default {
+      <div [innerText]="stringify(data)"></div>
+    }
+  }
+</ng-template>
+
+
+<ng-template #placeholderTemplate>
+  <span #customContent>
+    <ng-content></ng-content>
+  </span>
+  <ng-container *ngIf="!customContent.hasChildNodes()"> {{ placeholder }} </ng-container>
+</ng-template>
+
+
+<ng-template #nativeEmptyContentTemplate>
+  <span #customEmptyContent>
+    <ng-content select="[empty-content]"></ng-content>
+  </span>
+
+  <ng-template #defaultEmptyContent>
+    <ng-container i18n>Nothing found.</ng-container>
+  </ng-template>
+
+  <ng-template #emptyContentCustomString>
+    <span>{{emptyContentString()}}</span>
+  </ng-template>
+
+  <ng-container *ngIf="!customEmptyContent.hasChildNodes()">
+    <ng-container *ngIf="emptyContent$(); else defaultEmptyContent">
+      <ng-container *ngIf="emptyContentTemplate(); else emptyContentCustomString">
+        <ng-container *ngTemplateOutlet="emptyContentTemplate()"></ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <tui-loader></tui-loader>
+</ng-template>
+
+<ng-template #loadingOrEmptyContent>
+  <ng-template #empty>
+    <ng-container *ngTemplateOutlet="nativeEmptyContentTemplate"></ng-container>
+  </ng-template>
+
+  <ng-container *ngIf="loading(); else empty">
+    <ng-container *ngTemplateOutlet="loadingTemplate"></ng-container>
+  </ng-container>
+</ng-template>
+
+<!-- 
+
+  CONTENT
+
+  -->
+<tui-combo-box [tuiTextfieldCleaner]="true" [stringify]="stringify" [tuiTextfieldSize]="inputSize"
+  [formControl]="control" [valueContent]="valueContent" (searchChange)="onSearchChange($event)">
+
+  <ng-container *ngTemplateOutlet="placeholderTemplate"></ng-container>
+
+  <!--
+    DONT REMOVE THIS
+    <input tuiTextfield (input)="onSearchChange(extractValueFromEvent($event))" />
+  -->
+
+  <tui-data-list *tuiDataList [emptyContent]="loadingOrEmptyContent">
+    <ng-container *ngFor="let item of items(); last as isLast; index as index">
+      <button tuiOption [size]="optionSize" [value]="item" (mouseenter)="optionMouseEnter(index, isLast)"
+        (focus)="optionFocus(index, isLast)" [disabled]="disabledItemHandler(item)">
+
+        <ng-container *ngTemplateOutlet="nativeOptionTemplate; context: {$implicit: item}"></ng-container>
+      </button>
+
+      <ng-container *ngIf="isLast && thereAreMoreItems">
+        <ng-container *ngIf="loading">
+          <ng-container *ngTemplateOutlet="loadingTemplate"></ng-container>
+        </ng-container>
+
+        <button *ngIf="!loading" tuiOption [size]="optionSize" [disabled]="true">
+
+          <span role="button" (click)="loadMoreItems()">
+            <ng-container *ngIf="loadMore; else loadMoreDefault"></ng-container>
+          </span>
+        </button>
+      </ng-container>
+    </ng-container>
+
+    <button *ngIf="showCreateNew" tuiOption [size]="optionSize" [value]="null" [disabled]="true">
+      <span #createNewCustomTemplate>
+        <ng-content select="[create-new]"></ng-content>
+      </span>
+
+      <span (click)="createNew.emit()" role="button" class="d-flex align-items-center" *ngIf="!createNewCustomTemplate.hasChildNodes()">
+        <mat-icon>add</mat-icon>
+        <span i18n>Crea nuovo</span>
+      </span>
+    </button>
+  </tui-data-list>
+</tui-combo-box>

@@ -1,0 +1,9 @@
+<tui-select [tuiTextfieldSize]="inputSize" [formControl]="control">
+  <ng-content></ng-content>
+
+  <tui-data-list *tuiDataList>
+    <ng-container *ngFor="let status of statuses">
+      <button tuiOption [value]="status">{{ status }}</button>
+    </ng-container>
+  </tui-data-list>
+</tui-select>
