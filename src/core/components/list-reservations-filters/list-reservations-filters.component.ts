@@ -101,6 +101,11 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
       takeUntil(this.destroy$),
     ).subscribe({
       next: (date: Date | null): void => {
+        this.turn.setValue(null);
+
+        if (!date) this.turn.disable();
+        else if (this.turn.disabled) this.turn.enable();
+
         this.dateStr.set(this.formatDate(date));
       },
       error: (error: any) => console.error(error),
@@ -196,6 +201,7 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
   // Will check if filters changed, and if so, will emit new filters.
   // Will return a boolean indicating if filters changed.
   private lastFilters: Partial<ReservationsFilters> = {};
+
   private filtersMayHaveChanged(): boolean {
     const currentFilters: Partial<ReservationsFilters> = this.currentFilters();
     const changed: boolean = JSON.stringify(currentFilters) !== JSON.stringify(this.lastFilters);

@@ -341,6 +341,11 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
     this.control.valueChanges.subscribe(() => fn());
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled) this.control.disable();
+    else this.control.enable();
+  }
+
   /* ****************** Private functions ****************** */
   protected setValById(id: number) {
     if (!this.service) return;
