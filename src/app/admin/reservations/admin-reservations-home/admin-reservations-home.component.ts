@@ -49,6 +49,10 @@ import {ReservationTurn} from "@core/models/reservation-turn";
 import {
   ReservationTurnSelectComponent
 } from "@core/components/dynamic-selects/reservation-turn-select/reservation-turn-select.component";
+import {
+  ListReservationsFiltersComponent, ReservationsFilters
+} from "@core/components/list-reservations-filters/list-reservations-filters.component";
+import {orderBy, OrderByComponent} from "@core/components/order-by/order-by.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -69,12 +73,15 @@ import {
     ReservationStatusSelectComponent,
     ReservationTurnSelectComponent,
     ReservationDateSelectComponent,
+    ListReservationsFiltersComponent,
+    ListReservationsFiltersComponent,
+    OrderByComponent,
   ],
   templateUrl: './admin-reservations-home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminReservationsHomeComponent implements OnInit {
   readonly loading: WritableSignal<boolean> = signal(false);
@@ -82,102 +89,24 @@ export class AdminReservationsHomeComponent implements OnInit {
   readonly items: Signal<Reservation[]> = computed(() => this.data()?.items || []);
   private readonly service: ReservationsService = inject(ReservationsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
-  private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly date = inject(DatePipe);
-
-  readonly form: FormGroup = new FormGroup({
-    query: new FormControl(``),
-    turn: new FormControl(null),
-    date: new FormControl<Date | null>(new Date()),
-    status: new FormControl('active'),
-    offset: new FormControl(0, [Validators.min(0), Validators.required]),
-    per_page: new FormControl(10, [Validators.min(1), Validators.required]),
-  });
-
-  readonly dateStr: WritableSignal<string | null> = signal(this.transformDate(new Date()));
+  private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
 
   @ViewChild(ReservationTurnSelectComponent, {static: true}) turnSelect?: ReservationTurnSelectComponent;
 
-  private readonly search$: Subject<void> = new Subject<void>();
-
-  private readonly _filter$: Subscription = merge(
-    this.form.get(`query`)!.valueChanges.pipe(
-      debounceTime(1_000),
-      tap(() => this.form.patchValue({offset: 0}, {emitEvent: false})),
-      map(() => `query`),
-    ),
-
-
-    ...[`offset`, `per_page`].map((controlName: string) =>
-      (this.form.get(controlName) as FormControl).valueChanges.pipe(
-        delay(10),
-        // tap((value: any) => console.log(`filter ${controlName} changed`, {value, formValue: this.form.value})),
-        map(() => `filters`),
-      )
-    ),
-
-    ...[`turn`, `status`].map((controlName: string) =>
-      (this.form.get(controlName) as FormControl).valueChanges.pipe(
-        delay(10),
-        tap(() => this.form.patchValue({offset: 0}, {emitEvent: false})),
-        map(() => `filters`),
-      )
-    ),
-
-    this.form.get(`date`)!.valueChanges.pipe(
-      delay(10),
-      tap(() => this.form.patchValue({offset: 0, turn: null}, {emitEvent: false})),
-      map(() => `dateFilter`)
-    ),
-
-    this.search$.pipe(
-      map((): string => `search`),
-    ),
-  ).pipe(
-    // map((source: string) => {
-    //   return [source, this.form.value]
-    // }),
-    filter(() => this.form.valid),
-    map(() => this.form.value),
-    takeUntilDestroyed(),
-    tap((_filters: Record<string, any>): void => {
-      const filters: Record<string, any> = {..._filters};
-
-      // Remove empty filters
-      if (!(filters['query'] && typeof filters['query'] === `string` && filters['query'].length > 0)) delete filters['query'];
-
-
-      if (filters['turn'] instanceof ReservationTurn && filters['date'] instanceof Date) {
-        const date = this.transformDate(filters['date']);
-
-        filters['datetime_from'] = `${date} ${(filters['turn'] as ReservationTurn).starts_at}`;
-        filters['datetime_to'] = `${date} ${(filters['turn'] as ReservationTurn).ends_at}`;
-
-        delete filters['turn']
-        delete filters['date'];
-      } else {
-        if (filters['date'] instanceof Date) filters['date'] = this.transformDate(filters['date']);
-        else delete filters['date'];
-      }
-
-      this.dateStr.set(filters['date']);
-
-      if (!(filters['status'] && filters['status'].length > 0)) delete filters['status'];
-
-      delete filters['turn'];
-
-      this.search(filters);
-    })
-  ).subscribe(nue());
-
   readonly inputSize: "s" | "m" | "l" = 'm';
+  private readonly defaultOrder: orderBy = {field: "datetime", asc: true};
+
+  filters: Partial<ReservationsFilters> = {};
+  order: FormControl<orderBy | null> = new FormControl<orderBy | null>(null);
 
   ngOnInit(): void {
-    this.search();
-  }
-
-  formSubmit(): void {
-    this.search();
+    this.order.valueChanges.subscribe({
+      next: (value: any) => {
+        console.log(`order`, {value});
+        this.search();
+      }
+    })
   }
 
   delete(reservationId: number | undefined): void {
@@ -189,6 +118,21 @@ export class AdminReservationsHomeComponent implements OnInit {
       }
     });
   }
+
+  filtersChanged(filters: Partial<ReservationsFilters>): void {
+    this.filters = filters;
+    this.search(filters);
+  }
+
+  // triggerOrder(field: string, asc: boolean | null): void {
+  //   if (asc == null) {
+  //     this.order = undefined;
+  //     return this.search();
+  //   }
+  //
+  //   this.order = { field, asc };
+  //   this.search();
+  // }
 
   private confirmedDelete(id: number): void {
     this.loading.set(true);
@@ -205,7 +149,15 @@ export class AdminReservationsHomeComponent implements OnInit {
     })
   }
 
-  private search(filters = this.form.value): void {
+  private search(filters: Partial<ReservationsFilters> = this.filters): void {
+    filters ||= {};
+    filters = {...filters};
+    const order: orderBy | null = this.order.value;
+    if (this.order.valid && order) {
+      filters.order_by_field = order.field;
+      filters.order_by_direction = order.asc ? "ASC" : "DESC";
+    }
+
     this.loading.set(true);
     this.service.search(filters).pipe(
       takeUntil(this.destroy$),
@@ -214,16 +166,10 @@ export class AdminReservationsHomeComponent implements OnInit {
       next: (result: SearchResult<Reservation>) => {
         this.data.set(result);
       },
+      error: (error: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(error) || $localize`Qualcosa è andato storto nella ricerca.`);
+        console.error(error);
+      }
     });
-  }
-
-  paginationChange(event: TuiTablePagination) {
-    this.form.patchValue({offset: event.page, per_page: event.size});
-  }
-
-  private transformDate(date: Date | null): string | null {
-    if (date == null) return null;
-
-    return this.date.transform(date, 'YYYY-MM-dd');
   }
 }

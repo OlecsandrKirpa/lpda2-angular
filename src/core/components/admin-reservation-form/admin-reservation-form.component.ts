@@ -21,6 +21,7 @@ import {ReservationTurn} from "@core/models/reservation-turn";
 import {nue} from "@core/lib/nue";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
+import {strTimeTimezone} from "@core/lib/str-time-timezone";
 
 @Component({
   selector: 'app-admin-reservation-form',
@@ -121,7 +122,7 @@ export class AdminReservationFormComponent implements OnInit {
     ).subscribe({
       next: (turns: ReservationTurn[]) => {
         const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
-        this.validTimes.set(times.map((time: string) => TuiTime.fromString(time)));
+        this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))));
       }
     });
 

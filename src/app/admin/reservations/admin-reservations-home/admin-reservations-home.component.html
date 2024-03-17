@@ -2,40 +2,6 @@
   <ng-container i18n>Prenotazioni</ng-container>
 </h1>
 
-<form class="flex flex-col mb-3" (ngSubmit)="formSubmit()" [formGroup]="form">
-  <div class="flex items-center mb-2">
-    <button [showLoader]="loading()" class="me-2" type="submit" tuiIconButton appearance="flat">
-      <mat-icon>search</mat-icon>
-    </button>
-
-    <tui-input class="!inline-block min-w-[250px] me-2" [tuiAutoFocus]="true" formControlName="query">
-      <ng-container i18n>Filtra prenotazioni</ng-container>
-      <input tuiTextfield>
-    </tui-input>
-
-    <a routerLink="new" tuiLink>
-    <span class="flex items-center">
-      <mat-icon>add</mat-icon>
-      <ng-container i18n>Nuovo</ng-container>
-    </span>
-    </a>
-  </div>
-
-  <div class="flex items-center justify-between">
-    <app-reservation-status-select [inputSize]="inputSize" formControlName="status">
-      <ng-container i18n>Stato</ng-container>
-    </app-reservation-status-select>
-
-    <app-reservation-turn-select [filters]="dateStr() ? {date: dateStr()} : null" [inputSize]="inputSize" style="min-width: 150px;" class="mx-2" formControlName="turn">
-      <ng-container i18n>Turno</ng-container>
-    </app-reservation-turn-select>
-
-    <app-reservation-date-select [inputSize]="inputSize" formControlName="date">
-      <ng-container i18n>Data</ng-container>
-    </app-reservation-date-select>
-  </div>
-</form>
-
 
 <ng-template #datetimeCol>
   <ng-container i18n>Orario</ng-container>
@@ -58,7 +24,7 @@
 </ng-template>
 
 <ng-template #tableCol>
-  <ng-container i18n>Tavolo</ng-container>
+  <ng-container ifield18n>Tavolo</ng-container>
 </ng-template>
 
 <ng-template #notesCol>
@@ -69,33 +35,49 @@
   <ng-container i18n>Cellulare</ng-container>
 </ng-template>
 
-@if (data()) {
+<app-list-reservations-filters (filtersChanged)="filtersChanged($event)" [data]="data()">
   <table class="responsive-table collapse-md">
     <thead>
     <tr>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
+        <app-order-by [item]="'datetime'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+        <app-order-by [item]="'fullname'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+        <app-order-by [item]="'email'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
+        <app-order-by [item]="'people'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+        <app-order-by [item]="'status'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="tableCol"></ng-container>
+        <app-order-by [item]="'table'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="tableCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+        <app-order-by [item]="'notes'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+        </app-order-by>
       </th>
       <th class="text-start">
-        <ng-container *ngTemplateOutlet="phoneCol"></ng-container>
+        <app-order-by [item]="'phone'" [formControl]="order">
+          <ng-container *ngTemplateOutlet="phoneCol"></ng-container>
+        </app-order-by>
       </th>
 
       <th></th>
@@ -180,10 +162,6 @@
     </tbody>
   </table>
 
-  <tui-table-pagination class="my-2"
-                        [items]="[10, 20, 50, 100]" [total]="data()?.metadata?.total_count ?? 0"
-                        (paginationChange)="paginationChange($event)">
-  </tui-table-pagination>
-}
+</app-list-reservations-filters>
 
 <router-outlet></router-outlet>

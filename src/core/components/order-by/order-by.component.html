@@ -1,0 +1,13 @@
+<div (click)="trigger()" role="button" class="inline-block">
+  <div [tuiHint]="hint" class="flex items-center">
+    <ng-content></ng-content>
+
+    <button tuiIconButton type="button" role="button" size="s" appearance="custom">
+      <mat-icon class="animation-speed-2" [ngClass]="{
+  'rotate180': isCurrent && !isAsc,
+  'text-slate-200 hover:text-slate-400': !isCurrent,
+  }">expand_more
+      </mat-icon>
+    </button>
+  </div>
+</div>
