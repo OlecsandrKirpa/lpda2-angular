@@ -75,7 +75,6 @@ export class EditTagComponent implements OnInit {
   }
 
   submit(formVal: FormData): void {
-    // console.log(`EditTagComponent.submit`, formVal);
     const id = this.id$.value;
 
     if (!(id)) throw new Error(`Tag ID is not set`);

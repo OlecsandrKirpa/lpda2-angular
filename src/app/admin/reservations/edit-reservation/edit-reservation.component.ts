@@ -79,7 +79,7 @@ export class EditReservationComponent implements OnInit {
         this.router.navigate([`..`], {relativeTo: this.route});
       },
       error: (errors: HttpErrorResponse): void => {
-        console.log(`invalid!`, {form: this.formComponent, errors: errors})
+        console.warn(`invalid!`, {form: this.formComponent, errors: errors})
         if (this.formComponent) ReactiveErrors.assignErrorsToForm(this.formComponent.form, errors);
         this.notifications.error(parseHttpErrorMessage(errors) || $localize`Qualcosa è andato storto nel salvataggio.`);
       }

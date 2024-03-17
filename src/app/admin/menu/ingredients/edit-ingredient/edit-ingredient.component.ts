@@ -74,7 +74,6 @@ export class EditIngredientComponent {
   }
 
   submit(formVal: FormData): void {
-    // console.log(`EditIngredientComponent.submit`, formVal);
     const id = this.id$.value;
 
     if (!(id)) throw new Error(`Ingredient ID is not set`);

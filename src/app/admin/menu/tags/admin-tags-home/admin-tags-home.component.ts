@@ -85,7 +85,6 @@ export class AdminTagsHomeComponent implements OnInit {
     ...[`offset`, `per_page`].map((controlName: string) =>
       (this.form.get(controlName) as FormControl).valueChanges.pipe(
         delay(10),
-        // tap((value: any) => console.log(`filter ${controlName} changed`, {value, formValue: this.form.value})),
         map(() => `filters`),
       )
     ),

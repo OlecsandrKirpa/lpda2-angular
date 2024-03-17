@@ -103,7 +103,6 @@ export class AdminReservationsHomeComponent implements OnInit {
   ngOnInit(): void {
     this.order.valueChanges.subscribe({
       next: (value: any) => {
-        console.log(`order`, {value});
         this.search();
       }
     })

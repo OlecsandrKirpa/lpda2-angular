@@ -74,7 +74,6 @@ export class EditAllergenComponent implements OnInit {
   }
 
   submit(formVal: FormData): void {
-    // console.log(`EditAllergenComponent.submit`, formVal);
     const id = this.id$.value;
 
     if (!(id)) throw new Error(`Allergen ID is not set`);

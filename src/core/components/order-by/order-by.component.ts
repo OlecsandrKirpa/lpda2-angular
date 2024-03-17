@@ -79,13 +79,11 @@ export class OrderByComponent extends AbstractTuiNullableControl<{ field: string
   }
 
   get isAsc(): boolean {
-    console.log(`isAsc`);
     return this.value?.asc ?? false;
   }
 
 
   get isCurrent(): boolean {
-    // console.log(`isCurrent`);
     return this.value?.field === this.item;
   }
 

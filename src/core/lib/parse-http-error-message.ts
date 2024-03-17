@@ -13,7 +13,6 @@ export function parseHttpErrorMessage(response: HttpErrorResponse, configs?: con
     return `${response.error.error} ${response.error.exception}`.replace(/\</gm, '').replace(/\>+/gm, '');
   }
 
-  // console.log(`parseHttpErrorMessage`, {result: extractErrors(response)});
 
   const msg: string[] = extractErrors(response).map((detail: {
     attribute: string,
@@ -38,8 +37,6 @@ export function extractErrors(response: HttpErrorResponse): error[] {
           typeof detail['attribute'] === 'string' && detail['attribute'].length > 0 &&
           ((typeof detail['message'] == 'string' && detail['message'].length > 0) || (Array.isArray(detail['message']) && detail['message'].length > 0))
       );
-
-      console.log(`inside bro`, {errors});
 
       if (errors.length > 0) return errors;
     }

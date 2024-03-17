@@ -71,7 +71,6 @@ export class ImageInputComponent implements ControlValueAccessor, OnInit {
     //   takeUntil(this.destroy$),
     // ).subscribe({
     //   next: (value: File | null) => {
-    //     // console.log(`ImageInputComponent`, value);
     //     this.imageUrl.set(value ? this.formatUrlFromFile(value) : null);
     //   }
     // })

@@ -107,7 +107,6 @@ export class AdminSidenavComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (result: Reservation | null): void => {
-        console.log(`dialog result`, {result});
       },
       error: (error: any): void => console.error(error),
     })

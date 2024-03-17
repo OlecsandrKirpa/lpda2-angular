@@ -56,7 +56,6 @@ export class AllergenFormComponent {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    // console.log(`allergenForm`, this.form.value, this.formData());
     this.formSubmit.emit(this.formData());
   }
 

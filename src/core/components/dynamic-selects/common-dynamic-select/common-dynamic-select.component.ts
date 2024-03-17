@@ -319,13 +319,11 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
 
   loadMoreItems(): void {
     if (this.loading()) return;
-    // console.log("loadMoreItems");
     if (this.thereAreMoreItems) this.updatePage(this.nextPageToLoad as number);
   }
 
   /* ****************** ValueAccessor interface methods ****************** */
   writeValue(obj: T | any) {
-    // console.log("writeValue", { obj });
     if ((typeof obj == 'number' || typeof obj == 'string') && Number(obj) == obj) return this.setValById(obj as number);
     /**
      * TODO get the object from the server if id or id[] is provided
@@ -468,7 +466,6 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
       })
     });
 
-    // console.log('newItemsLoaded', {requestParams, response, items, savedItems: this.items(), self: this});
 
   }
 
