@@ -7,7 +7,7 @@ export const routes: Routes = [
     children: [
       {
         path: `new`,
-        loadChildren: () => import(`./new-reservation/new-reservation.module`).then(m => m.NewReservationModule)
+        loadChildren: () => import(`@core/components/reservations-creation/create-reservation-routable/create-reservation-routable.module`).then(m => m.CreateReservationRoutableModule)
       },
       {
         path: `:id`,

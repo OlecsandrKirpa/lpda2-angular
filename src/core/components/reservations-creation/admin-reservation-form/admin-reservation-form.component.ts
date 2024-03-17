@@ -23,6 +23,9 @@ import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
 import {strTimeTimezone} from "@core/lib/str-time-timezone";
 
+/**
+ * NEW and EDIT reservation's data
+ */
 @Component({
   selector: 'app-admin-reservation-form',
   standalone: true,

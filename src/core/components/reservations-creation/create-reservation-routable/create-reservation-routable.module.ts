@@ -1,12 +1,14 @@
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {tuiGenerateDialogableRoute} from "@taiga-ui/kit";
-import {NewReservationComponent} from "./new-reservation.component";
+import {
+  CreateReservationRoutableComponent
+} from "./create-reservation-routable.component";
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      tuiGenerateDialogableRoute(NewReservationComponent, {
+      tuiGenerateDialogableRoute(CreateReservationRoutableComponent, {
         path: ``,
         closeable: true,
         dismissible: false,
@@ -15,4 +17,4 @@ import {NewReservationComponent} from "./new-reservation.component";
     ])
   ],
 })
-export class NewReservationModule { }
+export class CreateReservationRoutableModule { }

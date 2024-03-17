@@ -12,7 +12,9 @@ import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {nue} from "@core/lib/nue";
 import {MatIcon} from "@angular/material/icon";
-import {AdminReservationFormComponent} from "@core/components/admin-reservation-form/admin-reservation-form.component";
+import {
+  AdminReservationFormComponent
+} from "@core/components/reservations-creation/admin-reservation-form/admin-reservation-form.component";
 
 @Component({
   selector: 'app-edit-reservation',
