@@ -53,6 +53,7 @@ import {
   ListReservationsFiltersComponent, ReservationsFilters
 } from "@core/components/list-reservations-filters/list-reservations-filters.component";
 import {orderBy, OrderByComponent} from "@core/components/order-by/order-by.component";
+import {ReservationEventsComponent} from "@core/components/reservation-events/reservation-events.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -76,6 +77,7 @@ import {orderBy, OrderByComponent} from "@core/components/order-by/order-by.comp
     ListReservationsFiltersComponent,
     ListReservationsFiltersComponent,
     OrderByComponent,
+    ReservationEventsComponent,
   ],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

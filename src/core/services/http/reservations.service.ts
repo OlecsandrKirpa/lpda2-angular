@@ -15,15 +15,15 @@ export class ReservationsService extends CommonHttpService<Reservation> {
     super(Reservation, `admin/reservations`);
   }
 
-  // search(params: Record<string, string | number>): Observable<SearchResult<T>> {
-  //   return this.get(``, {params: params}).pipe(
-  //     map((data: any): SearchResult<T> => this.mapItems(data)),
-  //   );
-  // }
-
   getValidTimes(date: Date): Observable<ReservationTurn[]> {
     return this.get<ReservationTurnData[]>(`valid_times`, {params: {date: date.toISOString()}}).pipe(
       map((data: ReservationTurnData[]): ReservationTurn[] => data.map((d: ReservationTurnData): ReservationTurn => new ReservationTurn(d))),
     )
+  }
+
+  deliverConfirmationEmail(id: number): Observable<Reservation> {
+    return this.post(`${id}/deliver_confirmation_email`, {}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
   }
 }

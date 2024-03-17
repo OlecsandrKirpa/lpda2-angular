@@ -35,6 +35,10 @@
   <ng-container i18n>Cellulare</ng-container>
 </ng-template>
 
+<ng-template #eventsCol>
+  <ng-container i18n>Eventi</ng-container>
+</ng-template>
+
 <app-list-reservations-filters (filtersChanged)="filtersChanged($event)" [data]="data()">
   <table class="responsive-table collapse-md">
     <thead>
@@ -78,6 +82,9 @@
         <app-order-by [item]="'phone'" [formControl]="order">
           <ng-container *ngTemplateOutlet="phoneCol"></ng-container>
         </app-order-by>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="eventsCol"></ng-container>
       </th>
 
       <th></th>
@@ -145,6 +152,13 @@
                 </span>
 
             <span>{{ item.phone }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="eventsCol"></ng-container>
+                </span>
+
+            <app-reservation-events [reservation]="item" ></app-reservation-events>
           </td>
           <td>
             <div class="flex items-baseline">

@@ -1,4 +1,5 @@
 import {BaseModelData} from "@core/lib/interfaces/base-model-data";
+import {DeliveredEmailData} from "@core/lib/interfaces/delivered-email-data";
 
 export interface ReservationData extends BaseModelData {
   fullname?: string;
@@ -10,6 +11,8 @@ export interface ReservationData extends BaseModelData {
   notes?: string;
   email?: string;
   phone?: string;
+
+  delivered_emails?: DeliveredEmailData[];
 }
 
 export const ReservationStatuses = [`active`, `arrived`, `deleted`, `noshow`, `cancelled`] as const;
