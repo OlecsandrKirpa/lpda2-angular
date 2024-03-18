@@ -22,7 +22,7 @@
           <div class="flex">
             <span class="text-slate-400 me-1">#{{ deliveredEmail.id }}</span>
             <b class="me-1" i18n>Email inviata</b>
-            <span>{{ deliveredEmail.created_at | date: 'full' }}</span>
+            <span>{{ deliveredEmail.created_at | date: "EEEE d MMMM y, H:m" }}</span>
           </div>
         </div>
 
@@ -32,7 +32,7 @@
               <li>
             <span class="flex items-center">
               <span class="me-1">{{ pixel.event_type | humanizeEventType }}</span>
-              <span class="me-1">{{ event.event_time | date: "full" }}</span>
+              <span class="me-1">{{ event.event_time | date: "EEEE d MMMM y, H:m" }}</span>
               @if (event.event_data) {
                 <span class="text-slate-400">{{ event.event_data | json }}</span>
               }
