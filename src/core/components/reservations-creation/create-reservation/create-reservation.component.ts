@@ -28,7 +28,6 @@ import {
     TuiButtonModule
   ],
   templateUrl: './create-reservation.component.html',
-  styleUrl: './create-reservation.component.scss',
   providers: [
     TuiDestroyService
   ]
