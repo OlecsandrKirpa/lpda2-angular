@@ -22,7 +22,7 @@ export abstract class CommonHttpService<T> extends DomainService {
     );
   }
 
-  search(params: Record<string, string|number>): Observable<SearchResult<T>> {
+  search(params: Record<string, string|number> = {}): Observable<SearchResult<T>> {
     return this.get(``, {params: params}).pipe(
       map((data: any): SearchResult<T> => this.mapItems(data)),
     );

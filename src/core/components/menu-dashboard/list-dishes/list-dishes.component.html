@@ -1,0 +1,20 @@
+<div class="flex items-center justify-between">
+  <div class="flex items-center">
+    <h3 class="me-1">
+      <ng-container i18n>Piatti</ng-container>
+    </h3>
+
+    <span class="me-1">(23)</span>
+    <a tuiLink routerLink="new-dish"><span class="flex items-center">
+                <mat-icon>add</mat-icon>
+                <span i18n>Crea</span></span>
+    </a>
+  </div>
+
+  <ng-template #categoriesOptions></ng-template>
+  <tui-hosted-dropdown [content]="categoriesOptions">
+    <button tuiIconButton size="m" appearance="outline" type="button">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </tui-hosted-dropdown>
+</div>

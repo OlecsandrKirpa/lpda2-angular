@@ -15,7 +15,6 @@ export const routes: Routes = [
   },
   {
     path: ``,
-    pathMatch: `full`,
-    loadComponent: () => import(`./admin-menu-home/admin-menu-home.component`).then(m => m.AdminMenuHomeComponent),
-  }
+    loadChildren: () => import(`@core/components/menu-dashboard/menu-dashboard-routes`).then(m => m.routes),
+  },
 ];

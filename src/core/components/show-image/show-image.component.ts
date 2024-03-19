@@ -15,12 +15,14 @@ import {AsyncPipe} from "@angular/common";
   imports: [
     AsyncPipe
   ],
-  template: `@if((imageSrc$ | async)) { <img class="block" src="{{ (imageSrc$ | async) }}"> }`,
+  template: `@if((imageSrc$ | async)) { <img class="{{ imgClass }}" src="{{ (imageSrc$ | async) }}"> }`,
   styleUrls: ['./show-image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowImageComponent {
   private readonly imagesService: ImagesService = inject(ImagesService);
+
+  @Input() imgClass: string = `block rounded`;
 
   readonly image$: BehaviorSubject<Image | File |null> = new BehaviorSubject<Image | File | null>(null);
   @Input({ required: true }) set image(value: Image | null | undefined | File) {
