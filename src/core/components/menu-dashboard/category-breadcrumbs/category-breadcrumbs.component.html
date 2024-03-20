@@ -1,0 +1,57 @@
+
+  @if (items.length > 0) {
+
+
+
+    <tui-breadcrumbs>
+      @if (items.length > max) {
+        <ng-template #content>
+          <tui-data-list>
+            <a
+                *tuiRepeatTimes="let index of items.length - max"
+                tuiOption
+                routerLink="{{items[index].url}}"
+            >
+              <!--            [href]=""-->
+              {{ items[index].name }}
+            </a>
+          </tui-data-list>
+        </ng-template>
+
+        <tui-hosted-dropdown
+            *tuiItem
+            [content]="content"
+        >
+          <button
+              appearance="secondary"
+              icon="tuiIconMoreHorizontal"
+              size="xs"
+              title="More"
+              tuiIconButton
+          ></button>
+
+        </tui-hosted-dropdown>
+      }
+
+      <ng-container *tuiRepeatTimes="let index of max">
+        <a
+            *tuiItem
+            tuiLink
+            routerLink="{{items[index + items.length - max].url}}"
+        >
+          {{ items[index + items.length - max].name }}
+        </a>
+      </ng-container>
+    </tui-breadcrumbs>
+<!--    <p>-->
+    <!--      <tui-input-number-->
+    <!--          class="b-form"-->
+    <!--          [max]="40"-->
+    <!--          [min]="1"-->
+    <!--          [step]="1"-->
+    <!--          [(ngModel)]="max"-->
+    <!--      >-->
+    <!--        Max tabs-->
+    <!--      </tui-input-number>-->
+    <!--    </p>-->
+  }

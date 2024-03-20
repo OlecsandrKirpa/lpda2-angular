@@ -1,9 +1,11 @@
-@if(loading()){
+@if (loading()) {
   <tui-loader [showLoader]="true" [size]="'xl'"></tui-loader>
 } @else {
   <app-category-details [category]="category()"></app-category-details>
-  <p>Pranzo > Paste > Spaghetti</p>
-  <app-list-items [parent]="category()" ></app-list-items>
+
+  <app-category-breadcrumbs [breadcrumbs]="breadcrumbs()"></app-category-breadcrumbs>
+
+  <app-list-items [parent]="category()"></app-list-items>
 }
 
 

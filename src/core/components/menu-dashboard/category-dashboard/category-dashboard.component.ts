@@ -1,6 +1,15 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {TuiDestroyService} from "@taiga-ui/cdk";
-import {ActivatedRoute, Params, Router, RouterOutlet} from "@angular/router";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import {TuiDestroyService, TuiRepeatTimesModule} from "@taiga-ui/cdk";
+import {ActivatedRoute, Params, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
 import {DishesService} from "@core/services/http/dishes.service";
 import {NotificationsService} from "@core/services/notifications.service";
@@ -9,8 +18,22 @@ import {finalize, takeUntil} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {CategoryDetailsComponent} from "@core/components/menu-dashboard/category-details/category-details.component";
-import {TuiLoaderModule} from "@taiga-ui/core";
+import {
+  TuiButtonModule,
+  TuiDataListModule,
+  TuiHostedDropdownModule,
+  TuiLinkModule,
+  TuiLoaderModule
+} from "@taiga-ui/core";
 import {ListItemsComponent} from "@core/components/menu-dashboard/list-items/list-items.component";
+import {MenuCategoryDashboardData} from "@core/lib/interfaces/menu-category-dashboard-data";
+import {TuiBreadcrumbsModule, TuiInputNumberModule} from "@taiga-ui/kit";
+import {FormsModule} from "@angular/forms";
+import {NgForOf} from "@angular/common";
+import {UrlToPipe} from "@core/pipes/url-to.pipe";
+import {
+  CategoryBreadcrumbsComponent
+} from "@core/components/menu-dashboard/category-breadcrumbs/category-breadcrumbs.component";
 
 @Component({
   selector: 'app-category-dashboard',
@@ -19,7 +42,8 @@ import {ListItemsComponent} from "@core/components/menu-dashboard/list-items/lis
     CategoryDetailsComponent,
     TuiLoaderModule,
     ListItemsComponent,
-    RouterOutlet
+    RouterOutlet,
+    CategoryBreadcrumbsComponent
   ],
   templateUrl: './category-dashboard.component.html',
   styleUrl: './category-dashboard.component.scss',
@@ -41,13 +65,23 @@ export class CategoryDashboardComponent implements OnInit {
 
   private categoryId: number | null = null;
 
-  readonly loading: WritableSignal<boolean> = signal(false);
+  readonly loadingData: WritableSignal<boolean> = signal(false);
+  readonly loadingCategory: WritableSignal<boolean> = signal(false);
+
+  readonly loading: Signal<boolean> = computed(() => this.loadingCategory() || this.loadingData());
+  // readonly loading: WritableSignal<boolean> = signal(false);
   readonly category: WritableSignal<MenuCategory | null> = signal(null);
+
+  readonly data: WritableSignal<MenuCategoryDashboardData | null> = signal(null);
+  readonly breadcrumbs: Signal<MenuCategoryDashboardData['breadcrumbs']> = computed(() => this.data()?.breadcrumbs ?? []);
+
+  max = 1;
 
   /**
    * Constructor
    */
-  constructor() {  }
+  constructor() {
+  }
 
   /**
    * Lifecycle hooks
@@ -59,6 +93,7 @@ export class CategoryDashboardComponent implements OnInit {
       this.categoryId = Number(params['category_id']);
       console.assert(!isNaN(this.categoryId) && this.categoryId > 0, 'Category id is required');
       this.loadCategory();
+      this.loadData();
     });
   }
 
@@ -68,12 +103,25 @@ export class CategoryDashboardComponent implements OnInit {
   private loadCategory(categoryId: number = this.categoryId!): void {
     console.assert(!isNaN(categoryId) && categoryId > 0, 'Category id is required');
 
-    this.loading.set(true);
+    this.loadingCategory.set(true);
     this.categoriesService.show(categoryId).pipe(
       takeUntil(this.destroy$),
-      finalize(() => this.loading.set(false))
+      finalize(() => this.loadingCategory.set(false))
     ).subscribe({
       next: (category: MenuCategory): void => this.setCategory(category),
+      error: (r: HttpErrorResponse): void => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto. Riprova più tardi.`),
+    });
+  }
+
+  private loadData(categoryId: number = this.categoryId!): void {
+    console.assert(!isNaN(categoryId) && categoryId > 0, 'Category id is required');
+
+    this.loadingData.set(true);
+    this.categoriesService.dashboardData(categoryId).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loadingData.set(false))
+    ).subscribe({
+      next: (data): void => this.data.set(data),
       error: (r: HttpErrorResponse): void => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto. Riprova più tardi.`),
     });
   }
