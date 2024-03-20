@@ -101,6 +101,7 @@ export class CreateCategoryComponent implements OnInit {
         const url: string | null = this.afterUrl || this.urlTo.transform(record.id, `menuCategory.show`);
         console.assert(url, `URL for menu category ${record.id} not found`);
         this.router.navigate([url], {relativeTo: this.route});
+        this.notifications.fireSnackBar($localize`Categoria creata.`);
       },
       error: (errors: HttpErrorResponse): void => {
         ReactiveErrors.assignErrorsToForm(this.form, errors);

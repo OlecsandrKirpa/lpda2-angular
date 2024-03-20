@@ -1,1 +1,45 @@
-<p>link-category works!</p>
+<span class="flex items-center">
+<h1 class="me-2">
+  <ng-container i18n>Associa categoria esistente</ng-container>
+</h1>
+
+  <tui-tooltip [content]="helpMsg"></tui-tooltip>
+</span>
+
+
+<ng-template #helpMsg>
+  <p i18n>La categoria che sceglierai verrà duplicata con tutti gli
+    eventuali piatti e categorie che contiene.
+    L'elemento appena creato verrà poi associato alla categoria attuale.
+  </p>
+  @if (parent()) {
+    <p>
+      La categoria attuale è <b>{{ parent()?.name }}</b>
+    </p>
+  }
+
+  <p i18n>
+    Ciò significa che le eventuali modifiche alla categoria appena creata non avranno effetto sulla categoria
+    originale
+    e viceversa.
+  </p>
+</ng-template>
+
+
+@if (parentId) {
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <app-menu-category-select [filters]="{except: this.parentId}" class="block mb-3" [formControlName]="'category'">
+      <ng-container i18n>Categoria da associare</ng-container>
+    </app-menu-category-select>
+
+    <div class="flex items-center">
+      <button class="me-2" tuiButton type="submit" size="l" appearance="primary">
+        <ng-container i18n>Conferma</ng-container>
+      </button>
+
+      <button (click)="cancel()" tuiButton type="button" size="l" appearance="outline">
+        <ng-container i18n>Annulla</ng-container>
+      </button>
+    </div>
+  </form>
+}
