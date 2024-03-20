@@ -95,7 +95,7 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
   /* @Input() */
   service: {
     search: (p: Record<string, any>) => Observable<SearchResult<T>>,
-    show?: (id: number) => Observable<T>
+    show: (id: number) => Observable<T>
   } | null = null;
 
   /* @Input() */
@@ -348,16 +348,26 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
   protected setValById(id: number) {
     if (!this.service) return;
 
-    this.service.search({filters: JSON.stringify({id})}).subscribe(
-      (result: SearchResult<T>) => {
-        if (!(result.items && result.items.length > 0)) return;
-
-        this.writeValue(this.multiple ? result.items : result.items[0]);
-      },
-      () => {
-
+    this.finding.set(true);
+    const req = this.service.show(id).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.finding.set(false))
+    ).subscribe({
+      next: (item: T) => {
+        this.writeValue(item);
+        req.unsubscribe();
       }
-    )
+    });
+    // this.service.search({filters: JSON.stringify({id})}).subscribe(
+    //   (result: SearchResult<T>) => {
+    //     if (!(result.items && result.items.length > 0)) return;
+    //
+    //     this.writeValue(this.multiple ? result.items : result.items[0]);
+    //   },
+    //   () => {
+    //
+    //   }
+    // )
   }
 
   protected formatOutput(value: any = this.control.value): T | number | null {
