@@ -1,3 +1,45 @@
-<h1>
-  {{ category?.name }}
-</h1>
+<div class="flex items-center">
+  <h1>
+    {{ category?.name }}
+  </h1>
+
+  <button tuiIconButton appearance="custom" type="button" (click)="expanded = !expanded">
+    <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': expanded}">expand_more</mat-icon>
+  </button>
+</div>
+
+<tui-expand [expanded]="expanded">
+  @if (category) {
+    <div class="flex">
+      <app-show-images [images]="category.images"></app-show-images>
+
+      <div class="flex flex-col">
+        @if (category.translations) {
+          <app-name-desc-eip (submittedChanges)="saveNameDesc($event)" [translations]="category.translations"></app-name-desc-eip>
+          <!--        <app-eip-translations [translations]="category.translations.name">-->
+              <!--          <ng-container i18n>Nome</ng-container>-->
+              <!--        </app-eip-translations>-->
+
+              <!--        <app-eip-translations [translations]="category.translations.description">-->
+              <!--          <ng-container i18n>Descrizione</ng-container>-->
+              <!--        </app-eip-translations>-->
+        }
+      </div>
+    </div>
+
+    <app-eip-category-visibility [category]="category"></app-eip-category-visibility>
+  }
+</tui-expand>
+
+
+<!--<button (click)="expanded = !expanded" type="button" class="my-2" tuiButton size="m" appearance="flat">-->
+<!--  <span class="flex items-center">-->
+<!--    @if (expanded) {-->
+<!--      <ng-container i18n>Chiudi dettagli</ng-container>-->
+<!--    } @else {-->
+<!--      <ng-container i18n>Mostra dettagli</ng-container>-->
+<!--    }-->
+
+<!--    <mat-icon class="animation-speed-2 ms-1" [ngClass]="{'rotate180': expanded}">expand_more</mat-icon>-->
+<!--  </span>-->
+<!--</button>-->

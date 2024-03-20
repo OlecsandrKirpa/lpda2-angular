@@ -1,0 +1,63 @@
+<table class="tui-table">
+  <thead>
+  <tr>
+    <th>
+      <ng-container i18n>Lingua</ng-container>
+    </th>
+
+    <th>
+      <ng-container i18n>Nome</ng-container>
+    </th>
+
+    <th>
+      <ng-container i18n>Descrizione</ng-container>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr class="tui-table__tr tui-table__tr_border_none">
+    <td class="tui-table__td">
+      <span i18n>Italiano</span>
+    </td>
+
+    <td class="tui-table__td">
+      @if (translations && translations.name) {
+        {{ translations.name['it'] }}
+      }
+    </td>
+
+    <td class="tui-table__td tui-table__td_last">
+      @if (translations && translations.description) {
+        {{ translations.description['it'] }}
+      }
+    </td>
+  </tr>
+
+  <tr class="tui-table__tr tui-table__tr_border_none">
+    <td class="tui-table__td">
+      <span i18n>Inglese</span>
+    </td>
+
+    <td class="tui-table__td">
+      @if (translations && translations.name) {
+        {{ translations.name['en'] }}
+      }
+    </td>
+
+    <td class="tui-table__td tui-table__td_last">
+      @if (translations && translations.description) {
+        {{ translations.description['en'] }}
+      }
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<button (click)="showDialog()" size="m" tuiButton appearance="flat" type="button">
+  <span class="flex items-center">
+    <mat-icon class="me-1" >edit</mat-icon>
+    <ng-container i18n>Modifica nome o descrizione</ng-container>
+  </span>
+</button>

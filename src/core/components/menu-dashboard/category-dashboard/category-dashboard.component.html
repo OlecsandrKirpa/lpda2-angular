@@ -1,7 +1,7 @@
 @if (loading()) {
   <tui-loader [showLoader]="true" [size]="'xl'"></tui-loader>
 } @else {
-  <app-category-details [category]="category()"></app-category-details>
+  <app-category-details (categoryChange)="category.set($event)" [category]="category()"></app-category-details>
 
   <app-category-breadcrumbs [breadcrumbs]="breadcrumbs()"></app-category-breadcrumbs>
 

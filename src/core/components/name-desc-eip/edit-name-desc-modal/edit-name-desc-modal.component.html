@@ -1,0 +1,28 @@
+<form (ngSubmit)="submit()" [formGroup]="form"  >
+  <div class="mb-3">
+    <app-i18n-input formControlName="name">
+      <ng-container i18n>Nome</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('name')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <app-i18n-input [long]="true" formControlName="description">
+      <ng-container i18n>Descrizione</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('description')"></app-errors>
+  </div>
+
+  <div class="flex items-center">
+    <button class="me-2" type="submit" tuiButton size="l" appearance="primary">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button type="button" (click)="cancel()" tuiButton size="l" appearance="outline">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>
+

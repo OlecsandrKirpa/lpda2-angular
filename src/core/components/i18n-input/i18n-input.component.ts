@@ -84,7 +84,7 @@ export class I18nInputComponent implements ControlValueAccessor, OnInit, AfterVi
 
   registerOnTouched(fn: any): void {
     this.touched$.pipe(
-      filter((wasToched: boolean): boolean => wasToched === true),
+      filter((wasTouched: boolean): boolean => wasTouched === true),
     ).subscribe({next: () => fn()});
   }
 
@@ -112,6 +112,8 @@ export class I18nInputComponent implements ControlValueAccessor, OnInit, AfterVi
    * Private methods
    */
   private patchValue(value: Record<string, string | number | null | undefined>): void {
+    Object.keys(value).forEach((lang: string) => this.addLang(lang));
+
     Object.keys(this.controls()).forEach((controlName: string): void => {
       const control: FormControl = this.controls()[controlName];
       control.patchValue(value[controlName] ?? null);
@@ -119,6 +121,8 @@ export class I18nInputComponent implements ControlValueAccessor, OnInit, AfterVi
   }
 
   private addLang(lang: string): void {
+    if (this.controls()[lang]) return;
+
     const control = new FormControl();
     control.valueChanges.subscribe({
       next: () => this.controlChanged(lang)

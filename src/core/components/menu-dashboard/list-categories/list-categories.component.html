@@ -18,13 +18,15 @@
           </span>
         </a>
 
-        <a [routerLink]="this.parentCategoryId | urlTo: 'menuCategory.linkCategory'"
-           [queryParams]="{parent_id: this.parentCategoryId}" tuiOption>
+        @if (parentCategoryId) {
+          <a [routerLink]="parentCategoryId | urlTo: 'menuCategory.linkCategory'"
+             [queryParams]="{parent_id: parentCategoryId}" tuiOption>
             <span class="flex items-center">
               <mat-icon class="me-1">share</mat-icon>
               <ng-container i18n>Associa esistente</ng-container>
             </span>
-        </a>
+          </a>
+        }
 
       </tui-data-list>
     </ng-template>
