@@ -24,9 +24,6 @@ import {ShowImageComponent} from "@core/components/show-image/show-image.compone
 /**
  * TODO:
  * - manage multiple images
- * - take in input the accepted file types
- * - check if svg works (it should work.)
- * - implement the writeValue method
  */
 
 @Component({
@@ -60,11 +57,15 @@ export class ImageInputComponent implements ControlValueAccessor, OnInit {
 
   readonly control: FormControl = new FormControl<File | null>(null);
 
+  @Input() loading: boolean = false;
+
   // readonly imageUrl: WritableSignal<string | null> = signal(null);
 
   @Input() link: string = $localize`Scegli un'immagine`;
 
   @Input() label: string = $localize`oppure trascinala qui`;
+
+  @Input() accept: string = "image/*";
 
   ngOnInit(): void {
     // this.control.valueChanges.pipe(

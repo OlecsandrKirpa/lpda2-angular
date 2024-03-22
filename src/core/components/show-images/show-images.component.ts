@@ -30,18 +30,20 @@ export class ShowImagesComponent {
   private readonly dialogs: TuiDialogService = inject(TuiDialogService);
   private readonly injector: Injector = inject(Injector);
   @Input({required: true}) images: (Image | File)[] | undefined | null = [];
+  @Input({required: true}) recordType?: "Menu::Category" | "Menu::Dish";
+  @Input({required: true}) recordId?: number;
+  index: number = 0;
 
   showDetails(): void {
     this.dialogs.open<any>(
       new PolymorpheusComponent(ImagesEditModalComponent, this.injector),
       {
-        data: this.images,
+        data: { record_type: this.recordType, record_id: this.recordId },
         dismissible: false,
         label: $localize`Modifica immagini`,
       },
     ).subscribe({
-      next: (data) => {
-      },
+      next: (data) => {},
       error: (data: any) => {
         console.warn(`completed with error`, data)
       },

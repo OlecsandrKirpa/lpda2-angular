@@ -2,19 +2,21 @@
 
 @if (control.value) {
   <div class="block items-center border border-solid rounded-sm border-slate-200 relative my-1 p-2">
-    <button (click)="resetControl()" size="m" appearance="secondary-destructive" tuiIconButton type="button"
+    <button [disabled]="control.disabled || loading" (click)="resetControl()" size="m" appearance="secondary-destructive" tuiIconButton type="button"
             class="!absolute me-1 mt-1 top-0 right-0">
       <mat-icon>delete</mat-icon>
     </button>
 
-    <app-show-image class="mx-auto" style="max-width: 300px;" [image]="control.value" ></app-show-image>
+    <app-show-image class="mx-auto" style="max-width: 300px;" [image]="control.value"></app-show-image>
   </div>
 }
 
-<tui-input-files
-    accept="image/*"
-    [formControl]="control"
-    [label]="label"
-    [link]="link"
-></tui-input-files>
+@if (!control.value) {
+  <tui-input-files
+      accept="{{ accept }}"
+      [formControl]="control"
+      [label]="label"
+      [link]="link"
+  ></tui-input-files>
+}
 

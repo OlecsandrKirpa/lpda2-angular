@@ -1,4 +1,44 @@
-<p>images-edit-modal works!</p>
+@if (contextData && contextData['record_type'] && contextData['record_id']) {
 
-<app-image-input [formControl]="image"></app-image-input>
-```
+  <div cdkDropList class="example-list mb-5" (cdkDropListDropped)="drop($event)">
+    @for (image of images(); track image.id; let index = $index) {
+      <div cdkDrag class="mb-3 p-3">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center">
+            <button cdkDragHandle tuiIconButton appearance="icon" size="m" type="button">
+              <mat-icon>drag_indicator</mat-icon>
+            </button>
+
+            <app-show-image class="mb-2" style="max-width: 200px;" [image]="image"></app-show-image>
+          </div>
+
+          <ng-template #removeImageContent>
+            <div class="p-3">
+              <span class="block mb-2 text-lg" i18n>Sei sicuro di voler rimuovere questa immagine?</span>
+
+              <button (click)="removeImage(image)" type="button" appearance="secondary-destructive" size="m" tuiButton>
+                <ng-container i18n>Rimuovi immagine</ng-container>
+              </button>
+            </div>
+          </ng-template>
+
+          <div class="flex items-center">
+            <tui-hosted-dropdown [content]="removeImageContent">
+              <button type="button" tuiIconButton appearance="icon">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </tui-hosted-dropdown>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <app-image-input [loading]="savingImage()" [formControl]="newImage"></app-image-input>
+} @else {
+  <p class="text-red">
+    <ng-container i18n>Invalid context. Please try again later.</ng-container>
+  </p>
+
+  <pre [innerText]="contextData | json"></pre>
+}

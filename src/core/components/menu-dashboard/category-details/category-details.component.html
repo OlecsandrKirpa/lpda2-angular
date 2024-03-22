@@ -11,7 +11,7 @@
 <tui-expand [expanded]="expanded">
   @if (category) {
     <div class="flex">
-      <app-show-images [images]="category.images"></app-show-images>
+      <app-show-images [recordType]="'Menu::Category'" [recordId]="category.id" [images]="category.images"></app-show-images>
 
       <div class="flex flex-col">
         @if (category.translations) {
