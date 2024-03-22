@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, Injector, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injector, Input, signal, WritableSignal} from '@angular/core';
 import {Image} from "@core/models/image";
 import {TuiCarouselModule, TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/kit";
 import {TuiButtonModule, TuiDialogService, TuiLoaderModule} from "@taiga-ui/core";
@@ -32,14 +32,15 @@ export class ShowImagesComponent {
   @Input({required: true}) images: (Image | File)[] | undefined | null = [];
   @Input({required: true}) recordType?: "Menu::Category" | "Menu::Dish";
   @Input({required: true}) recordId?: number;
-  index: number = 0;
+  cIndex: WritableSignal<number> = signal(0);
 
   showDetails(): void {
     this.dialogs.open<any>(
       new PolymorpheusComponent(ImagesEditModalComponent, this.injector),
       {
         data: { record_type: this.recordType, record_id: this.recordId },
-        dismissible: false,
+        dismissible: true,
+        closeable: true,
         label: $localize`Modifica immagini`,
       },
     ).subscribe({
