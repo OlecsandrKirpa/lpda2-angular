@@ -32,7 +32,7 @@
 <!--        <app-copy-content [content]="privateUrl"></app-copy-content>-->
 <!--      </div>-->
       <div class="flex items-center mb-3">
-        <a class="me-2" routerLink="{{ publicUrl }}" target="_blank" tuiLink>{{ publicUrl }}</a>
+        <a class="me-2 text-xs" href="{{ publicUrl }}" target="_blank" tuiLink>{{ publicUrl }}</a>
         <app-copy-content [content]="publicUrl"></app-copy-content>
       </div>
 
@@ -157,7 +157,7 @@
       }
 
       <div class="flex items-center mb-3">
-        <a class="me-2" routerLink="{{ privateUrl }}" target="_blank" tuiLink>{{ privateUrl }}</a>
+        <a class="me-2 text-xs" href="{{ privateUrl }}" target="_blank" tuiLink>{{ privateUrl }}</a>
         <app-copy-content [content]="privateUrl"></app-copy-content>
       </div>
     </tui-expand>
