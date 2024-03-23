@@ -12,9 +12,9 @@ export class MenuCategory extends BaseModel {
   index?: number;
   secret?: string;
   secret_desc?: string;
-  menu_visibility_id?: number;
+  visibility_id?: number;
 
-  menu_visibility?: MenuVisibility;
+  visibility?: MenuVisibility;
   parent?: MenuCategory;
   children?: MenuCategory[];
 
@@ -37,9 +37,9 @@ export class MenuCategory extends BaseModel {
     this.index = data.index;
     this.secret = data.secret;
     this.secret_desc = data.secret_desc;
-    this.menu_visibility_id = data.menu_visibility_id;
+    this.visibility_id = data.visibility_id;
 
-    this.menu_visibility = data.menu_visibility ? new MenuVisibility(data.menu_visibility) : undefined;
+    this.visibility = data.visibility ? new MenuVisibility(data.visibility) : undefined;
     this.parent = data.parent ? new MenuCategory(data.parent) : undefined;
     this.children = data.children ? data.children.map((category) => new MenuCategory(category)) : [];
 

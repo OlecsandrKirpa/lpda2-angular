@@ -9,6 +9,8 @@ const pages: Record<string, Record<string, string>> = {
     linkCategory: `/admin/menu/{itemId}/link-category`,
     createDish: `/admin/menu/{itemId}/create-dish`,
     linkDish: `/admin/menu/{itemId}/link-dish`,
+    private: `/menu/{itemId}`, // Will include MenuDescription.secret_desc or MenuDescription.secret insted of id.
+    public: `/menu/{itemId}`,
   },
 };
 

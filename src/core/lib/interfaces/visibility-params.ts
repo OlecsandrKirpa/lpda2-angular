@@ -1,6 +1,4 @@
-import {BaseModelData} from "@core/lib/interfaces/base-model-data";
-
-export interface MenuVisibilityData extends BaseModelData {
+export interface VisibilityParams {
   public_visible?: boolean;
 
   public_from?: string;

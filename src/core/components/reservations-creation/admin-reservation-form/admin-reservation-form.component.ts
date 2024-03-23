@@ -22,6 +22,7 @@ import {nue} from "@core/lib/nue";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
 import {strTimeTimezone} from "@core/lib/str-time-timezone";
+import {tuiDatetimeToIsoString} from "@core/lib/tui-datetime-to-iso-string";
 
 /**
  * NEW and EDIT reservation's data
@@ -153,9 +154,9 @@ export class AdminReservationFormComponent implements OnInit {
      * new Date(...) will create a date in user's timezone.
      *
      */
-    const currentTimezoneDate = new Date(`${(json.date as TuiDay).formattedYear}-${(json.date as TuiDay).formattedMonthPart}-${(json.date as TuiDay).formattedDayPart} ${(json.time as TuiTime).toString()}`);
-    json.datetime = currentTimezoneDate.toISOString();
+    json.datetime = tuiDatetimeToIsoString(json.date as TuiDay, json.time as TuiTime);
     // json.datetime = new Date(str);
+
     delete json.date;
     delete json.time;
 

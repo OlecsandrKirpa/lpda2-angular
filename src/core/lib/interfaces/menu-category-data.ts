@@ -11,9 +11,9 @@ export interface MenuCategoryData extends BaseModelData {
   index?: number;
   secret?: string;
   secret_desc?: string;
-  menu_visibility_id?: number;
+  visibility_id?: number;
 
-  menu_visibility?: MenuVisibilityData;
+  visibility?: MenuVisibilityData;
   parent?: MenuCategoryData;
   children?: MenuCategoryData[];
 

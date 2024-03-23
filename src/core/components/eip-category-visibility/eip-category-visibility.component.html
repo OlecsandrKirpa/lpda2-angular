@@ -1,1 +1,81 @@
-<p>eip-category-visibility works!</p>
+<h4 class="mb-1 me-1" i18n>Visibilità</h4>
+
+<div class="flex flex-col">
+  <div class="flex items-center">
+  <span class="flex items-center">
+    <span class="me-1" i18n>Visibilità</span>
+    <b class="me-2" i18n>pubblica</b>
+  </span>
+
+    @if (public_visible()) {
+      <span class="me-2 text-green-700" i18n>Attivata</span>
+    } @else {
+      <span class="me-2 text-slate-700" i18n>Disattivata</span>
+    }
+
+    @if (public_visible()) {
+      @if(daily_from() || daily_to()){
+      <div class="flex items-center">
+        <span class="me-1" i18n>Visibile</span>
+        @if(daily_from()){
+          <span class="me-1" i18n>dalle ore</span>
+          <span class="me-1">{{ daily_from() | date: "HH:mm" }}</span>
+        }
+
+        @if(daily_to()){
+          <span class="me-1">fino alle ore</span>
+          <span class="me-1">{{ daily_to() | date: "HH:mm" }}</span>
+        }
+      </div>
+    }
+
+      <div class="flex flex-col">
+        @if (public_from() || public_to()) {
+          <div>
+            @if (public_from()) {
+              <div class="flex items-center">
+                <span class="me-1" i18n>Da</span>
+                <span class="me-1">{{ public_from() | date: "EEEE d MMMM y" }}</span>
+                @if ((public_from()! | date: "HH:mm") != "00:00") {
+                  <span>{{ public_from() | date: "HH:mm" }}</span>
+                }
+              </div>
+            }
+
+            @if (public_to()) {
+              <div class="flex items-center">
+                <span class="me-1" i18n>fino a</span>
+                <span class="me-1">{{ public_to() | date: "EEEE d MMMM y" }}</span>
+                @if ((public_to()! | date: "HH:mm") != "00:00") {
+                  <span>{{ public_to() | date: "HH:mm" }}</span>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<div class="flex flex-col">
+  <div class="flex items-center">
+  <span class="flex items-center">
+    <span class="me-1" i18n>Visibilità</span>
+    <b class="me-2" i18n>privata</b>
+  </span>
+
+    @if (private_visible()) {
+      <span class="me-2 text-green-700" i18n>Attivata</span>
+    } @else {
+      <span class="me-2 text-slate-700" i18n>Disattivata</span>
+    }
+  </div>
+</div>
+
+<button (click)="this.editTimestamps()" type="button" tuiButton size="m" appearance="flat">
+  <span class="flex items-center">
+    <mat-icon>edit</mat-icon>
+    <span i18n>Modifica visibilità</span>
+  </span>
+</button>

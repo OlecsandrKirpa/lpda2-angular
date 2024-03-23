@@ -1,0 +1,13 @@
+:host{
+  .qr-container {
+    .download-container {
+      display: none;
+    }
+
+    &:hover {
+      .download-container{
+        display: flex;
+      }
+    }
+  }
+}

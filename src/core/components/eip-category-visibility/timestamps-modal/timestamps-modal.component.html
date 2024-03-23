@@ -1,0 +1,175 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+<!--  <pre [innerText]="{form: formVal()} | json"></pre>-->
+
+  <tui-loader [overlay]="true" [showLoader]="saving()">
+    <h4>Visibilità pubblica</h4>
+    <p class="text-sm text-slate-400" i18n>Se attivata, il menù sarà visibile nella pagina pubblica.</p>
+
+    <div class="mb-3">
+      <div class="flex items-center">
+        <tui-toggle class="me-1" [formControlName]="'public_visible'"></tui-toggle>
+
+        <span class="cursor-pointer" (click)="togglePublicVisible()">
+        @if (form.value['public_visible']) {
+          <span class="text-green-700" i18n>Attivata</span>
+        } @else {
+          <span class="text-slate-700" i18n>Disattivata</span>
+        }
+      </span>
+      </div>
+
+      <app-errors [errors]="e('public_visible')"></app-errors>
+    </div>
+
+    <tui-expand [expanded]="form.value['public_visible']">
+
+      @if (publicUrl) {
+        <app-qr-code [data]="publicUrl"></app-qr-code>
+      }
+
+<!--      <div class="flex items-center mb-3">-->
+<!--        <a class="me-1" routerLink="{{ publicUrl }}" target="_blank" tuiLink>Anteprima</a>-->
+<!--        <app-copy-content [content]="privateUrl"></app-copy-content>-->
+<!--      </div>-->
+      <div class="flex items-center mb-3">
+        <a class="me-2" routerLink="{{ publicUrl }}" target="_blank" tuiLink>{{ publicUrl }}</a>
+        <app-copy-content [content]="publicUrl"></app-copy-content>
+      </div>
+
+      <tui-accordion>
+        <tui-accordion-item [open]="absoluteVisibilityOpen" >
+          <span class="text-lg" i18n>Programma visibilità assoluta</span>
+
+          <ng-template tuiAccordionItemContent>
+            <p class="text-sm text-slate-400" i18n>È possibile mostrare o nascondere il meù nella pagina pubblica in
+              modo programmatico da una certa data fino ad un altra. Se queste date non vengono inserite, il menù sarà
+              sempre visibile.</p>
+
+            <div class="mb-3">
+              <span i18n>Menù visibile dal giorno:</span>
+
+              <div class="flex items-top">
+                <div class="flex grow flex-col">
+                  <tui-input-date class="me-2 mb-1" formControlName="public_from_date">
+                    <ng-container i18n>Giorno</ng-container>
+                  </tui-input-date>
+
+                  <app-errors [errors]="e('public_from_date')"></app-errors>
+                </div>
+
+                <div [ngClass]="{'hidden': !form.value['public_from_date']}" class="grow flex flex-col">
+                  <tui-input-time class="mb-1" formControlName="public_from_time">
+                    <ng-container i18n>Ora</ng-container>
+                  </tui-input-time>
+
+                  <span class="text-sm text-slate-400" i18n>Formato 24 ore.</span>
+                  <app-errors [errors]="e('public_from_time')"></app-errors>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <span i18n>Fino al giorno:</span>
+
+              <div class="flex items-top">
+                <div class="flex grow flex-col">
+                  <tui-input-date class="me-2 mb-1" formControlName="public_to_date">
+                    <ng-container i18n>Giorno</ng-container>
+                  </tui-input-date>
+
+                  <app-errors [errors]="e('public_to_date')"></app-errors>
+                </div>
+
+                <div [ngClass]="{'hidden': !this.form.value['public_to_date']}" class="grow flex flex-col">
+                  <tui-input-time class="mb-1" formControlName="public_to_time">
+                    <ng-container i18n>Ora</ng-container>
+                  </tui-input-time>
+
+                  <span class="text-sm text-slate-400" i18n>Formato 24 ore.</span>
+                  <app-errors [errors]="e('public_to_time')"></app-errors>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tui-accordion-item>
+
+        <tui-accordion-item [open]="dailyVisibilityOpen">
+          <span class="text-lg" i18n>Programma visibilità giornaliera</span>
+
+          <ng-template tuiAccordionItemContent>
+            <p class="text-sm text-slate-400" i18n>È possibile mostrare il menù nella pagina pubblica solo in
+              determinate fasce orarie. Se non vengono specificate fasce orarie, il menù sarà sempre visibile.</p>
+
+            <div class="mb-3">
+              <span i18n>Orari:</span>
+
+              <div class="flex items-top">
+                <div class="flex grow flex-col">
+                  <tui-input-time class="me-2 mb-1" formControlName="daily_from">
+                    <ng-container i18n>Dalle ore</ng-container>
+                  </tui-input-time>
+
+                  <span class="text-sm text-slate-400" i18n>Formato 24 ore.</span>
+                  <app-errors [errors]="e('daily_from')"></app-errors>
+                </div>
+
+                <div class="grow flex flex-col">
+                  <tui-input-time class="mb-1" formControlName="daily_to">
+                    <ng-container i18n>fino alle ore</ng-container>
+                  </tui-input-time>
+
+                  <span class="text-sm text-slate-400" i18n>Formato 24 ore.</span>
+                  <app-errors [errors]="e('daily_to')"></app-errors>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tui-accordion-item>
+      </tui-accordion>
+    </tui-expand>
+
+    <hr class="my-3" >
+
+    <h4>Visibilità privata</h4>
+    <p class="text-sm text-slate-400" i18n>Se attivata, solo gli utenti che conoscono il link potranno visualizzare la
+      pagina.</p>
+
+    <div class="mb-3">
+      <div class="flex items-center">
+        <tui-toggle class="me-1" [formControlName]="'private_visible'"></tui-toggle>
+
+        <span class="cursor-pointer" (click)="togglePrivateVisible()">
+        @if (form.value['private_visible']) {
+          <span class="text-green-700" i18n>Attivata</span>
+        } @else {
+          <span class="text-slate-700" i18n>Disattivata</span>
+        }
+      </span>
+      </div>
+
+      <app-errors [errors]="e('private_visible')"></app-errors>
+    </div>
+
+    <tui-expand [expanded]="form.value['private_visible']">
+      @if (privateUrl) {
+        <app-qr-code [data]="privateUrl"></app-qr-code>
+      }
+
+      <div class="flex items-center mb-3">
+        <a class="me-2" routerLink="{{ privateUrl }}" target="_blank" tuiLink>{{ privateUrl }}</a>
+        <app-copy-content [content]="privateUrl"></app-copy-content>
+      </div>
+    </tui-expand>
+
+    <div class="flex items-center">
+      <button class="me-1" tuiButton type="submit" size="l">
+        <ng-container i18n>Conferma</ng-container>
+      </button>
+
+      <button tuiButton appearance="outline" type="button" size="l" (click)="cancel()">
+        <ng-container i18n>Annulla</ng-container>
+      </button>
+    </div>
+  </tui-loader>
+</form>

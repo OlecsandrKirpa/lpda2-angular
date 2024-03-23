@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {CommonHttpService} from "@core/services/http/common-http.service";
 import {MenuCategory} from "@core/models/menu-category";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {MenuCategoryDashboardData} from "@core/lib/interfaces/menu-category-dashboard-data";
+import {VisibilityParams} from "@core/lib/interfaces/visibility-params";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,11 @@ export class MenuCategoriesService extends CommonHttpService<MenuCategory> {
 
   dashboardData(id: number): Observable<MenuCategoryDashboardData>{
     return this.get<MenuCategoryDashboardData>(`${id}/dashboard_data`);
+  }
+
+  updateVisibility(id: number, visibility_params: VisibilityParams): Observable<MenuCategory> {
+    return this.patch(`${id}/visibility`, visibility_params).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
   }
 }

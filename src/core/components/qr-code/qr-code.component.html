@@ -1,0 +1,14 @@
+<div class="relative qr-container">
+  <div
+      class="download-container bg-black/50 absolute top-0 bottom-0 end-0 start-0 flex items-center justify-center">
+    <button (click)="saveAsImage(publicQR)" tuiButton type="button" appearance="primary">
+            <span class="flex items-center">
+              <mat-icon>download_file</mat-icon>
+              <span i18n>Scarica</span>
+            </span>
+    </button>
+  </div>
+
+  <qrcode #publicQR [elementType]="'canvas'" class="flex justify-center" [qrdata]="data"
+          [width]="256"></qrcode>
+</div>
