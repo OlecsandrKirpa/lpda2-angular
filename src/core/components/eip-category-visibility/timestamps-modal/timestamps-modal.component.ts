@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, inject, Inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Inject,
+  Injector,
+  OnInit,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {
   TuiAccordionModule,
   TuiInputDateModule,
@@ -12,13 +21,19 @@ import {TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
 import {NotificationsService} from "@core/services/notifications.service";
 import {finalize, takeUntil} from "rxjs";
-import {TuiButtonModule, TuiDialogContext, TuiExpandModule, TuiLinkModule, TuiLoaderModule} from "@taiga-ui/core";
-import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
+import {
+  TuiButtonModule,
+  TuiDialogContext,
+  TuiDialogService,
+  TuiExpandModule,
+  TuiLinkModule,
+  TuiLoaderModule
+} from "@taiga-ui/core";
+import {POLYMORPHEUS_CONTEXT, PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {MenuCategory} from "@core/models/menu-category";
 import {VisibilityParams} from "@core/lib/interfaces/visibility-params";
 import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
-// import {FixMeLater, QRCodeModule} from 'angularx-qrcode';
 import {UrlToPipe} from "@core/pipes/url-to.pipe";
 import {RouterLink} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
@@ -32,7 +47,6 @@ import {
 } from "@core/lib/tui-datetime-to-iso-string";
 import {QrCodeComponent} from "@core/components/qr-code/qr-code.component";
 import {CopyContentComponent} from "@core/components/copy-content/copy-content.component";
-import {Platform} from "@angular/cdk/platform";
 
 
 @Component({
@@ -70,7 +84,6 @@ export class TimestampsModalComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly service: MenuCategoriesService = inject(MenuCategoriesService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
-  private location: PlatformLocation = inject(PlatformLocation);
   private readonly urlTo: UrlToPipe = inject(UrlToPipe);
 
   readonly form: FormGroup = new FormGroup({
@@ -97,7 +110,7 @@ export class TimestampsModalComponent implements OnInit {
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<null | MenuCategory, { category: MenuCategory }>,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const v: MenuVisibility | undefined = this.context.data.category.visibility;
@@ -109,13 +122,16 @@ export class TimestampsModalComponent implements OnInit {
   /**
    * Saving changes
    */
-  submit(): void {
+  submit(additionalData: Record<string, any> = {}): void {
     this.submitted = true;
     const id: number | undefined = this.context.data?.category?.id;
     if (this.form.invalid || !id) return;
 
     this.saving.set(true);
-    this.service.updateVisibility(id, this.formVal()).pipe(
+    this.service.updateVisibility(id, {
+      ...this.formVal(),
+      ...additionalData
+    }).pipe(
       takeUntil(this.destroy$),
       finalize(() => this.saving.set(false))
     ).subscribe({
@@ -124,7 +140,7 @@ export class TimestampsModalComponent implements OnInit {
         this.context.completeWith(cat);
       },
       error: (r: HttpErrorResponse): void => {
-        this.notifications.error(parseHttpErrorMessage(r) || $localize`Errore nel salvataggio.`);
+        this.manageError(r);
       }
     })
   }
@@ -137,7 +153,7 @@ export class TimestampsModalComponent implements OnInit {
     this.context.completeWith(null);
   }
 
-  formVal(): VisibilityParams {
+  private formVal(): VisibilityParams {
     const v: VisibilityParams = {
       public_visible: this.form.value['public_visible'],
       private_visible: this.form.value['private_visible'],
@@ -209,5 +225,32 @@ export class TimestampsModalComponent implements OnInit {
     if (this.submitted || control.touched || control.dirty) return control.errors;
 
     return null;
+  }
+
+  private manageError(r: HttpErrorResponse): void {
+    if (r.status == 422 && typeof r.error.details == 'object' && r.error.details['error_code'] == 'cannot_publish') {
+      this.notifications.confirm(r.error.message ?? $localize`Pubblicazione fallita.`, {
+        yes: $localize`Forza pubblicazione`,
+        no: $localize`Annulla`,
+        title: $localize`Errori nella pubblicazione`
+      }).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe({
+        next: (v: boolean): void => {
+          if (v) this.force();
+        },
+        error: (e: any): void => {
+          console.warn(`error`, e);
+        }
+      })
+
+      return;
+    }
+
+    this.notifications.error(parseHttpErrorMessage(r) || $localize`Errore nel salvataggio.`);
+  }
+
+  private force(): void {
+    this.submit({force: true});
   }
 }

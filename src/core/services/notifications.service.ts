@@ -61,8 +61,7 @@ export class NotificationsService {
     title?: string
   }): Observable<boolean> {
     const data: TuiPromptData = {
-      content:
-      content,
+      content: content,
       yes: configs?.yes ?? $localize`Conferma`,
       no: configs?.no ?? $localize`Annulla`,
     };
