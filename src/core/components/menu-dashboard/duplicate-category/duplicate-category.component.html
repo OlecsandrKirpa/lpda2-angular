@@ -1,1 +1,129 @@
-<p>duplicate-category works!</p>
+<h1 i18n>Copia categoria</h1>
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="mb-3">
+    <app-menu-category-select [formControlName]="'category'">
+      <ng-container i18n>Categoria da copiare</ng-container>
+    </app-menu-category-select>
+
+    <app-errors [errors]="e('category')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <p i18n>Copiare sotto-categorie?</p>
+    <div
+        tuiGroup
+        class="group"
+        [collapsed]="true"
+    >
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_children"
+          item="full"
+          size="l"
+      >
+        <ng-container i18n>Copia</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_children"
+          item="none"
+          size="l"
+      >
+        No
+      </tui-radio-block>
+    </div>
+
+    <app-errors [errors]="e('copy_children')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <p i18n>Copiare piatti?</p>
+    <div
+        tuiGroup
+        class="group"
+        [collapsed]="true"
+    >
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_dishes"
+          item="full"
+          size="l"
+      >
+        <ng-container i18n>Copia</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_dishes"
+          item="link"
+          size="l"
+      >
+        <ng-container i18n>Associa esistenti</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_dishes"
+          item="none"
+          size="l"
+      >
+        No
+      </tui-radio-block>
+    </div>
+
+    <app-errors [errors]="e('copy_dishes')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <p i18n>Copiare immagini?</p>
+    <div
+        tuiGroup
+        class="group"
+        [collapsed]="true"
+    >
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_images"
+          item="full"
+          size="l"
+      >
+        <ng-container i18n>Copia</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_images"
+          item="link"
+          size="l"
+      >
+        <ng-container i18n>Associa esistenti</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          formControlName="copy_images"
+          item="none"
+          size="l"
+      >
+        No
+      </tui-radio-block>
+    </div>
+
+    <app-errors [errors]="e('copy_images')"></app-errors>
+  </div>
+
+  <div class="flex items-center">
+    <button class="me-2" type="submit" size="l" [appearance]="'primary'" tuiButton>
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button class="me-2" (click)="cancel()" type="button" size="l" [appearance]="'outline'" tuiButton>
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>
