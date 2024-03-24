@@ -109,6 +109,24 @@
         </span>
       </a>
 
+      @if (item.visibility?.public_visible === true) {
+        <a [routerLink]="item.id | urlTo: 'menuCategory.public'" type="button" tuiOption>
+              <span class="flex items-center">
+                <mat-icon class="me-1">link</mat-icon>
+                <span i18n>Anteprima link pubblico</span>
+              </span>
+        </a>
+      }
+
+      @if (item.visibility?.private_visible === true) {
+        <a [routerLink]="item.secret | urlTo: 'menuCategory.private'" type="button" tuiOption>
+              <span class="flex items-center">
+                <mat-icon class="me-1">share</mat-icon>
+                <span i18n>Anteprima link privato</span>
+              </span>
+        </a>
+      }
+
       <button type="button" (click)="remove(item)" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">delete</mat-icon>

@@ -1,0 +1,21 @@
+<ng-template #dropdownContent>
+  <tui-data-list>
+    <button (click)="delete()" tuiOption>
+      <span class="flex items-center">
+        <mat-icon class="me-1">delete</mat-icon>
+        <span i18n>Elimina</span>
+      </span>
+    </button>
+  </tui-data-list>
+</ng-template>
+
+@if (category && category.status) {
+  <tui-hosted-dropdown #dropdown [content]="dropdownContent">
+    <button tuiButton type="button" appearance="outline" size="l">
+      <span class="flex items-center">
+        <app-menu-category-status class="me-1" [status]="category.status"></app-menu-category-status>
+        <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': dropdown.open}">expand_more</mat-icon>
+      </span>
+    </button>
+  </tui-hosted-dropdown>
+}

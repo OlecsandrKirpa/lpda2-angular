@@ -1,0 +1,33 @@
+
+<ng-template #iconTemplate>
+  <ng-template #noDefaultIcon>
+    <ng-template #noFaIconClass>
+      <mat-icon *ngIf="settingFor(status)?.matIcon" >{{settingFor(status)?.matIcon}}</mat-icon>
+    </ng-template>
+
+    <i *ngIf="settingFor(status)?.faIconClass; else noFaIconClass" class="{{settingFor(status)?.faIconClass}} me-1" ></i>
+  </ng-template>
+
+  <i *ngIf="validStatus && validConfig && icon; else noDefaultIcon" class="align-self-center fas fa-fw fa-{{icon}}"></i>
+</ng-template>
+
+<span class="d-flex flex-column">
+  <span class="d-flex flex-row align-items-center" [ngStyle]="{color: color || 'inherit'}">
+    <ng-container *ngTemplateOutlet="iconTemplate" ></ng-container>
+    <span class="align-self-center" #customTitle>
+      <ng-content select="[title]"></ng-content>
+    </span>
+    <span class="align-self-center text-nowrap" *ngIf="!customTitle.hasChildNodes()">
+      {{humanStatus}}
+    </span>
+  </span>
+
+  <span class="text-muted">
+    <span #customDescription>
+      <ng-content select="[description]"></ng-content>
+    </span>
+    <span *ngIf="!customDescription.hasChildNodes() && showDescription && humanDescription">
+      {{humanDescription}}
+    </span>
+  </span>
+</span>

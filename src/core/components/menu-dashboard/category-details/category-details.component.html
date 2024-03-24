@@ -10,24 +10,73 @@
 
 <tui-expand [expanded]="expanded">
   @if (category) {
-    <div class="flex">
-      <app-show-images [recordType]="'Menu::Category'" [recordId]="category.id" [images]="category.images"></app-show-images>
+    <div class="flex justify-between">
+      <div>
+        <h4 class="mb-1 me-1" i18n>Immagini categoria</h4>
+        <app-show-images class="mb-3" [recordType]="'Menu::Category'" [recordId]="category.id"
+                         [images]="category.images"></app-show-images>
 
-      <div class="flex flex-col">
-        @if (category.translations) {
-          <app-name-desc-eip (submittedChanges)="saveNameDesc($event)" [translations]="category.translations"></app-name-desc-eip>
-          <!--        <app-eip-translations [translations]="category.translations.name">-->
-              <!--          <ng-container i18n>Nome</ng-container>-->
-              <!--        </app-eip-translations>-->
+        <h4 class="mb-1 me-1" i18n>Stato categoria</h4>
 
-              <!--        <app-eip-translations [translations]="category.translations.description">-->
-              <!--          <ng-container i18n>Descrizione</ng-container>-->
-              <!--        </app-eip-translations>-->
-        }
+        <app-edit-menu-category-status (deleteCategory)="deleteCategory()" class="mb-3"
+                                       (statusChange)="updateStatus($event)"
+                                       [(category)]="category"></app-edit-menu-category-status>
+      </div>
+
+
+      <ng-template #actions>
+        <tui-data-list>
+          <button [routerLink]="'duplicate'" type="button" tuiOption>
+            <span class="flex items-center">
+              <mat-icon class="me-1">content_copy</mat-icon>
+              <span i18n>Duplica</span>
+            </span>
+          </button>
+
+          @if(category.visibility?.public_visible === true){
+            <a [routerLink]="category.id | urlTo: 'menuCategory.public'" type="button" tuiOption>
+              <span class="flex items-center">
+                <mat-icon class="me-1">link</mat-icon>
+                <span i18n>Anteprima link pubblico</span>
+              </span>
+            </a>
+          }
+
+          @if(category.visibility?.private_visible === true){
+            <a [routerLink]="category.secret | urlTo: 'menuCategory.private'" type="button" tuiOption>
+              <span class="flex items-center">
+                <mat-icon class="me-1">share</mat-icon>
+                <span i18n>Anteprima link privato</span>
+              </span>
+            </a>
+          }
+
+          <button (click)="confirmAndDelete()" type="button" tuiOption>
+            <span class="flex items-center">
+              <mat-icon class="me-1">delete</mat-icon>
+              <span i18n>Elimina</span>
+            </span>
+          </button>
+        </tui-data-list>
+      </ng-template>
+
+      <div>
+        <tui-hosted-dropdown [content]="actions">
+          <button tuiIconButton type="button" appearance="outline" size="m">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </tui-hosted-dropdown>
       </div>
     </div>
 
+    @if (category.translations) {
+      <h4 class="mb-1 me-1" i18n>Traduzioni</h4>
+      <app-name-desc-eip class="mb-3" (submittedChanges)="saveNameDesc($event)"
+                         [translations]="category.translations"></app-name-desc-eip>
+    }
+
     <app-eip-category-visibility [(category)]="category"></app-eip-category-visibility>
+
   }
 </tui-expand>
 

@@ -1,11 +1,15 @@
 @if (loading()) {
   <tui-loader [showLoader]="true" [size]="'xl'"></tui-loader>
-} @else {
+} @else if(category()) {
   <app-category-details (categoryChange)="category.set($event)" [category]="category()"></app-category-details>
 
-  <app-category-breadcrumbs [breadcrumbs]="breadcrumbs()"></app-category-breadcrumbs>
+  <app-category-breadcrumbs class="mb-3" [breadcrumbs]="breadcrumbs()"></app-category-breadcrumbs>
 
   <app-list-items [parent]="category()"></app-list-items>
+} @else {
+  <h1 i18n>OOps! Category #{{categoryId}} could not be found.</h1>
+
+  <a tuiLink routerLink="/admin/menu">
+    <span i18n>Back to Menu</span>
+  </a>
 }
-
-

@@ -43,7 +43,9 @@ import {
     TuiLoaderModule,
     ListItemsComponent,
     RouterOutlet,
-    CategoryBreadcrumbsComponent
+    CategoryBreadcrumbsComponent,
+    TuiLinkModule,
+    RouterLink
   ],
   templateUrl: './category-dashboard.component.html',
   styleUrl: './category-dashboard.component.scss',
@@ -63,7 +65,7 @@ export class CategoryDashboardComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
-  private categoryId: number | null = null;
+  categoryId: number | null = null;
 
   readonly loadingData: WritableSignal<boolean> = signal(false);
   readonly loadingCategory: WritableSignal<boolean> = signal(false);

@@ -4,7 +4,7 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
+  OnInit, Signal,
   signal,
   SimpleChanges,
   WritableSignal
@@ -71,8 +71,11 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
 
   readonly data: WritableSignal<SearchResult<MenuCategory> | null> = signal(null);
   readonly items = computed(() => this.data()?.items ?? []);
-  readonly searching: WritableSignal<boolean> = signal(false);
   readonly filtering: WritableSignal<boolean> = signal(false);
+
+  readonly searching: WritableSignal<boolean> = signal(false);
+  private readonly deleting: WritableSignal<boolean> = signal(false);
+  readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting());
 
   readonly filters: FormGroup = new FormGroup({
     query: new FormControl(null),
@@ -154,12 +157,44 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
     this.notifications.error('Not implemented yet');
   }
 
+  // remove(item: MenuCategory) {
+  //   this.notifications.error('Not implemented yet');
+  //   /**
+  //    * TODO:
+  //    * if there is a parentCategoryId, ask if want to remove element from this category or want to delete item completely.
+  //    * if there is no parentCategoryId, ask confirmation and delete item completely.
+  //    */
+  // }
   remove(item: MenuCategory) {
-    this.notifications.error('Not implemented yet');
-    /**
-     * TODO:
-     * if there is a parentCategoryId, ask if want to remove element from this category or want to delete item completely.
-     * if there is no parentCategoryId, ask confirmation and delete item completely.
-     */
+    this.notifications.confirm(
+      $localize`Sei sicuro di voler eliminare la categoria?`, {
+        yes: $localize`Sì, elimina la categoria`,
+        no: $localize`Annulla`
+      }).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (result: boolean) => {
+        this.deleteCategory(item);
+      }
+    })
+  }
+
+  deleteCategory(item: MenuCategory) {
+    const id = item?.id;
+    if (!id) return;
+
+    this.deleting.set(true);
+    this.service.destroy(id).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.deleting.set(false)),
+    ).subscribe({
+      next: () => {
+        this.notifications.fireSnackBar($localize`Categoria eliminata.`);
+        this.search();
+      },
+      error: (r: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      }
+    })
   }
 }
