@@ -10,6 +10,46 @@
   </div>
 
   <div class="mb-3">
+    <p i18n>Creare la nuova categoria come:</p>
+    <div
+        tuiGroup
+        class="group"
+        [collapsed]="true"
+    >
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          [formControlName]="'create_as_root'"
+          [item]="true"
+          size="l"
+      >
+        <ng-container i18n>Menù principale</ng-container>
+      </tui-radio-block>
+      <tui-radio-block
+          [hideRadio]="true"
+          contentAlign="right"
+          [formControlName]="'create_as_root'"
+          [item]="false"
+          size="l"
+      >
+        Sotto-categoria
+      </tui-radio-block>
+    </div>
+
+    <app-errors [errors]="e('create_as_root')"></app-errors>
+  </div>
+
+  <tui-expand [expanded]="!form.value['create_as_root']">
+    <div class="mb-3">
+      <app-menu-category-select [formControlName]="'parent'">
+        <ng-container i18n>Categoria padre della nuova categoria:</ng-container>
+      </app-menu-category-select>
+
+      <app-errors [errors]="e('parent')"></app-errors>
+    </div>
+  </tui-expand>
+
+  <div class="mb-3">
     <p i18n>Copiare sotto-categorie?</p>
     <div
         tuiGroup

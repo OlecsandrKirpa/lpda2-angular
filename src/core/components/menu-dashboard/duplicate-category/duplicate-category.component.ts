@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, computed, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {MenuCategoriesService} from '@core/services/http/menu-categories.service';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {TuiDestroyService} from "@taiga-ui/cdk";
@@ -15,7 +24,7 @@ import {
   MenuCategorySelectComponent
 } from "@core/components/dynamic-selects/menu-category-select/menu-category-select.component";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
-import {TuiButtonModule, TuiGroupModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiExpandModule, TuiGroupModule} from "@taiga-ui/core";
 import {TuiRadioBlockModule} from "@taiga-ui/kit";
 import {JsonPipe} from "@angular/common";
 
@@ -29,6 +38,7 @@ import {JsonPipe} from "@angular/common";
     TuiGroupModule,
     TuiRadioBlockModule,
     TuiButtonModule,
+    TuiExpandModule,
   ],
   templateUrl: './duplicate-category.component.html',
   styleUrl: './duplicate-category.component.scss',
@@ -51,10 +61,12 @@ export class DuplicateCategoryComponent implements OnInit {
     copy_dishes: new FormControl("full", [Validators.required, CustomValidators.in(["full", "link", "none"])]),
     copy_images: new FormControl("full", [Validators.required, CustomValidators.in(["full", "link", "none"])]),
     copy_children: new FormControl("full", [Validators.required, CustomValidators.in(["full", "none"])]),
+    create_as_root: new FormControl(true),
+    parent: new FormControl(null, [CustomValidators.instanceof(MenuCategory)]),
   });
 
   readonly saving: WritableSignal<boolean> = signal(false);
-  readonly loading = computed(() => this.saving());
+  readonly loading: Signal<boolean> = computed(() => this.saving());
 
   constructor() { }
 
@@ -63,7 +75,7 @@ export class DuplicateCategoryComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (p: Params) => {
-        console.log({...p});
+        // console.log({...p});
         if (p['category_id']) this.form.patchValue({category: p['category_id']});
       }
     })
@@ -104,6 +116,7 @@ export class DuplicateCategoryComponent implements OnInit {
       copy_dishes: this.form.value['copy_dishes'],
       copy_images: this.form.value['copy_images'],
       copy_children: this.form.value['copy_children'],
+      parent_id: this.form.value['create_as_root'] ? null : (this.form.value['parent']?.id ?? null)
     };
   }
 
