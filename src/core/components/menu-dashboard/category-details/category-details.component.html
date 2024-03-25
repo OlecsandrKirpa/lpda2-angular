@@ -8,6 +8,8 @@
   </button>
 </div>
 
+<ng-content select="[breadcrumb]"></ng-content>
+
 <tui-expand [expanded]="expanded">
   @if (category) {
     <div class="flex justify-between">
