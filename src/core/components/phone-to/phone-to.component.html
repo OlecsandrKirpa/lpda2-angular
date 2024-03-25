@@ -1,0 +1,11 @@
+<a target="_blank" href="{{ href }}" tuiLink>
+  <span class="flex items-center">
+    <ng-content></ng-content>
+    @if(whatsapp){
+<!--      TODO add whatsapp icon. -->
+      <mat-icon class="ms-1" >chat</mat-icon>
+    }@else{
+      <mat-icon class="ms-1" >call</mat-icon>
+    }
+  </span>
+</a>

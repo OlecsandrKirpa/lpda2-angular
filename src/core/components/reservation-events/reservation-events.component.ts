@@ -50,7 +50,6 @@ export class ReservationEventsComponent implements OnChanges {
 
   readonly emailOpenAtLeastOnce: Signal<boolean> = computed((): boolean => {
     const emails = this.emails();
-    console.log(`emailOpenAtLeastOnce`, {emails});
     let found = false;
     emails.forEach((email: DeliveredEmail): any => {
       email.image_pixels?.forEach((pixel): any => {

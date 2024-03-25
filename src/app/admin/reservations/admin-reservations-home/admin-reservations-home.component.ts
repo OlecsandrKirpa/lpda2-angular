@@ -54,6 +54,8 @@ import {
 } from "@core/components/list-reservations-filters/list-reservations-filters.component";
 import {orderBy, OrderByComponent} from "@core/components/order-by/order-by.component";
 import {ReservationEventsComponent} from "@core/components/reservation-events/reservation-events.component";
+import {PhoneToComponent} from "@core/components/phone-to/phone-to.component";
+import {MailToComponent} from "@core/components/mail-to/mail-to.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -78,6 +80,8 @@ import {ReservationEventsComponent} from "@core/components/reservation-events/re
     ListReservationsFiltersComponent,
     OrderByComponent,
     ReservationEventsComponent,
+    PhoneToComponent,
+    MailToComponent,
   ],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

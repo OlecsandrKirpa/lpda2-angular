@@ -68,9 +68,7 @@ export class DuplicateCategoryComponent implements OnInit {
   readonly saving: WritableSignal<boolean> = signal(false);
   readonly loading: Signal<boolean> = computed(() => this.saving());
 
-  constructor() {
-    console.log(`${this.constructor.name} initialized`);
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.route.parent?.parent?.params.pipe(
