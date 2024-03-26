@@ -34,4 +34,10 @@ export class MenuCategoriesService extends CommonHttpService<MenuCategory> {
       map((data: unknown) => this.mapItem(data))
     );
   }
+
+  move(id: number, toIndex: number): Observable<unknown>{
+    return this.patch(`${id}/move/${toIndex}`, { }).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
 }

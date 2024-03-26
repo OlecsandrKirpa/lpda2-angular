@@ -13,14 +13,14 @@ import {RouterLink} from "@angular/router";
 import {
   TuiButtonModule,
   TuiDataListModule, TuiDropdownContextDirective,
-  TuiDropdownModule,
+  TuiDropdownModule, TuiHintModule,
   TuiHostedDropdownModule,
   TuiLinkModule, TuiLoaderModule, TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {SearchResult} from "@core/lib/search-result.model";
 import {MenuCategory} from "@core/models/menu-category";
-import {TuiActionModule, TuiInputModule, TuiIslandModule} from "@taiga-ui/kit";
+import {TuiActionModule, TuiInputModule, TuiIslandModule, TuiProgressModule} from "@taiga-ui/kit";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
 import {TuiAutoFocusModule, TuiDestroyService} from "@taiga-ui/cdk";
@@ -32,6 +32,7 @@ import {ShowImageComponent} from "@core/components/show-image/show-image.compone
 import {UrlToPipe} from "@core/pipes/url-to.pipe";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
+import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-list-categories',
@@ -57,6 +58,11 @@ import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-tabl
     TuiLoaderModule,
     NgClass,
     TuiTablePaginationModule,
+    CdkDropList,
+    CdkDrag,
+    CdkDragHandle,
+    TuiHintModule,
+    TuiProgressModule,
   ],
   templateUrl: './list-categories.component.html',
   styleUrl: './list-categories.component.scss',
@@ -73,9 +79,14 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
   readonly items = computed(() => this.data()?.items ?? []);
   readonly filtering: WritableSignal<boolean> = signal(false);
 
+  readonly ordering: WritableSignal<boolean> = signal(false);
+
   readonly searching: WritableSignal<boolean> = signal(false);
   private readonly deleting: WritableSignal<boolean> = signal(false);
-  readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting());
+  private readonly moving: WritableSignal<boolean> = signal(false);
+  readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting() || this.moving());
+
+  readonly reorderEnabled: WritableSignal<boolean> = signal<boolean>(true);
 
   readonly filters: FormGroup = new FormGroup({
     query: new FormControl(null),
@@ -104,11 +115,6 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
     this.filtering.set(!this.filtering());
 
     this.search();
-  }
-
-  triggerOrdering(): void {
-    this.notifications.error('Not implemented yet');
-    // this.ordering.set(!this.ordering());
   }
 
   submitFilters(): void {
@@ -153,18 +159,6 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
     return result;
   }
 
-  confirmBeforeDelete(item: MenuCategory) {
-    this.notifications.error('Not implemented yet');
-  }
-
-  // remove(item: MenuCategory) {
-  //   this.notifications.error('Not implemented yet');
-  //   /**
-  //    * TODO:
-  //    * if there is a parentCategoryId, ask if want to remove element from this category or want to delete item completely.
-  //    * if there is no parentCategoryId, ask confirmation and delete item completely.
-  //    */
-  // }
   remove(item: MenuCategory) {
     this.notifications.confirm(
       $localize`Sei sicuro di voler eliminare la categoria?`, {
@@ -196,5 +190,30 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
         this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
       }
     })
+  }
+  drop(event: CdkDragDrop<MenuCategory[]>): void {
+    if (event.previousIndex === event.currentIndex) return;
+
+    const items: MenuCategory[] = this.items();
+    const id = items[event.previousIndex]?.id;
+    if (!(id)) return;
+
+    moveItemInArray(items, event.previousIndex, event.currentIndex);
+    console.log(`drop`, {items, event});
+    this.moving.set(true);
+    this.service.move(id, event.currentIndex).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.moving.set(false)),
+      finalize(() => this.search()),
+    ).subscribe({
+      error: (r: HttpErrorResponse) => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`)
+    });
+  }
+
+  triggerOrdering(): void {
+    if (!(this.ordering())){
+      this.notifications.fireSnackBar($localize`Sposta le categorie trascinandole con il bottone sul lato destro di ciascuna categoria.`, $localize`Capito`, {duration: 5000})
+    }
+    this.ordering.set(!this.ordering());
   }
 }

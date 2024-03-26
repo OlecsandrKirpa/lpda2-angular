@@ -1,0 +1,21 @@
+:host {
+  .items-list.allow-reorder {
+    &.cdk-drop-list-dragging tui-island[cdkDrag]:not(.cdk-drag-placeholder) {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    //.cus {
+      //&:not([cdkDragDisabled=true]) {
+      //  cursor: move !important;
+      //}
+    //}
+
+    .cdk-drag-placeholder {
+      opacity: 0;
+    }
+
+    .cdk-drag-animating {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}

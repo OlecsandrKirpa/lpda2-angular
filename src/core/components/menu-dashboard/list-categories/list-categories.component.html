@@ -1,3 +1,7 @@
+<!--<ng-template #dragMeHint>-->
+<!--  <ng-container i18n>Trascinami!</ng-container>-->
+<!--</ng-template>-->
+
 <div class="flex items-center justify-between">
   <div class="flex items-center">
     <h2 class="me-1">
@@ -54,7 +58,11 @@
       <button (click)="triggerOrdering()" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">sort_by_alpha</mat-icon>
-          <ng-container i18n>Riordina</ng-container>
+          @if (ordering()) {
+            <ng-container i18n>Fatto.</ng-container>
+          } @else {
+            <ng-container i18n>Riordina</ng-container>
+          }
         </span>
       </button>
 
@@ -89,67 +97,60 @@
   </div>
 }
 
+<progress [ngClass]="{'invisible': !loading()}" [size]="'s'" [value]="undefined" tuiProgressBar max="100"></progress>
+
 <hr class="text-slate-400 my-3">
 
-@for (item of items(); track item.id) {
-  <ng-template #actions>
-    <tui-data-list role="menu" *ngIf="item">
-      <a [routerLink]="item.id | urlTo: 'menuCategory.show'" tuiOption>
+<div class="items-list" (cdkDropListDropped)="drop($event)" [ngClass]="{'allow-reorder': reorderEnabled()}"
+     [cdkDropListDisabled]="!reorderEnabled()" cdkDropList>
+  @for (item of items(); track item.id) {
+    <ng-template #actions>
+      <tui-data-list role="menu" *ngIf="item">
+        <a [routerLink]="item.id | urlTo: 'menuCategory.show'" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">visibility</mat-icon>
 
           <span i18n>Visualizza</span>
         </span>
-      </a>
+        </a>
 
-      <a [routerLink]="item.id | urlTo: 'menuCategory.duplicate'" tuiOption>
+        <a [routerLink]="item.id | urlTo: 'menuCategory.duplicate'" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">content_copy</mat-icon>
           <span i18n>Duplica</span>
         </span>
-      </a>
+        </a>
 
-      @if (item.visibility?.public_visible === true) {
-        <a [routerLink]="item.id | urlTo: 'menuCategory.public'" type="button" tuiOption>
+        @if (item.visibility?.public_visible === true) {
+          <a [routerLink]="item.id | urlTo: 'menuCategory.public'" type="button" tuiOption>
               <span class="flex items-center">
                 <mat-icon class="me-1">link</mat-icon>
                 <span i18n>Anteprima link pubblico</span>
               </span>
-        </a>
-      }
+          </a>
+        }
 
-      @if (item.visibility?.private_visible === true) {
-        <a [routerLink]="item.secret | urlTo: 'menuCategory.private'" type="button" tuiOption>
+        @if (item.visibility?.private_visible === true) {
+          <a [routerLink]="item.secret | urlTo: 'menuCategory.private'" type="button" tuiOption>
               <span class="flex items-center">
                 <mat-icon class="me-1">share</mat-icon>
                 <span i18n>Anteprima link privato</span>
               </span>
-        </a>
-      }
+          </a>
+        }
 
-      <button type="button" (click)="remove(item)" tuiOption>
+        <button type="button" (click)="remove(item)" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">delete</mat-icon>
           <span i18n>Rimuovi</span>
         </span>
-      </button>
+        </button>
 
-      <!--      <button type="button" (click)="confirmBeforeDelete(item)" tuiOption>-->
-      <!--        <span class="flex items-center">-->
-      <!--          <mat-icon class="me-1">delete</mat-icon>-->
-      <!--          <span i18n>Elimina</span>-->
-      <!--        </span>-->
-      <!--      </button>-->
-    </tui-data-list>
-  </ng-template>
+      </tui-data-list>
+    </ng-template>
 
-  <!--  <a class="mb-3" tuiDropdownContext [tuiDropdown]="actions" [routerLink]="['..', item.id]" tuiAction>-->
-      <!--    <span>{{ item.name }}</span>-->
-      <!--  </a>-->
-      <!--  <div class="mb-2">-->
-      <!--    <a class="no-underline" tuiDropdownContext [tuiDropdown]="actions" [routerLink]="['..', item.id]">-->
-  <tui-island class="mb-2">
-    <div class="flex justify-between items-center">
+    <tui-island cdkDrag class="mb-2">
+      <div class="flex justify-between items-center">
       <span class="flex items-center">
         <a [routerLink]="item.id | urlTo: 'menuCategory.show'">
       <app-show-image style="max-width: 100px;" class="inline-block rounded me-2"
@@ -163,37 +164,30 @@
       </div>
         </span>
 
-      <tui-hosted-dropdown [content]="actions">
-        <button size="m" appearance="outline" type="button" tuiIconButton>
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </tui-hosted-dropdown>
-    </div>
-    <!--    <p class="tui-island__paragraph">-->
-    <!--      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore-->
-    <!--      et dolore magna aliqua.-->
-    <!--    </p>-->
-    <!--    <p class="tui-island__paragraph tui-island__paragraph_link">-->
-    <!--      <a-->
-    <!--          href="/"-->
-    <!--          tuiLink-->
-    <!--      >-->
-    <!--        Link-->
-    <!--      </a>-->
-    <!--    </p>-->
-  </tui-island>
-  <!--    </a>-->
-      <!--  </div>-->
-      <!--</ng-container>-->
-} @empty {
-  @if (searching()) {
-    <tui-loader size="m" [showLoader]="true"></tui-loader>
-  } @else {
-    <p class="text-center">
-      <ng-container i18n>Non ci sono categorie</ng-container>
-    </p>
+        @if (ordering()) {
+          <button cdkDragHandle size="m" appearance="outline" type="button" tuiIconButton>
+            <mat-icon>drag_handle</mat-icon>
+          </button>
+        } @else {
+          <tui-hosted-dropdown [content]="actions">
+            <button cdkDragHandle size="m" appearance="outline" type="button" tuiIconButton>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </tui-hosted-dropdown>
+        }
+
+      </div>
+    </tui-island>
+  } @empty {
+    @if (searching()) {
+      <tui-loader size="m" [showLoader]="true"></tui-loader>
+    } @else {
+      <p class="text-center">
+        <ng-container i18n>Non ci sono categorie</ng-container>
+      </p>
+    }
   }
-}
+</div>
 
 @if (data()?.metadata?.next_page || data()?.metadata?.prev_page) {
   <tui-table-pagination class="my-2"
