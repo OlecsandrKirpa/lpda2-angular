@@ -120,7 +120,6 @@ export class ImagesEditModalComponent implements OnInit {
         this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
       }
     })
-    // console.log(`updated`, {images, event, prev: this.images()});
   }
 
   private removeSub?: Subscription;

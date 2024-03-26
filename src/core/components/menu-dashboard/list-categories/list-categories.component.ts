@@ -199,7 +199,6 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
     if (!(id)) return;
 
     moveItemInArray(items, event.previousIndex, event.currentIndex);
-    console.log(`drop`, {items, event});
     this.moving.set(true);
     this.service.move(id, event.currentIndex).pipe(
       takeUntil(this.destroy$),
