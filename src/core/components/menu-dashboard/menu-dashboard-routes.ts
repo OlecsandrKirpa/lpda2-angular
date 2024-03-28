@@ -17,7 +17,28 @@ const categoryRoutes: Routes = [
     path: `export`,
     loadChildren: () => import(`./export-category/export-category.module`).then(m => m.ExportCategoryModule),
   },
-] ;
+  {
+    path: `create-dish`,
+    loadChildren: () => import(`./create-dish/create-dish.module`).then(m => m.CreateDishModule),
+  },
+  // {
+  //   path: `dish/:dish_id/duplicate`,
+  //   loadChildren: () => import(`./view-dish/view-dish.module`).then(m => m.ViewDishModule),
+  // },
+  // {
+  //   path: `dish/:dish_id`,
+  //   loadChildren: () => import(`./view-dish/view-dish.module`).then(m => m.ViewDishModule),
+  // },
+  {
+    path: `dish/:dish_id/duplicate`,
+    loadChildren: () => import(`./duplicate-dish/duplicate-dish.module`).then(m => m.DuplicateDishModule),
+  },
+  {
+    path: `dish/:dish_id`,
+    loadChildren: () => import(`./view-dish/view-dish.module`).then(m => m.ViewDishModule),
+    pathMatch: `full`
+  },
+];
 
 export const routes: Routes = [
   {

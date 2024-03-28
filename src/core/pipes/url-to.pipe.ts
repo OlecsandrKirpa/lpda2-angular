@@ -12,6 +12,9 @@ const pages: Record<string, Record<string, string>> = {
     private: `/menu/{itemId}`, // Will include MenuDescription.secret_desc or MenuDescription.secret insted of id.
     public: `/menu/{itemId}`,
   },
+  dish: {
+    show: `/admin/menu/{categoryId}/dish/{itemId}`,
+  },
 };
 
 @Pipe({
@@ -28,6 +31,21 @@ export class UrlToPipe implements PipeTransform {
 
     if (typeof itemId === 'undefined' || itemId === null) return null;
     if (typeof itemId === 'number') itemId = itemId.toString();
+
+    /**
+     * WHEN providing object: interpolate the object's keys into the URL.
+     */
+    if (typeof itemId == 'object' && itemId !== null && !Array.isArray(itemId)){
+      let acc: string = resource[action];
+      Object.keys(itemId).forEach((key: string) => {
+        const value: string | undefined = (itemId as Record<string, string | undefined>)[key];
+        if (value !== undefined && acc.includes(`{${key}}`)) acc = acc.replace(`{${key}}`, value ?? ``);
+      });
+
+      if (acc.includes(`{{`)) throw new Error(`Unresolved interpolation: ${acc}`);
+
+      return acc;
+    }
 
     if (typeof itemId !== 'string') throw new Error(`Invalid itemId: ${itemId} (type: ${typeof itemId})`);
 

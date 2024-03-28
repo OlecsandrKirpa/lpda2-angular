@@ -1,5 +1,7 @@
 import {BaseModel} from "@core/lib/base-model";
 import {DishData, DishStatus} from "@core/lib/interfaces/dish-data";
+import {Image} from "@core/models/image";
+import { ImageData } from '@core/lib/interfaces/image-data';
 
 export class Dish extends BaseModel {
   name?: string;
@@ -12,6 +14,8 @@ export class Dish extends BaseModel {
     description?: Record<string, string>;
   }
 
+  images?: Image[];
+
   constructor(data: DishData) {
     super(data);
 
@@ -21,5 +25,7 @@ export class Dish extends BaseModel {
     this.price = data.price;
 
     this.translations = data.translations;
+
+    this.images = data.images ? data.images.map((image: ImageData) => new Image(image)) : [];
   }
 }

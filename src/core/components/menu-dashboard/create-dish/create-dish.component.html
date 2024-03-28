@@ -1,0 +1,34 @@
+<h1>
+  <ng-container i18n>Crea nuovo piatto</ng-container>
+</h1>
+
+<pre [innerText]="formData() | json" ></pre>
+
+@if (category()) {
+  <div class="mb-3">
+    <div class="flex items-center" ></div>
+    <span class="me-2" >Stai creando un piatto dentro la categoria:</span>
+
+    <a tuiLink [routerLink]="category()?.id | urlTo: 'menuCategory.show'">{{ category()?.name }}</a>
+  </div>
+}
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="mb-3">
+    <app-i18n-input formControlName="name">
+      <ng-container i18n>Nome del piatto</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('name')"></app-errors>
+  </div>
+
+  <div class="flex">
+    <button [showLoader]="loading()" class="me-2" tuiButton type="submit" size="l">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button [showLoader]="loading()" (click)="cancel()" tuiButton type="button" appearance="icon" size="l">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

@@ -35,7 +35,6 @@ import {CustomValidators} from "@core/lib/custom-validators";
     MenuCategorySelectComponent,
   ],
   templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.scss',
   providers: [
     TuiDestroyService,
     UrlToPipe,
