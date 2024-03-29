@@ -66,7 +66,10 @@ export class CategoryDetailsComponent {
 
   @Output() categoryChange: EventEmitter<MenuCategory> = new EventEmitter<MenuCategory>();
   @Input({required: true}) category: MenuCategory | null = null;
-  expanded: boolean = true;
+  // TODO:
+  //  - make expanded a signal
+  //  - save expanded in local storage and use that value as initial value
+  expanded: boolean = false;
 
   readonly loading: WritableSignal<boolean> = signal(false);
 

@@ -1,1 +1,29 @@
-<p>view-dish works!</p>
+<!--<p>view-dish works!</p>-->
+
+@if (dish()) {
+  <div>
+    <div class="flex items-center justify-between">
+      <div class="flex flex-items">
+        <h1>{{ dish()?.name }}</h1>
+      </div>
+
+      <div>
+        <a tuiIconButton appearance="icon" [type]="'button'" [routerLink]="'../..'">
+          <mat-icon>close</mat-icon>
+        </a>
+      </div>
+    </div>
+
+    <h4 class="mb-1 me-1" i18n>Immagini piatto</h4>
+    <app-show-images class="mb-3" [recordType]="'Menu::Dish'" [recordId]="dish()?.id"
+                     [images]="dish()?.images"></app-show-images>
+
+    <h4 class="mb-1 me-1" i18n>Stato piatto</h4>
+
+    <!--  <app-edit-menu-category-status (deleteCategory)="deleteCategory()" class="mb-3"-->
+    <!--                                 (statusChange)="updateStatus($event)"-->
+    <!--                                 [(category)]="category"></app-edit-menu-category-status>-->
+  </div>
+} @else if (loading()) {
+  <tui-loader [showLoader]="true" [size]="'l'"></tui-loader>
+}

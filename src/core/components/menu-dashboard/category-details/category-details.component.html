@@ -1,14 +1,29 @@
-<div class="flex items-center">
-  <h1>
-    {{ category?.name }}
-  </h1>
+<!--<div class="flex items-center">-->
+<h1>
+  {{ category?.name }}
+</h1>
 
-  <button tuiIconButton appearance="custom" type="button" (click)="expanded = !expanded">
-    <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': expanded}">expand_more</mat-icon>
-  </button>
-</div>
+<!--  <button tuiIconButton appearance="custom" type="button" (click)="expanded = !expanded">-->
+<!--    <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': expanded}">expand_more</mat-icon>-->
+<!--  </button>-->
+<!--</div>-->
 
 <ng-content select="[breadcrumb]"></ng-content>
+
+<div class="mb-3">
+  <button (click)="expanded = !expanded" tuiButton appearance="flat" size="m">
+  <span class="flex items-center">
+    <span class="me-1">
+      @if (expanded) {
+        <ng-container i18n>Chiudi dettagli</ng-container>
+      } @else {
+        <ng-container i18n>Dettagli categoria</ng-container>
+      }
+    </span>
+    <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': expanded}">expand_more</mat-icon>
+  </span>
+  </button>
+</div>
 
 <tui-expand [expanded]="expanded">
   @if (category) {
@@ -35,7 +50,7 @@
             </span>
           </button>
 
-          @if(category.visibility?.public_visible === true){
+          @if (category.visibility?.public_visible === true) {
             <a [routerLink]="category.id | urlTo: 'menuCategory.public'" type="button" tuiOption>
               <span class="flex items-center">
                 <mat-icon class="me-1">link</mat-icon>
@@ -44,7 +59,7 @@
             </a>
           }
 
-          @if(category.visibility?.private_visible === true){
+          @if (category.visibility?.private_visible === true) {
             <a [routerLink]="category.secret | urlTo: 'menuCategory.private'" type="button" tuiOption>
               <span class="flex items-center">
                 <mat-icon class="me-1">share</mat-icon>
