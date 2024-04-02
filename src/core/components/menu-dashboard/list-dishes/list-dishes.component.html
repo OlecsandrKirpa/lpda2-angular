@@ -4,7 +4,7 @@
 
 <div class="flex items-center justify-between">
   <div class="flex items-center">
-    <h2 class="me-1">
+    <h2 class="me-1" (click)="search()" >
       <ng-container i18n>Piatti</ng-container>
     </h2>
 
@@ -79,7 +79,7 @@
   </div>
 }
 
-<progress [ngClass]="{'invisible': !loading()}" [size]="'s'" [value]="null" tuiProgressBar max="100"></progress>
+<progress [ngClass]="{'invisible': !loading()}" [size]="'s'" [value]="undefined" tuiProgressBar max="100"></progress>
 
 <hr class="text-slate-400 my-3">
 

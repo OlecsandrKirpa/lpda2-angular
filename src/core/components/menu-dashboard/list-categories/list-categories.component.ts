@@ -130,7 +130,7 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
 
   private searchSub?: Subscription;
 
-  private search(filters: Record<string, string | number> = this.parseFilters()): void {
+  search(filters: Record<string, string | number> = this.parseFilters()): void {
     this.searchSub?.unsubscribe();
 
     this.searching.set(true);
