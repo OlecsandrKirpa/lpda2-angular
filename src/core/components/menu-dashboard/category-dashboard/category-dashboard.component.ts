@@ -52,7 +52,10 @@ import {
   providers: [
     TuiDestroyService
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    "class": "grow flex flex-col"
+  }
 })
 export class CategoryDashboardComponent implements OnInit {
   /**

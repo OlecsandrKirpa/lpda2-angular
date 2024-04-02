@@ -4,6 +4,7 @@ import {Dish} from "@core/models/dish";
 import {map, Observable} from "rxjs";
 import {CopyDishParams} from "@core/lib/interfaces/copy-menu-dish-params";
 import {DishStatus} from "@core/lib/interfaces/dish-data";
+import {MoveDishParams} from "@core/lib/interfaces/move-dish-params";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class DishesService extends CommonHttpService<Dish> {
     );
   }
 
-  move(id: number, toIndex: number): Observable<unknown> {
-    return this.patch(`${id}/move/${toIndex}`, {}).pipe(
+  move(id: number, data: MoveDishParams): Observable<unknown> {
+    return this.patch(`${id}/move`, data).pipe(
       map((data: unknown) => this.mapItem(data))
     );
   }

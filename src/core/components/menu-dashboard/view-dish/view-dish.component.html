@@ -14,15 +14,45 @@
       </div>
     </div>
 
-    <h4 class="mb-1 me-1" i18n>Immagini piatto</h4>
-    <app-show-images class="mb-3" [recordType]="'Menu::Dish'" [recordId]="dish()?.id"
-                     [images]="dish()?.images"></app-show-images>
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Immagini piatto</h4>
+      <app-show-images class="mb-3" [recordType]="'Menu::Dish'" [recordId]="dish()?.id"
+                       [images]="dish()?.images"></app-show-images>
+    </div>
 
-    <h4 class="mb-1 me-1" i18n>Stato piatto</h4>
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Stato piatto</h4>
+      <app-edit-dish-status (deleteDish)="delete()" (statusChange)="updateStatus($event)" [dish]="dish()"
+                            (dishChange)="dish.set($event)"></app-edit-dish-status>
+    </div>
 
-    <!--  <app-edit-menu-category-status (deleteCategory)="deleteCategory()" class="mb-3"-->
-    <!--                                 (statusChange)="updateStatus($event)"-->
-    <!--                                 [(category)]="category"></app-edit-menu-category-status>-->
+    @if (dish()?.translations) {
+      <div class="mb-3">
+        <h4 class="mb-1 me-1" i18n>Traduzioni</h4>
+        <app-name-desc-eip class="mb-3" (submittedChanges)="saveNameDesc($event)"
+                           [translations]="dish()?.translations"></app-name-desc-eip>
+      </div>
+    }
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Ingredienti</h4>
+      <app-dish-ingredients [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-ingredients>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Allergeni</h4>
+      <app-dish-allergens [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-allergens>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Tag</h4>
+      <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-tags>
+    </div>
+
+    <button tuiButton [appearance]="'secondary-destructive'" type="button" (click)="confirmAndDelete()">
+      <ng-container i18n>Elimina piatto</ng-container>
+    </button>
+
   </div>
 } @else if (loading()) {
   <tui-loader [showLoader]="true" [size]="'l'"></tui-loader>

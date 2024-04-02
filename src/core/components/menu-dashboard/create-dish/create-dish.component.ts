@@ -28,12 +28,10 @@ import {JsonPipe} from "@angular/common";
     I18nInputComponent,
     ErrorsComponent,
     TuiButtonModule,
-    JsonPipe
   ],
   templateUrl: './create-dish.component.html',
   providers: [
     TuiDestroyService,
-    UrlToPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -43,7 +41,6 @@ export class CreateDishComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly urlTo: UrlToPipe = inject(UrlToPipe);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly afterUrl: string | null | undefined = this.route.snapshot.queryParams['afterUrl'];
 

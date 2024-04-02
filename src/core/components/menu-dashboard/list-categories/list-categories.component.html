@@ -166,7 +166,7 @@
 
         @if (ordering()) {
           <button cdkDragHandle size="m" appearance="outline" type="button" tuiIconButton>
-            <mat-icon>drag_handle</mat-icon>
+            <mat-icon class="drag-shake" >drag_handle</mat-icon>
           </button>
         } @else {
           <tui-hosted-dropdown [content]="actions">

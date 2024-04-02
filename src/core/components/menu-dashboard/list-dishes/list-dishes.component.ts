@@ -202,9 +202,12 @@ export class ListDishesComponent implements OnInit,OnChanges {
     const id = items[event.previousIndex]?.id;
     if (!(id)) return;
 
+    const category_id = this.parentCategoryId;
+
     moveItemInArray(items, event.previousIndex, event.currentIndex);
+    const data = category_id ? {to_index: event.currentIndex, category_id} : {to_index: event.currentIndex};
     this.moving.set(true);
-    this.service.move(id, event.currentIndex).pipe(
+    this.service.move(id, data).pipe(
       takeUntil(this.destroy$),
       finalize(() => this.moving.set(false)),
       finalize(() => this.search()),

@@ -14,7 +14,9 @@ import {
     CategoryBreadcrumbsComponent
   ],
   templateUrl: './menu-root.component.html',
-  styleUrl: './menu-root.component.scss'
+  host: {
+    "class": "grow flex flex-col"
+  }
 })
 export class MenuRootComponent {
 

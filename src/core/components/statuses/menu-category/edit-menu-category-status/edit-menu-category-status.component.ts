@@ -22,7 +22,6 @@ import {NgClass} from "@angular/common";
     NgClass
   ],
   templateUrl: './edit-menu-category-status.component.html',
-  styleUrl: './edit-menu-category-status.component.scss',
   providers: [
     TuiDestroyService
   ]

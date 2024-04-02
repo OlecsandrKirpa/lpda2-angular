@@ -10,6 +10,12 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TuiButtonModule, TuiLoaderModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
+import {DishStatusComponent} from "@core/components/statuses/dish/dish-status/dish-status.component";
+import {EditDishStatusComponent} from "@core/components/statuses/dish/edit-dish-status/edit-dish-status.component";
+import {NameDescEipComponent} from "@core/components/name-desc-eip/name-desc-eip.component";
+import {DishIngredientsComponent} from "@core/components/menu-dashboard/dish-ingredients/dish-ingredients.component";
+import {DishAllergensComponent} from "@core/components/menu-dashboard/dish-allergens/dish-allergens.component";
+import {DishTagsComponent} from "@core/components/menu-dashboard/dish-tags/dish-tags.component";
 
 @Component({
   selector: '__app-view-dish',
@@ -19,7 +25,13 @@ import {MatIcon} from "@angular/material/icon";
     TuiLoaderModule,
     TuiButtonModule,
     RouterLink,
-    MatIcon
+    MatIcon,
+    DishStatusComponent,
+    EditDishStatusComponent,
+    NameDescEipComponent,
+    DishIngredientsComponent,
+    DishAllergensComponent,
+    DishTagsComponent
   ],
   templateUrl: './view-dish.component.html',
   styleUrl: './view-dish.component.scss',
@@ -55,6 +67,45 @@ export class ViewDishComponent implements OnInit {
     })
   }
 
+  delete(): void {
+    const id = this.dish()?.id;
+    if (!id) return;
+
+    this.loading.set(true);
+    this.service.destroy(id).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: () => {
+        this.notifications.fireSnackBar($localize`Piatto eliminata.`);
+        this.router.navigate(['../..'], {relativeTo: this.route});
+      },
+      error: (r: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      }
+    })
+  }
+
+  updateStatus(status: Dish["status"]): void {
+    const id = this.dish()?.id;
+    if (!status || !id) return;
+
+    this.loading.set(true);
+    this.service.updateStatus(id, status).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: (item: Dish) => {
+        this.notifications.fireSnackBar($localize`Stato aggiornato.`);
+        // this.dishChange.emit(item);
+        this.dish.set(item);
+      },
+      error: (r: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      }
+    })
+  }
+
   private loadDish(dishId: number): void {
     this.dishId.set(dishId);
     this.loading.set(true);
@@ -70,7 +121,31 @@ export class ViewDishComponent implements OnInit {
     })
   }
 
-  cancel() {
-    this.notifications.error($localize`TODO.`);
+  saveNameDesc(event: { name: Record<string, string>; description: Record<string, string> }): void {
+    const id = this.dish()?.id;
+    if (!id) return;
+
+    this.loading.set(true);
+    this.service.update(id, event).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false))
+    ).subscribe({
+      next: (item: Dish) => {
+        this.notifications.fireSnackBar($localize`Traduzioni aggiornate.`)
+        // this.dishChange.emit(item);
+        this.dish.set(item);
+      },
+      error: (r: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      }
+    })
+  }
+
+  confirmAndDelete() {
+    this.notifications.confirm($localize`Sei sicuro di voler eliminare questo piatto?`).subscribe({
+      next: (confirmed: boolean): void => {
+        if (confirmed) this.delete();
+      }
+    });
   }
 }
