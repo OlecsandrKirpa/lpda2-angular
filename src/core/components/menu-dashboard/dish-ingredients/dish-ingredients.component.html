@@ -2,8 +2,7 @@
   <ng-container i18n>Ingredienti</ng-container>
 </h4>
 
-<div class="items-list" (cdkDropListDropped)="drop($event)" [ngClass]="{'allow-reorder': reorderEnabled()}"
-     [cdkDropListDisabled]="!reorderEnabled()" cdkDropList>
+<div class="items-list" (cdkDropListDropped)="drop($event)" cdkDropList>
   @for (item of items(); track item.id) {
     <tui-island cdkDrag class="mb-2">
       <div class="flex justify-between items-center">
@@ -24,10 +23,6 @@
             <mat-icon>drag_handle</mat-icon>
           </button>
 
-          <ng-template #deleteHint>
-            <ng-container i18n>Rimuovi ingrediente dal piatto</ng-container>
-          </ng-template>
-
           <ng-template #deleteDropdown>
             <button class="m-4" tuiButton appearance="secondary-destructive" type="button" (click)="remove(item)">
               <ng-container i18n>Rimuovi ingrediente dal piatto</ng-container>
@@ -35,7 +30,7 @@
           </ng-template>
 
           <tui-hosted-dropdown [content]="deleteDropdown">
-          <button size="m" [tuiHint]="deleteHint" tuiIconButton type="button" appearance="outline">
+          <button size="m" tuiIconButton type="button" appearance="outline">
             <mat-icon>delete</mat-icon>
           </button>
           </tui-hosted-dropdown>

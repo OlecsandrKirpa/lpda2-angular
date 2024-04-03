@@ -98,7 +98,6 @@ export class DishIngredientsComponent {
   readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting() || this.moving() || this.associatingIngredient() || this.removingIngredient());
 
   readonly ordering: WritableSignal<boolean> = signal(false);
-  readonly reorderEnabled: WritableSignal<boolean> = signal<boolean>(true);
 
   readonly data: WritableSignal<SearchResult<Ingredient> | null> = signal(null);
   readonly items: Signal<Ingredient[]> = computed(() => this.data()?.items ?? []);
