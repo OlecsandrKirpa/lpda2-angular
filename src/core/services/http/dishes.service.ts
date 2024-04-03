@@ -5,6 +5,7 @@ import {map, Observable} from "rxjs";
 import {CopyDishParams} from "@core/lib/interfaces/copy-menu-dish-params";
 import {DishStatus} from "@core/lib/interfaces/dish-data";
 import {MoveDishParams} from "@core/lib/interfaces/move-dish-params";
+import {MoveIngredientParams} from "@core/lib/interfaces/move-ingredient-params";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,26 @@ export class DishesService extends CommonHttpService<Dish> {
     );
   }
 
-  move(id: number, data: MoveDishParams): Observable<unknown> {
+  move(id: number, data: MoveDishParams): Observable<Dish> {
     return this.patch(`${id}/move`, data).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
+
+  moveIngredient(dishId: number, ingredientId: number, toIndex: number): Observable<Dish> {
+    return this.patch(`${dishId}/ingredients/${ingredientId}/move`, {to_index: toIndex}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
+
+  moveTag(dishId: number, tagId: number, toIndex: number): Observable<Dish> {
+    return this.patch(`${dishId}/tags/${tagId}/move`, {to_index: toIndex}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
+
+  moveAllergen(dishId: number, allergenId: number, toIndex: number): Observable<Dish> {
+    return this.patch(`${dishId}/allergens/${allergenId}/move`, {to_index: toIndex}).pipe(
       map((data: unknown) => this.mapItem(data))
     );
   }

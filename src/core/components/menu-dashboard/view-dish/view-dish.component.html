@@ -35,17 +35,14 @@
     }
 
     <div class="mb-3">
-      <h4 class="mb-1 me-1" i18n>Ingredienti</h4>
       <app-dish-ingredients [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-ingredients>
     </div>
 
     <div class="mb-3">
-      <h4 class="mb-1 me-1" i18n>Allergeni</h4>
       <app-dish-allergens [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-allergens>
     </div>
 
     <div class="mb-3">
-      <h4 class="mb-1 me-1" i18n>Tag</h4>
       <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-tags>
     </div>
 
