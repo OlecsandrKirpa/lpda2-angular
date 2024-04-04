@@ -16,6 +16,7 @@ import {NameDescEipComponent} from "@core/components/name-desc-eip/name-desc-eip
 import {DishIngredientsComponent} from "@core/components/menu-dashboard/dish-ingredients/dish-ingredients.component";
 import {DishAllergensComponent} from "@core/components/menu-dashboard/dish-allergens/dish-allergens.component";
 import {DishTagsComponent} from "@core/components/menu-dashboard/dish-tags/dish-tags.component";
+import {DishPriceComponent} from "@core/components/menu-dashboard/dish-price/dish-price.component";
 
 @Component({
   selector: '__app-view-dish',
@@ -31,7 +32,8 @@ import {DishTagsComponent} from "@core/components/menu-dashboard/dish-tags/dish-
     NameDescEipComponent,
     DishIngredientsComponent,
     DishAllergensComponent,
-    DishTagsComponent
+    DishTagsComponent,
+    DishPriceComponent
   ],
   templateUrl: './view-dish.component.html',
   styleUrl: './view-dish.component.scss',

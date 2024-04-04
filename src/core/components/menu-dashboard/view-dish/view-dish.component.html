@@ -26,6 +26,12 @@
                             (dishChange)="dish.set($event)"></app-edit-dish-status>
     </div>
 
+    <div class="mb-3">
+      <app-dish-price [dish]="dish()" (dishChanged)="dish.set($event)" >
+        <ng-container i18n>Prezzo</ng-container>
+      </app-dish-price>
+    </div>
+
     @if (dish()?.translations) {
       <div class="mb-3">
         <h4 class="mb-1 me-1" i18n>Traduzioni</h4>

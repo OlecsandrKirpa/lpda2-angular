@@ -33,11 +33,19 @@
         <app-show-images class="mb-3" [recordType]="'Menu::Category'" [recordId]="category.id"
                          [images]="category.images"></app-show-images>
 
-        <h4 class="mb-1 me-1" i18n>Stato categoria</h4>
+        <div class="mb-3">
+          <h4 class="mb-1 me-1" i18n>Stato categoria</h4>
 
-        <app-edit-menu-category-status (deleteCategory)="deleteCategory()" class="mb-3"
-                                       (statusChange)="updateStatus($event)"
-                                       [(category)]="category"></app-edit-menu-category-status>
+          <app-edit-menu-category-status (deleteCategory)="deleteCategory()" class="mb-3"
+                                         (statusChange)="updateStatus($event)"
+                                         [(category)]="category"></app-edit-menu-category-status>
+        </div>
+
+        <div class="mb-3">
+          <app-category-price [category]="category" (categoryChanged)="setCategory($event)" >
+            <ng-container i18n>Prezzo fisso per la categoria</ng-container>
+          </app-category-price>
+        </div>
       </div>
 
 

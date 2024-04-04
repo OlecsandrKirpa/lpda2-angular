@@ -4,6 +4,7 @@ import {RouterOutlet} from "@angular/router";
 import {
   CategoryBreadcrumbsComponent
 } from "@core/components/menu-dashboard/category-breadcrumbs/category-breadcrumbs.component";
+import {ListCategoriesComponent} from "@core/components/menu-dashboard/list-categories/list-categories.component";
 
 @Component({
   selector: 'app-menu-root',
@@ -11,7 +12,8 @@ import {
   imports: [
     ListItemsComponent,
     RouterOutlet,
-    CategoryBreadcrumbsComponent
+    CategoryBreadcrumbsComponent,
+    ListCategoriesComponent
   ],
   templateUrl: './menu-root.component.html',
   host: {

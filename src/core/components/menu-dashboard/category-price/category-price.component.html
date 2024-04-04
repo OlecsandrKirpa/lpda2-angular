@@ -1,0 +1,14 @@
+<tui-input [formControl]="price" tuiTextfieldSize="l" tuiTextfieldPostfix="€" >
+  <ng-content></ng-content>
+</tui-input>
+
+<!--<tui-expand [expanded]="!!price.value && price.valid && category != null && dishesWithPrice().length > 0">-->
+<!--  <span class="text-red-600 inline-block" i18n>Ci sono dei piatti che hanno un prezzo. Rimuovi il prezzo dalla categoria o rimuovi il prezzo dai piatti:</span>-->
+<!--  <ul>-->
+<!--    @for(dish of dishesWithPrice(); track dish.id){-->
+<!--      <li>-->
+<!--        <button tuiButton (click)="removePrice(dish)" class="text-red-600" i18n>Remove price from {{ dish.name }}</button>-->
+<!--      </li>-->
+<!--    }-->
+<!--  </ul>-->
+<!--</tui-expand>-->
