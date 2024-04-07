@@ -8,7 +8,7 @@ import {Dish} from "@core/models/dish";
 import {distinctUntilChanged, filter, finalize, map, takeUntil, tap} from "rxjs";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {HttpErrorResponse} from "@angular/common/http";
-import {TuiButtonModule, TuiLoaderModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLoaderModule, TuiTooltipModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {DishStatusComponent} from "@core/components/statuses/dish/dish-status/dish-status.component";
 import {EditDishStatusComponent} from "@core/components/statuses/dish/edit-dish-status/edit-dish-status.component";
@@ -17,6 +17,7 @@ import {DishIngredientsComponent} from "@core/components/menu-dashboard/dish-ing
 import {DishAllergensComponent} from "@core/components/menu-dashboard/dish-allergens/dish-allergens.component";
 import {DishTagsComponent} from "@core/components/menu-dashboard/dish-tags/dish-tags.component";
 import {DishPriceComponent} from "@core/components/menu-dashboard/dish-price/dish-price.component";
+import {DishReferencesComponent} from "@core/components/menu-dashboard/dish-references/dish-references.component";
 
 @Component({
   selector: '__app-view-dish',
@@ -33,7 +34,9 @@ import {DishPriceComponent} from "@core/components/menu-dashboard/dish-price/dis
     DishIngredientsComponent,
     DishAllergensComponent,
     DishTagsComponent,
-    DishPriceComponent
+    DishPriceComponent,
+    DishReferencesComponent,
+    TuiTooltipModule
   ],
   templateUrl: './view-dish.component.html',
   styleUrl: './view-dish.component.scss',

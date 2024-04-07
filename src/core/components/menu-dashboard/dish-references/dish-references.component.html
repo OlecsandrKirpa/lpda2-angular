@@ -1,0 +1,12 @@
+@if (item() && references()) {
+  <ng-content></ng-content>
+  <ul class="tui-list tui-list_small">
+    @for (item of references()!.categories; track item.id) {
+      <li class="tui-list__item">
+        <a class="mb-2" routerLink="{{ item.id | urlTo: 'menuCategory.show' }}" tuiLink>
+          {{ item.name }}
+        </a>
+      </li>
+    }
+  </ul>
+}

@@ -87,8 +87,7 @@ export class DishPriceComponent implements OnInit, OnChanges {
       next: (c: Dish): void => {
         this.dish = c;
         this.dishChanged.emit(c);
-        if (c.price == newPrice) this.notifications.fireSnackBar($localize`Prezzo salvato.`);
-        else this.notifications.error($localize`Qualcosa è andato storto nel salvataggio del prezzo.`);
+        this.notifications.fireSnackBar($localize`Prezzo salvato.`);
       },
       error: (r: HttpErrorResponse) => {
         this.notifications.fireSnackBar(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto nel salvataggio del prezzo.`);

@@ -87,8 +87,7 @@ export class CategoryPriceComponent implements OnInit, OnChanges {
       next: (c: MenuCategory): void => {
         this.category = c;
         this.categoryChanged.emit(c);
-        if (c.price == newPrice) this.notifications.fireSnackBar($localize`Prezzo salvato.`);
-        else this.notifications.error($localize`Qualcosa è andato storto nel salvataggio del prezzo.`);
+        this.notifications.fireSnackBar($localize`Prezzo salvato.`);
       },
       error: (r: HttpErrorResponse) => {
         this.notifications.fireSnackBar(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto nel salvataggio del prezzo.`);

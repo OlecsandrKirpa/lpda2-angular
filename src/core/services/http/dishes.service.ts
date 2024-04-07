@@ -6,6 +6,7 @@ import {CopyDishParams} from "@core/lib/interfaces/copy-menu-dish-params";
 import {DishStatus} from "@core/lib/interfaces/dish-data";
 import {MoveDishParams} from "@core/lib/interfaces/move-dish-params";
 import {MoveIngredientParams} from "@core/lib/interfaces/move-ingredient-params";
+import {DishReferences} from "@core/lib/interfaces/dish-references";
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,12 @@ export class DishesService extends CommonHttpService<Dish> {
   removeAllergen(dishId: number, allergenId: number): Observable<Dish> {
     return this.delete(`${dishId}/allergens/${allergenId}`).pipe(
       map((data: unknown) => this.mapItem(data))
+    );
+  }
+
+  references(dishId: number): Observable<DishReferences> {
+    return this.get(`${dishId}/references`).pipe(
+      map((data: unknown) => data as DishReferences)
     );
   }
 }

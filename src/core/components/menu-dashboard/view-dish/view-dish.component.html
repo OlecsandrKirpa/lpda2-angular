@@ -26,8 +26,24 @@
                             (dishChange)="dish.set($event)"></app-edit-dish-status>
     </div>
 
+    <ng-template #referencesHelp>
+      <p i18n>Lo stesso piatto può essere presente in più categorie.</p>
+      <p i18n>Le categorie elencate di seguito sono tutte le categorie in cui è possibile vedere questo piatto.</p>
+    </ng-template>
+
     <div class="mb-3">
-      <app-dish-price [dish]="dish()" (dishChanged)="dish.set($event)" >
+      <div class="flex items-center mb-2">
+        <mat-icon class="me-1" >link</mat-icon>
+        <h4 class="me-1 my-0" i18n>Piatto presente anche in:</h4>
+        <tui-tooltip [content]="referencesHelp" direction="right"></tui-tooltip>
+      </div>
+
+      <app-dish-references [dish]="dish()"></app-dish-references>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Prezzo</h4>
+      <app-dish-price [dish]="dish()" (dishChanged)="dish.set($event)">
         <ng-container i18n>Prezzo</ng-container>
       </app-dish-price>
     </div>
@@ -41,15 +57,15 @@
     }
 
     <div class="mb-3">
-      <app-dish-ingredients [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-ingredients>
+      <app-dish-ingredients [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-ingredients>
     </div>
 
     <div class="mb-3">
-      <app-dish-allergens [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-allergens>
+      <app-dish-allergens [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-allergens>
     </div>
 
     <div class="mb-3">
-      <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)" ></app-dish-tags>
+      <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-tags>
     </div>
 
     <button tuiButton [appearance]="'secondary-destructive'" type="button" (click)="confirmAndDelete()">
