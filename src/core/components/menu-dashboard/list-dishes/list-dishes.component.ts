@@ -73,8 +73,9 @@ import {Dish} from "@core/models/dish";
     MenuCategoriesService,
   ]
 })
-export class ListDishesComponent implements OnInit,OnChanges {
- private readonly service = inject(DishesService);
+export class ListDishesComponent implements OnInit, OnChanges {
+  private readonly service = inject(DishesService);
+  private readonly categoriesService: MenuCategoriesService = inject(MenuCategoriesService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
 
@@ -217,9 +218,27 @@ export class ListDishesComponent implements OnInit,OnChanges {
   }
 
   triggerOrdering(): void {
-    if (!(this.ordering())){
+    if (!(this.ordering())) {
       this.notifications.fireSnackBar($localize`Sposta i piatti trascinandoli con il bottone sul lato destro di ciascuna categoria.`, $localize`Capito`, {duration: 5000})
     }
     this.ordering.set(!this.ordering());
+  }
+
+  orderAllBy(field: string): void {
+    const catId: number | null | undefined = this.parentCategoryId;
+    if (!(catId)) return;
+
+    this.moving.set(true);
+    this.categoriesService.orderDishes(catId, field).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.moving.set(false))
+    ).subscribe({
+      next: (): void => {
+        this.notifications.fireSnackBar($localize`Tutti i piatti ordinati per ${field}`);
+        this.ordering.set(false);
+        this.search();
+      },
+      error: (r: HttpErrorResponse) => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`)
+    })
   }
 }

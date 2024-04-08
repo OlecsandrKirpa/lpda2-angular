@@ -23,6 +23,10 @@ export class MenuCategoriesService extends CommonHttpService<MenuCategory> {
     return this.post(`${categoryId}/dishes/${dishId}`, { });
   }
 
+  orderDishes(categoryId: number, field: string): Observable<MenuCategory> {
+    return this.patch(`${categoryId}/order_dishes`, { field });
+  }
+
   dashboardData(id: number): Observable<MenuCategoryDashboardData>{
     return this.get<MenuCategoryDashboardData>(`${id}/dashboard_data`);
   }
