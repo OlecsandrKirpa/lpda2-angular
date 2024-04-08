@@ -4,7 +4,7 @@
 
 <div class="flex items-center justify-between">
   <div class="flex items-center">
-    <h2 class="me-1" (click)="search()" >
+    <h2 class="me-1" (click)="search()">
       <ng-container i18n>Piatti</ng-container>
     </h2>
 
@@ -21,6 +21,15 @@
             <span i18n>Crea nuovo</span>
           </span>
         </a>
+
+        @if(parentCategoryId){
+          <a [routerLink]="parentCategoryId | urlTo: 'menuCategory.linkDish'" tuiOption>
+              <span class="flex items-center">
+                <mat-icon class="me-1">share</mat-icon>
+                <ng-container i18n>Associa esistente</ng-container>
+              </span>
+          </a>
+        }
       </tui-data-list>
     </ng-template>
 
@@ -123,14 +132,15 @@
         </a>
 
       <div>
-        <a tuiLink [routerLink]="{ categoryId: parentCategoryId, itemId: item.id } | urlTo: 'dish.show'" class="text-lg">{{ item.name }}</a>
+        <a tuiLink [routerLink]="{ categoryId: parentCategoryId, itemId: item.id } | urlTo: 'dish.show'"
+           class="text-lg">{{ item.name }}</a>
         <p class="tui-island__category">{{ item.status }}</p>
       </div>
         </span>
 
         @if (ordering()) {
           <button cdkDragHandle size="m" appearance="outline" type="button" tuiIconButton>
-            <mat-icon class="drag-shake" >drag_handle</mat-icon>
+            <mat-icon class="drag-shake">drag_handle</mat-icon>
           </button>
         } @else {
           <tui-hosted-dropdown [content]="actions">

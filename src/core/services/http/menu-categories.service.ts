@@ -19,6 +19,10 @@ export class MenuCategoriesService extends CommonHttpService<MenuCategory> {
     return this.post(`${parentId}/add_category/${childId}`, params);
   }
 
+  addDish(categoryId: number, dishId: number): Observable<MenuCategory> {
+    return this.post(`${categoryId}/dishes/${dishId}`, { });
+  }
+
   dashboardData(id: number): Observable<MenuCategoryDashboardData>{
     return this.get<MenuCategoryDashboardData>(`${id}/dashboard_data`);
   }
