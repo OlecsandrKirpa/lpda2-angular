@@ -1,15 +1,16 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {TuiButtonModule, TuiTooltipModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLinkModule, TuiTooltipModule} from "@taiga-ui/core";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {DishSelectComponent} from "@core/components/dynamic-selects/dish-select/dish-select.component";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
 import {TuiDestroyService} from "@taiga-ui/cdk";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {NotificationsService} from "@core/services/notifications.service";
 import {MenuCategory} from "@core/models/menu-category";
 import {distinctUntilChanged, finalize, map, takeUntil} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
+import {UrlToPipe} from "@core/pipes/url-to.pipe";
 
 @Component({
   selector: 'app-link-dish',
@@ -18,7 +19,10 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
     TuiTooltipModule,
     ReactiveFormsModule,
     DishSelectComponent,
-    TuiButtonModule
+    TuiButtonModule,
+    TuiLinkModule,
+    RouterLink,
+    UrlToPipe
   ],
   templateUrl: './link-dish.component.html',
   styleUrl: './link-dish.component.scss',

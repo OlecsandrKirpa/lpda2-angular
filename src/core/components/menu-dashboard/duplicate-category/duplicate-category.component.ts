@@ -9,7 +9,7 @@ import {
   WritableSignal
 } from '@angular/core';
 import {MenuCategoriesService} from '@core/services/http/menu-categories.service';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from "@angular/forms";
 import {CustomValidators} from "@core/lib/custom-validators";
@@ -24,9 +24,11 @@ import {
   MenuCategorySelectComponent
 } from "@core/components/dynamic-selects/menu-category-select/menu-category-select.component";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
-import {TuiButtonModule, TuiExpandModule, TuiGroupModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiExpandModule, TuiGroupModule, TuiLinkModule} from "@taiga-ui/core";
 import {TuiRadioBlockModule} from "@taiga-ui/kit";
 import {JsonPipe} from "@angular/common";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import {UrlToPipe} from "@core/pipes/url-to.pipe";
 
 @Component({
   selector: 'app-duplicate-category',
@@ -39,6 +41,9 @@ import {JsonPipe} from "@angular/common";
     TuiRadioBlockModule,
     TuiButtonModule,
     TuiExpandModule,
+    TuiLinkModule,
+    RouterLink,
+    UrlToPipe,
   ],
   templateUrl: './duplicate-category.component.html',
   styleUrl: './duplicate-category.component.scss',
@@ -55,28 +60,25 @@ export class DuplicateCategoryComponent implements OnInit {
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
   private submitted: boolean = false;
+  category: WritableSignal<MenuCategory | null> = signal(null);
 
   readonly form: FormGroup = new FormGroup({
-    category: new FormControl(null, [Validators.required, CustomValidators.instanceof(MenuCategory)]),
     copy_dishes: new FormControl("full", [Validators.required, CustomValidators.in(["full", "link", "none"])]),
     copy_images: new FormControl("full", [Validators.required, CustomValidators.in(["full", "link", "none"])]),
     copy_children: new FormControl("full", [Validators.required, CustomValidators.in(["full", "none"])]),
-    create_as_root: new FormControl(true),
+    create_as_root: new FormControl(false),
     parent: new FormControl(null, [CustomValidators.instanceof(MenuCategory)]),
   });
 
   readonly saving: WritableSignal<boolean> = signal(false);
   readonly loading: Signal<boolean> = computed(() => this.saving());
 
-  constructor() {}
-
   ngOnInit(): void {
     this.route.parent?.parent?.params.pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (p: Params) => {
-        // console.log({...p});
-        if (p['category_id']) this.form.patchValue({category: p['category_id']});
+      next: (p: Params): void => {
+        this.loadCategory(p['category_id']);
       }
     })
   }
@@ -86,7 +88,7 @@ export class DuplicateCategoryComponent implements OnInit {
   submit(): void {
     this.submitted = true;
     if (this.form.invalid) return;
-    const id: number | undefined = this.form.value['category']?.id;
+    const id: number | undefined = this.category()?.id;
     if (!id) throw new Error(`Category id invalid: ${id}`);
 
     this.saving.set(true);
@@ -126,7 +128,7 @@ export class DuplicateCategoryComponent implements OnInit {
 
   private manageError(r: HttpErrorResponse): void {
     if (r.status != 422) {
-      this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      this.notifications.error(parseHttpErrorMessage(r) || SOMETHING_WENT_WRONG_MESSAGE);
       return;
     }
 
@@ -140,5 +142,20 @@ export class DuplicateCategoryComponent implements OnInit {
     if (this.submitted || control.touched || control.dirty) return control.errors;
 
     return null;
+  }
+
+  private loadCategory(id: number | null | undefined): void {
+    if (!(id)) return;
+
+    this.service.show(id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe({
+      next: (record: MenuCategory): void => {
+        this.category.set(record);
+      },
+      error: (r: HttpErrorResponse): void => {
+        this.notifications.error(parseHttpErrorMessage(r) || SOMETHING_WENT_WRONG_MESSAGE);
+      }
+    })
   }
 }

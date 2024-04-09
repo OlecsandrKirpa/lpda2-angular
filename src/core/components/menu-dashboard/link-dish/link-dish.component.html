@@ -7,13 +7,12 @@
 </span>
 
 <div class="mb-3">
-  <div class="flex items-center">
-    <span class="me-1" i18n>Il piatto scelto verrà associato alla categoria attuale:</span>
+    <span class="me-2 text-slate-400">
+      <ng-container i18n>Il piatto verrà aggiunto alla categoria</ng-container>
+    </span>
 
-    <b> {{ category()?.name }} </b>
-  </div>
+  <a tuiLink [routerLink]="category()?.id | urlTo: 'menuCategory.show'">{{ category()?.name }}</a>
 </div>
-
 
 <ng-template #helpMsg>
   <p i18n>Associare un piatto esistente ti permette di tenere lo stesso identico piatto presente in più categorie.</p>

@@ -4,8 +4,9 @@
 
 @if (category()) {
   <div class="mb-3">
-    <div class="flex items-center" ></div>
-    <span class="me-2" >Stai creando un piatto dentro la categoria:</span>
+    <span class="me-2 text-slate-400">
+      <ng-container i18n>Il piatto verrà creato dentro la categoria</ng-container>
+    </span>
 
     <a tuiLink [routerLink]="category()?.id | urlTo: 'menuCategory.show'">{{ category()?.name }}</a>
   </div>

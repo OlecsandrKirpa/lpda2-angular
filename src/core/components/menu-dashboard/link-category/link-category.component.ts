@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MenuCategory} from "@core/models/menu-category";
 import {distinctUntilChanged, finalize, map, takeUntil} from 'rxjs';
@@ -11,7 +11,8 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {
   MenuCategorySelectComponent
 } from "@core/components/dynamic-selects/menu-category-select/menu-category-select.component";
-import {TuiButtonModule, TuiTooltipModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLinkModule, TuiTooltipModule} from "@taiga-ui/core";
+import {UrlToPipe} from "@core/pipes/url-to.pipe";
 
 @Component({
   selector: 'app-link-category',
@@ -20,7 +21,10 @@ import {TuiButtonModule, TuiTooltipModule} from "@taiga-ui/core";
     MenuCategorySelectComponent,
     ReactiveFormsModule,
     TuiButtonModule,
-    TuiTooltipModule
+    TuiTooltipModule,
+    TuiLinkModule,
+    RouterLink,
+    UrlToPipe
   ],
   templateUrl: './link-category.component.html',
   styleUrl: './link-category.component.scss',
@@ -46,9 +50,9 @@ export class LinkCategoryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.route.queryParams.pipe(
+    this.route.parent?.parent?.params.pipe(
       takeUntil(this.destroy$),
-      map((params: Params) => params['parent_id']),
+      map((params: Params) => params['category_id']),
       distinctUntilChanged(),
     ).subscribe({
       next: (parentId: number | null) => {

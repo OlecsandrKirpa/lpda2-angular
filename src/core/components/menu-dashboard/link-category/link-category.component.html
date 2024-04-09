@@ -6,6 +6,14 @@
   <tui-tooltip [content]="helpMsg"></tui-tooltip>
 </span>
 
+<div class="mb-3">
+    <span class="me-2 text-slate-400">
+      <ng-container i18n>La categoria selezionata verrà aggiunta alla categoria</ng-container>
+    </span>
+
+  <a tuiLink [routerLink]="parent()?.id | urlTo: 'menuCategory.show'">{{ parent()?.name }}</a>
+</div>
+
 
 <ng-template #helpMsg>
   <p i18n>La categoria che sceglierai verrà duplicata con tutti gli
