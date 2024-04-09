@@ -22,7 +22,7 @@
           </span>
         </a>
 
-        @if(parentCategoryId){
+        @if (parentCategoryId) {
           <a [routerLink]="parentCategoryId | urlTo: 'menuCategory.linkDish'" tuiOption>
               <span class="flex items-center">
                 <mat-icon class="me-1">share</mat-icon>
@@ -91,7 +91,7 @@
   </div>
 }
 
-@if(ordering()){
+@if (ordering()) {
   <button type="button" size="l" tuiButton appearance="flat" (click)="orderAllBy('name')">
     <ng-container i18n>Ordina tutti per nome</ng-container>
   </button>
@@ -119,13 +119,33 @@
         </span>
         </a>
 
-        <button type="button" (click)="remove(item)" tuiOption>
-        <span class="flex items-center">
-          <mat-icon class="me-1">delete</mat-icon>
-          <span i18n>Rimuovi</span>
-        </span>
-        </button>
+        <ng-template #removeDishDropdownTemplate>
+          <tui-loader [overlay]="true" size="l" [showLoader]="deleting()">
+            <p i18n>Vuoi eliminare definitivamente questo piatto, oppure solo rimuoverlo da questa categoria?</p>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <button type="button" (click)="deleteDish(item)" tuiButton appearance="secondary-destructive">
+                <ng-container i18n>Elimina definitivamente</ng-container>
+              </button>
+
+              <button type="button" (click)="removeDishFromCategory(item)" tuiButton appearance="secondary">
+                <ng-container i18n>Rimuovi da questa categoria</ng-container>
+              </button>
+
+              <button type="button" (click)="closeModal()" tuiButton appearance="outline">
+                <ng-container i18n>Annulla</ng-container>
+              </button>
+            </div>
+          </tui-loader>
+        </ng-template>
+
+        <button (click)="showModal(removeDishDropdownTemplate)" type="button" tuiOption>
+            <span class="flex items-center">
+              <mat-icon class="me-1">delete</mat-icon>
+              <span i18n>Rimuovi</span>
+            </span>
+        </button>
+        <!--        </tui-hosted-dropdown>-->
       </tui-data-list>
     </ng-template>
 

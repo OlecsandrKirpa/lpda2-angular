@@ -12,7 +12,7 @@ import {
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {
   TuiButtonModule,
-  TuiDataListModule, TuiDropdownContextDirective,
+  TuiDataListModule, TuiDialogContext, TuiDialogService, TuiDropdownContextDirective,
   TuiDropdownModule, TuiHintModule,
   TuiHostedDropdownModule,
   TuiLinkModule, TuiLoaderModule, TuiTextfieldControllerModule
@@ -35,6 +35,9 @@ import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-tabl
 import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {DishesService} from "@core/services/http/dishes.service";
 import {Dish} from "@core/models/dish";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
+import {nue} from "@core/lib/nue";
 
 @Component({
   selector: 'app-list-dishes',
@@ -78,6 +81,8 @@ export class ListDishesComponent implements OnInit, OnChanges {
   private readonly categoriesService: MenuCategoriesService = inject(MenuCategoriesService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
+  // @Inject(TuiDialogService)
+  private readonly dialogs: TuiDialogService = inject(TuiDialogService);
 
   readonly data: WritableSignal<SearchResult<Dish> | null> = signal(null);
   readonly items: Signal<Dish[]> = computed(() => this.data()?.items ?? []);
@@ -86,7 +91,7 @@ export class ListDishesComponent implements OnInit, OnChanges {
   readonly ordering: WritableSignal<boolean> = signal(false);
 
   readonly searching: WritableSignal<boolean> = signal(false);
-  private readonly deleting: WritableSignal<boolean> = signal(false);
+  readonly deleting: WritableSignal<boolean> = signal(false);
   private readonly moving: WritableSignal<boolean> = signal(false);
   readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting() || this.moving());
 
@@ -163,21 +168,21 @@ export class ListDishesComponent implements OnInit, OnChanges {
     return result;
   }
 
-  remove(item: Dish) {
-    this.notifications.confirm(
-      $localize`Sei sicuro di voler eliminare il piatto?`, {
-        yes: $localize`Sì, elimina il piatto`,
-        no: $localize`Annulla`
-      }).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (result: boolean) => {
-        this.deleteDish(item);
-      }
-    })
-  }
+  // remove(item: Dish) {
+  //   this.notifications.confirm(
+  //     $localize`Sei sicuro di voler eliminare il piatto?`, {
+  //       yes: $localize`Sì, elimina il piatto`,
+  //       no: $localize`Annulla`
+  //     }).pipe(
+  //     takeUntil(this.destroy$)
+  //   ).subscribe({
+  //     next: (result: boolean) => {
+  //       this.deleteDish(item);
+  //     }
+  //   })
+  // }
 
-  deleteDish(item: Dish) {
+  deleteDish(item: Dish): void {
     const id = item?.id;
     if (!id) return;
 
@@ -185,6 +190,7 @@ export class ListDishesComponent implements OnInit, OnChanges {
     this.service.destroy(id).pipe(
       takeUntil(this.destroy$),
       finalize(() => this.deleting.set(false)),
+      finalize(() => this.closeModal())
     ).subscribe({
       next: () => {
         this.notifications.fireSnackBar($localize`Piatto eliminato.`);
@@ -192,6 +198,26 @@ export class ListDishesComponent implements OnInit, OnChanges {
       },
       error: (r: HttpErrorResponse) => {
         this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
+      }
+    })
+  }
+
+  removeDishFromCategory(item: Dish): void {
+    const id = item?.id;
+    if (!(id && this.parentCategoryId)) return;
+
+    this.deleting.set(true);
+    this.categoriesService.removeDish(this.parentCategoryId, id).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.deleting.set(false)),
+      finalize(() => this.closeModal())
+    ).subscribe({
+      next: () => {
+        this.notifications.fireSnackBar($localize`Piatto rimosso dalla categoria.`);
+        this.search();
+      },
+      error: (r: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(r) || SOMETHING_WENT_WRONG_MESSAGE);
       }
     })
   }
@@ -240,5 +266,17 @@ export class ListDishesComponent implements OnInit, OnChanges {
       },
       error: (r: HttpErrorResponse) => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`)
     })
+  }
+
+  private modalSub?: Subscription;
+  showModal(temp: PolymorpheusContent<TuiDialogContext>, options = {}) {
+    this.modalSub = this.dialogs.open(temp, {size: "auto"}).subscribe();
+    // this.modalSub = this.dialogs.open({
+    //
+    // }).subscribe(nue());
+  }
+
+  closeModal(): void {
+    this.modalSub?.unsubscribe();
   }
 }
