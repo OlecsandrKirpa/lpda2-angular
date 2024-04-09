@@ -68,6 +68,10 @@
       <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-tags>
     </div>
 
+    <div class="mb-3">
+      <app-dish-suggestions [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-suggestions>
+    </div>
+
     <button tuiButton [appearance]="'secondary-destructive'" type="button" (click)="confirmAndDelete()">
       <ng-container i18n>Elimina piatto</ng-container>
     </button>

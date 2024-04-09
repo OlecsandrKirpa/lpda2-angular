@@ -18,6 +18,7 @@ import {DishAllergensComponent} from "@core/components/menu-dashboard/dish-aller
 import {DishTagsComponent} from "@core/components/menu-dashboard/dish-tags/dish-tags.component";
 import {DishPriceComponent} from "@core/components/menu-dashboard/dish-price/dish-price.component";
 import {DishReferencesComponent} from "@core/components/menu-dashboard/dish-references/dish-references.component";
+import {DishSuggestionsComponent} from "@core/components/menu-dashboard/dish-suggestions/dish-suggestions.component";
 
 @Component({
   selector: '__app-view-dish',
@@ -36,7 +37,8 @@ import {DishReferencesComponent} from "@core/components/menu-dashboard/dish-refe
     DishTagsComponent,
     DishPriceComponent,
     DishReferencesComponent,
-    TuiTooltipModule
+    TuiTooltipModule,
+    DishSuggestionsComponent
   ],
   templateUrl: './view-dish.component.html',
   styleUrl: './view-dish.component.scss',

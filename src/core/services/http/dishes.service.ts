@@ -94,4 +94,16 @@ export class DishesService extends CommonHttpService<Dish> {
       map((data: unknown) => data as DishReferences)
     );
   }
+
+  addSuggestion(dishId: number, suggestionId: number): Observable<Dish> {
+    return this.post(`${dishId}/suggestions/${suggestionId}`, {}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
+
+  removeSuggestion(dishId: number, suggestionId: number): Observable<Dish> {
+    return this.delete(`${dishId}/suggestions/${suggestionId}`).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
+  }
 }

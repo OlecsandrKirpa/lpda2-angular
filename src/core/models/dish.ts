@@ -15,6 +15,7 @@ export class Dish extends BaseModel {
   }
 
   images?: Image[];
+  suggestions?: Dish[];
 
   constructor(data: DishData) {
     super(data);
@@ -27,5 +28,6 @@ export class Dish extends BaseModel {
     this.translations = data.translations;
 
     this.images = data.images ? data.images.map((image: ImageData) => new Image(image)) : [];
+    this.suggestions = data.suggestions ? data.suggestions.map((dish: DishData) => new Dish(dish)) : [];
   }
 }

@@ -14,7 +14,7 @@ export interface DishData extends BaseModelData {
   }
 
   images?: ImageData[];
-
+  suggestions?: DishData[];
 }
 
 export const DishStatuses = [`active`, `inactive`, `deleted`] as const;
