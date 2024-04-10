@@ -1,5 +1,5 @@
 <h4>
-  <ng-container i18n>Piatti suggeriti</ng-container>
+  <ng-container i18n>Piatti/bibite da accoppiare suggeriti</ng-container>
 </h4>
 
 <div class="items-list">
@@ -42,7 +42,7 @@
     <tui-loader [overlay]="true" [showLoader]="addingDish()">
       <form [formGroup]="newDishForm" (ngSubmit)="addDish()">
         <div class="mb-4">
-          <app-dish-select [formControlName]="'dish'">
+          <app-dish-select [filters]="{can_suggest: dish.id}" [formControlName]="'dish'">
             <ng-container i18n>Cerca piatto</ng-container>
           </app-dish-select>
         </div>
