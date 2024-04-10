@@ -81,7 +81,7 @@ export class CreateCategoryComponent implements OnInit {
   submit(): void {
     this.submitted = true;
     if (this.form.invalid) return;
-    if (!(this.parent() && this.parent() instanceof MenuCategory)) return;
+    // if (!(this.parent() && this.parent() instanceof MenuCategory)) return;
 
     this.loading.set(true);
     this.service.create(this.formData()).pipe(
