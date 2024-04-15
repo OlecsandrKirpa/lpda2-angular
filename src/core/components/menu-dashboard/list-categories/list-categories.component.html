@@ -57,6 +57,15 @@
         </span>
       </button>
 
+      <button (click)="exportAllMenu()" tuiOption>
+        <tui-loader [overlay]="true" [showLoader]="exporting()">
+          <span class="flex items-center">
+            <mat-icon class="me-1">download</mat-icon>
+            <ng-container i18n>Esporta tutto</ng-container>
+          </span>
+        </tui-loader>
+      </button>
+
       <button (click)="triggerOrdering()" tuiOption>
         <span class="flex items-center">
           <mat-icon class="me-1">sort_by_alpha</mat-icon>
@@ -68,12 +77,12 @@
         </span>
       </button>
 
-      <a [routerLink]="parentCategoryId ?? '' | urlTo: 'menuCategory.export'" tuiOption>
-        <span class="flex items-center">
-          <mat-icon class="me-1">download</mat-icon>
-          <ng-container i18n>Esporta</ng-container>
-        </span>
-      </a>
+<!--      <a [routerLink]="parentCategoryId ?? '' | urlTo: 'menuCategory.export'" tuiOption>-->
+<!--        <span class="flex items-center">-->
+<!--          <mat-icon class="me-1">download</mat-icon>-->
+<!--          <ng-container i18n>Esporta</ng-container>-->
+<!--        </span>-->
+<!--      </a>-->
     </tui-data-list>
   </ng-template>
 

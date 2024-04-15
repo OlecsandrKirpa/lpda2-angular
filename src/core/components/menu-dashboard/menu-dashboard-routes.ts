@@ -17,10 +17,10 @@ const categoryRoutes: Routes = [
     path: `duplicate`,
     loadChildren: () => import(`./duplicate-category/duplicate-category.module`).then(m => m.DuplicateCategoryModule),
   },
-  {
-    path: `export`,
-    loadChildren: () => import(`./export-category/export-category.module`).then(m => m.ExportCategoryModule),
-  },
+  // {
+  //   path: `export`,
+  //   loadChildren: () => import(`./export-category/export-category.module`).then(m => m.ExportCategoryModule),
+  // },
   {
     path: `create-dish`,
     loadChildren: () => import(`./create-dish/create-dish.module`).then(m => m.CreateDishModule),
