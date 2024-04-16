@@ -1,0 +1,82 @@
+<!--<p>view-dish works!</p>-->
+
+@if (dish()) {
+  <div>
+    <div class="flex items-center justify-between">
+      <div class="flex flex-items">
+        <h1>{{ dish()?.name }}</h1>
+      </div>
+
+      <div>
+        <a tuiIconButton appearance="icon" [type]="'button'" [routerLink]="'../..'">
+          <mat-icon>close</mat-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Immagini piatto</h4>
+      <app-show-images class="mb-3" [recordType]="'Menu::Dish'" [recordId]="dish()?.id"
+                       [images]="dish()?.images"></app-show-images>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Stato piatto</h4>
+      <app-edit-dish-status (deleteDish)="delete()" (statusChange)="updateStatus($event)" [dish]="dish()"
+                            (dishChange)="dish.set($event)"></app-edit-dish-status>
+    </div>
+
+    <ng-template #referencesHelp>
+      <p i18n>Lo stesso piatto può essere presente in più categorie.</p>
+      <p i18n>Le categorie elencate di seguito sono tutte le categorie in cui è possibile vedere questo piatto.</p>
+    </ng-template>
+
+    <div class="mb-3">
+      <div class="flex items-center mb-2">
+        <mat-icon class="me-1" >link</mat-icon>
+        <h4 class="me-1 my-0" i18n>Piatto presente anche in:</h4>
+        <tui-tooltip [content]="referencesHelp" direction="right"></tui-tooltip>
+      </div>
+
+      <app-dish-references [dish]="dish()"></app-dish-references>
+    </div>
+
+    <div class="mb-3">
+      <h4 class="mb-1 me-1" i18n>Prezzo</h4>
+      <app-dish-price [dish]="dish()" (dishChanged)="dish.set($event)">
+        <ng-container i18n>Prezzo</ng-container>
+      </app-dish-price>
+    </div>
+
+    @if (dish()?.translations) {
+      <div class="mb-3">
+        <h4 class="mb-1 me-1" i18n>Traduzioni</h4>
+        <app-name-desc-eip class="mb-3" (submittedChanges)="saveNameDesc($event)"
+                           [translations]="dish()?.translations"></app-name-desc-eip>
+      </div>
+    }
+
+    <div class="mb-3">
+      <app-dish-ingredients [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-ingredients>
+    </div>
+
+    <div class="mb-3">
+      <app-dish-allergens [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-allergens>
+    </div>
+
+    <div class="mb-3">
+      <app-dish-tags [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-tags>
+    </div>
+
+    <div class="mb-3">
+      <app-dish-suggestions [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-suggestions>
+    </div>
+
+    <button tuiButton [appearance]="'secondary-destructive'" type="button" (click)="confirmAndDelete()">
+      <ng-container i18n>Elimina piatto</ng-container>
+    </button>
+
+  </div>
+} @else if (loading()) {
+  <tui-loader [showLoader]="true" [size]="'l'"></tui-loader>
+}

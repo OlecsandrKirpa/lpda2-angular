@@ -1,0 +1,33 @@
+<ng-template #dropdownContent>
+  <tui-data-list>
+    @if(dish?.status != 'active'){
+      <button (click)="updateStatus('active')" tuiOption>
+        <app-dish-status [status]="'active'"></app-dish-status>
+      </button>
+    }
+
+    @if(dish?.status != 'inactive'){
+      <button (click)="updateStatus('inactive')" tuiOption>
+        <app-dish-status [status]="'inactive'"></app-dish-status>
+      </button>
+    }
+
+    <button (click)="delete()" tuiOption>
+      <span class="flex items-center">
+        <mat-icon class="me-1">delete</mat-icon>
+        <span i18n>Elimina</span>
+      </span>
+    </button>
+  </tui-data-list>
+</ng-template>
+
+@if (dish && dish.status) {
+  <tui-hosted-dropdown #dropdown [content]="dropdownContent">
+    <button tuiButton type="button" appearance="outline" size="l">
+      <span class="flex items-center">
+        <app-dish-status class="me-1" [status]="dish.status"></app-dish-status>
+        <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': dropdown.open}">expand_more</mat-icon>
+      </span>
+    </button>
+  </tui-hosted-dropdown>
+}

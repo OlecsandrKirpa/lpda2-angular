@@ -20,7 +20,9 @@ import {ListDishesComponent} from "@core/components/menu-dashboard/list-dishes/l
     RouterOutlet
   ],
   templateUrl: './list-items.component.html',
-  styleUrl: './list-items.component.scss'
+  host: {
+    "class": "grow flex flex-col md:flex-row"
+  }
 })
 export class ListItemsComponent {
   @Input() parent: MenuCategory | null = null;

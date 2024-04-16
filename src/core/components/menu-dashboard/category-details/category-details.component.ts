@@ -31,6 +31,7 @@ import {
 } from "@core/components/statuses/menu-category/edit-menu-category-status/edit-menu-category-status.component";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {UrlToPipe} from "@core/pipes/url-to.pipe";
+import {CategoryPriceComponent} from "@core/components/menu-dashboard/category-price/category-price.component";
 
 @Component({
   selector: 'app-category-details',
@@ -48,7 +49,8 @@ import {UrlToPipe} from "@core/pipes/url-to.pipe";
     TuiHostedDropdownModule,
     TuiDataListModule,
     RouterLink,
-    UrlToPipe
+    UrlToPipe,
+    CategoryPriceComponent
   ],
   templateUrl: './category-details.component.html',
   styleUrl: './category-details.component.scss',
@@ -66,7 +68,10 @@ export class CategoryDetailsComponent {
 
   @Output() categoryChange: EventEmitter<MenuCategory> = new EventEmitter<MenuCategory>();
   @Input({required: true}) category: MenuCategory | null = null;
-  expanded: boolean = true;
+  // TODO:
+  //  - make expanded a signal
+  //  - save expanded in local storage and use that value as initial value
+  expanded: boolean = false;
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
@@ -141,5 +146,10 @@ export class CategoryDetailsComponent {
         this.deleteCategory();
       }
     })
+  }
+
+  setCategory(event: MenuCategory): void {
+    this.category = event;
+    this.categoryChange.emit(event);
   }
 }

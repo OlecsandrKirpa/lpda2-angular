@@ -1,0 +1,39 @@
+<span class="flex items-center">
+<h1 class="me-2">
+  <ng-container i18n>Associa piatto esistente</ng-container>
+</h1>
+
+  <tui-tooltip [content]="helpMsg"></tui-tooltip>
+</span>
+
+<div class="mb-3">
+    <span class="me-2 text-slate-400">
+      <ng-container i18n>Il piatto verrà aggiunto alla categoria</ng-container>
+    </span>
+
+  <a tuiLink [routerLink]="category()?.id | urlTo: 'menuCategory.show'">{{ category()?.name }}</a>
+</div>
+
+<ng-template #helpMsg>
+  <p i18n>Associare un piatto esistente ti permette di tenere lo stesso identico piatto presente in più categorie.</p>
+  <p i18n>Il vantaggio è che quando devi apportare una modifica al piatto, lo devi fare una volta sola.</p>
+</ng-template>
+
+
+@if (categoryId) {
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <app-dish-select [filters]="{ except_in_category: categoryId }" class="block mb-3" [formControlName]="'dish'">
+      <ng-container i18n>Piatto da associare</ng-container>
+    </app-dish-select>
+
+    <div class="flex items-center">
+      <button class="me-2" tuiButton type="submit" size="l" appearance="primary">
+        <ng-container i18n>Conferma</ng-container>
+      </button>
+
+      <button (click)="cancel()" tuiButton type="button" size="l" appearance="outline">
+        <ng-container i18n>Annulla</ng-container>
+      </button>
+    </div>
+  </form>
+}

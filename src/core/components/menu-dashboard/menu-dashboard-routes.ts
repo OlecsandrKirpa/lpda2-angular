@@ -10,14 +10,31 @@ const categoryRoutes: Routes = [
     loadChildren: () => import(`./link-category/link-category.module`).then(m => m.LinkCategoryModule),
   },
   {
+    path: `link-dish`,
+    loadChildren: () => import(`./link-dish/link-dish.module`).then(m => m.LinkDishModule),
+  },
+  {
     path: `duplicate`,
     loadChildren: () => import(`./duplicate-category/duplicate-category.module`).then(m => m.DuplicateCategoryModule),
   },
+  // {
+  //   path: `export`,
+  //   loadChildren: () => import(`./export-category/export-category.module`).then(m => m.ExportCategoryModule),
+  // },
   {
-    path: `export`,
-    loadChildren: () => import(`./export-category/export-category.module`).then(m => m.ExportCategoryModule),
+    path: `create-dish`,
+    loadChildren: () => import(`./create-dish/create-dish.module`).then(m => m.CreateDishModule),
   },
-] ;
+  {
+    path: `dish/:dish_id/duplicate`,
+    loadChildren: () => import(`./duplicate-dish/duplicate-dish.module`).then(m => m.DuplicateDishModule),
+  },
+  {
+    path: `dish/:dish_id`,
+    loadChildren: () => import(`./view-dish/view-dish.module`).then(m => m.ViewDishModule),
+    pathMatch: `full`
+  },
+];
 
 export const routes: Routes = [
   {

@@ -1,14 +1,12 @@
-<h1 i18n>Copia categoria</h1>
+<div class="flex items-center">
+  <h1 i18n>Copia categoria</h1>
+
+  <span class="ml-2" >
+    <a tuiLink [routerLink]="category()?.id | urlTo: 'menuCategory.show'">{{ category()?.name }}</a>
+  </span>
+</div>
 
 <form (ngSubmit)="submit()" [formGroup]="form">
-  <div class="mb-3">
-    <app-menu-category-select [formControlName]="'category'">
-      <ng-container i18n>Categoria da copiare</ng-container>
-    </app-menu-category-select>
-
-    <app-errors [errors]="e('category')"></app-errors>
-  </div>
-
   <div class="mb-3">
     <p i18n>Creare la nuova categoria come:</p>
     <div

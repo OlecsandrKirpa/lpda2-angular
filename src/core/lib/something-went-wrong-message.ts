@@ -1,0 +1,1 @@
+export const SOMETHING_WENT_WRONG_MESSAGE: string = $localize`Qualcosa è andato storto.`;

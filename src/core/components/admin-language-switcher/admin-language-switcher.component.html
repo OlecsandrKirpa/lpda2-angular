@@ -1,0 +1,34 @@
+<tui-hosted-dropdown
+  #dropdown
+  [content]="content"
+>
+  <button
+      appearance="outline"
+      tuiButton
+      size="s"
+      type="button"
+  >
+    <span class="flex items-center">
+      <span class="me-1">{{ session.language() | language }}</span>
+      <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': dropdown.open}">expand_more</mat-icon>
+    </span>
+  </button>
+</tui-hosted-dropdown>
+
+<ng-template #content>
+  <tui-data-list
+      size="m"
+  >
+    @for (lang of languages; track lang) {
+      @if (lang != session.language()) {
+        <button
+            tuiOption
+            type="button"
+            (click)="setLanguage(lang)"
+        >
+          {{ lang | language }}
+        </button>
+      }
+    }
+  </tui-data-list>
+</ng-template>

@@ -52,7 +52,10 @@ import {
   providers: [
     TuiDestroyService
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    "class": "grow flex flex-col"
+  }
 })
 export class CategoryDashboardComponent implements OnInit {
   /**
@@ -108,10 +111,13 @@ export class CategoryDashboardComponent implements OnInit {
     this.loadingCategory.set(true);
     this.categoriesService.show(categoryId).pipe(
       takeUntil(this.destroy$),
-      finalize(() => this.loadingCategory.set(false))
+      finalize(() => this.loadingCategory.set(false)),
     ).subscribe({
       next: (category: MenuCategory): void => this.setCategory(category),
-      error: (r: HttpErrorResponse): void => this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto. Riprova più tardi.`),
+      error: (r: HttpErrorResponse): void => {
+        this.setCategory(null);
+        this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto. Riprova più tardi.`)
+      },
     });
   }
 
@@ -128,7 +134,7 @@ export class CategoryDashboardComponent implements OnInit {
     });
   }
 
-  private setCategory(category: MenuCategory): void {
+  private setCategory(category: MenuCategory | null): void {
     this.category.set(category);
   }
 }

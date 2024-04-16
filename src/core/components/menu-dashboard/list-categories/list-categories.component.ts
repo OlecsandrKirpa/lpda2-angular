@@ -33,6 +33,8 @@ import {UrlToPipe} from "@core/pipes/url-to.pipe";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
+import {nue} from "@core/lib/nue";
+import {ExportMenuService} from "@core/services/http/export-menu.service";
 
 @Component({
   selector: 'app-list-categories',
@@ -74,6 +76,7 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
   private readonly service = inject(MenuCategoriesService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
+  private readonly exportService: ExportMenuService = inject(ExportMenuService);
 
   readonly data: WritableSignal<SearchResult<MenuCategory> | null> = signal(null);
   readonly items = computed(() => this.data()?.items ?? []);
@@ -81,10 +84,11 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
 
   readonly ordering: WritableSignal<boolean> = signal(false);
 
+  readonly exporting: WritableSignal<boolean> = signal(false);
   readonly searching: WritableSignal<boolean> = signal(false);
   private readonly deleting: WritableSignal<boolean> = signal(false);
   private readonly moving: WritableSignal<boolean> = signal(false);
-  readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting() || this.moving());
+  readonly loading: Signal<boolean> = computed(() => this.searching() || this.deleting() || this.moving() || this.exporting());
 
   readonly reorderEnabled: WritableSignal<boolean> = signal<boolean>(true);
 
@@ -130,7 +134,7 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
 
   private searchSub?: Subscription;
 
-  private search(filters: Record<string, string | number> = this.parseFilters()): void {
+  search(filters: Record<string, string | number> = this.parseFilters()): void {
     this.searchSub?.unsubscribe();
 
     this.searching.set(true);
@@ -214,5 +218,13 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
       this.notifications.fireSnackBar($localize`Sposta le categorie trascinandole con il bottone sul lato destro di ciascuna categoria.`, $localize`Capito`, {duration: 5000})
     }
     this.ordering.set(!this.ordering());
+  }
+
+  exportAllMenu(): void {
+    this.exporting.set(true);
+    this.exportService.export().pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.exporting.set(false)),
+    ).subscribe(nue());
   }
 }

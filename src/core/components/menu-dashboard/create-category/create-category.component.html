@@ -1,61 +1,25 @@
-<h1>
-  <ng-container i18n>Crea nuova categoria</ng-container>
-</h1>
-
-<div class="mb-3">
-    <span class="flex items-center">
-      <span i18n>Crea come</span>
-
-      <ng-template #hint>
-        <ng-container i18n>Puoi decidere di creare una categoria come menù principale, in tal caso avrà una sua visibilità e potrà avere un prezzo fisso, oppure come sotto-categoria di un altra categoria.</ng-container>
-      </ng-template>
-      <tui-tooltip
-          [content]="hint"
-          direction="right"
-      ></tui-tooltip>
-    </span>
-
-  <div tuiGroup
-       class="group"
-       [collapsed]="true">
-
-    <tui-radio-block
-        contentAlign="right"
-        [formControl]="askParent"
-        size="l"
-        [hideRadio]="true"
-        [item]="false">
-      <ng-container i18n>Menù principale</ng-container>
-    </tui-radio-block>
-
-    <tui-radio-block
-        contentAlign="right"
-        [formControl]="askParent"
-        size="l"
-        [hideRadio]="true"
-        [item]="true">
-      <ng-container i18n>Sotto-categoria di un altra categoria</ng-container>
-    </tui-radio-block>
-  </div>
-</div>
-
-<form (ngSubmit)="submit()" [formGroup]="form">
-
-  @if (askParent.value === true) {
-    <div class="mb-3">
-      <app-menu-category-select [formControl]="parent">
-        <ng-container i18n>Categoria padre</ng-container>
-      </app-menu-category-select>
-
-      @if (parent.touched || this.submitted) {
-        <app-errors [errors]="parent.errors"></app-errors>
-      }
-    </div>
-  }
+@if (parent()) {
+  <h1 class="flex items-center">
+    <span i18n>Crea nuova categoria</span>
+  </h1>
 
   <div class="mb-3">
+    <span class="me-2 text-slate-400">
+      <ng-container i18n>La categoria verrà creata come sottocategoria di</ng-container>
+    </span>
+
+    <a tuiLink [routerLink]="parent()?.id | urlTo: 'menuCategory.show'">{{ parent()?.name }}</a>
+  </div>
+} @else {
+  <h1>
+    <ng-container i18n>Crea nuovo menù</ng-container>
+  </h1>
+}
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="mb-3">
     <app-i18n-input formControlName="name">
-      <ng-container i18n>Nome della categoria</ng-container>
+      <ng-container i18n>Nome</ng-container>
     </app-i18n-input>
 
     <app-errors [errors]="e('name')"></app-errors>

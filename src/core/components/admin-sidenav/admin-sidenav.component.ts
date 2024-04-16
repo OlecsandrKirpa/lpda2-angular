@@ -21,6 +21,9 @@ import {
   CreateReservationModalComponent
 } from "@core/components/reservations-creation/create-reservation-modal/create-reservation-modal.component";
 import {Reservation} from "@core/models/reservation";
+import {
+  AdminLanguageSwitcherComponent
+} from "@core/components/admin-language-switcher/admin-language-switcher.component";
 
 export const COLLAPSE_SIDENAV_TRESHOLD = 768;
 export const SHOW_MENU_BUTTON_TRESHOLD = 1024;
@@ -38,6 +41,7 @@ export const SHOW_MENU_BUTTON_TRESHOLD = 1024;
     MatIconModule,
     TuiDataListModule,
     NavbarUserBadgeComponent,
+    AdminLanguageSwitcherComponent,
   ],
   templateUrl: './admin-sidenav.component.html',
   styleUrls: ['./admin-sidenav.component.scss'],

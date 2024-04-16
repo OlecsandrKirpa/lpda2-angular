@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCategoryComponent } from './create-category.component';
+import { LinkDishComponent } from './link-dish.component';
 
-describe('CreateCategoryComponent', () => {
-  let component: CreateCategoryComponent;
-  let fixture: ComponentFixture<CreateCategoryComponent>;
+describe('LinkDishComponent', () => {
+  let component: LinkDishComponent;
+  let fixture: ComponentFixture<LinkDishComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateCategoryComponent]
+      imports: [LinkDishComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CreateCategoryComponent);
+    fixture = TestBed.createComponent(LinkDishComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

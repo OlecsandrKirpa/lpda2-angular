@@ -1,14 +1,14 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {TuiButtonModule, TuiGroupModule, TuiTooltipModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiGroupModule, TuiLinkModule, TuiTooltipModule} from "@taiga-ui/core";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
 import {I18nInputComponent} from "@core/components/i18n-input/i18n-input.component";
 import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from "@angular/forms";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
-import {finalize, takeUntil} from "rxjs";
+import {filter, finalize, map, takeUntil} from "rxjs";
 import {MenuCategory} from "@core/models/menu-category";
 import {UrlToPipe} from "@core/pipes/url-to.pipe";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {NotificationsService} from "@core/services/notifications.service";
@@ -19,6 +19,7 @@ import {
   MenuCategorySelectComponent
 } from "@core/components/dynamic-selects/menu-category-select/menu-category-select.component";
 import {CustomValidators} from "@core/lib/custom-validators";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 
 @Component({
   selector: 'app-create-category',
@@ -33,9 +34,11 @@ import {CustomValidators} from "@core/lib/custom-validators";
     NgForOf,
     TuiTooltipModule,
     MenuCategorySelectComponent,
+    TuiLinkModule,
+    RouterLink,
+    UrlToPipe,
   ],
   templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.scss',
   providers: [
     TuiDestroyService,
     UrlToPipe,
@@ -55,42 +58,30 @@ export class CreateCategoryComponent implements OnInit {
     name: new FormControl(null),
   });
 
-  readonly parent: FormControl =  new FormControl(null, [Validators.required, CustomValidators.instanceof(MenuCategory)]);
-  readonly askParent: FormControl = new FormControl<any>(true);
+  private parentId: number | null = null;
+  readonly parent: WritableSignal<MenuCategory | null> = signal(null);
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
   submitted: boolean = false;
 
   ngOnInit(): void {
-    this.route.queryParams.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (params: Params): void => {
-        if (params['parent_id']){
-          this.parent.setValue(params['parent_id']);
-          this.askParent.setValue(true);
-        } else {
-          this.askParent.setValue(false);
-        }
-      }
-    });
-
-    this.askParent.valueChanges.pipe(
+    this.route.parent?.parent?.params.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((value: boolean) => {
-      if (value) {
-        this.form.get('parent')?.enable();
-      } else {
-        this.form.get('parent')?.disable();
+      map((params: Params) => Number(params['category_id'])),
+      filter((id: unknown): id is number => typeof id === 'number' && !isNaN(id) && id > 0),
+    ).subscribe({
+      next: (categoryId: number): void => {
+        this.parentId = categoryId;
+        this.loadParent();
       }
-    });
+    })
   }
 
   submit(): void {
     this.submitted = true;
     if (this.form.invalid) return;
-    if (this.askParent.value && this.parent.invalid) return;
+    // if (!(this.parent() && this.parent() instanceof MenuCategory)) return;
 
     this.loading.set(true);
     this.service.create(this.formData()).pipe(
@@ -105,15 +96,16 @@ export class CreateCategoryComponent implements OnInit {
       },
       error: (errors: HttpErrorResponse): void => {
         ReactiveErrors.assignErrorsToForm(this.form, errors);
-        this.notifications.error(parseHttpErrorMessage(errors) || $localize`Qualcosa è andato storto nel salvataggio della categoria.`);
+        this.notifications.error(parseHttpErrorMessage(errors) || SOMETHING_WENT_WRONG_MESSAGE);
       }
     })
   }
 
   private formData(): Record<string, string | number> {
     const formVal = this.form.value;
+    const parent = this.parent();
 
-    if (this.askParent.value && this.parent.value instanceof MenuCategory) formVal['parent_id'] = this.parent.value.id;
+    if (parent instanceof MenuCategory) formVal['parent_id'] = parent.id;
 
     return formVal;
   }
@@ -134,5 +126,22 @@ export class CreateCategoryComponent implements OnInit {
   cancel(): void {
     const url: string = this.afterUrl || '..';
     this.router.navigate([url], {relativeTo: this.route});
+  }
+
+  private loadParent(id: number | null = this.parentId): void {
+    if (!(id)) return;
+
+    this.loading.set(true);
+    this.service.show(id).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: (record: MenuCategory): void => {
+        this.parent.set(record);
+      },
+      error: (r: HttpErrorResponse): void => {
+        this.notifications.error(parseHttpErrorMessage(r) || SOMETHING_WENT_WRONG_MESSAGE);
+      }
+    })
   }
 }

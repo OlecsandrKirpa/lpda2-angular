@@ -1,10 +1,9 @@
-<div class="flex">
-  <div class="flex flex-col grow me-1">
-    <app-list-categories [parentCategoryId]="parent?.id" class="border-solid border-slate-200 p-2 rounded-md border" ></app-list-categories>
-  </div>
-
-  <div class="flex flex-col grow">
-    <app-list-dishes class="border-solid border-slate-200 p-2 rounded-md border"></app-list-dishes>
-  </div>
+<div class="flex flex-col grow-0 mb-5 md:me-3 md:grow">
+  <app-list-categories [parentCategoryId]="parent?.id"
+                       class="border-solid border-slate-200 p-2 rounded-md border"></app-list-categories>
 </div>
 
+<div class="flex flex-col grow-0 mb-5 md:grow">
+  <app-list-dishes [parentCategoryId]="parent?.id"
+                   class="border-solid border-slate-200 p-2 rounded-md border"></app-list-dishes>
+</div>
