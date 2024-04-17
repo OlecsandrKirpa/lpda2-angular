@@ -1,0 +1,26 @@
+<div class="flex sm:flex-col">
+  <div class="flex items-center mb-2">
+    <button [showLoader]="loading" class="me-2" type="button" (click)="submit()" tuiIconButton appearance="flat">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <tui-input class="!inline-block min-w-[250px] me-2" [tuiAutoFocus]="true" [formControl]="query">
+      <ng-container i18n>Filtra utenti</ng-container>
+      <input tuiTextfield>
+    </tui-input>
+
+    <a routerLink="new" tuiLink>
+    <span class="flex items-center">
+      <mat-icon>add</mat-icon>
+      <ng-container i18n>Nuovo utente</ng-container>
+    </span>
+    </a>
+  </div>
+</div>
+
+<ng-content></ng-content>
+
+<tui-table-pagination class="my-2"
+                      [items]="[10, 20, 50, 100]" [total]="data?.metadata?.total_count ?? 0"
+                      (paginationChange)="paginationChange($event)">
+</tui-table-pagination>

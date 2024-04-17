@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-// @tailwind base;
-// @tailwind components;
-
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 @import "assets/styles/rotations.scss";
@@ -41,4 +40,10 @@ body {
   100% {
     transform: rotate(0deg);
   }
+}
+
+h1 {
+  @apply text-4xl;
+  @apply mb-3;
+  @apply block;
 }
