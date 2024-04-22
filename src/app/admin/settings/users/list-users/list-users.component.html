@@ -53,7 +53,17 @@
                   <ng-container *ngTemplateOutlet="statusCol"></ng-container>
                 </span>
 
-            <span>{{ item.status }}</span>
+            <div class="flex items-center">
+              <span>{{ item.status }}</span>
+
+              @if (item.can_root) {
+                <ng-template #canRootHint>
+                  <ng-container i18n>Utente amministratore</ng-container>
+                </ng-template>
+
+                <mat-icon class="ms-1" [tuiHint]="canRootHint">stars</mat-icon>
+              }
+            </div>
           </td>
           <td>
             <div class="flex items-baseline">
