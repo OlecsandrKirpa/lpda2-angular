@@ -26,7 +26,10 @@
             type="button"
             (click)="setLanguage(lang)"
         >
-          {{ lang | language }}
+          <span class="flex items-center">
+            <span class="me-1">{{ lang | language }}</span>
+            <mat-icon>open_in_new</mat-icon>
+          </span>
         </button>
       }
     }

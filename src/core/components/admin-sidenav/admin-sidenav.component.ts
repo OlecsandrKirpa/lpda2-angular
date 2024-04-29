@@ -24,6 +24,7 @@ import {Reservation} from "@core/models/reservation";
 import {
   AdminLanguageSwitcherComponent
 } from "@core/components/admin-language-switcher/admin-language-switcher.component";
+import {ProfileService} from "@core/services/http/profile.service";
 
 export const COLLAPSE_SIDENAV_TRESHOLD = 768;
 export const SHOW_MENU_BUTTON_TRESHOLD = 1024;
@@ -50,23 +51,18 @@ export const SHOW_MENU_BUTTON_TRESHOLD = 1024;
   ]
 })
 export class AdminSidenavComponent implements OnInit {
-  readonly cu: WritableSignal<User | null> = signal(new User({
-    fullname: 'Gigi',
-    email: 'gigi@example.como',
-    id: 2,
-    created_at: '',
-    updated_at: ''
-  }));
-
-  isOpen: boolean = false;
-  showMenuButton: boolean = false;
-  isMobile: boolean = false;
-
+  private readonly profile: ProfileService = inject(ProfileService);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly router: Router = inject(Router);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly dialogs: TuiDialogService = inject(TuiDialogService);
   private readonly injector: Injector = inject(Injector);
+
+  readonly cu = this.profile.cu;
+
+  isOpen: boolean = false;
+  showMenuButton: boolean = false;
+  isMobile: boolean = false;
 
   constructor() {
     /**

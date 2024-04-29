@@ -10,7 +10,8 @@ const AvaliableLocalConfigs = [
   `contact.email`,
   `contact.phone`,
   `contact.phone.prefix`,
-  `locale`
+  `locale`,
+  `minPasswordLength`
 ] as const;
 
 type ConfigKey = typeof AvaliableLocalConfigs[number];

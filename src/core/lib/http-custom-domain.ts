@@ -27,7 +27,7 @@ export abstract class HttpCustomDomain {
     }
   };
 
-  private readonly http: HttpClient = new HttpClient(this.handler);
+  protected readonly http: HttpClient = new HttpClient(this.handler);
 
   public readonly request = this.http.request;
   public readonly get = this.http.get;

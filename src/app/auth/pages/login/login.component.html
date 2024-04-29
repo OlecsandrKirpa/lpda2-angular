@@ -1,0 +1,38 @@
+<div class="flex justify-center h-full">
+  <div class="flex flex-col justify-center min-w-[300px]">
+    @if (cu()) {
+    <app-already-logged-in [redirectUrl]="redirectUrl" ></app-already-logged-in>
+    } @else {
+    <form class="flex flex-col" (ngSubmit)="submit()" [formGroup]="form">
+      <h2 class="mb-1">Benvenuto.</h2>
+      <span class="text-slate-400 mb-3">Accedi per proseguire</span>
+      <div class="flex flex-col mb-2">
+        <tui-input class="min-width" [tuiAutoFocus]="true" formControlName="email">
+          <ng-container i18n>Email</ng-container>
+          <input autocomplete="email" tuiTextfield>
+          </tui-input>
+          @if (se('email')) {
+    <app-errors [errors]="e('email')"></app-errors>
+    }
+    </div>
+    <div class="flex flex-col mb-3">
+      <tui-input-password class="min-width" formControlName="password">
+        <ng-container i18n>Password</ng-container>
+        <input autocomplete="current-password" tuiTextfield>
+        </tui-input-password>
+        @if (se('password')) {
+    <app-errors [errors]="e('password')"></app-errors>
+    }
+    @if (seForm()) {
+    <app-errors [errors]="form.errors"></app-errors>
+    }
+    </div>
+    <a class="mb-1" tuiLink [routerLink]="'reset-password'" [queryParams]="{email: form.value.email}" >Password dimenticata?</a>
+            <button [showLoader]="submitting" [disabled]="submitting" type="submit" tuiButton size="m">
+              <ng-container i18n>Accedi</ng-container>
+            </button>
+          </form>
+    }
+  </div>
+</div>
+    
