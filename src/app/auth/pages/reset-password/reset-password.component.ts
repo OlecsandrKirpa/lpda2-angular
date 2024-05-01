@@ -1,18 +1,21 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { ErrorsComponent } from '@core/components/errors/errors.component';
-import { TuiAutoFocusModule, TuiDestroyService } from '@taiga-ui/cdk';
-import { TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
-import { nue } from '@core/lib/nue';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ConfigsService } from '@core/services/configs.service';
-import { ValidationError } from 'joi';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap, debounceTime, takeUntil } from 'rxjs';
+import {Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
+import {ErrorsComponent} from '@core/components/errors/errors.component';
+import {TuiAutoFocusModule, TuiDestroyService} from '@taiga-ui/cdk';
+import {TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule, TuiInputPasswordModule} from '@taiga-ui/kit';
+import {nue} from '@core/lib/nue';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {ConfigsService} from '@core/services/configs.service';
+import {ValidationError} from 'joi';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {tap, debounceTime, takeUntil} from 'rxjs';
 import {AuthService} from "@core/services/http/auth.service";
+import {NotificationsService} from "@core/services/notifications.service";
+import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 
 @Component({
   selector: 'app-reset-password',
@@ -29,7 +32,7 @@ import {AuthService} from "@core/services/http/auth.service";
     TuiTextfieldControllerModule,
     TuiLoaderModule,
     RouterModule
-],
+  ],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
   providers: [
@@ -41,6 +44,7 @@ export class ResetPasswordComponent {
   private readonly router: Router = inject(Router);
   private readonly configs: ConfigsService = inject(ConfigsService);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly notifications: NotificationsService = inject(NotificationsService);
 
   readonly form: FormGroup = new FormGroup({
     code: new FormControl(null, [Validators.required]),
@@ -88,13 +92,17 @@ export class ResetPasswordComponent {
     this.loading = true;
     this.auth.resetPassword(this.formValue()).pipe(
       takeUntil(this.destroy$),
-    ).subscribe(() => {
-      this.loading = false;
-      this.router.navigate(['/auth']);
-    }, (e: HttpErrorResponse) => {
-      this.loading = false;
-      console.error(`resetPassword`, e);
-      this.form.setErrors({ ...this.form.errors, ...{ server: e.error.message } })
+    ).subscribe({
+      next: (): void => {
+        this.loading = false;
+        this.router.navigate(['/auth']);
+        this.notifications.success($localize`La password è stata reimpostata con successo. Ora puoi effettuare il login.`);
+      }, error: (e: HttpErrorResponse): void => {
+        this.loading = false;
+        this.notifications.error(parseHttpErrorMessage(e) || SOMETHING_WENT_WRONG_MESSAGE);
+        console.error(`resetPassword`, e);
+        this.form.setErrors({...this.form.errors, ...{server: e.error.message}})
+      }
     });
   }
 
