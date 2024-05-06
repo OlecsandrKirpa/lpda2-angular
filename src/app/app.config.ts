@@ -25,7 +25,7 @@ registerLocaleData(localeIT);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
+    importProvidersFrom(TuiRootModule),
     DatePipe,
     provideHttpClient(withInterceptors([addLanguageHeaderInterceptor, jwtInterceptor])),
     provideAnimations(),

@@ -1,0 +1,11 @@
+<tui-expand [expanded]="expanded">
+  <div class="flex items-center">
+    <button class="me-2" (click)="submitted()" type="button" tuiButton [size]="buttonSize">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button (click)="cancelled()" type="button" [appearance]="cancelAppearance" tuiButton [size]="buttonSize">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</tui-expand>

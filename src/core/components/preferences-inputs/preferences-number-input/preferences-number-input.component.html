@@ -1,0 +1,6 @@
+<tui-input-number [tuiTextfieldPostfix]="postfix" class="mb-2" [formControl]="control" [tuiTextfieldSize]="inputSize">
+  <ng-content></ng-content>
+  <input tuiTextfield >
+</tui-input-number>
+
+<app-submit-expand (submit)="emitSubmit()" (cancel)="resetInitialValue()" [expanded]="somethingChanged()" ></app-submit-expand>

@@ -8,5 +8,13 @@ export const routes: Routes = [
   {
     path: `users`,
     loadChildren: () => import(`./users/users.routes`).then(m => m.routes)
+  },
+  {
+    path: `preferences`,
+    loadChildren: () => import(`./preferences/preferences.routes`).then(m => m.routes)
+  },
+  {
+    path: `settings`,
+    loadChildren: () => import(`./settings/settings.routes`).then(m => m.routes)
   }
 ];

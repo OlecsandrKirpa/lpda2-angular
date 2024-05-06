@@ -49,7 +49,7 @@ function skipAndProcess(request: HttpRequest<any>, next: HttpHandlerFn): Observa
 }
 
 function processWithJwt(request: HttpRequest<any>, next: HttpHandlerFn, auth: AuthService): Observable<HttpEvent<unknown>> {
-  console.log(`processWithJwt(${request.url})`);
+  // console.log(`processWithJwt(${request.url})`);
 
   /**
    * If jwt is already set, just use it.

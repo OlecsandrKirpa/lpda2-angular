@@ -39,5 +39,23 @@ export class AdminSettingsHomeComponent {
         name: 'group'
       }
     },
+    {
+      name: $localize`Preferenze`,
+      description: $localize`Modifica impostazioni per il tuo utente`,
+      path: `preferences`,
+      icon: {
+        source: `material`,
+        name: `manage_accounts`
+      }
+    },
+    {
+      name: $localize`Impostazioni`,
+      description: $localize`Modifica impostazioni al livello di sistema`,
+      path: `settings`,
+      icon: {
+        source: `material`,
+        name: `settings`
+      }
+    },
   ];
 }

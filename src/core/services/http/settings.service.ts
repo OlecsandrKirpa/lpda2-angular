@@ -1,49 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, filter, map, catchError, of, forkJoin, switchMap, timeout, tap } from 'rxjs';
-import { DomainService } from './domain.service';
+import {Setting, SettingValue} from "@core/lib/settings";
+import {DomainService} from "@core/services/domain.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SettingsService {
-  private readonly configs$ = new BehaviorSubject<Record<string, any> | null>(null);
-  private readonly http = inject(HttpClient);
-  private readonly domain = inject(DomainService);
+export class SettingsService extends DomainService {
 
-  get(key: string): Observable<any | null> {
-    this.loadSettings();
-
-    return this.configs$.pipe(
-      filter(
-        (configs: unknown): configs is Record<string, any> =>
-          configs !== null && typeof configs === `object`
-      ),
-      map((configs: Record<string, any>) => configs[key] ?? null),
-      timeout({
-        first: 1000 * 5,
-        with: (details: any) => {
-          console.warn(`ConfigsService.get timeout for key ${key}`, { details });
-          return of(null);
-        }
-      }),
-    );
+  constructor() {
+    super(`/admin/settings`);
   }
 
-  set(key: string, value: any): Observable<boolean> {
-    return this.domain.post<{ success: boolean }>(`/settings/`, { key, value }).pipe(
-      map((response: { success: boolean }) => response?.success === true),
-      catchError(() => of(false)),
-    );
+  search(query: Record<string, string|number> = {}): Observable<{ items: Setting[] }> {
+    return this.http.get<{ items: Setting[] }>(`/`);
   }
 
-  private loaded = false;
-  private loadSettings(): void {
-    if (this.loaded) return;
-    this.loaded = true;
+  show(key: string): Observable<Setting> {
+    return this.http.get<Setting>(`/${key}`);
+  }
 
-    this.domain.get(`/settings/`).subscribe((data: any) => {
-      this.configs$.next(data);
-    });
+  value(key: string): Observable<SettingValue> {
+    return this.http.get<SettingValue>(`/${key}/value`);
+  }
+
+  update(key: string, value: SettingValue): Observable<Setting> {
+    return this.http.patch<Setting>(`/${key}`, { value });
   }
 }
