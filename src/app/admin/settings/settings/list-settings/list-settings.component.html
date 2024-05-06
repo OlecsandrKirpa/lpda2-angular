@@ -1,0 +1,73 @@
+<ng-template #noItems>
+  <ng-container i18n>Nessun elemento</ng-container>
+</ng-template>
+
+<h1 i18n>Impostazioni di sistema</h1>
+<p class="text-slate-400 mb-3" i18n>Queste impostazioni verranno applicate a tutto il sito ed i suoi iscritti.</p>
+
+<form [formGroup]="form">
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Lingua di default</p>
+    <p class="text-slate-400" i18n>Qual'è la lingua di default del sistema?</p>
+
+    <app-preferences-select
+        [formControlName]="'default_language'"
+        [items]="allLanguages"
+        [itemContent]="languageItemContent"
+        [stringifyFn]="applyPipeFunction(languagePipe)"
+        (submit)="save('default_language', $event)"
+        [inputSize]="inputSize"
+    >
+      <ng-container i18n>Seleziona la lingua di default</ng-container>
+    </app-preferences-select>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Lingue di sistema</p>
+    <p class="text-slate-400" i18n>Quali lingue vuoi supportare? Le parti "statiche" come le pagine web non verranno
+      tradotte in ulteriori lingue in automatico, ma le parti "dinamiche" come nomi e descrizioni del menù potranno
+      essere tradotti in qualunque momento dallo staff.</p>
+
+    <ng-template #languageItemContent let-item>{{ item | language }}</ng-template>
+    <app-preferences-multiple-select
+        [formControlName]="'available_locales'"
+        [items]="allLanguages"
+        [itemContent]="languageItemContent"
+        [stringifyFn]="applyPipeFunction(languagePipe)"
+        (submit)="save('available_locales', $event)"
+        [inputSize]="inputSize"
+    >
+      <ng-container i18n>Seleziona molte lingue</ng-container>
+    </app-preferences-multiple-select>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Massimo persone per prenotazione</p>
+    <p class="text-slate-400" i18n>Quando un utente crea una prenotazione, quante persone al massimo può
+      selezionare?</p>
+
+    <app-preferences-number-input
+        [formControlName]="'max_people_per_reservation'"
+        (submit)="save('max_people_per_reservation', $event)"
+        [inputSize]="inputSize"
+    >
+      <ng-container i18n>Inserisci il numero massimo di persone per singola prenotazione.</ng-container>
+    </app-preferences-number-input>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Contatti email</p>
+    <p class="text-slate-400" i18n>Modifica i contatti presenti nella mail.</p>
+
+    @if(form.value && form.value['email_contacts']) {
+      <pre [innerText]="form.value['email_contacts'] | json"></pre>
+    }
+<!--    <app-preferences-number-input-->
+<!--        [formControlName]="'max_people_per_reservation'"-->
+<!--        (submit)="save('max_people_per_reservation', $event)"-->
+<!--        [inputSize]="inputSize"-->
+<!--    >-->
+<!--      <ng-container i18n>Inserisci il numero massimo di persone per singola prenotazione.</ng-container>-->
+<!--    </app-preferences-number-input>-->
+  </div>
+</form>

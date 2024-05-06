@@ -18,15 +18,16 @@ import {DatePipe, registerLocaleData} from '@angular/common';
 import localeIT from '@angular/common/locales/it';
 import {addLanguageHeaderInterceptor} from "@core/interceptors/add-language-header.interceptor";
 import {SessionService} from "@core/services/admin-session.service";
+import {jwtInterceptor} from "@core/interceptors/jwt.interceptor";
 
 registerLocaleData(localeIT);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
+    importProvidersFrom(TuiRootModule),
     DatePipe,
-    provideHttpClient(withInterceptors([addLanguageHeaderInterceptor])),
+    provideHttpClient(withInterceptors([addLanguageHeaderInterceptor, jwtInterceptor])),
     provideAnimations(),
     provideAnimationsAsync(),
     importProvidersFrom(TuiRoutableDialogModule),

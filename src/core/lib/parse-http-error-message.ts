@@ -7,7 +7,7 @@ type configs = { joinChar?: string };
 export function parseHttpErrorMessage(response: HttpErrorResponse, configs?: configs): string | null {
   const joinChar: string = configs?.joinChar ?? ', ';
 
-  if (response.error.message) return response.error.message;
+  if (response.error?.message) return response.error.message;
 
   if (response.status == 500) {
     return `${response.error.error} ${response.error.exception}`.replace(/\</gm, '').replace(/\>+/gm, '');

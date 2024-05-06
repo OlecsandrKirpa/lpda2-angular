@@ -15,7 +15,6 @@ export const routes: Routes = [
   },
   {
     path: `settings`,
-    loadComponent: () => import(`./settings/admin-settings-home/admin-settings-home.component`).then(m => m.AdminSettingsHomeComponent),
     loadChildren: () => import(`./settings/settings.routes`).then(m => m.routes)
   }
 ];

@@ -31,7 +31,6 @@ export class SessionService {
   private loadSession(): void {
     const session = this.storage.get(session_key);
     if (session) {
-      console.debug(`loaded session`, session)
       this.decodeSession(session);
     }
   }

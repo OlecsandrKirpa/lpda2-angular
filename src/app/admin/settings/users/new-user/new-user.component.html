@@ -1,0 +1,45 @@
+<h1 i18n>Nuovo utente</h1>
+<p i18n>Attenzione. L'utente che si sta per creare potrà accedere alla parte amministrativa e apportare modifiche ad
+  alcune parti sensibili dell'applicazione.</p>
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="mb-3">
+    <tui-input tuiTextfieldSize="l" [tuiAutoFocus]="true" formControlName="fullname">
+      <ng-container i18n>Nome e cognome</ng-container>
+      <input tuiTextfield>
+    </tui-input>
+
+    <app-errors [errors]="e('fullname')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <tui-input tuiTextfieldSize="l" formControlName="email">
+      <ng-container i18n>Email</ng-container>
+      <input tuiTextfield>
+    </tui-input>
+
+    <app-errors [errors]="e('email')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <tui-checkbox-block
+        contentAlign="right"
+        formControlName="can_root"
+        size="l"
+    >
+      <ng-container i18n>Ha diritti di amministratore?</ng-container>
+    </tui-checkbox-block>
+
+    <app-errors [errors]="e('can_root')"></app-errors>
+  </div>
+
+  <div class="flex items-center">
+    <button class="me-2" type="submit" size="l" tuiButton appearance="primary">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button (click)="cancel()" type="button" size="l" tuiButton appearance="outline">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

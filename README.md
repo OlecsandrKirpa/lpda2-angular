@@ -11,3 +11,9 @@ I'm going to use some libraries:
 - (probably) @angular/material
 
 Using node `v20.10.0` and npm `10.2.3`
+
+# Preferences and Settings
+
+Preferences and Settings are the same thing.
+
+The only difference is that Preferences are user-specific settings, while Settings are application-wide settings.

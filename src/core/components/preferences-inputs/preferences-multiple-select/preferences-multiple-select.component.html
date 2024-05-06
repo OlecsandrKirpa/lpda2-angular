@@ -1,0 +1,19 @@
+<tui-multi-select
+    class="mb-2"
+    [search]="search"
+    (searchChange)="onSearchChange($event)"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [stringify]="stringifyFn"
+>
+  <ng-content></ng-content>
+  <tui-data-list-wrapper
+      [emptyContent]="noItemsContent"
+      *tuiDataList
+      tuiMultiSelectGroup
+      [itemContent]="itemContent"
+      [items]="shownItems"
+  ></tui-data-list-wrapper>
+</tui-multi-select>
+
+<app-submit-expand (submit)="emitSubmit()" (cancel)="resetInitialValue()" [expanded]="somethingChanged()" ></app-submit-expand>

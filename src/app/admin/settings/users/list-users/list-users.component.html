@@ -1,0 +1,82 @@
+<h1>
+  <ng-container i18n>Utenti</ng-container>
+</h1>
+
+<ng-template #nameCol>
+  <ng-container i18n>Nome</ng-container>
+</ng-template>
+
+<ng-template #emailCol>
+  <ng-container i18n>Email</ng-container>
+</ng-template>
+
+<ng-template #statusCol>
+  <ng-container i18n>Stato</ng-container>
+</ng-template>
+
+<app-list-users-filters [loading]="loading()" (filtersChanged)="filtersChanged($event)" [data]="data()">
+  <table class="responsive-table collapse-md">
+    <thead>
+    <tr>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+      </th>
+      <th class="text-start">
+        <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+      </th>
+
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (item of items(); track item.id) {
+        <tr>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+                </span>
+
+            <span>{{ item.fullname }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="emailCol"></ng-container>
+                </span>
+
+            <span>{{ item.email }}</span>
+          </td>
+          <td>
+                <span class="collapse-header">
+                  <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+                </span>
+
+            <div class="flex items-center">
+              <span>{{ item.status }}</span>
+
+              @if (item.can_root) {
+                <ng-template #canRootHint>
+                  <ng-container i18n>Utente amministratore</ng-container>
+                </ng-template>
+
+                <mat-icon class="ms-1" [tuiHint]="canRootHint">stars</mat-icon>
+              }
+            </div>
+          </td>
+          <td>
+            <div class="flex items-baseline">
+              <button (click)="delete(item.id)" size="m" type="button" tuiIconButton appearance="secondary-destructive">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</app-list-users-filters>
+
+<router-outlet></router-outlet>
