@@ -19,7 +19,7 @@ export function isSettings(v: unknown): v is Settings {
   return true;
 }
 
-export type SettingValue = string | number | null | string[] | number[];
+export type SettingValue = string | number | null | string[] | number[] | Record<string, unknown>;
 
 export interface Setting {
   key: string,

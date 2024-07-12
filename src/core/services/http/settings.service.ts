@@ -26,6 +26,8 @@ export class SettingsService extends DomainService {
   }
 
   update(key: string, value: SettingValue): Observable<Setting> {
+    if (typeof value === 'object' && value != null) value = JSON.stringify(value);
+
     return this.http.patch<Setting>(`/${key}`, { value });
   }
 }

@@ -4,7 +4,7 @@ import {
   forwardRef,
   inject,
   Input,
-  OnChanges,
+  OnChanges, OnInit,
   Output,
   signal,
   SimpleChanges, WritableSignal
@@ -41,7 +41,7 @@ import {areDifferent} from "@core/lib/are-different";
     },
   ]
 })
-export class PreferencesCommonInputComponent<T> implements ControlValueAccessor, OnChanges {
+export class PreferencesCommonInputComponent<T> implements ControlValueAccessor, OnChanges, OnInit {
   static readonly inputs: string[] = ['mandatory', 'inputSize', 'placeholder'];
   static readonly outputs: string[] = ['submit', 'valueChange'];
 

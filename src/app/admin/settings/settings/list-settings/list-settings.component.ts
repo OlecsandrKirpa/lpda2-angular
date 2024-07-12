@@ -26,6 +26,9 @@ import {
   PreferencesNumberInputComponent
 } from "@core/components/preferences-inputs/preferences-number-input/preferences-number-input.component";
 import {JsonPipe} from "@angular/common";
+import {
+  PreferencesJsonInputComponent
+} from "@core/components/preferences-inputs/preferences-json-input/preferences-json-input.component";
 
 @Component({
   selector: 'app-list-settings',
@@ -43,7 +46,8 @@ import {JsonPipe} from "@angular/common";
     PreferencesMultipleSelectComponent,
     PreferencesSelectComponent,
     PreferencesNumberInputComponent,
-    JsonPipe
+    JsonPipe,
+    PreferencesJsonInputComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

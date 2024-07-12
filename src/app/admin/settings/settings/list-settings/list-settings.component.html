@@ -59,15 +59,10 @@
     <p class="text-lg font-bold" i18n>Contatti email</p>
     <p class="text-slate-400" i18n>Modifica i contatti presenti nella mail.</p>
 
-    @if(form.value && form.value['email_contacts']) {
-      <pre [innerText]="form.value['email_contacts'] | json"></pre>
-    }
-<!--    <app-preferences-number-input-->
-<!--        [formControlName]="'max_people_per_reservation'"-->
-<!--        (submit)="save('max_people_per_reservation', $event)"-->
-<!--        [inputSize]="inputSize"-->
-<!--    >-->
-<!--      <ng-container i18n>Inserisci il numero massimo di persone per singola prenotazione.</ng-container>-->
-<!--    </app-preferences-number-input>-->
+    <app-preferences-json-input
+      [formControlName]="'email_contacts'"
+      (submit)="save('email_contacts', $event)"
+      [inputSize]="inputSize"
+    ></app-preferences-json-input>
   </div>
 </form>

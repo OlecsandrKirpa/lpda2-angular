@@ -1,0 +1,17 @@
+<div class="grid grid-cols-[10%_auto] gap-y-3 gap-x-2 mb-3">
+  @for (key of keys(); track key; let index = $index) {
+    <div class="key-column flex items-center justify-end">
+      <span class="font-bold">{{ key | commonTranslate }}</span>
+    </div>
+
+    <div class="value-column">
+      <tui-input (ngModelChange)="updateValue(key, $event)" [tuiTextfieldSize]="inputSize"
+                 [ngModel]="(control.value || {})[key] ?? null" [tuiTextfieldLabelOutside]="true">
+        <input tuiTextfield>
+      </tui-input>
+    </div>
+  }
+</div>
+
+<app-submit-expand (submit)="emitSubmit()" (cancel)="resetInitialValue()"
+                   [expanded]="somethingChanged()"></app-submit-expand>
