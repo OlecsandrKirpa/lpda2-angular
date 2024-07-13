@@ -6,7 +6,8 @@ export interface ReservationData extends BaseModelData {
   datetime?: string;
   status?: ReservationStatus;
   secret?: string;
-  people?: number;
+  adults?: number;
+  children?: number;
   table?: string;
   notes?: string;
   email?: string;

@@ -1,23 +1,25 @@
 <form [autocomplete]="'off'" (ngSubmit)="submit()" [formGroup]="form">
   <div class="mb-3">
     <div class="flex items-center">
-      <tui-input-date [tuiDropdownOpen]="dateOpen()" [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="today" class="me-2 grow"
+      <tui-input-date [tuiDropdownOpen]="dateOpen()" [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="today"
+                      class="me-2 grow"
                       [formControlName]="'date'">
         <ng-container i18n>Data</ng-container>
       </tui-input-date>
 
-      <tui-input-time [tuiDropdownOpen]="timeOpen()" [tuiTextfieldSize]="inputSize" class="grow" formControlName="time" [items]="validTimes()">
+      <tui-input-time [tuiDropdownOpen]="timeOpen()" [tuiTextfieldSize]="inputSize" class="grow" formControlName="time"
+                      [items]="validTimes()">
         <ng-container i18n>Ora</ng-container>
       </tui-input-time>
     </div>
 
-    @if(isMobile){
-    <button tuiButton appearance="icon" type="button" size="s" (click)="dateOpen.set(true); timeOpen.set(false)">
+    @if (isMobile) {
+      <button tuiButton appearance="icon" type="button" size="s" (click)="dateOpen.set(true); timeOpen.set(false)">
       <span class="flex items-center">
         <span class="me-1" i18n>Imposta data</span>
         <mat-icon>calendar_today</mat-icon>
       </span>
-    </button>
+      </button>
     }
 
     <app-errors [errors]="e('datetime')"></app-errors>
@@ -33,12 +35,17 @@
   </div>
 
   <div class="mb-3">
-    <tui-input-number [tuiTextfieldSize]="inputSize" [formControlName]="'people'">
-      <ng-container i18n>N° persone</ng-container>
-      <input tuiTextfield [autocomplete]="'off'" type="text">
-    </tui-input-number>
+    <div class="flex items-center">
+      <tui-input-number [tuiTextfieldSize]="inputSize" [formControlName]="'adults'" class="me-2 grow">
+        <ng-container i18n>N° adulti</ng-container>
+        <input tuiTextfield [autocomplete]="'off'" type="text">
+      </tui-input-number>
 
-    <app-errors [errors]="e('people')"></app-errors>
+      <tui-input-number [tuiTextfieldSize]="inputSize" [formControlName]="'children'" class="ms-2 grow">
+        <ng-container i18n>N° bambini</ng-container>
+        <input tuiTextfield [autocomplete]="'off'" type="text">
+      </tui-input-number>
+    </div>
   </div>
 
   <div class="mb-3">

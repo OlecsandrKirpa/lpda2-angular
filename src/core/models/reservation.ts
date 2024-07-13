@@ -8,7 +8,8 @@ export class Reservation extends BaseModel {
   datetime?: Date;
   status?: ReservationStatus;
   secret?: string;
-  people?: number;
+  adults?: number;
+  children?: number;
   table?: string;
   notes?: string;
   email?: string;
@@ -23,7 +24,8 @@ export class Reservation extends BaseModel {
     this.datetime = data.datetime ? new Date(data.datetime) : undefined;
     this.status = data.status;
     this.secret = data.secret;
-    this.people = data.people;
+    this.adults = data.adults;
+    this.children = data.children;
     this.table = data.table;
     this.notes = data.notes;
     this.email = data.email;

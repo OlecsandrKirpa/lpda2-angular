@@ -102,7 +102,11 @@
                   <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
                 </span>
 
-            <span>{{ item.people }}</span>
+<!--            <span>{{ (item.adults ?? 0) + (item.children ?? 0) }}</span>-->
+            <app-reservation-people
+                [adults]="item.adults"
+                [children]="item.children"
+            ></app-reservation-people>
           </td>
           <td>
                 <span class="collapse-header">

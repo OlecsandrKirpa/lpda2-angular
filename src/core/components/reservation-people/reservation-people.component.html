@@ -1,0 +1,20 @@
+<ng-template #hint>
+  <p> {{ adults ?? 0 }} <ng-container i18n>Adulti</ng-container> </p>
+  <p> {{ children ?? 0 }} <ng-container i18n>Bambini</ng-container> </p>
+</ng-template>
+
+<div class="flex items-center" [tuiHint]="hint" >
+  @if(adults && adults > 0) {
+    <span>{{ adults }}</span>
+    <mat-icon>person2</mat-icon>
+  }
+
+  @if(children && children > 0) {
+    <span>{{ children }}</span>
+    <mat-icon>child_care</mat-icon>
+  }
+
+  @if(!((adults && adults > 0) || (children && children > 0))) {
+    ???
+  }
+</div>
