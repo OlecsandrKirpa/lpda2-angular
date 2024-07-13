@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, computed, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  isDevMode,
+  OnInit,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {finalize, takeUntil} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -29,6 +38,9 @@ import {JsonPipe} from "@angular/common";
 import {
   PreferencesJsonInputComponent
 } from "@core/components/preferences-inputs/preferences-json-input/preferences-json-input.component";
+import {
+  PreferencesTextInputComponent
+} from "@core/components/preferences-inputs/preferences-text-input/preferences-text-input.component";
 
 @Component({
   selector: 'app-list-settings',
@@ -47,7 +59,8 @@ import {
     PreferencesSelectComponent,
     PreferencesNumberInputComponent,
     JsonPipe,
-    PreferencesJsonInputComponent
+    PreferencesJsonInputComponent,
+    PreferencesTextInputComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -68,7 +81,11 @@ export class ListSettingsComponent implements OnInit {
     available_locales: new FormControl([]),
     default_language: new FormControl(null),
     max_people_per_reservation: new FormControl(null),
-    email_contacts: new FormControl({})
+    email_contacts: new FormControl({}),
+    reservation_max_days_in_advance: new FormControl(null),
+    reservation_min_hours_in_advance: new FormControl(null),
+    cover_price: new FormControl(null),
+    instagram_landing_page_url: new FormControl(null),
   });
 
   private readonly saving: WritableSignal<boolean> = signal(false);
@@ -136,7 +153,8 @@ export class ListSettingsComponent implements OnInit {
      * STRINGS
      */
     ([
-      `default_language`
+      `default_language`,
+      `instagram_landing_page_url`
     ] as SettingKey[]).forEach((key: SettingKey): void => {
       const pref = settings.find((setting: Setting) => setting.key === key);
 
@@ -149,7 +167,10 @@ export class ListSettingsComponent implements OnInit {
      * NUMBERS
      */
     ([
-      `max_people_per_reservation`
+      `max_people_per_reservation`,
+      `reservation_max_days_in_advance`,
+      `reservation_min_hours_in_advance`,
+      `cover_price`
     ] as SettingKey[]).forEach((key: SettingKey): void => {
       const pref = settings.find((setting: Setting) => setting.key === key);
 
@@ -172,6 +193,22 @@ export class ListSettingsComponent implements OnInit {
       else if (!pref) console.warn(`Setting ${key} not found`);
       else console.warn(`Setting ${key} not found or invalid`, pref.value);
     });
+
+    /**
+     * Add here keys you don't want to manage in this page.
+     * All the missing keys will be logged as warning.
+     */
+    const ignoreKeys: string[] = [];
+
+    const missingKeys = settings.filter((setting: Setting): boolean => !data.hasOwnProperty(setting.key) && !ignoreKeys.includes(setting.key));
+
+    if (missingKeys.length > 0) {
+      if (isDevMode()) {
+        this.notifications.error(`Unmanaged settings: ${missingKeys.map((k) => k.key).join(", ")}`);
+      }
+
+      console.warn(`Unmanaged settings: ${missingKeys.map((k) => k.key).join(", ")}`, missingKeys);
+    }
 
     this.form.patchValue(data);
   }

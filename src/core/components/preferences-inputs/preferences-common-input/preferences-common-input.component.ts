@@ -55,6 +55,18 @@ export class PreferencesCommonInputComponent<T> implements ControlValueAccessor,
   protected readonly defaultValue: T | null = null;
   protected controlValidators: ValidatorFn[] = [];
 
+  /**
+   * Called before anything else inside writeValue.
+   * Overwrite this in child class to parse input value
+   */
+  protected readonly parseInput: (value: unknown) => unknown | T = (value: unknown) => value;
+
+  /**
+   * Called only when emitting output value.
+   * Overwrite this in child class to format output value
+   */
+  protected readonly formatOutput: (value: unknown) => unknown = (value: unknown) => value;
+
   @Input() mandatory: boolean = false;
   @Input() inputSize: TuiSizeS | TuiSizeL = 'm';
   @Input() placeholder: string = $localize`Seleziona...`;
@@ -99,17 +111,22 @@ export class PreferencesCommonInputComponent<T> implements ControlValueAccessor,
 
   writeValue(value: any): void {
     value ||= null;
-    // console.log(`writeValue`, value);
+    value = this.parseInput(value);
+
     this.initialValue = value;
     this.control.setValue(value);
   }
 
   registerOnChange(fn: (value: unknown) => void): void {
-    this.valueChange.subscribe(fn);
+    this.valueChange.subscribe({
+      next: (v: unknown) => fn(this.formatOutput(v))
+    });
   }
 
   registerOnTouched(fn: () => void): void {
-    this.valueChange.subscribe(fn);
+    this.valueChange.subscribe({
+      next: () => fn()
+    });
   }
 
   protected updateValidators(): void {

@@ -65,4 +65,60 @@
       [inputSize]="inputSize"
     ></app-preferences-json-input>
   </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Anticipo massimo prenotazione</p>
+    <p class="text-slate-400" i18n>Si potranno creare prenotazioni fino ad un limite di {{ form.value['reservation_max_days_in_advance'] }} giorni da oggi.</p>
+
+    <app-preferences-number-input
+        [formControlName]="'reservation_max_days_in_advance'"
+        (submit)="save('reservation_max_days_in_advance', $event)"
+        [inputSize]="inputSize"
+        [postfix]="'giorni'"
+    >
+      <ng-container i18n>Giorni massimi di anticipo per nuove prenotazioni.</ng-container>
+    </app-preferences-number-input>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Anticipo minimo nuove prenotazioni</p>
+    <p class="text-slate-400" i18n>Se impostato a zero le persone potranno prenotare in tempo reale per la stessa ora, altrimenti almeno {{ form.value['reservation_min_hours_in_advance'] }} ore dopo l'orario attuale.</p>
+
+    <app-preferences-number-input
+        [formControlName]="'reservation_min_hours_in_advance'"
+        (submit)="save('reservation_min_hours_in_advance', $event)"
+        [inputSize]="inputSize"
+        [postfix]="'ore'"
+    >
+      <ng-container i18n>Ore di anticipo minime per creare nuove prenotazioni.</ng-container>
+    </app-preferences-number-input>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Costo coperto</p>
+    <p class="text-slate-400" i18n>Se impostato ad un numero maggiore di zero, verrà mostrato dove necessario. Altrimenti sarà nascosto.</p>
+
+    <app-preferences-number-input
+        [formControlName]="'cover_price'"
+        (submit)="save('cover_price', $event)"
+        [inputSize]="inputSize"
+        [postfix]="'€'"
+    >
+      <ng-container i18n>Ore di anticipo minime per creare nuove prenotazioni.</ng-container>
+    </app-preferences-number-input>
+  </div>
+
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Link condiviso al post Instagram</p>
+    <p class="text-slate-400" i18n>Il post in questione sarà visibile nella homepage, se impostato. Se assente, non verrà mostrata la sezione Instagram nella pagina web.</p>
+
+    <app-preferences-text-input
+        [formControlName]="'instagram_landing_page_url'"
+        (submit)="save('instagram_landing_page_url', $event)"
+        [inputSize]="inputSize"
+    >
+      <ng-container i18n>Link di condivisione post Instagram.</ng-container>
+    </app-preferences-text-input>
+  </div>
 </form>

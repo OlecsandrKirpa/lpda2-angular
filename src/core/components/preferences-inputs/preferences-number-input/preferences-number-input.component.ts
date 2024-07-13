@@ -36,5 +36,4 @@ import {SubmitExpandComponent} from "@core/components/submit-expand/submit-expan
 })
 export class PreferencesNumberInputComponent extends PreferencesCommonInputComponent<number> {
   @Input() postfix: string = ``;
-
 }
