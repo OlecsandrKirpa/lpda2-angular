@@ -33,6 +33,9 @@ import {ReservationStatus} from "@core/lib/interfaces/reservation-data";
 import {debounceTime, distinctUntilChanged, filter, takeUntil} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {strToUTC} from "@core/lib/str-time-timezone";
+import {
+  ReservationTablesSummaryComponent
+} from "@core/components/reservation-tables-summary/reservation-tables-summary.component";
 
 // export type ReservationsFilters = ReservationsFiltersWithDate | ReservationsFiltersWithDatetime;
 
@@ -62,6 +65,7 @@ export interface ReservationsFilters {
     TuiTablePaginationModule,
     ReactiveFormsModule,
     JsonPipe,
+    ReservationTablesSummaryComponent,
   ],
   templateUrl: './list-reservations-filters.component.html',
   providers: [

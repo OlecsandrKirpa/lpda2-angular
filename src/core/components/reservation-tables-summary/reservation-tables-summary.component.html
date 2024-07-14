@@ -1,5 +1,5 @@
 @if (loading()) {
-  <tui-loader [showLoader]="true" [size]="'s'"></tui-loader>
+  <tui-loader [showLoader]="showLoader" [size]="'s'"></tui-loader>
 } @else {
 
   @if((data() || []).length > 0) {

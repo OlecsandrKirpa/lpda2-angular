@@ -40,6 +40,11 @@ export class ReservationTablesSummaryComponent implements OnChanges {
 
   readonly loading: WritableSignal<boolean> = signal<boolean>(false);
 
+  /**
+   * Should - when $loading is true - loader be shown?
+   */
+  @Input() showLoader: boolean = true;
+
   @Input() filters: Record<string, string | boolean> | null = null;
 
   ngOnChanges(): void {
