@@ -1,4 +1,14 @@
 <form [autocomplete]="'off'" (ngSubmit)="submit()" [formGroup]="form">
+
+  @if(form.value['date'] && utcTime()) {
+    <app-reservation-tables-summary
+        class="block mb-3"
+        [filters]="{ date: form.value['date'], time: utcTime() ?? '' }"
+    >
+      <p>Situazione tavoli per l'orario selezionato:</p>
+    </app-reservation-tables-summary>
+  }
+
   <div class="mb-3">
     <div class="flex items-center">
       <tui-input-date [tuiDropdownOpen]="dateOpen()" [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="today"

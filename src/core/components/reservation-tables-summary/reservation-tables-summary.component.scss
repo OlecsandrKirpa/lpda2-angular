@@ -1,0 +1,13 @@
+td,
+th {
+  border: 1px solid var(--tui-base-04);
+}
+
+table * {
+  font-size: .9rem;
+
+  .tui-table__td, .tui-table__th {
+    padding: 0.5rem;
+    height: inherit;
+  }
+}

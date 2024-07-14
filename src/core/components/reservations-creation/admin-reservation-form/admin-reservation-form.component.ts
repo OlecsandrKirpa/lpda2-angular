@@ -16,13 +16,16 @@ import {
 } from "@taiga-ui/kit";
 import {TUI_IS_MOBILE, TuiAutoFocusModule, TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
 import {ReservationsService} from "@core/services/http/reservations.service";
-import {filter, finalize, switchMap, takeUntil, takeWhile, tap} from "rxjs";
+import {filter, finalize, map, switchMap, takeUntil, takeWhile, tap} from "rxjs";
 import {ReservationTurn} from "@core/models/reservation-turn";
 import {nue} from "@core/lib/nue";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
-import {strTimeTimezone} from "@core/lib/str-time-timezone";
-import {tuiDatetimeToIsoString} from "@core/lib/tui-datetime-to-iso-string";
+import {strTimeTimezone, strToUTC} from "@core/lib/str-time-timezone";
+import {tuiDatetimeToIsoString, tuiTimeToIsoString} from "@core/lib/tui-datetime-to-iso-string";
+import {
+  ReservationTablesSummaryComponent
+} from "@core/components/reservation-tables-summary/reservation-tables-summary.component";
 
 /**
  * NEW and EDIT reservation's data
@@ -46,6 +49,7 @@ import {tuiDatetimeToIsoString} from "@core/lib/tui-datetime-to-iso-string";
     TuiDropdownModule,
     MatIcon,
     DatePipe,
+    ReservationTablesSummaryComponent,
   ],
   templateUrl: './admin-reservation-form.component.html',
   providers: [
@@ -62,6 +66,8 @@ export class AdminReservationFormComponent implements OnInit {
   @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
 
   readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
+
+  readonly utcTime: WritableSignal<string | null> = signal(null);
 
   readonly today: TuiDay = TuiDay.currentLocal();
 
@@ -135,6 +141,7 @@ export class AdminReservationFormComponent implements OnInit {
     this.form.get(`time`)!.valueChanges.pipe(
       takeUntil(this.destroy$),
       tap(() => this.timeOpen.set(false)),
+      tap((v: TuiTime | null) => this.utcTime.set(v ? strToUTC(v.toString("HH:MM")) : null)),
     ).subscribe(nue());
   }
 

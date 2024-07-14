@@ -1,0 +1,48 @@
+@if (loading()) {
+  <tui-loader [showLoader]="true" [size]="'s'"></tui-loader>
+} @else {
+
+  @if((data() || []).length > 0) {
+    <ng-content></ng-content>
+  }
+
+  @for (d of data(); track d.turn.id) {
+    <p class="font-xl" ><b>{{ d.turn.name }}</b></p>
+
+    <table class="tui-table">
+
+      <thead>
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <th class="tui-table__th">
+          <ng-template #headerExplain>Quante persone ci sono al tavolo in questione</ng-template>
+
+          <span [tuiHint]="headerExplain" i18n>Tipo:</span>
+        </th>
+
+        @for (h of (d.summary | objectToArray); track h[0]) {
+          <th class="tui-table__th">
+            <span i18n>{{ h[0] }}</span>
+          </th>
+        }
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <td class="tui-table__td">
+          <ng-template #valueExplain>Quanti tavoli con lo stesso numero di persone</ng-template>
+
+          <span [tuiHint]="valueExplain" i18n>Quantità:</span>
+        </td>
+
+        @for (h of (d.summary | objectToArray); track h[0]) {
+          <td class="tui-table__td">
+            <span i18n>{{ h[1] }}</span>
+          </td>
+        }
+      </tr>
+
+      </tbody>
+    </table>
+  }
+}

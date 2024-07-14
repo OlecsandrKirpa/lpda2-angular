@@ -5,6 +5,7 @@ import {Reservation} from "@core/models/reservation";
 import {map, Observable} from "rxjs";
 import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
 import {ReservationTurn} from "@core/models/reservation-turn";
+import {ReservationTableSummary} from "@core/lib/interfaces/reservation-table-summary";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class ReservationsService extends CommonHttpService<Reservation> {
 
   constructor() {
     super(Reservation, `admin/reservations`);
+  }
+
+  tablesSummary(params: Record<string, string|number|boolean> = {}): Observable<ReservationTableSummary[]> {
+    return this.get<ReservationTableSummary[]>(`tables_summary`, { params });
   }
 
   getValidTimes(date: Date): Observable<ReservationTurn[]> {
