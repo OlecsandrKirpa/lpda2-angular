@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,6 +21,16 @@ body {
  */
 .drag-shake {
   animation: tilt-shaking 0.3s infinite;
+}
+
+:root {
+  --first-color: #A65C23;
+  --second-color: #D4B895;
+  --third-color: #030303;
+  --fourth-color: #F5ECD2;
+  --fifth-color: #B09A7D;
+  --sixth-color: #EEEAE3;
+  --seventh-color: #EFE1CE;
 }
 
 @keyframes tilt-shaking {
@@ -46,4 +55,43 @@ h1 {
   @apply text-4xl;
   @apply mb-3;
   @apply block;
+}
+
+app-home-layout {
+  .selected-link, .active-link, a.active {
+    font-weight: bold;
+    color: var(--first-color);
+  }
+
+  a {
+    color: var(--second-color);
+
+    &:hover {
+      color: var(--first-color);
+    }
+  }
+
+  .btn, .btn-primary, .btn-secondary, .btn-danger {
+    // transition: all 0.3s;
+
+    @apply focus:outline-none;
+    @apply font-medium;
+    @apply rounded-lg;
+    @apply text-sm;
+    @apply px-4;
+    @apply py-2;
+    @apply text-center;
+  }
+
+  .btn-primary {
+    background-color: var(--first-color);
+    color: white;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: var(--seventh-color);
+      color: var(--first-color);
+    }
+
+  }
 }

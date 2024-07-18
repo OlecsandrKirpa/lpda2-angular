@@ -5,6 +5,7 @@ export const routes: Routes = [
   {
     path: ``,
     loadChildren: () => import(`./home/home.routes`).then(m => m.routes),
+    loadComponent: () => import(`./home/home-layout/home-layout.component`).then(m => m.HomeLayoutComponent),
   },
   {
     path: `dev`,

@@ -1,0 +1,58 @@
+:host {
+  $default-color: var(--app-secondary-text-color);
+
+  --color: var(--first-color);
+  --active-color: var(--first-color);
+
+  svg{
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: none;
+
+    path{
+      fill: var(--color, $default-color);
+      stroke: var(--color, $default-color);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all .25s ease;
+    }
+  }
+
+  &.hovering, &.active{
+    svg path{
+      fill: var(--active-color, $default-color);
+      stroke: var(--active-color, $default-color);
+    }
+  }
+
+  &:not(.open){
+    #middle{
+      transform: rotateY(45deg);
+    }
+  
+    &.hovering, &.active{
+      #middle {
+        transform: rotateY(0);
+      }
+    }
+  }
+
+  &.open{
+    #upper{
+      transform: rotate(45deg);
+      transform-origin: 50% 50%;
+    }
+  
+    #middle{
+      transform: rotate(-45deg);
+      transform-origin: 50% 50%;
+    }
+  
+    #lower{
+      transform: rotate(45deg);
+      transform-origin: 50% 50%;
+    }
+  }
+}

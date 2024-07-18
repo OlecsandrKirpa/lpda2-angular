@@ -1,0 +1,101 @@
+<!--<div class="navbar | fixed top-0 left-0 right-0 z-50 bg-amber-600 flex items-center">-->
+<!--  <div class="flex items-center justify-center w-100 bg-blue-100 grow mx-5">-->
+<!--&lt;!&ndash;    <div class="flex items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/" [routerLinkActive]="'active'">Home</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/menu" [routerLinkActive]="'active'">Menù</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/about" [routerLinkActive]="'active'">Chi siamo</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--    <a class="flex items-center" routerLink="/admin">-->
+<!--      <img src="assets/img/logo-partial-building.svg" [ngClass]="{'move-left': scrolled()}" alt="La porta d'acqua" class="h-[48px] me-2"/>-->
+<!--      <img src="assets/img/logo-partial-name.svg" [ngClass]="{'move-left': scrolled()}" alt="La porta d'acqua" class="h-[48px]"/>-->
+<!--    </a>-->
+
+<!--    <div class="fixed" style="top: 10px; right: 10px; height: 60px;">-->
+<!--      Prenota ora-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<ng-template #langSelectTemp>
+  <ng-template #dataList>
+    <tui-data-list>
+      <button *ngFor="let lang of languages" (click)="changePath(lang.code)" tuiOption>
+        <span class="d-flex flex-row align-items-center">
+          <span class="me-1" [innerText]="lang.name"></span>
+          <img class="flag" [src]="lang.iso | tuiFlag" />
+        </span>
+      </button>
+    </tui-data-list>
+  </ng-template>
+
+  <tui-hosted-dropdown [content]="dataList">
+    <button tuiIconButton appearance="custom" size="m">
+      <img class="flag" [src]="currentLanguage.iso | tuiFlag" />
+    </button>
+  </tui-hosted-dropdown>
+</ng-template>
+
+<div class="placeholder">.</div>
+
+
+<nav #navbar class="navbar | fixed w-full z-20 top-0 start-0">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
+    <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="assets/img/logo.png" alt="Lpda2" class="h-[52px]"/>
+    </a>
+
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
+
+      <a tuiButton size="m" appearance="custom" routerLink="/reserve"
+              class="btn-primary text-base">
+        <ng-container i18n>Prenota ora</ng-container>
+      </a>
+
+      <div class="block md:hidden" >
+        <button (click)="triggerMenu()" size="m" appearance="outline" tuiIconButton>
+          <app-menu-icon [isOpen]="isMenuOpen"></app-menu-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="navbar-links | flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a routerLink="/" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"
+             class="block py-2 px-3 text-base"
+             aria-current="page">
+            Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/menu" [routerLinkActive]="'active'"
+             class="block py-2 px-3 text-base">
+            <ng-container i18n>Menù</ng-container>
+          </a>
+        </li>
+        <li>
+<!--             text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700-->
+          <a routerLink="/about" [routerLinkActive]="'active'"
+             class="block py-2 px-3 text-base">
+            <ng-container i18n>Chi siamo</ng-container>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div #navbarLinks class="fullsize-navbar-links | items-center flex md:hidden flex-col px-3"
+  [ngClass]="{'open': isMenuOpen}">
+  <div class="content-around flex flex-col items-center my-auto"
+    [style]="{'max-height': '350px', 'height': '50%'}">
+    <a class="simple-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/" i18n>Home</a>
+    <a class="simple-link" [routerLinkActive]="'active'" routerLink="/menu"><ng-container i18n>Menù</ng-container></a>
+    <a class="simple-link" [routerLinkActive]="'active'" routerLink="/about"><ng-container i18n>Chi siamo</ng-container></a>
+
+    <!-- <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container> -->
+  </div>
+</div>
