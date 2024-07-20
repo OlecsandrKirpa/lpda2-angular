@@ -9,24 +9,14 @@
   background-attachment: unset !important;
   
   .title {
-    font-family: publicHomeLandingTitle, serif;
+    font-family: "TrajanProBold", serif;
   }
 
   .subtitle {
-    font-family: publicHomeLandingSubtitle, serif;
+    font-family: "CalifornianFBItalic", serif;
   }
 
   .cit {
     font-family: 'Tangerine', cursive;
-  }
-
-  @font-face {
-    font-family: publicHomeLandingTitle;
-    src: url('/assets/fonts/TrajanProBold.ttf');
-  }
-
-  @font-face {
-    font-family: publicHomeLandingSubtitle;
-    src: url('/assets/fonts/CalifornianFBItalic.ttf');
   }
 }
