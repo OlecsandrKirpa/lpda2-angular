@@ -4,6 +4,23 @@
 //@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap');
 
 // ACTUAL FONTS:
+// MANROPE (probably required by taiga-ui)
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/manrope-v15-xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk7PFO_F.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(../fonts/manrope-v15-xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk59E-_F.ttf) format('truetype');
+}
+
 //@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 /* cyrillic-ext */
 //@font-face {
