@@ -1,1 +1,44 @@
-<p>public-home-menu works!</p>
+<div class="h-full w-full grid grid-cols-2">
+  <div class="flex flex-col justify-center col-span-2 md:col-span-1 mx-auto">
+    <div class="flex flex-col p-3">
+      <h2 class="text-5xl text-primary mb-2" i18n>Il nostro menù</h2>
+      <hr class="bg-primary w-3/4 h-[1px] mb-5">
+
+      <h3 class="mb-3 text-xl" i18n>Venezia è da sempre incontro di varie <b>culture</b> e <b>popoli</b>. L’idea dei
+        nostri piatti è quella di unire la <b>tradizione</b> con l’innovazione nel rispetto della <b>stagionalità</b>
+        degli ingredienti. Un indovinato <b>connubio</b> tra ricette mediterranee con i classici <b>piatti veneziani</b>.
+        La cucina spazia tra una vasta scelta di <b>pescato</b> giornaliero, <b>carni</b> selezionate e <b>verdure</b>
+        provenienti dalle isole lagunari. Il tutto accompagnato dai <b>migliori vini italiani</b> con una selezione da
+        <b>cantine</b> di piccoli vignaioli. Fermati al bar per un <b>cicchetto</b> a pranzo o per un cocktail e uno <b>spritz
+          rivisitato</b> alla sera.</h3>
+
+      <div class="flex justify-end">
+        <div class="block">
+          <a size="m" tuiButton appearance="custom" class="btn-primary-outline" routerLink="/menu">
+            <ng-container i18n>Vai al menù</ng-container>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-2 md:col-span-1">
+    <tui-carousel
+        class="w-full h-full"
+        [draggable]="true"
+        [(index)]="index"
+        [duration]="3000"
+    >
+      <ng-container *ngFor="let item of items; let i = index">
+        <img
+            *tuiItem
+            alt="Food"
+            draggable="false"
+            src="assets/img/{{ item }}"
+            [class.item_active]="i === index + 1"
+        />
+      </ng-container>
+    </tui-carousel>
+
+  </div>
+</div>

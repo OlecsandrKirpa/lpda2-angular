@@ -1,0 +1,21 @@
+:host{
+ tui-carousel img {
+    max-width: unset !important;
+    max-height: unset !important;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  ::ng-deep {
+    tui-carousel {
+      .t-scroller, .t-items {
+        height: 100%;
+      }
+
+      fieldset.t-item {
+        padding: 0;
+      }
+    }
+  }
+}
