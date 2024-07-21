@@ -1,0 +1,13 @@
+<ng-template #basicSvg>
+  <img src="/assets/img/public-pages-icons/{{ icon }}.svg" alt="{{ icon }}">
+</ng-template>
+
+@switch (icon) {
+  @case ("instagram") {
+    <ng-container *ngTemplateOutlet="basicSvg"></ng-container>
+  }
+
+  @default {
+    unknown icon {{ icon }}
+  }
+}

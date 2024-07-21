@@ -1,1 +1,30 @@
-<p>public-home-instagram works!</p>
+@if (instagramPostUrl()) {
+
+
+  <div class="px-6 lg:px-12">
+    <h2 class="text-5xl text-primary mb-2" i18n>Seguici su Instagram</h2>
+    <hr class="bg-primary w-3/4 h-[1px] mb-5">
+  </div>
+
+  <div class="h-full w-full grid grid-cols-2">
+    <div class="flex flex-col justify-center col-span-2 md:col-span-1 mx-auto px-2 w-full">
+      <div class="flex flex-col p-3 grow">
+        <iframe style="height: 100%; width: 100%; min-height: 700px;"
+                [src]="instagramPostUrl() | bypassSecurityTrustResourceUrl" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center col-span-2 md:col-span-1 mx-auto px-2 w-full">
+      <img class="max-h-[300px] object-cover" draggable="false" src="/assets/img/public-home-instagram1.webp">
+
+      <div class="flex items-center justify-center my-4">
+        <a target="_blank" class="text-3xl text-primary hover:underline underline-offset-4" href="https://instagram.com/laportadacqua">
+          <app-public-icon class="me-2" [icon]="'instagram'" ></app-public-icon>
+          <span>&#64;laportadacqua</span>
+        </a>
+      </div>
+
+      <img class="max-h-[300px] object-cover" draggable="false" src="/assets/img/public-home-instagram2.webp">
+    </div>
+  </div>
+}
