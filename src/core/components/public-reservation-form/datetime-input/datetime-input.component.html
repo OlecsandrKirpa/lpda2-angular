@@ -1,0 +1,40 @@
+<tui-expand [expanded]="date.invalid">
+  <p class="text-xl text-center mb-3">
+    <ng-container i18n>Scegli la data</ng-container>
+  </p>
+
+  <tui-calendar
+      (touchend)="touched()"
+      [value]="today()"
+      (dayClick)="onDayClick($event)"
+  ></tui-calendar>
+</tui-expand>
+
+<tui-expand [expanded]="date.valid">
+  @if (date.value) {
+    <p class="text-xl">
+      <ng-container i18n>Seleziona l'orario per il giorno</ng-container>
+      <span (click)="date.reset()" class="cursor-pointer inline-flex items-center ms-2 underline">
+        {{ date.value.toLocalNativeDate() | date: 'EEEE d MMMM y' }}
+
+        <mat-icon class="ms-1">edit</mat-icon>
+      </span>
+    </p>
+  }
+
+  @if (loadingTimes()) {
+    <tui-loader [showLoader]="true"></tui-loader>
+  } @else {
+    <div class="grid grid-cols-4 gap-3">
+      @for (item of validTimes(); track item) {
+        <button type="button" (click)="onTimeClick(item)" size="m" tuiButton appearance="custom"
+                [ngClass]="{'btn-primary': time.value && time.value.hours == item.hours && time.value.minutes == item.minutes, 'btn-primary-outline': !(time.value && time.value.hours == item.hours && time.value.minutes == item.minutes)}">
+          {{ item }}
+        </button>
+      }
+    </div>
+  }
+</tui-expand>
+
+<!--<p>date: {{ date.value }} - {{date.valid}}</p>-->
+<!--<p>time: {{ time.value }} - {{time.valid}}</p>-->

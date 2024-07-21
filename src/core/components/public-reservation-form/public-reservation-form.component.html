@@ -1,0 +1,117 @@
+<tui-stepper class="justify-around" [activeItemIndex]="currentIndex()">
+  <button (click)="setState(0)" [stepState]="getState(0)" tuiStep>
+    @if (people.value && people.valid && currentIndex() > 0) {
+      {{ people.value }}
+      <ng-container i18n>ospiti</ng-container>
+    } @else {
+      <ng-container i18n>Quante persone?</ng-container>
+    }
+  </button>
+
+  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep>
+    @if (datetime.value && datetime.valid && currentIndex() > 1) {
+      {{ datetime.value | date: 'EEEE d MMMM y HH:mm' }}
+    } @else {
+      <ng-container i18n>Quando?</ng-container>
+    }
+  </button>
+
+  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep>
+    <ng-container i18n>Contatti</ng-container>
+  </button>
+
+  <button (click)="setState(4)" [stepState]="getState(4)" tuiStep>
+    <ng-container i18n>Riepilogo</ng-container>
+  </button>
+</tui-stepper>
+
+<tui-carousel
+    class="w-full h-full"
+    [draggable]="false"
+    [(index)]="currentIndex"
+>
+  <div class="p-3" *tuiItem>
+    <app-people-count-input [formControl]="people">
+      <p class="text-xl text-center mb-3" i18n>Seleziona il numero di ospiti</p>
+    </app-people-count-input>
+
+    <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+      <ng-container i18n>Continua</ng-container>
+    </button>
+  </div>
+
+  <div class="p-3" *tuiItem>
+    <app-datetime-input [formControl]="datetime"></app-datetime-input>
+
+    <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+      <ng-container i18n>Continua</ng-container>
+    </button>
+  </div>
+
+  <div class="p-3" *tuiItem>
+    <form (ngSubmit)="nextStep()" class="mx-auto max-w-[500px]" [formGroup]="contacts">
+      <div class="flex items-center mb-3">
+        <tui-input [tuiAutoFocus]="true" class="grow me-2" [formControlName]="'firstName'">
+          <ng-container i18n>Nome</ng-container>
+          <input tuiTextfield autocomplete="first_name">
+        </tui-input>
+
+        <tui-input class="grow ms-2" [formControlName]="'lastName'">
+          <ng-container i18n>Cognome</ng-container>
+
+          <input tuiTextfield autocomplete="last_name">
+        </tui-input>
+      </div>
+
+      <div class="mb-3">
+        <tui-input [tuiAutoFocus]="true" class="grow me-2" [formControlName]="'email'">
+          <ng-container i18n>Email</ng-container>
+
+          <input tuiTextfield autocomplete="email">
+        </tui-input>
+      </div>
+
+      <div class="mb-3">
+        <tui-input-phone-international
+            [countries]="countries"
+            [(countryIsoCode)]="countryIsoCode"
+            [formControlName]="'phone'">
+          <ng-container i18n>Cellulare</ng-container>
+        </tui-input-phone-international>
+      </div>
+
+      <button tuiButton appearance="custom" class="btn-primary" type="submit">
+        <ng-container i18n>Continua</ng-container>
+      </button>
+    </form>
+  </div>
+
+  <div class="p-3" *tuiItem>
+    <form (ngSubmit)="nextStep()" class="mx-auto max-w-[500px]" [formGroup]="notesForm">
+
+      <div class="mb-3">
+        <tui-input-number [decimal]="'never'" [min]="0" [step]="1" [max]="people.value" formControlName="children">
+          Quanti bambini ci saranno con voi?
+        </tui-input-number>
+      </div>
+
+      <div class="mb-3">
+        <tui-textarea formControlName="notes">
+          <ng-container i18n>Informazioni aggiuntive, se necessario, sono da aggiungere qui!</ng-container>
+        </tui-textarea>
+      </div>
+
+      <div class="mb-3">
+        <tui-checkbox-block formControlName="acceptTerms" >
+          <ng-container i18n>Accetto i termini e le condizioni</ng-container>
+        </tui-checkbox-block>
+      </div>
+
+
+      <button tuiButton appearance="custom" class="btn-primary" type="submit">
+        <ng-container i18n>Conferma prenotazione</ng-container>
+      </button>
+    </form>
+  </div>
+</tui-carousel>
+
