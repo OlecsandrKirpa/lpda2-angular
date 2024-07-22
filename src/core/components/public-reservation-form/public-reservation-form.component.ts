@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "@core/lib/custom-validators";
 import {
@@ -18,6 +27,13 @@ import {isoTimezoneRexExp} from "@core/lib/tui-datetime-to-iso-string";
 import {TuiButtonModule} from "@taiga-ui/core";
 import {DatePipe} from "@angular/common";
 import {TuiCountryIsoCode} from '@taiga-ui/i18n';
+import {CreateReservationData, formatReservationData} from "@core/lib/interfaces/create-reservation-data";
+import {PublicReservationsService} from "@core/services/http/public-reservations.service";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import {NotificationsService} from "@core/services/notifications.service";
+import {Reservation} from "@core/models/reservation";
+import {HttpErrorResponse} from "@angular/common/http";
+import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 
 interface FormStep {
   form: FormGroup | AbstractControl;
@@ -48,28 +64,19 @@ interface FormStep {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,
-    // tuiInputNumberOptionsProvider({
-    //   decimal: 'never',
-    //   step: 1,
-    //
-    // }),
   ]
 })
 export class PublicReservationFormComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
+  private readonly reservations: PublicReservationsService = inject(PublicReservationsService);
+  private readonly notifications: NotificationsService = inject(NotificationsService);
+
+  @Output() createdReservation: EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
   readonly currentIndex: WritableSignal<number> = signal(0);
 
   readonly people: FormControl<number | null> = new FormControl(null, [Validators.required, CustomValidators.min(0)]);
   readonly datetime: FormControl<string | null> = new FormControl(null, [Validators.required, CustomValidators.pattern(isoTimezoneRexExp)]);
-
-  // readonly peopleForm: FormGroup = new FormGroup({people: this.people});
-
-  // readonly datetimeForm: FormGroup = new FormGroup({datetime: this.datetime});
-
-  // readonly summaryForm: FormGroup = new FormGroup({
-  //   children: new FormControl(0, [Validators.required, CustomValidators.min(0)]),
-  // });
 
   readonly contacts: FormGroup = new FormGroup({
     firstName: new FormControl<string | null>(null, [Validators.required, Validators.minLength(2)]),
@@ -90,39 +97,6 @@ export class PublicReservationFormComponent implements OnInit {
    * TODO this field should be set depending on the user's headers AND the selected language for the website.
    */
   countryIsoCode = TuiCountryIsoCode.IT;
-
-
-  // readonly form: FormGroup = new FormGroup({
-  //   /**
-  //    * STEP 1: How many people and how many children.
-  //    */
-  //   adults: new FormControl(null, [Validators.required, CustomValidators.min(0)]),
-  //   children: new FormControl(0, [Validators.required, CustomValidators.min(0)]),
-  //
-  //   /**
-  //    * STEP 2: Date and time of the reservation (show available dates only).
-  //    */
-  //   date: new FormControl(null, [Validators.required]),
-  //   time: new FormControl(null, [Validators.required]),
-  //
-  //   /**
-  //    * STEP 4: Full name, email and phone number.
-  //    */
-  //   fullname: new FormControl(null, [Validators.required]),
-  //   email: new FormControl(null, [Validators.required, Validators.email]),
-  //   phone: new FormControl(null, [Validators.required]),
-  //
-  //   /**
-  //    * STEP 5: (OPTIONAL, SEE CONFIGS) pay in advance.
-  //    * paid will contain the amount paid in advance.
-  //    */
-  //   paid: new FormControl(null, [Validators.required, Validators.min(0)]),
-  //
-  //   /**
-  //    * STEP 6: Additional notes.
-  //    */
-  //   notes: new FormControl(null)
-  // });
 
   readonly steps: { [index: number]: FormStep } = {
     0: {
@@ -165,7 +139,7 @@ export class PublicReservationFormComponent implements OnInit {
     this.datetime.valueChanges.pipe(
       takeUntil(this.destroy$),
       filter((value: unknown) => this.datetime.valid),
-      filter(() => this.currentIndex() === 0)
+      filter(() => this.currentIndex() === 1)
     ).subscribe({
       next: (): void => {
         setTimeout(() => this.nextStep(), 10)
@@ -175,18 +149,18 @@ export class PublicReservationFormComponent implements OnInit {
     /**
      * DEVELOPMENT ONLY:
      */
-    setTimeout(() => {
-      this.loadPrevious({
-        adults: 2,
-        children: 1,
-        datetime: `2024-07-22T12:00:00.000Z`,
-        firstName: `Sasha`,
-        lastName: `Kirpachov`,
-        email: `sasha@opinioni.net`,
-        phone: `3515590063`,
-        phoneCountry: `IT`
-      });
-    }, 500);
+    // setTimeout(() => {
+    //   this.loadPrevious({
+    //     adults: 2,
+    //     children: 1,
+    //     datetime: `2024-07-22T12:00:00.000Z`,
+    //     firstName: `Sasha`,
+    //     lastName: `Kirpachov`,
+    //     email: `sasha@opinioni.net`,
+    //     phone: `3515590063`,
+    //     phoneCountry: `IT`
+    //   });
+    // }, 500);
   }
 
   nextStep(): void {
@@ -198,8 +172,24 @@ export class PublicReservationFormComponent implements OnInit {
       this.currentIndex.update((index) => index + 1);
       this.currentStep().viewed = true;
     } else {
-      // TODO submit
-      console.log(`TODO submit`, this);
+      const out = this.formatOutput();
+      console.log(`submitting!!!`, {out, self: this});
+
+      if (out) this.reservations.create(out).subscribe({
+        next: (item: Reservation): void => {
+          this.createdReservation.emit(item);
+          this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
+          this.reset();
+        },
+        error: (error: unknown) => {
+          if (error instanceof HttpErrorResponse) {
+            this.notifications.error(parseHttpErrorMessage(error) || SOMETHING_WENT_WRONG_MESSAGE);
+          } else {
+            this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+          }
+        }
+      })
+      else this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
     }
   }
 
@@ -232,7 +222,9 @@ export class PublicReservationFormComponent implements OnInit {
     lastName?: string,
     email?: string,
     phone?: string,
-    phoneCountry?: string
+    phoneCountry?: string,
+    notes?: string;
+
   }): void {
     let people = 0;
     if (data.adults) people += data.adults;
@@ -251,5 +243,44 @@ export class PublicReservationFormComponent implements OnInit {
     if (data.email) this.contacts.get('email')?.setValue(data.email);
     if (data.phone) this.contacts.get('phone')?.setValue(data.phone);
     if (data.phoneCountry) this.countryIsoCode = data.phoneCountry as TuiCountryIsoCode;
+    if (data.notes) this.notesForm.patchValue({notes: data.notes});
+    if (data.children) this.notesForm.patchValue({children: data.children});
+  }
+
+  private formatOutput(): CreateReservationData | null {
+    const email: string | undefined = this.contacts.get('email')?.value;
+    const phone: string | undefined = this.contacts.get('phone')?.value;
+    const firstName: string | undefined = this.contacts.get('firstName')?.value;
+    const lastName: string | undefined = this.contacts.get('lastName')?.value;
+    const datetime: string | undefined | null = this.datetime.value;
+    const children: number | undefined | null = this.notesForm.get(`children`)?.value;
+    const people: number | undefined | null = this.people.value;
+    const notes: string | null | undefined = this.notesForm.get(`notes`)?.value;
+
+    // if (!(typeof email === "string" && email.length > 0)) return null;
+    // if (!(typeof phone === "string" && phone.length > 0)) return null;
+    // if (!(typeof firstName === "string" && firstName.length > 0)) return null;
+    // if (!(typeof lastName === "string" && lastName.length > 0)) return null;
+    // if (!(typeof datetime === "string" && datetime.length > 0)) return null;
+    // if (!(typeof notes === "string" && notes.length > 0)) return null;
+    //
+    // if (!(typeof children === "number" && children >= 0)) return null;
+    // if (!(typeof people === "number" && people > 0)) return null;
+
+    return formatReservationData({
+      email,
+      phone,
+      datetime,
+      children,
+      notes,
+      adults: people && children ? people - children : null,
+      firstName: firstName,
+      lastName: lastName
+    });
+  }
+
+  private reset(): void {
+    this.currentIndex.set(0);
+    Object.values(this.steps).forEach((key: { form: AbstractControl | FormGroup }) => key.form.reset());
   }
 }

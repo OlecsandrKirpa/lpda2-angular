@@ -1,0 +1,16 @@
+@if (createdReservation()) {
+  <div>
+    <h2 class="text-6xl text-primary" i18n>Prenotazione confermata!</h2>
+    <p i18n>La tua prenotazione è stata creata. Riceverai a breve un'email di conferma.</p>
+    <p i18n>Ci vediamo il {{ createdReservation()?.datetime | date: 'EEEE d MMMM y' }} alle
+      ore {{ createdReservation()?.datetime | date: 'H:m' }}. </p>
+
+    <button type="button" tuiButton appearance="secondary-destructive">
+      <ng-container i18n>Cancella prenotazione</ng-container>
+    </button>
+  </div>
+} @else {
+  <app-public-reservation-form
+      (createdReservation)="createdReservation.set($event)"
+  ></app-public-reservation-form>
+}
