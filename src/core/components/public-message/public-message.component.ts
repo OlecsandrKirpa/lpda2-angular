@@ -6,7 +6,8 @@ export const PublicMessageLocations = [
   `home-menu`,
   `home-instagram`,
   `home-reserve`,
-  `new-reservation-form`
+  `new-reservation-form`,
+  `existing-reservation-form`,
 ] as const;
 export type PublicMessageLocation = typeof PublicMessageLocations[number];
 

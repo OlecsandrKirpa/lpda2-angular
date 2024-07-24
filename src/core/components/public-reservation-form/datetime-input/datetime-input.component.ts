@@ -2,13 +2,13 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter,
-  inject,
+  inject, Input,
   OnInit,
   Output,
   signal,
   WritableSignal
 } from '@angular/core';
-import {TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
+import {TuiBooleanHandler, TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 import {TuiButtonModule, TuiCalendarModule, TuiExpandModule, TuiLoaderModule} from "@taiga-ui/core";
 import {filter, finalize, merge, switchMap, take, takeUntil, tap} from "rxjs";
@@ -79,6 +79,15 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
 
   readonly today: WritableSignal<TuiDay> = signal(TuiDay.currentLocal());
+
+  readonly disabledDates: TuiBooleanHandler<TuiDay> = (day: TuiDay): boolean => {
+    if (day.dayBefore(this.today())) return true;
+    if (day.dayAfter(this.today().append({day: this.maxDaysInAdvance}))) return true;
+
+    return false;
+  };
+
+  @Input() maxDaysInAdvance: number = 300;
 
   ngOnInit(): void {
     merge(this.date.valueChanges.pipe(

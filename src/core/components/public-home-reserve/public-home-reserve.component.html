@@ -1,12 +1,43 @@
 <div class="mx-4 md:mx-8 lg:mx-12">
-  <h2 class="text-5xl text-center text-primary mb-2" i18n>Prenota ora</h2>
+  <h2 class="text-5xl text-center text-primary mb-2">
+    @if (createdReservation()) {
+      <ng-container i18n>Prenotazione confermata!</ng-container>
+    } @else {
+      <ng-container i18n>Prenota ora</ng-container>
+    }
+  </h2>
+
   <hr class="bg-primary w-3/4 mx-auto h-[1px] mb-5">
 
-  <p class="text-xl text-center mb-3">
-    <ng-container i18n>Riserva il tuo posto ad uno dei nostri tavoli e garantisciti la nostra esperienza esclusiva.</ng-container>
-  </p>
+  @if (createdReservation()) {
+    <p class="text-xl text-center mb-3" i18n>La tua prenotazione è stata creata. Riceverai a breve un'email di
+      conferma.</p>
+    <p class="text-xl text-center mb-3" i18n>Ci vediamo il {{ createdReservation()?.datetime | date: 'EEEE d MMMM y' }}
+      alle ore {{ createdReservation()?.datetime | date: 'HH:mm' }}. </p>
 
-  <app-public-message class="block mb-3 text-center text-xl" [location]="'new-reservation-form'"></app-public-message>
+    <app-public-message class="block mb-3 text-center text-xl"
+                        [location]="'existing-reservation-form'"></app-public-message>
 
-  <app-public-create-or-show-reservation></app-public-create-or-show-reservation>
+    <div class="flex items-center justify-center">
+      <button [showLoader]="resendingConfirmation()" class="btn-primary me-2" (click)="resendConfirmation()" type="button" size="m" tuiButton appearance="custom">
+        <ng-container i18n>Rimanda email</ng-container>
+      </button>
+
+      <button routerLink="/cr/{{ createdReservation()!.secret }}" type="button" size="m" tuiButton appearance="secondary-destructive">
+        <ng-container i18n>Cancella prenotazione</ng-container>
+      </button>
+    </div>
+  } @else {
+    <p class="text-xl text-center mb-3">
+      <ng-container i18n>Riserva il tuo posto ad uno dei nostri tavoli e garantisciti la nostra esperienza esclusiva.
+      </ng-container>
+    </p>
+
+    <app-public-message class="block mb-3 text-center text-xl" [location]="'new-reservation-form'"></app-public-message>
+
+    <app-public-reservation-form></app-public-reservation-form>
+  }
+
+  <!--  <app-public-create-or-show-reservation></app-public-create-or-show-reservation>-->
+
 </div>

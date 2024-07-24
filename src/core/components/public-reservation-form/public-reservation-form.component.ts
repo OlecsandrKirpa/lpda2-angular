@@ -34,6 +34,9 @@ import {NotificationsService} from "@core/services/notifications.service";
 import {Reservation} from "@core/models/reservation";
 import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
+import {PublicPagesDataService} from "@core/services/http/public-pages-data.service";
+import {PublicData} from "@core/lib/interfaces/public-data";
+import {Setting, SettingValue} from "@core/lib/settings";
 
 interface FormStep {
   form: FormGroup | AbstractControl;
@@ -70,10 +73,13 @@ export class PublicReservationFormComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly reservations: PublicReservationsService = inject(PublicReservationsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
+  private readonly publicDataService: PublicPagesDataService = inject(PublicPagesDataService);
 
   @Output() createdReservation: EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
   readonly currentIndex: WritableSignal<number> = signal(0);
+  readonly maxPeople: WritableSignal<number> = signal(10);
+  readonly maxDaysInAdvance: WritableSignal<number> = signal(300);
 
   readonly people: FormControl<number | null> = new FormControl(null, [Validators.required, CustomValidators.min(0)]);
   readonly datetime: FormControl<string | null> = new FormControl(null, [Validators.required, CustomValidators.pattern(isoTimezoneRexExp)]);
@@ -145,6 +151,19 @@ export class PublicReservationFormComponent implements OnInit {
         setTimeout(() => this.nextStep(), 10)
       }
     });
+
+    this.publicDataService.data$.pipe(
+      takeUntil(this.destroy$),
+      filter((data: PublicData | null): data is PublicData => data !== null)
+    ).subscribe({
+      next: (data: PublicData) => {
+        const maxPeople: SettingValue | null = data.settings["max_people_per_reservation"] ?? null;
+        this.maxPeople.set(maxPeople ? Number(maxPeople) : this.maxPeople());
+
+        const maxDaysInAdvance: SettingValue | null = data.settings["reservation_max_days_in_advance"] ?? null;
+        this.maxDaysInAdvance.set(maxDaysInAdvance ? Number(maxDaysInAdvance) : this.maxDaysInAdvance());
+      }
+    })
 
     /**
      * DEVELOPMENT ONLY:
@@ -257,15 +276,8 @@ export class PublicReservationFormComponent implements OnInit {
     const people: number | undefined | null = this.people.value;
     const notes: string | null | undefined = this.notesForm.get(`notes`)?.value;
 
-    // if (!(typeof email === "string" && email.length > 0)) return null;
-    // if (!(typeof phone === "string" && phone.length > 0)) return null;
-    // if (!(typeof firstName === "string" && firstName.length > 0)) return null;
-    // if (!(typeof lastName === "string" && lastName.length > 0)) return null;
-    // if (!(typeof datetime === "string" && datetime.length > 0)) return null;
-    // if (!(typeof notes === "string" && notes.length > 0)) return null;
-    //
-    // if (!(typeof children === "number" && children >= 0)) return null;
-    // if (!(typeof people === "number" && people > 0)) return null;
+    let adults = people || 0;
+    if (children) adults -= children;
 
     return formatReservationData({
       email,
@@ -273,7 +285,7 @@ export class PublicReservationFormComponent implements OnInit {
       datetime,
       children,
       notes,
-      adults: people && children ? people - children : null,
+      adults,
       firstName: firstName,
       lastName: lastName
     });

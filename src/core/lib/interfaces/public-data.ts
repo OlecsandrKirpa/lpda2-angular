@@ -1,4 +1,5 @@
 import {ReservationData} from "@core/lib/interfaces/reservation-data";
+import {Setting, SettingKey, SettingValue} from "@core/lib/settings";
 
 /**
  * Data preloaded on public pages that is essential to make the public part of the app work.
@@ -10,4 +11,6 @@ export interface PublicData {
    * When asking server for public data, it will check for this cookie and return the reservation data if it exists and its not passed.
    */
   reservation: ReservationData | null;
+
+  settings: Record<SettingKey, SettingValue>;
 }

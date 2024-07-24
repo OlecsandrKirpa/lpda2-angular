@@ -4,6 +4,7 @@
   </p>
 
   <tui-calendar
+      [disabledItemHandler]="disabledDates"
       (touchend)="touched()"
       [value]="today()"
       (dayClick)="onDayClick($event)"

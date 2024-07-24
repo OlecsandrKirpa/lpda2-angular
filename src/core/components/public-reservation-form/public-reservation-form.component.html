@@ -31,7 +31,7 @@
     [(index)]="currentIndex"
 >
   <div class="p-3" *tuiItem>
-    <app-people-count-input [formControl]="people">
+    <app-people-count-input [maxPeople]="maxPeople()" [formControl]="people">
       <p class="text-xl text-center mb-3" i18n>Seleziona il numero di ospiti</p>
     </app-people-count-input>
 
@@ -41,7 +41,7 @@
   </div>
 
   <div class="p-3" *tuiItem>
-    <app-datetime-input [formControl]="datetime"></app-datetime-input>
+    <app-datetime-input [maxDaysInAdvance]="maxDaysInAdvance()" [formControl]="datetime"></app-datetime-input>
 
     <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
       <ng-container i18n>Continua</ng-container>

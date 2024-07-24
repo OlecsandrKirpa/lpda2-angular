@@ -2,7 +2,8 @@ export const SettingKeys = [
   `available_locales`,
   `default_language`,
   `max_people_per_reservation`,
-  `email_contacts`
+  `email_contacts`,
+  `reservation_max_days_in_advance`
 ] as const;
 
 export type SettingKey = typeof SettingKeys[number];
@@ -24,7 +25,7 @@ export type SettingValue = string | number | null | string[] | number[] | Record
 export interface Setting {
   key: string,
   value: SettingValue,
-  user_id: number,
+  // user_id: number,
   require_root: boolean,
   updated_at: string
 }
