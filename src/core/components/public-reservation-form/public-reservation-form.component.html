@@ -8,7 +8,7 @@
     }
   </button>
 
-  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep>
+  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep [disabled]="currentIndex() < 1 && people.invalid" >
     @if (datetime.value && datetime.valid && currentIndex() > 1) {
       {{ datetime.value | date: 'EEEE d MMMM y HH:mm' }}
     } @else {
@@ -16,11 +16,11 @@
     }
   </button>
 
-  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep>
+  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep [disabled]="currentIndex() < 2 && contacts.invalid">
     <ng-container i18n>Contatti</ng-container>
   </button>
 
-  <button (click)="setState(4)" [stepState]="getState(4)" tuiStep>
+  <button (click)="setState(3)" [stepState]="getState(3)" tuiStep [disabled]="currentIndex() < 3 && notesForm.invalid">
     <ng-container i18n>Riepilogo</ng-container>
   </button>
 </tui-stepper>
@@ -35,17 +35,21 @@
       <p class="text-xl text-center mb-3" i18n>Seleziona il numero di ospiti</p>
     </app-people-count-input>
 
-    <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
-      <ng-container i18n>Continua</ng-container>
-    </button>
+    <tui-expand [expanded]="people.valid">
+      <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+        <ng-container i18n>Continua</ng-container>
+      </button>
+    </tui-expand>
   </div>
 
   <div class="p-3" *tuiItem>
-    <app-datetime-input [maxDaysInAdvance]="maxDaysInAdvance()" [formControl]="datetime"></app-datetime-input>
+    <app-datetime-input class="block mb-3" [maxDaysInAdvance]="maxDaysInAdvance()" [formControl]="datetime"></app-datetime-input>
 
-    <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
-      <ng-container i18n>Continua</ng-container>
-    </button>
+    <tui-expand [expanded]="datetime.valid">
+      <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+        <ng-container i18n>Continua</ng-container>
+      </button>
+    </tui-expand>
   </div>
 
   <div class="p-3" *tuiItem>
@@ -80,9 +84,11 @@
         </tui-input-phone-international>
       </div>
 
-      <button tuiButton appearance="custom" class="btn-primary" type="submit">
-        <ng-container i18n>Continua</ng-container>
-      </button>
+      <tui-expand [expanded]="contacts.valid">
+        <button tuiButton appearance="custom" class="btn-primary" type="submit">
+          <ng-container i18n>Continua</ng-container>
+        </button>
+      </tui-expand>
     </form>
   </div>
 
@@ -107,8 +113,7 @@
         </tui-checkbox-block>
       </div>
 
-
-      <button tuiButton appearance="custom" class="btn-primary" type="submit">
+      <button [disabled]="notesForm.invalid" tuiButton appearance="custom" class="btn-primary" type="submit">
         <ng-container i18n>Conferma prenotazione</ng-container>
       </button>
     </form>

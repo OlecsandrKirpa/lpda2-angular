@@ -5,6 +5,9 @@ import {CommonHttpService} from "@core/services/http/common-http.service";
 import {BehaviorSubject, catchError, map, Observable, tap} from "rxjs";
 import {DomainService} from "@core/services/domain.service";
 import {PublicPagesDataService} from "@core/services/http/public-pages-data.service";
+import {ReservationTurn} from "@core/models/reservation-turn";
+import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
+import {JWT_INTERCEPTOR_SKIP_REQUEST_PARAM} from "@core/interceptors/jwt.interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,12 @@ export class PublicReservationsService extends DomainService {
         this.created.next(data?.reservation ? new Reservation(data.reservation) : null);
       }
     });
+  }
+
+  getValidTimes(date: Date): Observable<ReservationTurn[]> {
+    return this.get<ReservationTurnData[]>(`valid_times`, {params: { date: date.toISOString()}}).pipe(
+      map((data: ReservationTurnData[]): ReservationTurn[] => data.map((d: ReservationTurnData): ReservationTurn => new ReservationTurn(d))),
+    )
   }
 
   readonly created: BehaviorSubject<Reservation | null> = new BehaviorSubject<Reservation | null>(null);

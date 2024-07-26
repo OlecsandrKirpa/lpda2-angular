@@ -27,9 +27,9 @@ export const JWT_INTERCEPTOR_DONT_SKIP_REQUEST_PARAM: string = "JWT_INTERCEPTOR_
 const SKIP_URLS: RegExp[] = [
   `v.*/auth/*`,
   `^\/assets/*`,
-  `v.*\/client-configs$`,
-  `v.*\/public.*`
-].map((url: string) => new RegExp(url));
+  /v\d{1}\/public.*/,
+  /v\d{1}\/reservations.*/,
+].map((url: any) => new RegExp(url));
 
 function shouldSkipByUrl(url: string): boolean {
   return SKIP_URLS.some((skipUrl: RegExp) => skipUrl.test(url) || skipUrl.test(`${url}/`) || skipUrl.test(`/${url}`));

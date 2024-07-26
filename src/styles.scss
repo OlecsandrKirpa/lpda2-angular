@@ -61,18 +61,14 @@ h1 {
 
 app-home-layout {
   font-family: Neuton, Roboto, sans-serif;
+  --tui-primary: var(--first-color);
+  --tui-primary-hover: var(--second-color);
+  --tui-link: var(--first-color);
+  --tui-link-hover: var(--second-color);
+  --tui-secondary-hover: var(--fourth-color);
 
   .selected-link, .active-link, a.active {
     font-weight: bold;
-    color: var(--first-color);
-  }
-
-  a, [tuiLink] {
-    color: var(--first-color);
-
-    &:hover {
-      color: var(--second-color);
-    }
   }
 
   $colors: var(--first-color), var(--second-color);

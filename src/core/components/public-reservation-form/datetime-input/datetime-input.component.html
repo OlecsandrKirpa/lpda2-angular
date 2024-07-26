@@ -3,12 +3,14 @@
     <ng-container i18n>Scegli la data</ng-container>
   </p>
 
-  <tui-calendar
-      [disabledItemHandler]="disabledDates"
-      (touchend)="touched()"
-      [value]="today()"
-      (dayClick)="onDayClick($event)"
-  ></tui-calendar>
+  <div class="flex items-center justify-center">
+    <tui-calendar
+        [disabledItemHandler]="disabledDates"
+        (touchend)="touched()"
+        [value]="today()"
+        (dayClick)="onDayClick($event)"
+    ></tui-calendar>
+  </div>
 </tui-expand>
 
 <tui-expand [expanded]="date.valid">
@@ -26,7 +28,7 @@
   @if (loadingTimes()) {
     <tui-loader [showLoader]="true"></tui-loader>
   } @else {
-    <div class="grid grid-cols-4 gap-3">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
       @for (item of validTimes(); track item) {
         <button type="button" (click)="onTimeClick(item)" size="m" tuiButton appearance="custom"
                 [ngClass]="{'btn-primary': time.value && time.value.hours == item.hours && time.value.minutes == item.minutes, 'btn-primary-outline': !(time.value && time.value.hours == item.hours && time.value.minutes == item.minutes)}">

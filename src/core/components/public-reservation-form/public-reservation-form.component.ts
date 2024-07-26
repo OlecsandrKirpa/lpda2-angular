@@ -24,7 +24,7 @@ import {
 import {filter, takeUntil, tap} from "rxjs";
 import {DatetimeInputComponent} from "@core/components/public-reservation-form/datetime-input/datetime-input.component";
 import {isoTimezoneRexExp} from "@core/lib/tui-datetime-to-iso-string";
-import {TuiButtonModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiExpandModule} from "@taiga-ui/core";
 import {DatePipe} from "@angular/common";
 import {TuiCountryIsoCode} from '@taiga-ui/i18n';
 import {CreateReservationData, formatReservationData} from "@core/lib/interfaces/create-reservation-data";
@@ -60,7 +60,8 @@ interface FormStep {
     TuiInputPhoneInternationalModule,
     TuiTextareaModule,
     TuiInputNumberModule,
-    TuiCheckboxBlockModule
+    TuiCheckboxBlockModule,
+    TuiExpandModule
   ],
   templateUrl: './public-reservation-form.component.html',
   styleUrl: './public-reservation-form.component.scss',

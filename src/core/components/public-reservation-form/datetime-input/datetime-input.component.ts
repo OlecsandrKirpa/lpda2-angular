@@ -18,6 +18,11 @@ import {strTimeTimezone} from "@core/lib/str-time-timezone";
 import {DatePipe, NgClass} from "@angular/common";
 import {ReservationsService} from "@core/services/http/reservations.service";
 import {MatIcon} from "@angular/material/icon";
+import {NotificationsService} from "@core/services/notifications.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
+import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import {PublicReservationsService} from "@core/services/http/public-reservations.service";
 
 /**
  * TODO 21 luglio 2024:
@@ -54,6 +59,7 @@ import {MatIcon} from "@angular/material/icon";
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,
+
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: DatetimeInputComponent,
@@ -62,11 +68,10 @@ import {MatIcon} from "@angular/material/icon";
   ]
 })
 export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
-  // TODO: create public endpoint instead of using an admin one.
   private readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
-  private readonly reservationsService: ReservationsService = inject(ReservationsService);
+  private readonly reservationsService: PublicReservationsService = inject(PublicReservationsService);
+  private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly destroy$ = inject(TuiDestroyService);
-  private readonly datePipe = inject(DatePipe);
 
   @Output() readonly valueChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() readonly inputTouch: EventEmitter<void> = new EventEmitter<void>();
@@ -118,6 +123,9 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       next: (turns: ReservationTurn[]) => {
         const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
         this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))));
+      },
+      error: (error: unknown): void => {
+        this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);
       }
     });
   }

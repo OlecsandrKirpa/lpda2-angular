@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {CommonHttpService} from "./common-http.service";
 import {Allergen} from "../../models/allergen";
 import {Reservation} from "@core/models/reservation";
@@ -6,11 +6,14 @@ import {map, Observable} from "rxjs";
 import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
 import {ReservationTurn} from "@core/models/reservation-turn";
 import {ReservationTableSummary} from "@core/lib/interfaces/reservation-table-summary";
+import {PublicReservationsService} from "@core/services/http/public-reservations.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationsService extends CommonHttpService<Reservation> {
+
+  private readonly publicReservations: PublicReservationsService = inject(PublicReservationsService);
 
   constructor() {
     super(Reservation, `admin/reservations`);
@@ -20,11 +23,7 @@ export class ReservationsService extends CommonHttpService<Reservation> {
     return this.get<ReservationTableSummary[]>(`tables_summary`, { params });
   }
 
-  getValidTimes(date: Date): Observable<ReservationTurn[]> {
-    return this.get<ReservationTurnData[]>(`valid_times`, {params: {date: date.toISOString()}}).pipe(
-      map((data: ReservationTurnData[]): ReservationTurn[] => data.map((d: ReservationTurnData): ReservationTurn => new ReservationTurn(d))),
-    )
-  }
+  readonly getValidTimes = this.publicReservations.getValidTimes;
 
   deliverConfirmationEmail(id: number): Observable<Reservation> {
     return this.post(`${id}/deliver_confirmation_email`, {}).pipe(

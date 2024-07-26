@@ -21,7 +21,7 @@ import {
   TuiDataListModule,
   TuiDialogService,
   TuiFlagPipeModule,
-  TuiHostedDropdownModule
+  TuiHostedDropdownModule, TuiLinkModule
 } from "@taiga-ui/core";
 import {NavbarUserBadgeComponent} from "@core/components/navbar-user-badge/navbar-user-badge.component";
 import {ProfileService} from "@core/services/http/profile.service";
@@ -58,6 +58,7 @@ export interface LangData {
     AdminLanguageSwitcherComponent,
     MenuIconModule,
     TuiFlagPipeModule,
+    TuiLinkModule,
   ],
   templateUrl: './public-navbar.component.html',
   styleUrl: './public-navbar.component.scss',
