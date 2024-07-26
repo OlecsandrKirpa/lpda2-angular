@@ -18,7 +18,7 @@
     <app-public-message class="block mb-3 text-center text-xl"
                         [location]="'existing-reservation-form'"></app-public-message>
 
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center mb-3">
       <button [showLoader]="resendingConfirmation()" class="btn-primary me-2" (click)="resendConfirmation()" type="button" size="m" tuiButton appearance="custom">
         <ng-container i18n>Rimanda email</ng-container>
       </button>
@@ -26,6 +26,11 @@
       <button routerLink="/cr/{{ createdReservation()!.secret }}" type="button" size="m" tuiButton appearance="secondary-destructive">
         <ng-container i18n>Cancella prenotazione</ng-container>
       </button>
+    </div>
+
+    <div class="flex items-center justify-center mb-3 text-xl">
+      <ng-container i18n>Dimenticato qualcosa?</ng-container>
+      <app-contact-us>Contattaci</app-contact-us>
     </div>
   } @else {
     <p class="text-xl text-center mb-3">

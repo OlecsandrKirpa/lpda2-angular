@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Reservation} from "@core/models/reservation";
 import {DatePipe} from "@angular/common";
-import {TuiButtonModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLinkModule} from "@taiga-ui/core";
 import {
   PublicReservationFormComponent
 } from "@core/components/public-reservation-form/public-reservation-form.component";
@@ -16,6 +16,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 import {finalize, takeUntil} from "rxjs";
+import {ContactUsComponent} from "@core/components/contact-us/contact-us.component";
 
 
 @Component({
@@ -26,7 +27,9 @@ import {finalize, takeUntil} from "rxjs";
     TuiButtonModule,
     PublicReservationFormComponent,
     PublicMessageComponent,
-    RouterLink
+    RouterLink,
+    TuiLinkModule,
+    ContactUsComponent
   ],
   templateUrl: './public-home-reserve.component.html',
   styleUrl: './public-home-reserve.component.scss',

@@ -67,11 +67,11 @@ app-home-layout {
     color: var(--first-color);
   }
 
-  a {
-    color: var(--second-color);
+  a, [tuiLink] {
+    color: var(--first-color);
 
     &:hover {
-      color: var(--first-color);
+      color: var(--second-color);
     }
   }
 

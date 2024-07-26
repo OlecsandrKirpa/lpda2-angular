@@ -20,5 +20,10 @@ export const routes: Routes = [
   {
     path: `auth`,
     loadChildren: () => import(`./auth/auth.routes`).then(m => m.routes),
-  }
+  },
+  {
+    path: `show`,
+    outlet: `contacts`,
+    loadChildren: () => import(`./contacts/contacts-page.module`).then(m => m.ContactsPageModule),
+  },
 ];

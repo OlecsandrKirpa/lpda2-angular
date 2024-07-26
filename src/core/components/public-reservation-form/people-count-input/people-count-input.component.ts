@@ -4,6 +4,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/for
 import {NgClass, NgStyle} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {TuiLinkModule} from "@taiga-ui/core";
+import {ContactUsComponent} from "@core/components/contact-us/contact-us.component";
 
 /**
  * TEST THIS COMPONENT WITH external component:
@@ -26,7 +27,8 @@ import {TuiLinkModule} from "@taiga-ui/core";
     NgClass,
     NgStyle,
     RouterLink,
-    TuiLinkModule
+    TuiLinkModule,
+    ContactUsComponent
   ],
   templateUrl: './people-count-input.component.html',
   styleUrl: './people-count-input.component.scss',
