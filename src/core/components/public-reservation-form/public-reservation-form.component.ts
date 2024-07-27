@@ -196,18 +196,18 @@ export class PublicReservationFormComponent implements OnInit {
     /**
      * DEVELOPMENT ONLY:
      */
-    setTimeout(() => {
-      this.loadPrevious({
-        adults: 2,
-        children: 1,
-        datetime: `2024-07-22T12:00:00.000Z`,
-        firstName: `Sasha`,
-        lastName: `Kirpachov`,
-        email: `sasha@opinioni.net`,
-        phone: `3515590063`,
-        phoneCountry: `IT`
-      });
-    }, 500);
+    // setTimeout(() => {
+    //   this.loadPrevious({
+    //     adults: 2,
+    //     children: 1,
+    //     datetime: `2024-07-22T12:00:00.000Z`,
+    //     firstName: `Sasha`,
+    //     lastName: `Kirpachov`,
+    //     email: `sasha@opinioni.net`,
+    //     phone: `3515590063`,
+    //     phoneCountry: `IT`
+    //   });
+    // }, 500);
   }
 
   nextStep(): void {
