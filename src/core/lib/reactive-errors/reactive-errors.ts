@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { TemplateRef } from "@angular/core";
-import { UntypedFormControl, UntypedFormGroup, ValidationErrors } from "@angular/forms";
+import {AbstractControl, FormGroup, UntypedFormControl, UntypedFormGroup, ValidationErrors} from "@angular/forms";
 import { ActiveError } from "../interfaces/active-error";
 import { CustomValidatorMessages } from "./messages/custom-validator-messages";
 import { Messages as MessagesIt } from './messages/it';
@@ -48,11 +48,11 @@ export class ReactiveErrors {
     });
   }
 
-  static assignErrorsToFormFromArray(form: UntypedFormGroup, errors: ActiveError[], userParams: Partial<ReactiveErrorsParams> = {}): void{
+  static assignErrorsToFormFromArray(form: UntypedFormGroup | AbstractControl, errors: ActiveError[], userParams: Partial<ReactiveErrorsParams> = {}): void{
     const params: Required<ReactiveErrorsParams> = { ...ReactiveErrorsParamsDefaults, ...userParams };
 
     errors.forEach((e: ActiveError) => {
-      const control: UntypedFormControl = form.controls[e.attribute] as UntypedFormControl;
+      const control: UntypedFormControl | AbstractControl = form instanceof FormGroup ? form.controls[e.attribute] : form;
       if (control) {
         control.setErrors({ [e.attribute]: e.message });
         return;

@@ -1,10 +1,10 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component, computed,
   EventEmitter,
   inject,
   OnInit,
-  Output,
+  Output, Signal,
   signal,
   WritableSignal
 } from '@angular/core';
@@ -21,7 +21,7 @@ import {TuiAutoFocusModule, TuiDestroyService, tuiPure} from "@taiga-ui/cdk";
 import {
   PeopleCountInputComponent
 } from "@core/components/public-reservation-form/people-count-input/people-count-input.component";
-import {filter, takeUntil, tap} from "rxjs";
+import {filter, finalize, takeUntil, tap} from "rxjs";
 import {DatetimeInputComponent} from "@core/components/public-reservation-form/datetime-input/datetime-input.component";
 import {isoTimezoneRexExp} from "@core/lib/tui-datetime-to-iso-string";
 import {TuiButtonModule, TuiExpandModule} from "@taiga-ui/core";
@@ -33,10 +33,17 @@ import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-messa
 import {NotificationsService} from "@core/services/notifications.service";
 import {Reservation} from "@core/models/reservation";
 import {HttpErrorResponse} from "@angular/common/http";
-import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {PublicPagesDataService} from "@core/services/http/public-pages-data.service";
 import {PublicData} from "@core/lib/interfaces/public-data";
 import {Setting, SettingValue} from "@core/lib/settings";
+import {ActiveError} from "@core/lib/interfaces/active-error";
+import {
+  extractErrors,
+  parseHttpErrorMessage,
+  parseHttpErrorMessageFromErrors
+} from "@core/lib/parse-http-error-message";
+import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
+import {ErrorsComponent} from "@core/components/errors/errors.component";
 
 interface FormStep {
   form: FormGroup | AbstractControl;
@@ -61,7 +68,8 @@ interface FormStep {
     TuiTextareaModule,
     TuiInputNumberModule,
     TuiCheckboxBlockModule,
-    TuiExpandModule
+    TuiExpandModule,
+    ErrorsComponent
   ],
   templateUrl: './public-reservation-form.component.html',
   styleUrl: './public-reservation-form.component.scss',
@@ -75,12 +83,31 @@ export class PublicReservationFormComponent implements OnInit {
   private readonly reservations: PublicReservationsService = inject(PublicReservationsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly publicDataService: PublicPagesDataService = inject(PublicPagesDataService);
+  private readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Output() createdReservation: EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
   readonly currentIndex: WritableSignal<number> = signal(0);
+  private lastMaxIndex: number = 0;
+  readonly maxIndex: Signal<number> = computed(() => {
+    const index = this.currentIndex();
+    if (this.lastMaxIndex < index) this.lastMaxIndex = index;
+
+    return this.lastMaxIndex;
+  });
+
   readonly maxPeople: WritableSignal<number> = signal(10);
   readonly maxDaysInAdvance: WritableSignal<number> = signal(300);
+
+  /**
+   * Is right now sending request to server?
+   */
+  readonly submitting: WritableSignal<boolean> = signal(false);
+
+  /**
+   * Has sent "submit" been clicked?
+   */
+  readonly submitted: WritableSignal<boolean> = signal(false);
 
   readonly people: FormControl<number | null> = new FormControl(null, [Validators.required, CustomValidators.min(0)]);
   readonly datetime: FormControl<string | null> = new FormControl(null, [Validators.required, CustomValidators.pattern(isoTimezoneRexExp)]);
@@ -169,18 +196,18 @@ export class PublicReservationFormComponent implements OnInit {
     /**
      * DEVELOPMENT ONLY:
      */
-    // setTimeout(() => {
-    //   this.loadPrevious({
-    //     adults: 2,
-    //     children: 1,
-    //     datetime: `2024-07-22T12:00:00.000Z`,
-    //     firstName: `Sasha`,
-    //     lastName: `Kirpachov`,
-    //     email: `sasha@opinioni.net`,
-    //     phone: `3515590063`,
-    //     phoneCountry: `IT`
-    //   });
-    // }, 500);
+    setTimeout(() => {
+      this.loadPrevious({
+        adults: 2,
+        children: 1,
+        datetime: `2024-07-22T12:00:00.000Z`,
+        firstName: `Sasha`,
+        lastName: `Kirpachov`,
+        email: `sasha@opinioni.net`,
+        phone: `3515590063`,
+        phoneCountry: `IT`
+      });
+    }, 500);
   }
 
   nextStep(): void {
@@ -192,24 +219,7 @@ export class PublicReservationFormComponent implements OnInit {
       this.currentIndex.update((index) => index + 1);
       this.currentStep().viewed = true;
     } else {
-      const out = this.formatOutput();
-      console.log(`submitting!!!`, {out, self: this});
-
-      if (out) this.reservations.create(out).subscribe({
-        next: (item: Reservation): void => {
-          this.createdReservation.emit(item);
-          this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
-          this.reset();
-        },
-        error: (error: unknown) => {
-          if (error instanceof HttpErrorResponse) {
-            this.notifications.error(parseHttpErrorMessage(error) || SOMETHING_WENT_WRONG_MESSAGE);
-          } else {
-            this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
-          }
-        }
-      })
-      else this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+      this.submitForm();
     }
   }
 
@@ -228,6 +238,16 @@ export class PublicReservationFormComponent implements OnInit {
     if (form.invalid && form.dirty) return 'error';
     if (form.valid) return 'pass';
     return 'normal';
+  }
+
+  @tuiPure
+  showErrorsFor(index: number): boolean {
+    if (this.submitted()) return true;
+
+    const step: { form: FormGroup | AbstractControl, submitted: boolean } | undefined = this.steps[index];
+    if (!step) return true;
+
+    return step.submitted;
   }
 
   private currentStep(): FormStep {
@@ -295,5 +315,94 @@ export class PublicReservationFormComponent implements OnInit {
   private reset(): void {
     this.currentIndex.set(0);
     Object.values(this.steps).forEach((key: { form: AbstractControl | FormGroup }) => key.form.reset());
+  }
+
+  private submitForm(): void {
+    this.submitted.set(true);
+
+    const out = this.formatOutput();
+    console.log(`submitting!!!`, {out, self: this});
+
+    if (!out) {
+      this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+      return;
+    }
+
+    // Showing the spinner after 500ms
+    let loaderTimeout = setTimeout(() => this.submitting.set(true), 500);
+    this.reservations.create(out).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => clearTimeout(loaderTimeout)),
+      finalize(() => this.submitting.set(false)),
+    ).subscribe({
+      next: (item: Reservation): void => {
+        this.createdReservation.emit(item);
+        this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
+        this.reset();
+      },
+      error: (response: unknown): void => {
+        if (response instanceof HttpErrorResponse && response.status === 422) {
+          this.manageUnprocessableEntity(response);
+        } else {
+          this.notifications.error(response instanceof HttpErrorResponse ? parseHttpErrorMessage(response) : SOMETHING_WENT_WRONG_MESSAGE);
+        }
+      }
+    });
+  }
+
+  private manageUnprocessableEntity(response: unknown): void {
+    if (!(response instanceof HttpErrorResponse)) {
+      this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+      return;
+    }
+
+    if (!(response.status == 422 && typeof response.error === "object" && response.error !== null && typeof (response.error as Record<string, unknown>["details"]) == "object" && Object.keys(response.error["details"]).length > 0)) {
+      console.warn(`expected response to have status 422 and error { details: { <field>: <error> } } but did not `, response);
+      this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+      return;
+    }
+
+    const error: Record<string, ActiveError[]> = response.error.details;
+    console.warn(`manageUnprocessableEntity()`, {error, response});
+    if (error["people"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.people, error["people"]);
+      delete error["adults"];
+      delete error["children"];
+      delete error["people"];
+    }
+
+    if (error["datetime"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.datetime, error["datetime"]);
+      delete error["datetime"];
+    }
+
+    if (error["first_name"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.contacts.controls["firstName"], error["first_name"]);
+      delete error["first_name"];
+    }
+
+    if (error["last_name"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.contacts.controls["lastName"], error["last_name"]);
+      delete error["last_name"];
+    }
+
+    if (error["phone"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.contacts.controls["phone"], error["phone"]);
+      delete error["phone"];
+    }
+
+    if (error["email"]) {
+      ReactiveErrors.assignErrorsToFormFromArray(this.contacts.controls["email"], error["email"]);
+      delete error["email"];
+    }
+
+    if (Object.keys(error).length > 0) {
+      this.notifications.error(parseHttpErrorMessageFromErrors(Object.values(error).flat()) ?? SOMETHING_WENT_WRONG_MESSAGE);
+    }
+
+    const step = Object.keys(this.steps).find((k: string) => this.steps[Number(k)].form.invalid);
+    if (step && !isNaN(Number(step)) && Number(step) >= 0) this.currentIndex.set(Number(step));
+
+    this.cd.detectChanges();
   }
 }

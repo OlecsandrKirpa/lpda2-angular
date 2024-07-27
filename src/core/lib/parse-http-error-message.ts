@@ -13,16 +13,25 @@ export function parseHttpErrorMessage(response: HttpErrorResponse, configs?: con
     return `${response.error.error} ${response.error.exception}`.replace(/\</gm, '').replace(/\>+/gm, '');
   }
 
-  const msg: string[] = extractErrors(response).map((detail: {
+  if (response.status == 504) {
+    return $localize`Server irraggiungibile, controlla la tua connessione e riprova.`;
+  }
+
+
+  return parseHttpErrorMessageFromErrors(extractErrors(response), configs);
+}
+
+export function parseHttpErrorMessageFromErrors(errors: error[], configs?: configs): string | null {
+  if (errors.length == 0) return null;
+
+  const joinChar: string = configs?.joinChar ?? ', ';
+
+  const msg: string[] = errors.map((detail: {
     attribute: string,
     message: string | string[]
   }): string => `${detail['attribute']} ${detail['message']}`);
 
   if (msg.length) return uniq(msg).join(joinChar);
-
-  if (response.status == 504){
-    return $localize`Server irraggiungibile, controlla la tua connessione e riprova.`;
-  }
 
   return null;
 }

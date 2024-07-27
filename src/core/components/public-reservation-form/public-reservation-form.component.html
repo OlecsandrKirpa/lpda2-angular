@@ -8,7 +8,7 @@
     }
   </button>
 
-  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep [disabled]="currentIndex() < 1 && people.invalid" >
+  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep>
     @if (datetime.value && datetime.valid && currentIndex() > 1) {
       {{ datetime.value | date: 'EEEE d MMMM y HH:mm' }}
     } @else {
@@ -16,11 +16,11 @@
     }
   </button>
 
-  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep [disabled]="currentIndex() < 2 && contacts.invalid">
+  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep>
     <ng-container i18n>Contatti</ng-container>
   </button>
 
-  <button (click)="setState(3)" [stepState]="getState(3)" tuiStep [disabled]="currentIndex() < 3 && notesForm.invalid">
+  <button (click)="setState(3)" [stepState]="getState(3)" tuiStep>
     <ng-container i18n>Riepilogo</ng-container>
   </button>
 </tui-stepper>
@@ -30,41 +30,66 @@
     [draggable]="false"
     [(index)]="currentIndex"
 >
-  <div class="p-3" *tuiItem>
-    <app-people-count-input [maxPeople]="maxPeople()" [formControl]="people">
-      <p class="text-xl text-center mb-3" i18n>Seleziona il numero di ospiti</p>
-    </app-people-count-input>
+  <div class="p-3 flex items-center justify-center" *tuiItem>
+    <div class="max-w-[500px]">
+      <app-people-count-input [maxPeople]="maxPeople()" [formControl]="people">
+        <span class="text-xl text-center" i18n>Seleziona il numero di ospiti</span>
+      </app-people-count-input>
 
-    <tui-expand [expanded]="people.valid">
-      <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
-        <ng-container i18n>Continua</ng-container>
-      </button>
-    </tui-expand>
+      @if (showErrorsFor(0)) {
+        <app-errors [errors]="people.errors"></app-errors>
+      }
+
+      <tui-expand [expanded]="people.valid || maxIndex() > 0">
+        <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+          <ng-container i18n>Continua</ng-container>
+        </button>
+      </tui-expand>
+    </div>
   </div>
 
-  <div class="p-3" *tuiItem>
-    <app-datetime-input class="block mb-3" [maxDaysInAdvance]="maxDaysInAdvance()" [formControl]="datetime"></app-datetime-input>
+  <div class="p-3 flex items-center justify-center" *tuiItem>
+    <div class="max-w-[500px]">
+      <app-datetime-input class="block mb-3" [maxDaysInAdvance]="maxDaysInAdvance()"
+                          [formControl]="datetime"></app-datetime-input>
 
-    <tui-expand [expanded]="datetime.valid">
-      <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
-        <ng-container i18n>Continua</ng-container>
-      </button>
-    </tui-expand>
+      @if (showErrorsFor(1)) {
+        <app-errors [errors]="datetime.errors"></app-errors>
+      }
+
+      <tui-expand [expanded]="datetime.valid || maxIndex() > 1">
+        <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
+          <ng-container i18n>Continua</ng-container>
+        </button>
+      </tui-expand>
+    </div>
   </div>
 
   <div class="p-3" *tuiItem>
     <form (ngSubmit)="nextStep()" class="mx-auto max-w-[500px]" [formGroup]="contacts">
       <div class="flex items-center mb-3">
-        <tui-input [tuiAutoFocus]="true" class="grow me-2" [formControlName]="'firstName'">
-          <ng-container i18n>Nome</ng-container>
-          <input tuiTextfield autocomplete="first_name">
-        </tui-input>
+        <div class="grow" >
+          <tui-input [tuiAutoFocus]="true" class="grow me-2" [formControlName]="'firstName'">
+            <ng-container i18n>Nome</ng-container>
+            <input tuiTextfield autocomplete="first_name">
+          </tui-input>
 
-        <tui-input class="grow ms-2" [formControlName]="'lastName'">
-          <ng-container i18n>Cognome</ng-container>
+          @if (showErrorsFor(2)) {
+            <app-errors [errors]="contacts.controls['firstName'].errors"></app-errors>
+          }
+        </div>
 
-          <input tuiTextfield autocomplete="last_name">
-        </tui-input>
+        <div class="grow" >
+          <tui-input class="grow ms-2" [formControlName]="'lastName'">
+            <ng-container i18n>Cognome</ng-container>
+
+            <input tuiTextfield autocomplete="last_name">
+          </tui-input>
+
+          @if (showErrorsFor(2)) {
+            <app-errors [errors]="contacts.controls['lastName'].errors"></app-errors>
+          }
+        </div>
       </div>
 
       <div class="mb-3">
@@ -73,6 +98,10 @@
 
           <input tuiTextfield autocomplete="email">
         </tui-input>
+
+        @if (showErrorsFor(2)) {
+          <app-errors [errors]="contacts.controls['email'].errors"></app-errors>
+        }
       </div>
 
       <div class="mb-3">
@@ -82,6 +111,10 @@
             [formControlName]="'phone'">
           <ng-container i18n>Cellulare</ng-container>
         </tui-input-phone-international>
+
+        @if (showErrorsFor(2)) {
+          <app-errors [errors]="contacts.controls['phone'].errors"></app-errors>
+        }
       </div>
 
       <tui-expand [expanded]="contacts.valid">
@@ -113,7 +146,8 @@
         </tui-checkbox-block>
       </div>
 
-      <button [disabled]="notesForm.invalid" tuiButton appearance="custom" class="btn-primary" type="submit">
+      <button [showLoader]="submitting()" [disabled]="notesForm.invalid" tuiButton appearance="custom"
+              class="btn-primary" type="submit">
         <ng-container i18n>Conferma prenotazione</ng-container>
       </button>
     </form>
