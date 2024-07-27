@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 
+export type weekday = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+
 export const PublicMessageLocations = [
   `home-landing`,
   `home-about`,
@@ -9,7 +11,10 @@ export const PublicMessageLocations = [
   `new-reservation-form`,
   `existing-reservation-form`,
 ] as const;
-export type PublicMessageLocation = typeof PublicMessageLocations[number];
+
+export type PublicMessageLocation = typeof PublicMessageLocations[number] | `openings_${weekday}`;
+
+export type PublicMessages = Record<string, string | null>;
 
 /**
  * TODO: when shown in the screen, and only then, load for the first time all the messages for all locations.

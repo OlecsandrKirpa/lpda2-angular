@@ -5,6 +5,8 @@ import {takeUntil} from "rxjs";
 import {JsonPipe, NgOptimizedImage} from "@angular/common";
 import {TuiLinkModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
+import {PublicMessageLocation, PublicMessages} from "@core/components/public-message/public-message.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-public-footer',
@@ -13,7 +15,8 @@ import {MatIcon} from "@angular/material/icon";
     JsonPipe,
     TuiLinkModule,
     NgOptimizedImage,
-    MatIcon
+    MatIcon,
+    RouterLink
   ],
   templateUrl: './public-footer.component.html',
   styleUrl: './public-footer.component.scss',
@@ -22,26 +25,15 @@ import {MatIcon} from "@angular/material/icon";
     TuiDestroyService
   ]
 })
-export class PublicFooterComponent implements OnInit {
+export class PublicFooterComponent {
   private readonly public: PublicPagesDataService = inject(PublicPagesDataService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
 
-  readonly contacts: WritableSignal<Record<string, string> | null> = signal(null);
-
-  ngOnInit(): void {
-    this.public.getContacts().pipe(
-      takeUntil(this.destroy$),
-    ).subscribe({
-      next: (contacts: Record<string, string> | null): void => {
-        this.contacts.set(contacts);
-      }
-    });
-  }
+  readonly contacts = this.public.contacts;
+  readonly messages = this.public.messages;
 
   @tuiPure
   contact(key: string): string | null {
-    console.log(`got contact`, key);
-
     const contacts: Record<string, string> | null = this.contacts();
 
     if (!contacts) return null;
@@ -54,5 +46,12 @@ export class PublicFooterComponent implements OnInit {
     if (!contact) return '';
 
     return contact.replace(/\s+/g, '');
+  }
+
+  @tuiPure
+  message(key: PublicMessageLocation): string | null {
+    const msg = this.messages();
+
+    return msg ? (msg[key] ?? null) : null;
   }
 }
