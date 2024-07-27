@@ -71,6 +71,20 @@ app-home-layout {
     font-weight: bold;
   }
 
+  a.dark-link {
+    color: black;
+    fill: black;
+
+    svg {
+      transition-duration: var(--tui-duration, .3s);
+    }
+
+    &:hover {
+      color: var(--first-color);
+      fill: var(--first-color);
+    }
+  }
+
   $colors: var(--first-color), var(--second-color);
   $names: primary, secondary;
   @each $color, $name in zip($colors, $names) {
@@ -118,6 +132,15 @@ app-home-layout {
     &:hover {
       background-color: var(--second-color);
       color: white;
+    }
+  }
+
+  .svg-fill-black {
+    color: black;
+
+    &, path, circle, rect, g {
+      fill: black;
+          color: black;
     }
   }
 }

@@ -5,7 +5,8 @@ import {PublicData} from "@core/lib/interfaces/public-data";
 import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
+import {toJsonIfPossible} from "@core/lib/interfaces/to_json_if_possible";
 
 /**
  * This service will preload all the data needed for the public pages.
@@ -34,5 +35,15 @@ export class PublicPagesDataService extends DomainService {
         this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);
       }
     })
+  }
+
+  getContacts(): Observable<Record<string, string> | null>{
+    return this.data$.pipe(
+      map((data: PublicData | null) => {
+        if (!(typeof data === "object" && data !== null)) return null;
+
+        return toJsonIfPossible(data.settings.email_contacts);
+      })
+    );
   }
 }
