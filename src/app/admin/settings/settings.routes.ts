@@ -16,5 +16,9 @@ export const routes: Routes = [
   {
     path: `settings`,
     loadChildren: () => import(`./settings/settings.routes`).then(m => m.routes)
+  },
+  {
+    path: `public_messages`,
+    loadChildren: () => import(`./public_messages/public_messages.routes`).then(m => m.routes)
   }
 ];

@@ -1,18 +1,5 @@
 import {Component, Input} from '@angular/core';
-
-export type weekday = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
-
-export const PublicMessageLocations = [
-  `home-landing`,
-  `home-about`,
-  `home-menu`,
-  `home-instagram`,
-  `home-reserve`,
-  `new-reservation-form`,
-  `existing-reservation-form`,
-] as const;
-
-export type PublicMessageLocation = typeof PublicMessageLocations[number] | `openings_${weekday}`;
+import {PublicMessageLocation} from "@core/lib/interfaces/public-message";
 
 export type PublicMessages = Record<string, string | null>;
 

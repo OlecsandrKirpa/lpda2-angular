@@ -5,8 +5,9 @@ import {takeUntil} from "rxjs";
 import {JsonPipe, NgOptimizedImage} from "@angular/common";
 import {TuiLinkModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
-import {PublicMessageLocation, PublicMessages} from "@core/components/public-message/public-message.component";
+import {PublicMessages} from "@core/components/public-message/public-message.component";
 import {RouterLink} from "@angular/router";
+import {PublicMessageLocation} from "@core/lib/interfaces/public-message";
 
 @Component({
   selector: 'app-public-footer',

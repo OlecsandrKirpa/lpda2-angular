@@ -1,0 +1,56 @@
+<h1 class="flex items-center">
+  <span i18n>Imposta messaggio</span>
+</h1>
+<p class="text-slate-400">
+  <ng-container i18n>Puoi mostrare dei messaggi personalizzati nelle pagine pubbliche. Per ciascuna posizione, puoi mettere esattamente un messaggio tradotto in più lingue.</ng-container>
+</p>
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+    <div class="mb-3">
+      <ng-template #keySelectContent let-item>{{ item | publicMessageKey }}</ng-template>
+
+      <tui-select
+        tuiTextfieldSize="l"
+        [formControlName]="'key'"
+        [valueContent]="keySelectContent"
+    >
+        <ng-container i18n>Seleziona la posizione del testo da mostrare.</ng-container>
+
+        <input tuiTextfield>
+        <tui-data-list-wrapper
+            *tuiDataList
+            [itemContent]="keySelectContent"
+            [items]="keys"
+        ></tui-data-list-wrapper>
+    </tui-select>
+
+      @if(form.value.key){
+        <div class="mb-3">
+          Il testo verrà mostrato nella seguente posizione:<br>
+          <b>
+            <ng-container *ngTemplateOutlet="keySelectContent; context: { $implicit: form.value.key }" ></ng-container>
+          </b>
+        </div>
+      }
+
+    <app-errors [errors]="e('text')"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <app-i18n-input formControlName="text">
+      <ng-container i18n>Traduzione</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="e('text')"></app-errors>
+  </div>
+
+  <div class="flex">
+    <button [showLoader]="loading()" class="me-2" tuiButton type="submit" size="l">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button [showLoader]="loading()" (click)="cancel()" tuiButton type="button" appearance="icon" size="l">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

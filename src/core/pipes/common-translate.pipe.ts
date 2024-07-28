@@ -18,6 +18,8 @@ const dict: Record<string, string> = {
   "tripadvisor_url": $localize`URL TripAdvisor`,
   "homepage_url": $localize`URL Homepage`,
   "google_url": $localize`URL Google`,
+  "it": $localize`Italiano`,
+  "en": $localize`Inglese`,
 };
 
 @Pipe({

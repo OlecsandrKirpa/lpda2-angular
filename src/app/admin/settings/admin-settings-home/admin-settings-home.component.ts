@@ -25,7 +25,6 @@ export type Setting = {
     RouterLink
   ],
   templateUrl: './admin-settings-home.component.html',
-  styleUrl: './admin-settings-home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminSettingsHomeComponent {
@@ -55,6 +54,15 @@ export class AdminSettingsHomeComponent {
       icon: {
         source: `material`,
         name: `settings`
+      }
+    },
+    {
+      name: $localize`Comunicazioni pubbliche`,
+      description: $localize`Mostra messaggi personalizzati nelle pagine pubbliche`,
+      path: `public_messages`,
+      icon: {
+        source: `material`,
+        name: `chat`
       }
     },
   ];

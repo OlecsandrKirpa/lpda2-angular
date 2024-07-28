@@ -1,0 +1,15 @@
+<table class="tui-table">
+  <tbody>
+    @for (item of values$(); track item) {
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <td class="tui-table__td">
+          <span i18n>{{ item[0] | commonTranslate }}</span>
+        </td>
+
+        <td class="tui-table__td">
+          {{ item[1] }}
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

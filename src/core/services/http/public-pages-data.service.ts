@@ -7,7 +7,7 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {toJsonIfPossible} from "@core/lib/interfaces/to_json_if_possible";
-import {PublicMessageLocation, PublicMessages} from "@core/components/public-message/public-message.component";
+import { PublicMessages} from "@core/components/public-message/public-message.component";
 
 /**
  * This service will preload all the data needed for the public pages.

@@ -16,7 +16,7 @@ export abstract class CommonHttpService<T> extends DomainService {
     super(basePath);
   }
 
-  show(id: number): Observable<T> {
+  show(id: number | string): Observable<T> {
     return this.get(`${id}`).pipe(
       map((data: unknown) => this.mapItem(data))
     );
