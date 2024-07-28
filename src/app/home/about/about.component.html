@@ -1,1 +1,83 @@
-<p>about works!</p>
+<div class="h-[350px] overflow-hidden flex items-center justify-center bg-cover bg-no-repeat bg-center"
+     style="background-image: url(/assets/img/public-about-landing.webp);">
+
+  <div class="w-fit text-white">
+    <h1 class="text-center font-bold text-5xl block mb-5">
+      <ng-container i18n>Chi siamo</ng-container>
+    </h1>
+
+    <hr class="bg-white md:w-[300px] h-[2px]">
+  </div>
+</div>
+
+<div class="flex flex-wrap px-7 py-5 max-w-[1024px] mx-auto">
+  <div class="flex items-center justify-center md:px-5 md:col-6 col-12">
+    <div>
+      <h3 class="text-3xl block mb-3 text-primary">
+        <ng-container i18n>La nostra storia</ng-container>
+      </h3>
+
+      <hr class="bg-primary h-[1px] w-full mb-3">
+
+      <p class="mb-5 text-xl" i18n> Affacciato sul <b>Canal Grande</b>, a pochi metri dal <b>Ponte di Rialto</b>, <b>La
+        Porta d'Acqua</b> offre una <b>cucina mediterranea</b> ispirata dalla tradizione <b>campana</b> e
+        <b>veneziana</b> e dal pesce proveniente dal vicino mercato ittico. <b>Menù</b> vario e legato alle stagioni con
+        particolare cura nell'impiattamento. Piacevole zona <b>cocktail bar</b> con giardino e vista sul Canale con
+        signature <b>cocktail</b> e <b>spritz</b> rivisitati. Possibilità di <b>riservare</b> l'intima sala al primo
+        piano per <b>eventi speciali</b>.</p>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center md:col-6 md:px-5 col-12">
+    <img class="w-full rounded-lg" alt="History" [ngSrc]="'/assets/img/public-about-history.webp'" [width]="4272"
+         [height]="2848" priority>
+  </div>
+</div>
+
+<div class="flex flex-col-reverse md:flex-row flex-wrap px-7 py-5 max-w-[1024px] mx-auto">
+  <div class="flex justify-center items-center md:col-6 md:px-5 col-12">
+    <img class="w-full rounded-lg" alt="Location" [ngSrc]="'/assets/img/public-about-location.webp'" [width]="902"
+         [height]="676">
+  </div>
+
+  <div class="flex items-center justify-center md:px-5 md:col-6 col-12">
+    <div>
+      <h3 class="text-3xl block mb-3 text-primary">
+        <ng-container i18n>La Location</ng-container>
+      </h3>
+
+      <hr class="bg-primary h-[1px] w-full mb-3">
+
+      <p class="mb-5 text-xl" i18n>
+        <b>La Porta d’Acqua</b> è una garanzia. Conosciutissima da <b>veneziani</b> e <b>non</b>, questa splendida
+        realtà della <b>ristorazione veneziana</b> si sposta ora di pochi metri e guadagna un’incredibile vista sul <b>Canal
+        Grande</b>. Affacciato su Riva del Vin, a pochi metri dal <b>Ponte di Rialto</b>, il <b>ristorante</b> è
+        ospitato da un palazzo del ‘400 finemente restaurato con gusto contemporaneo. Dalle splendide sale interne (una,
+        al primo piano, <b>riservabile</b> anche per eventi, feste private, cene di lavoro) al magnifico dehors, dallo
+        splendido giardino dove gustare l’aperitivo al bancone del <b>cocktail bar</b>, tutto di questo locale è pensato
+        nei minimi dettagli. Facilissimo da raggiungere da ogni direzione, <b>La Porta d’Acqua</b> coniuga con successo
+        la qualità dei suoi piatti con una location decisamente fuori dall’ordinario.</p>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col-reverse md:flex-row flex-wrap px-7 py-5 max-w-[1024px] mx-auto">
+  <div>
+    <h3 class="text-3xl block mb-3 text-primary">
+      <ng-container i18n>Il cocktail Bar</ng-container>
+    </h3>
+
+    <hr class="bg-primary h-[1px] w-full mb-3">
+
+    <p class="mb-5 text-xl" i18n>
+      All’ingresso del locale, un ampio bancone introduce alla piacevole zona <b>bar</b> che racchiude in sé due volti -
+      allo stesso modo - accattivanti: gustoso bacaro dalla mattina al primo pomeriggio; raffinato <b>cocktail bar</b>
+      con signature cocktail e allettanti spritz rivisitati creati dalle abili mani del bartender. Il luogo perfetto per
+      approfittare dei buonissimi cicchetti e crostini e completare la vostra magnifica cena con un aperitivo originale
+      o un digestivo a regola d’arte.</p>
+
+    <div>
+      <img class="max-w-full max-h-[1000px] mx-auto rounded-lg" alt="Location" [ngSrc]="'/assets/img/public-about-bar.webp'" [width]="4272" [height]="2848">
+    </div>
+  </div>
+</div>

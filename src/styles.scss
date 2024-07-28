@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use "sass:math";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -140,7 +142,21 @@ app-home-layout {
 
     &, path, circle, rect, g {
       fill: black;
-          color: black;
+      color: black;
+    }
+  }
+}
+
+$colWidth: math.div(100, 12);
+
+@layer utilities {
+  @for $i from 1 through 12 {
+    $_width: $i * $colWidth;
+    $width: math.div($_width, 1) * 1%;
+
+    .col-#{$i} {
+      max-width: $width;
+      flex: 0 0 $width;
     }
   }
 }
