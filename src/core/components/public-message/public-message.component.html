@@ -1,1 +1,7 @@
-<p>QUI verranno mostrati dei messaggi impostati dall'utente nell'are amministratori per la posizione "{{ location }}"</p>
+<tui-expand [expanded]="message() != null">
+  <div class="text-2xl flex items-center justify-center p-2 text-primary">
+    <mat-icon>priority_high</mat-icon>
+    <div class="mx-3" >{{ message() }}</div>
+    <mat-icon>priority_high</mat-icon>
+  </div>
+</tui-expand>
