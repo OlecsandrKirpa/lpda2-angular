@@ -24,6 +24,7 @@ export const PublicMessageLocations = [
   "openings_friday",
   "openings_saturday",
   "openings_sunday",
+  "cancel-reservation"
 ] as const;
 
 export type PublicMessageLocation = typeof PublicMessageLocations[number];
@@ -50,4 +51,6 @@ export const PublicMessageLocationExplanation: Record<PublicMessageLocation, str
   "openings_friday": $localize`The message shown on the friday openings page.`,
   "openings_saturday": $localize`The message shown on the saturday openings page.`,
   "openings_sunday": $localize`The message shown on the sunday openings page.`,
+
+  "cancel-reservation": $localize`The message shown on the cancel reservation page.`,
 };

@@ -55,4 +55,8 @@ export class PublicReservationsService extends DomainService {
   resendConfirmation(secret: string): Observable<unknown> {
     return this.post<unknown>(`${secret}/resend_confirmation_email`, {});
   }
+
+  cancel(secret: string): Observable<unknown> {
+    return this.post<unknown>(`${secret}/cancel`, {});
+  }
 }

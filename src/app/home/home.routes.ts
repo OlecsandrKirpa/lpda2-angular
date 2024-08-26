@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import(`./home/home.component`).then(m => m.HomeComponent),
   },
   {
+    path: `cr/:secret`,
+    loadComponent: () => import(`./cancel-reservation/cancel-reservation.component`).then(m => m.CancelReservationComponent)
+  },
+  {
     path: `menu`,
     loadComponent: () => import(`./menu/menu.component`).then(m => m.MenuComponent),
   },

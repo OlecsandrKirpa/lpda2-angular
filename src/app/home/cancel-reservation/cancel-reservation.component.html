@@ -1,0 +1,38 @@
+<div class="mx-4 md:mx-8 lg:mx-12">
+  <h2 class="text-5xl text-center text-primary mb-2">
+    <ng-container i18n>Cancella tua prenotazione</ng-container>
+  </h2>
+
+  <hr class="bg-primary w-3/4 mx-auto h-[1px] mb-5">
+
+  @if (reservation()) {
+    <p class="text-xl text-center mb-3" i18n>Sei sicuro di voler annullare la tuo prenotazione presso La Porta d'Acqua?.</p>
+
+    <app-public-message class="block mb-3 text-center text-xl"
+                        [location]="'cancel-reservation'"></app-public-message>
+
+    <div class="flex items-center justify-center mb-3">
+      <a routerLink="/" class="btn-primary me-2" type="button" size="m" tuiButton appearance="custom">
+        <ng-container i18n>Annulla</ng-container>
+      </a>
+
+      <button type="button" (click)="cancelReservation()" size="m" tuiButton appearance="secondary-destructive">
+        <ng-container i18n>Cancella prenotazione</ng-container>
+      </button>
+    </div>
+
+  } @else if(loading()) {
+    <tui-loader [size]="'xl'"></tui-loader>
+  }@else{
+    <p class="text-xl text-center mb-3">
+      <ng-container i18n><span class="text-red-600" >Non siamo stati in grado di trovare la tua prenotazione.</span> È nel passato? O è stata eliminata?
+      </ng-container>
+    </p>
+  }
+
+  <div class="flex items-center justify-center mb-3 text-xl">
+    <ng-container i18n>Dimenticato qualcosa?</ng-container>
+    <app-contact-us>Contattaci</app-contact-us>
+  </div>
+
+</div>
