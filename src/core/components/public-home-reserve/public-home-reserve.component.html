@@ -23,9 +23,9 @@
         <ng-container i18n>Rimanda email</ng-container>
       </button>
 
-      <button routerLink="/cr/{{ createdReservation()!.secret }}" type="button" size="m" tuiButton appearance="secondary-destructive">
+      <a routerLink="/cr/{{ createdReservation()!.secret }}" size="m" tuiButton appearance="secondary-destructive">
         <ng-container i18n>Cancella prenotazione</ng-container>
-      </button>
+      </a>
     </div>
 
     <div class="flex items-center justify-center mb-3 text-xl">
