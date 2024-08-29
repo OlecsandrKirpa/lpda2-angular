@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuComponent } from './menu.component';
+import { PublicDishModalComponent } from './public-dish-modal.component';
 
-describe('MenuComponent', () => {
-  let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+describe('PublicDishModalComponent', () => {
+  let component: PublicDishModalComponent;
+  let fixture: ComponentFixture<PublicDishModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuComponent]
+      imports: [PublicDishModalComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MenuComponent);
+    fixture = TestBed.createComponent(PublicDishModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

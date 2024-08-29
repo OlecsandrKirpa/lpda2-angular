@@ -29,6 +29,7 @@ const SKIP_URLS: RegExp[] = [
   `^\/assets/*`,
   /v\d{1}\/public.*/,
   /v\d{1}\/reservations.*/,
+  /v\d{1}\/menu.*/,
 ].map((url: any) => new RegExp(url));
 
 function shouldSkipByUrl(url: string): boolean {

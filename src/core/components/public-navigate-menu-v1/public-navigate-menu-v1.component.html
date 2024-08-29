@@ -1,0 +1,91 @@
+<div class="max-w-[800px] mx-auto">
+  <p>DEV BREADCRUMB: 
+    @for(cat of breadcrumbs(); track cat.id; let index = $index) {
+      <a tuiLink (click)="navigateTo(index)">{{ cat.name }}</a>
+      @if(index < breadcrumbs().length - 1) { / }
+    }
+  </p>
+
+  <tui-loader
+    [showLoader]="loading()"
+    [overlay]="true"
+  >
+
+  <!-- <p class="text-5xl">
+    @if(selectedCategory()){
+      {{ selectedCategory()?.name }}
+    } @else {
+      <ng-container i18n>Menù</ng-container>
+    }
+  </p> -->
+  
+  @if(selectedCategory()) {
+    <div class="flex">
+      <div class="me-3">
+        <p class="text-5xl">{{ selectedCategory()?.name }}</p>
+        <p class="text-2xl text-slate-400">{{ selectedCategory()?.description }}</p>
+      </div>
+
+      <div>
+        <app-show-image class="max-w-[200px]" [image]="(selectedCategory()?.images || [])[0]"></app-show-image>
+      </div>
+    </div>
+
+    <button type="button" tuiLink (click)="navigateBack()">
+      <span class="flex">
+        <mat-icon>arrow_back</mat-icon>
+        <span i18n>Indietro</span>
+      </span>
+    </button>
+  } @else {
+    <h1 class="text-5xl" i18n>Menù</h1>
+  }
+
+  @if(categories().length == 0 && dishes().length == 0) {
+    @if(loading()) {
+      <ng-container i18n>Stiamo caricando i piatti migliori di tutta Venezia, un attimo di pazienza...</ng-container>
+    } @else {
+      <ng-container i18n>Non abbiamo trovato nulla.</ng-container>
+    }
+  }
+
+  @for(category of categories(); track category.id) {
+    <div class="flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
+      <div class="justify-center align-center me-3">
+          <app-show-image class="max-w-[500px]" [image]="(category.images || [])[0]"></app-show-image>
+      </div>
+
+      <div class="justify-center align-center">
+        <p class="text-3xl">{{ category.name }}</p>
+        <p class="text-lg text-slate-400">{{ category.description }}</p>
+      </div>
+
+      <div>
+        <button (click)="clickOnCategory(category)" type="button" tuiButton appearance="flat">
+          <ng-container i18n>Apri</ng-container>
+        </button>
+      </div>
+    </div>
+  }
+
+  @for(dish of dishes(); track dish.id) {
+    <div class="flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
+      <div class="justify-center align-center me-3">
+          <app-show-image class="max-w-[500px]" [image]="(dish.images || [])[0]"></app-show-image>
+      </div>
+
+      <div class="justify-center align-center">
+        <p class="text-3xl">{{ dish.name }}</p>
+        <p class="text-lg text-slate-400">{{ dish.description }}</p>
+      </div>
+
+      <div>
+        <button (click)="clickOnDish(dish)" type="button" tuiButton appearance="flat">
+          <ng-container i18n>Dettagli</ng-container>
+        </button>
+      </div>
+    </div>
+  }
+
+  </tui-loader>
+</div>
