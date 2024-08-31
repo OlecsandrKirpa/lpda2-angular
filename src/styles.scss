@@ -160,3 +160,43 @@ $colWidth: math.div(100, 12);
     }
   }
 }
+
+.text-success {
+  @apply text-green-500;
+}
+
+.border-success {
+  @apply border-green-500;
+}
+
+.text-success-dark {
+  @apply text-green-700;
+}
+
+.border-success-dark {
+  @apply border-green-700;
+}
+
+.text-warning {
+  @apply text-yellow-500;
+}
+
+.border-warning {
+  @apply border-yellow-500;
+}
+
+.text-danger {
+  @apply text-red-500;
+}
+
+.border-danger {
+  @apply border-red-500;
+}
+
+.text-info {
+  @apply text-blue-500;
+}
+
+.border-info {
+  @apply border-blue-500;
+}

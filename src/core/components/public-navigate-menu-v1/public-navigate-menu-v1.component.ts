@@ -16,6 +16,7 @@ import { ShowImageComponent } from '../show-image/show-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import { PublicDishModalComponent } from '../public-dish-modal/public-dish-modal.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-public-navigate-menu-v1',
@@ -26,6 +27,7 @@ import { PublicDishModalComponent } from '../public-dish-modal/public-dish-modal
     TuiLinkModule,
     TuiButtonModule,
     MatIconModule,
+    CurrencyPipe
 ],
   templateUrl: './public-navigate-menu-v1.component.html',
   styleUrl: './public-navigate-menu-v1.component.scss',
@@ -97,7 +99,6 @@ export class PublicNavigateMenuV1Component implements OnInit {
    */
   clickOnDish(dish: Dish): void {
     // TODO fire modal with dish details
-    // console.log("clickOnDish", {dish, self: this});
     this.dialogs.open<unknown>(
       new PolymorpheusComponent(PublicDishModalComponent, this.injector),
       {
@@ -105,7 +106,6 @@ export class PublicNavigateMenuV1Component implements OnInit {
         dismissible: true,
         closeable: true,
         label: undefined,
-        // label: $localize`Modifica visibilità`,
       },
     ).pipe(
       takeUntil(this.destroy)
@@ -119,9 +119,8 @@ export class PublicNavigateMenuV1Component implements OnInit {
    * Called when need to filter elements for a specific category.
    */
   private selectCategory(category: MenuCategory | null): void {
-    // console.log("selectDish", {category, self: this});
     this.selectedCategory.set(category);
-    if (category) {
+    if (category && category.id) {
       this.loadCategories({ parent_id: category.id });
       this.loadDishes({ category_id: category.id });
     } else {
@@ -138,22 +137,22 @@ export class PublicNavigateMenuV1Component implements OnInit {
   }
 
   private loadCategories(params = {}): void {
-    console.log('loadCategories', params, this);
     // TODO add big delay server side and check if the requests is cancelled when changing page.
     this.loadingCategories.set(true);
     this.menuService.searchCategories(params).pipe(
       takeUntil(this.destroy),
       finalize(() => this.loadingCategories.set(false)),
     ).subscribe({next: (categories: SearchResult<MenuCategory>) => {
-      console.log("mario", {categories, self: this});
       this.categoriesData.set(categories);
     }, error: (e: unknown) => {
       this.notifications.error(e instanceof HttpErrorResponse ? parseHttpErrorMessage(e) : SOMETHING_WENT_WRONG_MESSAGE);
     }});
   }
 
-  private loadDishes(params = {}): void {
+  private loadDishes(params: Record<string, string | number | boolean> = {}): void {
     this.loadingDishes.set(true);
+    params ||= {};
+    params["include_all"] = true;
     this.menuService.searchDishes(params).pipe(
       takeUntil(this.destroy),
       finalize(() => this.loadingDishes.set(false)),

@@ -1,6 +1,9 @@
 import {BaseModelData} from "@core/lib/interfaces/base-model-data";
 import {Image} from "@core/models/image";
 import { ImageData } from '@core/lib/interfaces/image-data';
+import { IngredientData } from "./ingredient-data";
+import { TagData } from "./tag-data";
+import { AllergenData } from "./allergen-data";
 
 export interface DishData extends BaseModelData {
   name?: string;
@@ -15,6 +18,9 @@ export interface DishData extends BaseModelData {
 
   images?: ImageData[];
   suggestions?: DishData[];
+  tags?: TagData[];
+  allergens?: AllergenData[];
+  ingredients?: IngredientData[];
 }
 
 export const DishStatuses = [`active`, `inactive`, `deleted`] as const;

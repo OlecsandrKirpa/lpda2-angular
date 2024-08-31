@@ -1,0 +1,10 @@
+<div class="block">
+  @for(item of (tags ?? []); track item.id) {
+    <div class="inline-flex rounded h-[50px] overflow-hidden border p-2 me-1 mb-1" style="border-color: {{ item.color }}">
+      <div class="flex items-center">
+        <app-show-image class="max-w-[30px] max-h-[30px] me-1" [image]="item.image" ></app-show-image>
+        {{ item.name }}
+      </div>
+    </div>
+  }
+</div>

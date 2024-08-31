@@ -9,6 +9,7 @@ export class Tag extends BaseModel {
   image?: Image;
   status: TagStatus;
   other: Record<string, any>;
+  color: string;
 
   translations: {
     name?: Record<string, string>;
@@ -23,6 +24,7 @@ export class Tag extends BaseModel {
     this.status = data.status;
     this.other = data.other;
     this.translations = {...data.translations};
+    this.color = data.color;
 
     if (data.image) this.image = new Image(data.image);
   }

@@ -7,6 +7,7 @@ export interface TagData extends BaseModelData {
   image?: ImageData;
   status: TagStatus;
   other: Record<string, any>;
+  color: string;
 
   translations: {
     name?: Record<string, string>;

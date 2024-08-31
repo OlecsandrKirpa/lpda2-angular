@@ -1,1 +1,35 @@
-<h1>Dettagli {{ dish()?.name }}</h1>
+<!-- <h1>Dettagli {{ dish()?.name }}</h1> -->
+
+@if(dish()) {
+  <app-show-image class="block mb-3" [image]="(dish()?.images ?? [])[0]"></app-show-image>
+
+  @if((dish()?.tags || []).length > 0) {
+     <app-public-menu-show-tags class="block mb-3" [tags]="dish()?.tags ?? []" ></app-public-menu-show-tags>
+  }
+
+  <h2 class="text-4xl mb-3">{{dish()?.name}}</h2>
+
+  @if(dish()?.description) {
+    <p class="text-xl text-slate-400 mb-3">{{ dish()?.description }}</p>
+  }
+
+  @if((dish()?.price ?? 0) > 0) {
+    <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4 mb-3">
+      {{ dish()?.price | currency }}
+    </div>
+  }
+
+  @if((dish()?.allergens || []).length > 0) {
+    <app-public-menu-show-allergens class="block mb-3" [allergens]="dish()?.allergens ?? []" ></app-public-menu-show-allergens>
+  }
+
+  @if((dish()?.ingredients || []).length > 0) {
+    <app-public-menu-show-ingredients [ingredients]="dish()?.ingredients ?? []"></app-public-menu-show-ingredients>
+  }
+
+  @if((dish()?.suggestions ?? []).length > 0) {
+    <app-public-menu-show-suggestions [dishes]="dish()?.suggestions ?? []"></app-public-menu-show-suggestions>
+  }
+}
+
+<!-- <pre [innerHTML]="dish()?.data | json" ></pre> -->

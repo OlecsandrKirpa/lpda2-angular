@@ -1,29 +1,17 @@
 <div class="max-w-[800px] mx-auto">
-  <p>DEV BREADCRUMB: 
-    @for(cat of breadcrumbs(); track cat.id; let index = $index) {
-      <a tuiLink (click)="navigateTo(index)">{{ cat.name }}</a>
-      @if(index < breadcrumbs().length - 1) { / }
-    }
-  </p>
-
   <tui-loader
     [showLoader]="loading()"
     [overlay]="true"
   >
 
-  <!-- <p class="text-5xl">
-    @if(selectedCategory()){
-      {{ selectedCategory()?.name }}
-    } @else {
-      <ng-container i18n>Menù</ng-container>
-    }
-  </p> -->
-  
   @if(selectedCategory()) {
     <div class="flex">
       <div class="me-3">
         <p class="text-5xl">{{ selectedCategory()?.name }}</p>
         <p class="text-2xl text-slate-400">{{ selectedCategory()?.description }}</p>
+        @if(selectedCategory()?.price) {
+          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ selectedCategory()?.price | currency }}</div>
+        }
       </div>
 
       <div>
@@ -39,6 +27,7 @@
     </button>
   } @else {
     <h1 class="text-5xl" i18n>Menù</h1>
+    <p class="text-slate-400 text-xl" i18n>Naviga attraverso il menù cliccando sopra ai piatti per consultarne i dettagli.</p>
   }
 
   @if(categories().length == 0 && dishes().length == 0) {
@@ -50,7 +39,7 @@
   }
 
   @for(category of categories(); track category.id) {
-    <div class="flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
+    <div (click)="clickOnCategory(category)" role="button" class="hover-transition cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
       <div class="justify-center align-center me-3">
           <app-show-image class="max-w-[500px]" [image]="(category.images || [])[0]"></app-show-image>
       </div>
@@ -58,10 +47,13 @@
       <div class="justify-center align-center">
         <p class="text-3xl">{{ category.name }}</p>
         <p class="text-lg text-slate-400">{{ category.description }}</p>
+        @if(category.price) {
+          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ category.price | currency }}</div>
+        }
       </div>
 
       <div>
-        <button (click)="clickOnCategory(category)" type="button" tuiButton appearance="flat">
+        <button type="button" tuiButton appearance="flat">
           <ng-container i18n>Apri</ng-container>
         </button>
       </div>
@@ -69,7 +61,7 @@
   }
 
   @for(dish of dishes(); track dish.id) {
-    <div class="flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
+    <div (click)="clickOnDish(dish)" role="button" class="hover-transition | cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
       <div class="justify-center align-center me-3">
           <app-show-image class="max-w-[500px]" [image]="(dish.images || [])[0]"></app-show-image>
       </div>
@@ -77,12 +69,17 @@
       <div class="justify-center align-center">
         <p class="text-3xl">{{ dish.name }}</p>
         <p class="text-lg text-slate-400">{{ dish.description }}</p>
+
       </div>
 
       <div>
-        <button (click)="clickOnDish(dish)" type="button" tuiButton appearance="flat">
-          <ng-container i18n>Dettagli</ng-container>
-        </button>
+          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">
+            @if(dish.price == 0) {
+              <ng-container i18n>Gratis</ng-container>
+            } @else {
+              {{ dish.price | currency }}
+            }
+          </div>
       </div>
     </div>
   }
