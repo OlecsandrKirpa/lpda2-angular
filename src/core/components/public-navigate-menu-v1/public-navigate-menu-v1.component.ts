@@ -12,22 +12,24 @@ import { NotificationsService } from '@core/services/notifications.service';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiDialogService, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
 import { finalize, takeUntil } from 'rxjs';
-import { ShowImageComponent } from '../show-image/show-image.component';
+// import { ShowImageComponent } from '../show-image/show-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import { PublicDishModalComponent } from '../public-dish-modal/public-dish-modal.component';
 import { CurrencyPipe } from '@angular/common';
+import { PublicShowImagesComponent } from "../public-show-images/public-show-images.component";
 
 @Component({
   selector: 'app-public-navigate-menu-v1',
   standalone: true,
   imports: [
     TuiLoaderModule,
-    ShowImageComponent,
+    // ShowImageComponent,
     TuiLinkModule,
     TuiButtonModule,
     MatIconModule,
-    CurrencyPipe
+    CurrencyPipe,
+    PublicShowImagesComponent
 ],
   templateUrl: './public-navigate-menu-v1.component.html',
   styleUrl: './public-navigate-menu-v1.component.scss',
@@ -61,6 +63,10 @@ export class PublicNavigateMenuV1Component implements OnInit {
 
   ngOnInit(): void {
     this.loadRootCategories();
+
+    // this.loadingCategories.set(false); // DEVELOPMENT ONLY. REMOVE.
+    // this.loadingDishes.set(false); // DEVELOPMENT ONLY. REMOVE.
+    // this.loadDishes({category_id: 290}); // DEVELOPMENT ONLY. REMOVE.
   }
 
   /**

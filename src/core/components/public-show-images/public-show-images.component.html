@@ -1,0 +1,18 @@
+@if (images && images.length > 0) {
+
+  <!-- https://taiga-ui.dev/components/carousel/API -->
+  <tui-carousel
+    [draggable]="true"
+    [index]="cIndex()"
+    (indexChange)="cIndex.set($event)"
+    class="w-full h-full"
+    [duration]="duration"
+  >
+    @for (image of images; track image) {
+      <app-show-image *tuiItem [image]="image" class="w-full h-full" ></app-show-image>
+    }
+  </tui-carousel>
+
+} @else {
+  <app-show-image [image]="null" style="max-width: 100px;"></app-show-image>
+}

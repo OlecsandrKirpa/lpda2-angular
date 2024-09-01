@@ -15,6 +15,7 @@ import { PublicMenuShowTagsComponent } from "./public-menu-show-tags/public-menu
 import { PublicMenuShowAllergensComponent } from "./public-menu-show-allergens/public-menu-show-allergens.component";
 import { PublicMenuShowIngredientsComponent } from "./public-menu-show-ingredients/public-menu-show-ingredients.component";
 import { PublicMenuShowSuggestionsComponent } from "./public-menu-show-suggestions/public-menu-show-suggestions.component";
+import { PublicShowImagesComponent } from "../public-show-images/public-show-images.component";
 
 @Component({
   selector: 'app-public-dish-modal',
@@ -26,7 +27,7 @@ import { PublicMenuShowSuggestionsComponent } from "./public-menu-show-suggestio
     PublicMenuShowAllergensComponent,
     PublicMenuShowIngredientsComponent,
     PublicMenuShowSuggestionsComponent,
-    // JsonPipe
+    PublicShowImagesComponent
 ],
   templateUrl: './public-dish-modal.component.html',
   styleUrl: './public-dish-modal.component.scss',

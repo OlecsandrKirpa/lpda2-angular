@@ -1,7 +1,5 @@
-<!-- <h1>Dettagli {{ dish()?.name }}</h1> -->
-
 @if(dish()) {
-  <app-show-image class="block mb-3" [image]="(dish()?.images ?? [])[0]"></app-show-image>
+  <app-public-show-images class="block mb-3" [images]="dish()?.images" ></app-public-show-images>
 
   @if((dish()?.tags || []).length > 0) {
      <app-public-menu-show-tags class="block mb-3" [tags]="dish()?.tags ?? []" ></app-public-menu-show-tags>

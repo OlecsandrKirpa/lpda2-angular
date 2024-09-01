@@ -1,0 +1,10 @@
+:host {
+  // display: block;
+  overflow: hidden;
+
+  ::ng-deep {
+    tui-carousel div.t-scroller fieldset.t-item {
+      padding: 0;
+    }
+  }
+}

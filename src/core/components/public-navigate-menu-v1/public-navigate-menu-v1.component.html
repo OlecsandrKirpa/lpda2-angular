@@ -15,7 +15,7 @@
       </div>
 
       <div>
-        <app-show-image class="max-w-[200px]" [image]="(selectedCategory()?.images || [])[0]"></app-show-image>
+        <app-public-show-images class="block max-w-[200px]" [images]="selectedCategory()?.images" ></app-public-show-images>
       </div>
     </div>
 
@@ -40,8 +40,8 @@
 
   @for(category of categories(); track category.id) {
     <div (click)="clickOnCategory(category)" role="button" class="hover-transition cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
-      <div class="justify-center align-center me-3">
-          <app-show-image class="max-w-[500px]" [image]="(category.images || [])[0]"></app-show-image>
+      <div class="w-[25%] justify-center align-center me-3">
+        <app-public-show-images class="block" [images]="category?.images" ></app-public-show-images>
       </div>
 
       <div class="justify-center align-center">
@@ -62,8 +62,8 @@
 
   @for(dish of dishes(); track dish.id) {
     <div (click)="clickOnDish(dish)" role="button" class="hover-transition | cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
-      <div class="justify-center align-center me-3">
-          <app-show-image class="max-w-[500px]" [image]="(dish.images || [])[0]"></app-show-image>
+      <div class="w-[25%] justify-center align-center me-3">
+        <app-public-show-images class="block" [images]="dish?.images" ></app-public-show-images>
       </div>
 
       <div class="justify-center align-center">
