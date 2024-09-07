@@ -1,38 +1,23 @@
-<!--<div class="navbar | fixed top-0 left-0 right-0 z-50 bg-amber-600 flex items-center">-->
-<!--  <div class="flex items-center justify-center w-100 bg-blue-100 grow mx-5">-->
-<!--&lt;!&ndash;    <div class="flex items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/" [routerLinkActive]="'active'">Home</a>&ndash;&gt;-->
-<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/menu" [routerLinkActive]="'active'">Menù</a>&ndash;&gt;-->
-<!--&lt;!&ndash;      <a class="navbar-link me-5 text-lg" routerLink="/about" [routerLinkActive]="'active'">Chi siamo</a>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-
-<!--    <a class="flex items-center" routerLink="/admin">-->
-<!--      <img src="assets/img/logo-partial-building.svg" [ngClass]="{'move-left': scrolled()}" alt="La porta d'acqua" class="h-[48px] me-2"/>-->
-<!--      <img src="assets/img/logo-partial-name.svg" [ngClass]="{'move-left': scrolled()}" alt="La porta d'acqua" class="h-[48px]"/>-->
-<!--    </a>-->
-
-<!--    <div class="fixed" style="top: 10px; right: 10px; height: 60px;">-->
-<!--      Prenota ora-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--</div>-->
 
 <ng-template #langSelectTemp>
   <ng-template #dataList>
     <tui-data-list>
-      <button *ngFor="let lang of languages" (click)="changePath(lang.code)" tuiOption>
-        <span class="d-flex flex-row align-items-center">
-          <span class="me-1" [innerText]="lang.name"></span>
-          <img class="flag" [src]="lang.iso | tuiFlag" />
-        </span>
-      </button>
+      <ng-container *ngFor="let lang of languages">
+        <ng-container *ngIf="lang.iso != currentLanguage().iso">
+          <button (click)="changePath(lang.code)" tuiOption>
+            <span class="d-flex flex-row align-items-center">
+              <span class="me-1" [innerText]="lang.name"></span>
+              <img class="flag" [src]="lang.iso | tuiFlag" />
+            </span>
+          </button>
+        </ng-container>
+      </ng-container>
     </tui-data-list>
   </ng-template>
 
   <tui-hosted-dropdown [content]="dataList">
     <button tuiIconButton appearance="custom" size="m">
-      <img class="flag" [src]="currentLanguage.iso | tuiFlag" />
+      <img class="flag" [src]="currentLanguage().iso | tuiFlag" />
     </button>
   </tui-hosted-dropdown>
 </ng-template>

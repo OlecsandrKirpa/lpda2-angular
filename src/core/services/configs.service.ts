@@ -28,6 +28,10 @@ export class ConfigsService {
   private readonly configs$ = new BehaviorSubject<Configs | null>(null);
   private readonly http = inject(HttpClient);
 
+  readonly locale$: Observable<string> = this.configs$.pipe(
+    map((configs: Configs | null) => (configs || {})["locale"] ?? `it`),
+  )
+
   get(key: ConfigKey): Observable<any | null> {
     this.loadConfigs();
 

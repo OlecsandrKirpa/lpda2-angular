@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule, provideAnimations } from "@angular/platform-browser/animations";
 import { TuiRootModule } from "@taiga-ui/core";
 import {ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom, LOCALE_ID} from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -24,7 +24,7 @@ registerLocaleData(localeIT);
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withHashLocation()),
     importProvidersFrom(TuiRootModule),
     DatePipe,
     provideHttpClient(withInterceptors([addLanguageHeaderInterceptor, jwtInterceptor])),

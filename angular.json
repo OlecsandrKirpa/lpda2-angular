@@ -24,10 +24,23 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "it",
+        "locales": {
+          "": {
+            "translation": "locales/messages.xlf"
+          },
+          "en": {
+            "translation": "locales/messages.en.xlf",
+            "baseHref": "/en/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "i18nMissingTranslation": "error",
             "outputPath": "dist/lpda2",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -105,7 +118,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "lpda2:build"
+            "buildTarget": "lpda2:build",
+            "outputPath": "locales",
+            "format": "xlf"
           }
         },
         "test": {

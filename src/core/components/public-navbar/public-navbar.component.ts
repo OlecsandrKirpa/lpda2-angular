@@ -93,18 +93,18 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
 
   readonly languages: LangData[] = [
     {
-      name: "English",
-      code: "en",
-      iso: TuiCountryIsoCode.US
-    },
-    {
       name: "Italiano",
       code: "it",
       iso: TuiCountryIsoCode.IT
     },
+    {
+      name: "English",
+      code: "en",
+      iso: TuiCountryIsoCode.US
+    },
   ];
 
-  currentLanguage: LangData = this.languages[0];
+  readonly currentLanguage: WritableSignal<LangData> = signal(this.languages[0]);
 
   private localeId?: string;
 
@@ -116,10 +116,10 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
       this.updateBodyClass();
     });
 
-    // configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
-    //   this.localeId = locale;
-    //   this.updateCurrentLanguage();
-    // });
+    configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
+      this.localeId = locale;
+      this.updateCurrentLanguage();
+    });
 
     this.router.events.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.isMenuOpen = false;
@@ -155,7 +155,7 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
   private updateCurrentLanguage(): void {
     if (!(this.localeId)) return;
 
-    this.currentLanguage = this.getCurrentLanguage();
+    this.currentLanguage.set(this.getCurrentLanguage());
   }
 
   private updateLinksTop(): void {
