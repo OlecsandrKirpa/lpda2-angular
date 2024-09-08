@@ -18,8 +18,16 @@ Preferences and Settings are the same thing.
 
 The only difference is that Preferences are user-specific settings, while Settings are application-wide settings.
 
-## Production with localization
+## Localization
 `ng extract-i18n` will generate the .xlf file with all the translations inside `localize` folder.
+
+### Translating
+If you want to translate application manually, you can use a tool like [poeditor.com](https://poeditor.com).
+In that case you may want to select only the "missing" translations. For that you can se `scripts/xlf-missing`. See the file for docs.
+
+Otherwise you can translate the entire file using OpenAI capabilities. Just create a OpenAI key, add it to `scripts/.openai`, and run `ruby scripts/xlf-translate.rb locales/messages.xlf locales/messages.en.xlf`.
+
+### After done translating
 
 When you're done translating, you should have the localization files inside `locales` folder in the root of the project.
 
