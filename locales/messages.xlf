@@ -398,7 +398,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5667839260849056594" datatype="html">
@@ -1130,6 +1130,10 @@
           <context context-type="sourcefile">src/app/auth/pages/login/login.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/core/components/admin-sidenav/admin-sidenav.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4400218478060683170" datatype="html">
         <source>Le abbiamo inviato un email con i dettagli su come resettare la password.</source>
@@ -1190,7 +1194,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7143068328363277082" datatype="html">
@@ -1200,8 +1204,8 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6874921192101007226" datatype="html">
-        <source> Affacciato sul <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Canal Grande<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>, a pochi metri dal <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ponte di Rialto<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>, <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>La Porta d&apos;Acqua<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> offre una <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cucina mediterranea<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> ispirata dalla tradizione <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>campana<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>veneziana<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e dal pesce proveniente dal vicino mercato ittico. <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Menù<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> vario e legato alle stagioni con particolare cura nell&apos;impiattamento. Piacevole zona <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cocktail bar<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> con giardino e vista sul Canale con signature <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cocktail<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>spritz<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> rivisitati. Possibilità di <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>riservare<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> l&apos;intima sala al primo piano per <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>eventi speciali<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+      <trans-unit id="2621847747139745101" datatype="html">
+        <source>Affacciato sul <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Canal Grande<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>, a pochi metri dal <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ponte di Rialto<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>, <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>La Porta d&apos;Acqua<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> offre una <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cucina mediterranea<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> ispirata dalla tradizione <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>campana<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>veneziana<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e dal pesce proveniente dal vicino mercato ittico. <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Menù<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> vario e legato alle stagioni con particolare cura nell&apos;impiattamento. Piacevole zona <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cocktail bar<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> con giardino e vista sul Canale con signature <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>cocktail<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> e <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>spritz<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> rivisitati. Possibilità di <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>riservare<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> l&apos;intima sala al primo piano per <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>eventi speciali<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/about/about.component.html</context>
           <context context-type="linenumber">22,27</context>
@@ -1242,8 +1246,8 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5874614232726824855" datatype="html">
-        <source>Sei sicuro di voler annullare la tuo prenotazione presso La Porta d&apos;Acqua?.</source>
+      <trans-unit id="347484754839296967" datatype="html">
+        <source>Sei sicuro di voler annullare la tuo prenotazione presso La Porta d&apos;Acqua?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/cancel-reservation/cancel-reservation.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1294,20 +1298,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-home-menu/public-home-menu.component.html</context>
           <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2454050363478003966" datatype="html">
-        <source>Login</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/admin-sidenav/admin-sidenav.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6570363013146073520" datatype="html">
-        <source>Dashboard</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/admin-sidenav/admin-sidenav.component.html</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2102825898069375693" datatype="html">
@@ -1367,8 +1357,8 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="33149636091572968" datatype="html">
-        <source>Load more</source>
+      <trans-unit id="1760787029744825311" datatype="html">
+        <source>Carica altri</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/dynamic-selects/common-dynamic-select/common-dynamic-select.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1398,8 +1388,8 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8928012760668964107" datatype="html">
-        <source>Nothing found.</source>
+      <trans-unit id="8399590975654890178" datatype="html">
+        <source>Non abbiamo trovato nulla.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/dynamic-selects/common-dynamic-select/common-dynamic-select.component.html</context>
           <context context-type="linenumber">66</context>
@@ -1427,6 +1417,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/dynamic-selects/common-dynamic-select/common-dynamic-select.component.html</context>
           <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6520561070532383856" datatype="html">
@@ -1753,15 +1747,15 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1976590030428246350" datatype="html">
-        <source>OOps! Category #<x id="INTERPOLATION" equiv-text="{{categoryId}}"/> could not be found.</source>
+      <trans-unit id="803966016351905957" datatype="html">
+        <source>Categoria #<x id="INTERPOLATION" equiv-text="{{categoryId}}"/> non trovata.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/menu-dashboard/category-dashboard/category-dashboard.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7386253269905257254" datatype="html">
-        <source>Back to Menu</source>
+      <trans-unit id="6629269347947945317" datatype="html">
+        <source>Torna al menù</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/menu-dashboard/category-dashboard/category-dashboard.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1800,6 +1794,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/reservation-events/reservation-events.component.ts</context>
           <context context-type="linenumber">77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/core/components/show-images/images-edit-modal/images-edit-modal.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/services/notifications.service.ts</context>
@@ -2137,8 +2135,8 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5667601689001060480" datatype="html">
-        <source>Piatto creata.</source>
+      <trans-unit id="3781685228423581277" datatype="html">
+        <source>Piatto creato.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/menu-dashboard/create-dish/create-dish.component.ts</context>
           <context context-type="linenumber">82</context>
@@ -2683,11 +2681,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html</context>
@@ -2938,7 +2936,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/language.pipe.ts</context>
@@ -2957,7 +2955,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6917638126476831839" datatype="html">
@@ -2983,21 +2981,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/navbar-user-badge/navbar-user-badge.component.html</context>
           <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ fullnameOrEmail() }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/navbar-user-badge/navbar-user-badge.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/reservation-tables-summary/reservation-tables-summary.component.html</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/show-translations/show-translations.component.html</context>
-          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7578677684520650388" datatype="html">
@@ -3032,15 +3015,15 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="810103245356533103" datatype="html">
-        <source>Invia un email a </source>
+      <trans-unit id="4647100568782843527" datatype="html">
+        <source>Invia un email a</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-footer/public-footer.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="374610850327909480" datatype="html">
-        <source>Chiamaci al </source>
+      <trans-unit id="6697472847599583967" datatype="html">
+        <source>Chiamaci al</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-footer/public-footer.component.html</context>
           <context context-type="linenumber">28</context>
@@ -3110,7 +3093,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7800642822281558097" datatype="html">
@@ -3152,7 +3135,7 @@
         <source>Home</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="342918222899482457" datatype="html">
@@ -3174,13 +3157,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html</context>
           <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8399590975654890178" datatype="html">
-        <source>Non abbiamo trovato nulla.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html</context>
-          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8167274690213408728" datatype="html">
@@ -3211,8 +3187,8 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1884818878930478811" datatype="html">
-        <source>Per prenotazioni più grandi di <x id="INTERPOLATION" equiv-text="{{ maxPeople }}"/> persone, <x id="START_TAG_APP_CONTACT_US" ctype="x-app_contact_us" equiv-text="&lt;app-contact-us&gt;"/>Contattaci<x id="CLOSE_TAG_APP_CONTACT_US" ctype="x-app_contact_us" equiv-text="&lt;/app-contact-us&gt;"/></source>
+      <trans-unit id="6906621436677072340" datatype="html">
+        <source>Per prenotazioni più grandi di <x id="INTERPOLATION" equiv-text="{{ maxPeople }}"/> persone,<x id="START_TAG_APP_CONTACT_US" ctype="x-app_contact_us" equiv-text="&lt;app-contact-us class=&quot;ms-1&quot; &gt;"/>Contattaci<x id="CLOSE_TAG_APP_CONTACT_US" ctype="x-app_contact_us" equiv-text="&lt;/app-contact-us&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/public-reservation-form/people-count-input/people-count-input.component.html</context>
           <context context-type="linenumber">21</context>
@@ -3363,8 +3339,8 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4729104927714782246" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ h[0] }}"/> persone</source>
+      <trans-unit id="2722011117668717888" datatype="html">
+        <source>persone</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/reservation-tables-summary/reservation-tables-summary.component.html</context>
           <context context-type="linenumber">24</context>
@@ -3375,6 +3351,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/reservation-tables-summary/reservation-tables-summary.component.html</context>
           <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ h[1] }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/core/components/reservation-tables-summary/reservation-tables-summary.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/core/components/show-translations/show-translations.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40109521701643383" datatype="html">
@@ -3424,13 +3411,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/components/show-images/images-edit-modal/images-edit-modal.component.html</context>
           <context context-type="linenumber">39,41</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8056811926803477954" datatype="html">
-        <source>Invalid context. Please try again later.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/components/show-images/images-edit-modal/images-edit-modal.component.html</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4305243440320007975" datatype="html">
@@ -3547,71 +3527,71 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5545406848632740499" datatype="html">
-        <source>The message shown on the new reservation form.</source>
+      <trans-unit id="996203757935939659" datatype="html">
+        <source>Form di prenotazione pubblica.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6128321894926928034" datatype="html">
-        <source>The message shown on the existing reservation form.</source>
+      <trans-unit id="4908291909492225033" datatype="html">
+        <source>Pagina prenotazione esistente.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8280434682779940173" datatype="html">
-        <source>The message shown on the monday openings page.</source>
+      <trans-unit id="1560220409905371442" datatype="html">
+        <source>Orari di apertura per lunedì.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4037319962071288509" datatype="html">
-        <source>The message shown on the tuesday openings page.</source>
+      <trans-unit id="1595586071230489702" datatype="html">
+        <source>Orari di apertura per martedì.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7561962009086016744" datatype="html">
-        <source>The message shown on the wednesday openings page.</source>
+      <trans-unit id="9090256407118746302" datatype="html">
+        <source>Orari di apertura per mercoledì.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1480913989633510599" datatype="html">
-        <source>The message shown on the thursday openings page.</source>
+      <trans-unit id="6113471727278822213" datatype="html">
+        <source>Orari di apertura per giovedì.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5135850906326508504" datatype="html">
-        <source>The message shown on the friday openings page.</source>
+      <trans-unit id="8821123238856106809" datatype="html">
+        <source>Orari di apertura per venerdì.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1146791983956574569" datatype="html">
-        <source>The message shown on the saturday openings page.</source>
+      <trans-unit id="4882395682058616864" datatype="html">
+        <source>Orari di apertura per sabato.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2500818612883920206" datatype="html">
-        <source>The message shown on the sunday openings page.</source>
+      <trans-unit id="7903497860135432151" datatype="html">
+        <source>Orari di apertura per domenica.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2887272507520545336" datatype="html">
-        <source>The message shown on the cancel reservation page.</source>
+      <trans-unit id="4510533184478718469" datatype="html">
+        <source>Messaggio mostrato a chi volesse annullare la prenotazione.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/lib/interfaces/public-message.ts</context>
           <context context-type="linenumber">55</context>
@@ -3750,74 +3730,67 @@
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2364827127352176444" datatype="html">
-        <source>Panelista</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="794667406773555196" datatype="html">
         <source>Indirizzo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5782574739632277665" datatype="html">
         <source>Telefono</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5305669910929919074" datatype="html">
         <source>Numero WhatsApp</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5393615386020956379" datatype="html">
         <source>URL WhatsApp</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2695639079261364874" datatype="html">
         <source>URL Facebook</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5260802970790134485" datatype="html">
         <source>URL Instagram</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515930867843227656" datatype="html">
         <source>URL TripAdvisor</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3039473275264570161" datatype="html">
         <source>URL Homepage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8465325765130541797" datatype="html">
         <source>URL Google</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/core/pipes/common-translate.pipe.ts</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7758083670137716856" datatype="html">
