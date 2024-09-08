@@ -4184,21 +4184,6 @@
           <context context-type='linenumber'>35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='187187500641108332' datatype='html'>
-        <source>
-          <x id='INTERPOLATION' equiv-text='{{ h[1] }}'/>
-        </source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/core/components/reservation-tables-summary/reservation-tables-summary.component.html
-          </context>
-          <context context-type='linenumber'>40</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/show-translations/show-translations.component.html</context>
-          <context context-type='linenumber'>6</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='40109521701643383' datatype='html'>
         <source>Imposta data</source>
         <context-group purpose='location'>
@@ -4271,6 +4256,15 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/show-images/show-images.component.ts</context>
           <context context-type='linenumber'>44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='187187500641108332' datatype='html'>
+        <source>
+          <x id='INTERPOLATION' equiv-text='{{ item[0] | commonTranslate }}'/>
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/show-translations/show-translations.component.html</context>
+          <context context-type='linenumber'>6</context>
         </context-group>
       </trans-unit>
       <trans-unit id='279419000419622554' datatype='html'>
