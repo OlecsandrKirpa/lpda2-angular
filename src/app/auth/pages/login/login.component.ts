@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
     const qParams = this.route.snapshot.queryParams;
     if (qParams['email']) this.form.get('email')?.setValue(qParams['email']);
     if (qParams['password'] && isDevMode()) this.form.get('password')?.setValue(qParams['password']);
-    if (qParams['url']) this.redirectUrl = qParams['url'].replace(window.location.origin, ``);
+    if (qParams['url']) this.redirectUrl = qParams['url'].replace(window.location.origin, ``).replace(`#`, ``);
   }
 
   submit(): void {
