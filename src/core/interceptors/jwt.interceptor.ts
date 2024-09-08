@@ -96,6 +96,15 @@ export function jwtInterceptor(request: HttpRequest<any>, next: HttpHandlerFn): 
   const auth: AuthService = inject(AuthService);
 
   /**
+   * Necessary in case back-end and front-end are running in different origins.
+   * 
+   * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials
+   */
+  request = request.clone({
+    withCredentials: true
+  });
+
+  /**
    * Force add jwt.
    */
   if (request.url.includes(JWT_INTERCEPTOR_DONT_SKIP_REQUEST_PARAM)) {
