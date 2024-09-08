@@ -79,7 +79,7 @@ export class CreateDishComponent implements OnInit {
         // const url: string | null = this.afterUrl || this.urlTo.transform(record.id, `dish.show`);
         // console.assert(url, `URL for dish ${record.id} not found`);
         // this.router.navigate([url], {relativeTo: this.route});
-        this.notifications.fireSnackBar($localize`Piatto creata.`);
+        this.notifications.fireSnackBar($localize`Piatto creato.`);
       },
       error: (errors: HttpErrorResponse): void => {
         ReactiveErrors.assignErrorsToForm(this.form, errors);

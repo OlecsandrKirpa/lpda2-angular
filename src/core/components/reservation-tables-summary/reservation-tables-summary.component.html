@@ -21,7 +21,7 @@
 
         @for (h of (d.summary | objectToArray); track h[0]) {
           <th class="tui-table__th">
-            <span i18n>{{ h[0] }} persone</span>
+            {{ h[0] }} <span i18n>persone</span>
           </th>
         }
       </tr>

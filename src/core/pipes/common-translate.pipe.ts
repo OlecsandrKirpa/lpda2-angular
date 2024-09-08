@@ -7,7 +7,6 @@ const dict: Record<string, string> = {
   "unsubscribed": $localize`Disiscritto`,
   "male": $localize`Maschio`,
   "female": $localize`Femmina`,
-  "panelist": $localize`Panelista`,
   "address": $localize`Indirizzo`,
   "phone": $localize`Telefono`,
   "email": $localize`Email`,
