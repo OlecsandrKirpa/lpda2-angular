@@ -19,6 +19,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {NotificationsService} from "@core/services/notifications.service";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-require-reset-password',
@@ -49,6 +50,8 @@ export class RequireResetPasswordComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
+
+  readonly _ = inject(Title).setTitle($localize`Password dimenticata | La porta d'acqua`);
 
   readonly form: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email])

@@ -57,6 +57,7 @@ import {ReservationEventsComponent} from "@core/components/reservation-events/re
 import {PhoneToComponent} from "@core/components/phone-to/phone-to.component";
 import {MailToComponent} from "@core/components/mail-to/mail-to.component";
 import {ReservationPeopleComponent} from "@core/components/reservation-people/reservation-people.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -99,6 +100,7 @@ export class AdminReservationsHomeComponent implements OnInit {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
+  readonly _ = inject(Title).setTitle($localize`Prenotazioni | La porta d'acqua`);
 
   @ViewChild(ReservationTurnSelectComponent, {static: true}) turnSelect?: ReservationTurnSelectComponent;
 

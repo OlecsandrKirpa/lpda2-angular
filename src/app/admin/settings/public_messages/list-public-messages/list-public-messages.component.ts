@@ -27,6 +27,7 @@ import {PublicMessageKeyPipe} from "@core/pipes/public-message-key.pipe";
 import {ShowTranslationsComponent} from "@core/components/show-translations/show-translations.component";
 import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import {FormControl, FormGroup} from "@angular/forms";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-public-messages',
@@ -60,6 +61,7 @@ export class ListPublicMessagesComponent implements OnInit {
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
+  readonly _ = inject(Title).setTitle($localize`Comunicazioni | La porta d'acqua`);
 
   readonly inputSize: "s" | "m" | "l" = 'm';
 

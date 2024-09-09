@@ -19,6 +19,7 @@ import {TuiDropdownModule, TuiSizeL, TuiSizeS} from "@taiga-ui/core";
 import {
   PreferencesMultipleSelectComponent
 } from "@core/components/preferences-inputs/preferences-multiple-select/preferences-multiple-select.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-preferences',
@@ -43,6 +44,8 @@ export class ListPreferencesComponent implements OnInit {
   private readonly service: PreferencesService = inject(PreferencesService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
+
+  readonly _ = inject(Title).setTitle($localize`Preferenze | La porta d'acqua`);
 
   readonly inputSize: TuiSizeS | TuiSizeL = 'l';
 

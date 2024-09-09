@@ -28,6 +28,7 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {User} from "@core/models/user";
 import {UsersService} from "@core/services/http/users.service";
 import {ListUsersFiltersComponent, UsersFilters} from "./list-users-filters/list-users-filters.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-users',
@@ -63,6 +64,8 @@ export class ListUsersComponent implements OnInit {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
+
+  readonly _ = inject(Title).setTitle($localize`Impostazioni utenti | La porta d'acqua`);
 
   // @ViewChild(UserTurnSelectComponent, {static: true}) turnSelect?: UserTurnSelectComponent;
 

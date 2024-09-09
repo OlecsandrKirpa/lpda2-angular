@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PublicNavigateMenuV1Component } from "../../../core/components/public-navigate-menu-v1/public-navigate-menu-v1.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu',
@@ -8,5 +9,5 @@ import { PublicNavigateMenuV1Component } from "../../../core/components/public-n
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
-
+  readonly _ = inject(Title).setTitle($localize`Menu | La porta d'acqua`);
 }

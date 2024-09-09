@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {PublicHomeLandingComponent} from "@core/components/public-home-landing/public-home-landing.component";
@@ -7,6 +7,7 @@ import {PublicHomeMenuComponent} from "@core/components/public-home-menu/public-
 import {PublicHomeInstagramComponent} from "@core/components/public-home-instagram/public-home-instagram.component";
 import {PublicHomeReserveComponent} from "@core/components/public-home-reserve/public-home-reserve.component";
 import {PublicMessageComponent} from "@core/components/public-message/public-message.component";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -25,5 +26,5 @@ import {PublicMessageComponent} from "@core/components/public-message/public-mes
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+  readonly _ = inject(Title).setTitle(`La porta d'acqua`);
 }

@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {NgClass, NgForOf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import { Title } from '@angular/platform-browser';
 
 
 export type Setting = {
@@ -28,6 +29,8 @@ export type Setting = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminSettingsHomeComponent {
+  readonly _ = inject(Title).setTitle($localize`Impostazioni | La porta d'acqua`);
+
   readonly settings: Setting[] = [
     {
       name: $localize`Utenti`,

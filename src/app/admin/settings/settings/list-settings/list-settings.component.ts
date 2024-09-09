@@ -41,6 +41,7 @@ import {
 import {
   PreferencesTextInputComponent
 } from "@core/components/preferences-inputs/preferences-text-input/preferences-text-input.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-settings',
@@ -72,6 +73,8 @@ export class ListSettingsComponent implements OnInit {
   private readonly service: SettingsService = inject(SettingsService);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
+
+  readonly _ = inject(Title).setTitle($localize`Impostazioni di Sistema | La porta d'acqua`);
 
   readonly languagePipe: LanguagePipe = inject(LanguagePipe)
 

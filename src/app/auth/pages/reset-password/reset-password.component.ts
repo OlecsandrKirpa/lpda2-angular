@@ -16,6 +16,7 @@ import {AuthService} from "@core/services/http/auth.service";
 import {NotificationsService} from "@core/services/notifications.service";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reset-password',
@@ -45,6 +46,8 @@ export class ResetPasswordComponent {
   private readonly configs: ConfigsService = inject(ConfigsService);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly notifications: NotificationsService = inject(NotificationsService);
+
+  readonly _ = inject(Title).setTitle($localize`Imposta password | La porta d'acqua`);
 
   readonly form: FormGroup = new FormGroup({
     code: new FormControl(null, [Validators.required]),

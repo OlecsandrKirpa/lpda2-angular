@@ -13,6 +13,7 @@ import {PublicMessageComponent} from "@core/components/public-message/public-mes
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 import {DatePipe} from "@angular/common";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cancel-reservation',
@@ -43,6 +44,8 @@ export class CancelReservationComponent implements OnInit {
   readonly loading: WritableSignal<boolean> = signal<boolean>(true);
 
   private secret: string | null = null;
+
+  readonly _ = inject(Title).setTitle($localize`Elimina prenotazione | La porta d'acqua`);
 
   ngOnInit(): void {
     this.route.params.pipe(

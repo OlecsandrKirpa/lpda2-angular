@@ -15,6 +15,7 @@ import { ConfigsService } from '@core/services/configs.service';
 import { AlreadyLoggedInComponent } from '@core/components/already-logged-in/already-logged-in.component';
 import {ProfileService} from "@core/services/http/profile.service";
 import {nue} from "@core/lib/nue";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -65,6 +66,8 @@ export class LoginComponent implements OnInit {
   private readonly auth = inject(AuthService);
   private readonly configs: ConfigsService = inject(ConfigsService);
   private readonly profile = inject(ProfileService);
+
+  readonly _ = inject(Title).setTitle($localize`Accedi | La porta d'acqua`);
 
   cu = this.profile.cu;
 

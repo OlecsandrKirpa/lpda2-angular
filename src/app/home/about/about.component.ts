@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -11,5 +12,5 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-
+  readonly _ = inject(Title).setTitle($localize`Chi siamo | La porta d'acqua`);
 }

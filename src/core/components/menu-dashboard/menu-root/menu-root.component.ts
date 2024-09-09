@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {ListItemsComponent} from "@core/components/menu-dashboard/list-items/list-items.component";
 import {RouterOutlet} from "@angular/router";
 import {
   CategoryBreadcrumbsComponent
 } from "@core/components/menu-dashboard/category-breadcrumbs/category-breadcrumbs.component";
 import {ListCategoriesComponent} from "@core/components/menu-dashboard/list-categories/list-categories.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu-root',
@@ -21,5 +22,5 @@ import {ListCategoriesComponent} from "@core/components/menu-dashboard/list-cate
   }
 })
 export class MenuRootComponent {
-
+  readonly _ = inject(Title).setTitle($localize`Modifica menù | La porta d'acqua`);
 }

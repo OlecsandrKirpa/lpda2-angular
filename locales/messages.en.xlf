@@ -1,7 +1,15 @@
-<?xml version='1.0' encoding='UTF-8'?> 
+<?xml version='1.0' encoding='UTF-8'?>
 <xliff xmlns='urn:oasis:names:tc:xliff:document:1.2' version='1.2'>
   <file source-language='it' datatype='plaintext' original='ng2.template'>
     <body>
+      <trans-unit id='3751602496416772541' datatype='html'>
+        <source>Dashboard | La porta d'acqua</source>
+        <target>Dashboard | The Water Door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/dashboard/admin-dashboard.component.ts</context>
+          <context context-type='linenumber'>13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='7532968965335544251' datatype='html'>
         <source>Allergeni</source>
         <target>Allergens</target>
@@ -218,11 +226,11 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>154</context>
+          <context context-type='linenumber'>156</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
-          <context context-type='linenumber'>110</context>
+          <context context-type='linenumber'>113</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1154814451457829825' datatype='html'>
@@ -620,6 +628,17 @@
           <context context-type='linenumber'>20</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='2992474334090822758' datatype='html'>
+        <source>Prenotazioni | La porta d'acqua</source>
+        <target>Bookings | The Water Door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>103</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='6923005459778676818' datatype='html'>
         <source>Sei sicuro di voler cancellare questa prenotazione?</source>
         <target>Are you sure you want to cancel this reservation?</target>
@@ -628,7 +647,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>122</context>
+          <context context-type='linenumber'>124</context>
         </context-group>
       </trans-unit>
       <trans-unit id='941321116787164262' datatype='html'>
@@ -639,18 +658,18 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>177</context>
+          <context context-type='linenumber'>179</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
           </context>
-          <context context-type='linenumber'>102</context>
+          <context context-type='linenumber'>104</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
-          <context context-type='linenumber'>133</context>
+          <context context-type='linenumber'>136</context>
         </context-group>
       </trans-unit>
       <trans-unit id='953494472416517212' datatype='html'>
@@ -685,11 +704,19 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>51</context>
+          <context context-type='linenumber'>54</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
           <context context-type='linenumber'>106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2819214936140499237' datatype='html'>
+        <source>Impostazioni | La porta d'acqua</source>
+        <target>Settings | The water gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7062165667677938789' datatype='html'>
@@ -697,7 +724,7 @@
         <target>Users</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>33</context>
+          <context context-type='linenumber'>36</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.html</context>
@@ -709,7 +736,7 @@
         <target>Add or remove users.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>34</context>
+          <context context-type='linenumber'>37</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8787463047396971113' datatype='html'>
@@ -717,7 +744,7 @@
         <target>Preferences</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>42</context>
+          <context context-type='linenumber'>45</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5369211491545222446' datatype='html'>
@@ -725,7 +752,7 @@
         <target>Change settings for your user.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>43</context>
+          <context context-type='linenumber'>46</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1425129787697673683' datatype='html'>
@@ -733,7 +760,7 @@
         <target>Modify settings at the system level.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>52</context>
+          <context context-type='linenumber'>55</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8340426540721025868' datatype='html'>
@@ -741,7 +768,7 @@
         <target>Public communications</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>60</context>
+          <context context-type='linenumber'>63</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5527059129967157670' datatype='html'>
@@ -749,7 +776,7 @@
         <target>Show personalized messages on public pages.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>61</context>
+          <context context-type='linenumber'>64</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7936067117742615976' datatype='html'>
@@ -802,6 +829,17 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8386732515308879822' datatype='html'>
+        <source>Preferenze | La porta d'acqua</source>
+        <target>Preferences | The water gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/settings/preferences/list-preferences/list-preferences.component.ts 
+          </context>
+          <context context-type='linenumber'>48</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2820322329212035921' datatype='html'>
@@ -1224,6 +1262,17 @@
           <context context-type='linenumber'>21</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='2065042243475526797' datatype='html'>
+        <source>Comunicazioni | La porta d'acqua</source>
+        <target>Communications | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
+          </context>
+          <context context-type='linenumber'>64</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='1526651525871386464' datatype='html'>
         <source>Impostazioni di sistema</source>
         <target>System settings</target>
@@ -1347,11 +1396,7 @@
           <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_max_days_in_advance&apos;] }}'/>
            giorni da oggi. 
         </source>
-        <target>
-          Reservations can be made up to a limit of 
-          <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_max_days_in_advance&apos;] }}'/>
-           days from today.
-        </target>
+        <target> Reservations can be made up to a limit of days from today. </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>71</context>
@@ -1382,9 +1427,7 @@
         </source>
         <target>
            If set to zero, people will be able to book in real-time for the same
-          time, otherwise at least 
-          <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_min_hours_in_advance&apos;] }}'/>
-           hours after the current time. 
+          time, otherwise at least hours after the current time. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
@@ -1455,6 +1498,14 @@
           <context context-type='linenumber'>121</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='2891916414879461217' datatype='html'>
+        <source>Impostazioni di Sistema | La porta d'acqua</source>
+        <target>System Settings | The Water Gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.ts</context>
+          <context context-type='linenumber'>77</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='3724620174037767332' datatype='html'>
         <source>Filtra utenti</source>
         <target>Filter users</target>
@@ -1489,12 +1540,20 @@
           <context context-type='linenumber'>61</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='6828164134344265612' datatype='html'>
+        <source>Impostazioni utenti | La porta d'acqua</source>
+        <target>User settings | The water gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
+          <context context-type='linenumber'>68</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='6364093894253938685' datatype='html'>
         <source>Sei sicuro di voler cancellare questo utente?</source>
         <target>Are you sure you want to delete this user?</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
-          <context context-type='linenumber'>78</context>
+          <context context-type='linenumber'>81</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6062443357680597917' datatype='html'>
@@ -1561,12 +1620,28 @@
           <context context-type='linenumber'>22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='793104162150949045' datatype='html'>
+        <source>Accedi | La porta d'acqua</source>
+        <target>Access | The water gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/login/login.component.ts</context>
+          <context context-type='linenumber'>70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5665628516258619998' datatype='html'>
+        <source>Password dimenticata | La porta d'acqua</source>
+        <target>Forgotten password | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
+          <context context-type='linenumber'>54</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='4400218478060683170' datatype='html'>
         <source>Le abbiamo inviato un email con i dettagli su come resettare la password.</source>
         <target>We have sent you an email with details on how to reset your password.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
-          <context context-type='linenumber'>100</context>
+          <context context-type='linenumber'>103</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5119736526806620734' datatype='html'>
@@ -1574,7 +1649,7 @@
         <target>Email sent</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
-          <context context-type='linenumber'>101</context>
+          <context context-type='linenumber'>104</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/reservation-events/reservation-events.component.html</context>
@@ -1593,12 +1668,20 @@
           <context context-type='linenumber'>8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='3009517544234496660' datatype='html'>
+        <source>Imposta password | La porta d'acqua</source>
+        <target>Set password | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.ts</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='6835379988100167191' datatype='html'>
         <source>La password è stata reimpostata con successo. Ora puoi effettuare il login.</source>
         <target>The password has been successfully reset. You can now log in.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.ts</context>
-          <context context-type='linenumber'>99</context>
+          <context context-type='linenumber'>102</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7443554177109165612' datatype='html'>
@@ -1691,55 +1774,13 @@
            . 
         </source>
         <target>
-           Overlooking the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          , just a few meters from the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          , 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           offers 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Mediterranean cuisine
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           inspired by 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Neapolitan
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           and 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetian
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           traditions and fish from the nearby fish market. A varied 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          menu
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           connected to the seasons with particular care in plating. A pleasant 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           area with a garden and view of the canal featuring signature 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktails
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           and revisited 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          spritz
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . The intimate room on the first floor can be 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          reserved
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           for 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          special events
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . 
+           Overlooking the Grand Canal , just a few meters from the Rialto
+          Bridge , La Porta d'Acqua offers Mediterranean cuisine inspired by
+          Neapolitan and Venetian traditions and fish from the nearby fish
+          market. A varied menu connected to the seasons with particular care in
+          plating. A pleasant cocktail bar area with a garden and view of the
+          canal featuring signature cocktails and revisited spritz . The
+          intimate room on the first floor can be reserved for special events . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1802,51 +1843,18 @@
           decisamente fuori dall’ordinario. 
         </source>
         <target>
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           is a guarantee. Well-known by 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetians
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           and 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          non-Venetians
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           alike, this splendid establishment of 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetian dining
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           has now moved just a few meters to gain an incredible view of the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . Overlooking Riva del Vin, a few meters from the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          restaurant
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           is housed in a finely restored 15th-century building with
-          contemporary taste. From the beautiful interior rooms (one on the
-          first floor, also 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          available for events
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , private parties, business dinners) to the magnificent outdoor area,
-          and the stunning garden where you can enjoy an aperitif at the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , every detail of this place has been meticulously thought out.
-          Easily accessible from any direction, 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           successfully combines the quality of its dishes with a decidedly
-          extraordinary location. 
+           La Porta d'Acqua is a guarantee. Well-known by Venetians and
+          non-Venetians alike, this splendid establishment of Venetian dining
+          has now moved just a few meters to gain an incredible view of the
+          Grand Canal . Overlooking Riva del Vin, a few meters from the Rialto
+          Bridge , the restaurant is housed in a finely restored 15th-century
+          building with contemporary taste. From the beautiful interior rooms
+          (one on the first floor, also available for events , private parties,
+          business dinners) to the magnificent outdoor area, and the stunning
+          garden where you can enjoy an aperitif at the cocktail bar , every
+          detail of this place has been meticulously thought out. Easily
+          accessible from any direction, La Porta d'Acqua successfully combines
+          the quality of its dishes with a decidedly extraordinary location. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1879,23 +1887,25 @@
           con un aperitivo originale o un digestivo a regola d’arte. 
         </source>
         <target>
-           At the entrance of the venue, a spacious counter leads to a pleasant 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          bar
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           area that encompasses two equally appealing aspects: a tasty bacaro
-          from morning until early afternoon; a refined 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           with signature cocktails and enticing revisited spritzes created by
-          the skilled hands of the bartender. The perfect place to enjoy
-          delicious cicchetti and crostini and to complete your magnificent
-          dinner with an original aperitif or a well-crafted digestif. 
+           At the entrance of the venue, a spacious counter leads to a pleasant
+          bar area that encompasses two equally appealing aspects: a tasty
+          bacaro from morning until early afternoon; a refined cocktail bar with
+          signature cocktails and enticing revisited spritzes created by the
+          skilled hands of the bartender. The perfect place to enjoy delicious
+          cicchetti and crostini and to complete your magnificent dinner with an
+          original aperitif or a well-crafted digestif. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
           <context context-type='linenumber'>72,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3777811082057401382' datatype='html'>
+        <source>Chi siamo | La porta d'acqua</source>
+        <target>Who we are | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/about/about.component.ts</context>
+          <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2922025001072258145' datatype='html'>
@@ -1934,10 +1944,8 @@
            È nel passato? O è stata eliminata? 
         </source>
         <target>
-          <x id='START_TAG_SPAN' ctype='x-span' equiv-text='&lt;span class=&quot;text-red-600&quot; &gt;'/>
-          We were unable to find your reservation.
-          <x id='CLOSE_TAG_SPAN' ctype='x-span' equiv-text='&lt;/span&gt;'/>
-           Is it in the past? Or has it been deleted? 
+           We were unable to find your reservation. Is it in the past? Or has it
+          been deleted? 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.html</context>
@@ -1956,12 +1964,20 @@
           <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='5778154282926830250' datatype='html'>
+        <source>Elimina prenotazione | La porta d'acqua</source>
+        <target>Cancel reservation | The water gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.ts</context>
+          <context context-type='linenumber'>48</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='6168094040476431637' datatype='html'>
         <source>Prenotazione cancellata.</source>
         <target>Reservation cancelled.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.ts</context>
-          <context context-type='linenumber'>80</context>
+          <context context-type='linenumber'>83</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2426056137160348049' datatype='html'>
@@ -1974,6 +1990,22 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-menu/public-home-menu.component.html</context>
           <context context-type='linenumber'>4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7247362417047071128' datatype='html'>
+        <source>Menu | La porta d'acqua</source>
+        <target>Menu | The Water Gate</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/menu/menu.component.ts</context>
+          <context context-type='linenumber'>12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3277501286191035989' datatype='html'>
+        <source>Prenota un tavolo | La porta d'acqua</source>
+        <target>Book a table | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/reserve/reserve.component.ts</context>
+          <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2102825898069375693' datatype='html'>
@@ -2694,11 +2726,7 @@
           <x id='INTERPOLATION' equiv-text='{{categoryId}}'/>
            non trovata. 
         </source>
-        <target>
-          Category #
-          <x id='INTERPOLATION' equiv-text='{{categoryId}}'/>
-           not found.
-        </target>
+        <target> Category # not found. </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -4192,13 +4220,18 @@
            Tutti i piatti ordinati per 
           <x id='PH' equiv-text='field'/>
         </source>
-        <target>
-          All the dishes ordered for 
-          <x id='PH' equiv-text='field'/>
-        </target>
+        <target> All the dishes ordered for </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.ts</context>
           <context context-type='linenumber'>263</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7705795364979507129' datatype='html'>
+        <source>Modifica menù | La porta d'acqua</source>
+        <target>Menu modification | The water door</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/menu-root/menu-root.component.ts</context>
+          <context context-type='linenumber'>25</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6053098897625449145' datatype='html'>
@@ -4456,31 +4489,11 @@
            con una location decisamente fuori dall’ordinario. 
         </source>
         <target>
-           In the heart of 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venice
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , just a stone's throw from the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          restaurant
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           is situated in a 15th-century palace overlooking the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           . Easily accessible from every direction, 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d’Acqua
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           successfully combines the quality of its 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          dishes
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           with a truly extraordinary location. 
+           In the heart of Venice , just a stone's throw from the Rialto Bridge
+          , the restaurant is situated in a 15th-century palace overlooking the
+          Grand Canal . Easily accessible from every direction, La Porta d’Acqua
+          successfully combines the quality of its dishes with a truly
+          extraordinary location. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-about/public-home-about.component.html</context>
@@ -4574,59 +4587,15 @@
            alla sera. 
         </source>
         <target>
-           Venice has always been a meeting point of various 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           cultures 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           and 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           peoples 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           . The idea behind our dishes is to combine 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           tradition 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           with innovation, respecting the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           seasonality 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           of the ingredients. A successful 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           blend 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           of Mediterranean recipes with classic 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           Venetian dishes 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           . The cuisine ranges from a wide selection of 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           daily catches 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           , 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           selected meats 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           and 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           vegetables 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           from the lagoon islands. All accompanied by the 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           best Italian wines 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           with a selection from 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           small winemakers' cellars 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           . Stop by the bar for a 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           cicchetto 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           at lunch or for a cocktail and a 
-          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-           revisited spritz 
-          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           in the evening. 
+           Venice has always been a meeting point of various cultures and
+          peoples . The idea behind our dishes is to combine tradition with
+          innovation, respecting the seasonality of the ingredients. A
+          successful blend of Mediterranean recipes with classic Venetian dishes
+          . The cuisine ranges from a wide selection of daily catches , selected
+          meats and vegetables from the lagoon islands. All accompanied by the
+          best Italian wines with a selection from small winemakers' cellars .
+          Stop by the bar for a cicchetto at lunch or for a cocktail and a
+          revisited spritz in the evening. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-menu/public-home-menu.component.html</context>
@@ -4662,7 +4631,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id='7800642822281558097' datatype='html'>
-        <source>La tua prenotazione è stata creata. Riceverai a breve un'email di conferma.</source>
+        <source> La tua prenotazione è stata creata. Riceverai a breve un'email di conferma. </source>
         <target>Your booking has been created. You will soon receive a confirmation email.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-reserve/public-home-reserve.component.html</context>
@@ -4677,12 +4646,7 @@
           <x id='INTERPOLATION_1' equiv-text='{{ createdReservation()?.datetime | date: &apos;HH:mm&apos; }}'/>
            . 
         </source>
-        <target>
-          I'll see you at 
-          <x id='INTERPOLATION' equiv-text='{{ createdReservation()?.datetime | date: &apos;EEEE d MMMM y&apos; }}'/>
-          <x id='INTERPOLATION_1' equiv-text='{{ createdReservation()?.datetime | date: &apos;HH:mm&apos; }}'/>
-          .
-        </target>
+        <target> I'll see you at . </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-reserve/public-home-reserve.component.html</context>
           <context context-type='linenumber'>15,16</context>
@@ -4812,15 +4776,7 @@
            Contattaci 
           <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
         </source>
-        <target>
-          For larger bookings of 
-          <x id='INTERPOLATION' equiv-text='{{ maxPeople }}'/>
-           people, 
-          <x id='START_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;app-contact-us class=&quot;ms-1&quot; &gt;'/>
-          contact us
-          <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
-          .
-        </target>
+        <target> For larger bookings of people, contact us . </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -4972,7 +4928,10 @@
         </context-group>
       </trans-unit>
       <trans-unit id='3234495913862971526' datatype='html'>
-        <source>La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.</source>
+        <source>
+           La tua prenotazione è stata creata. A breve ti invieremo un'email di
+          conferma. 
+        </source>
         <target>
            Your reservation has been created. We will send you a confirmation
           email shortly. 
