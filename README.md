@@ -50,3 +50,16 @@ sudo rm -rf /var/www/lpda2/* && sudo cp -r dist/lpda2/* /var/www/lpda2/ && sudo 
 
 ## Poeditor
 Login to [poeditor.com](https://poeditor.com)
+
+## CORS setup
+In Angular, create a interceptor that does allow credentials from different origins. [Read more here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials) and [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie). Otherwise cookie-based authentication will fail.
+
+```typescript
+export function permitCORSCredentialsInterceptor(request: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
+  request = request.clone({ withCredentials: true });
+
+  // ....
+}
+```
+
+Then, setup the [backend](https://github.com/kirpachov/lpda2-rails) side.
