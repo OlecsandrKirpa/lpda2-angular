@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule, provideAnimations } from "@angular/platform-browser/animations";
 import { TuiRootModule } from "@taiga-ui/core";
-import {ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom, LOCALE_ID} from '@angular/core';
+import {ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom, LOCALE_ID, isDevMode} from '@angular/core';
 import { provideRouter, withHashLocation } from '@angular/router';
 import {
   HTTP_INTERCEPTORS,
@@ -19,6 +19,7 @@ import localeIT from '@angular/common/locales/it';
 import {addLanguageHeaderInterceptor} from "@core/interceptors/add-language-header.interceptor";
 import {SessionService} from "@core/services/admin-session.service";
 import {jwtInterceptor} from "@core/interceptors/jwt.interceptor";
+import { provideServiceWorker } from '@angular/service-worker';
 
 registerLocaleData(localeIT);
 
@@ -34,5 +35,9 @@ export const appConfig: ApplicationConfig = {
     { provide: TUI_LANGUAGE, useValue: of(TUI_ITALIAN_LANGUAGE) },
     { provide: LOCALE_ID, useValue: 'it' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
 ]
 };
