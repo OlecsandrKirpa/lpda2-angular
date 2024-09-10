@@ -26,5 +26,5 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  readonly _ = inject(Title).setTitle(`La porta d'acqua`);
+  readonly _ = inject(Title).setTitle(`La Porta D'Acqua`);
 }
