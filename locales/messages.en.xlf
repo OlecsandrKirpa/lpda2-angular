@@ -1347,7 +1347,11 @@
           <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_max_days_in_advance&apos;] }}'/>
            giorni da oggi. 
         </source>
-        <target> Reservations can be made up to a limit of days from today. </target>
+        <target>
+          Reservations can be made up to a limit of 
+          <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_max_days_in_advance&apos;] }}'/>
+           days from today.
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>71</context>
@@ -1378,7 +1382,9 @@
         </source>
         <target>
            If set to zero, people will be able to book in real-time for the same
-          time, otherwise at least hours after the current time. 
+          time, otherwise at least 
+          <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_min_hours_in_advance&apos;] }}'/>
+           hours after the current time. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
@@ -1685,13 +1691,55 @@
            . 
         </source>
         <target>
-           Overlooking the Grand Canal , just a few meters from the Rialto
-          Bridge , La Porta d'Acqua offers Mediterranean cuisine inspired by
-          Neapolitan and Venetian traditions and fish from the nearby fish
-          market. A varied menu connected to the seasons with particular care in
-          plating. A pleasant cocktail bar area with a garden and view of the
-          canal featuring signature cocktails and revisited spritz . The
-          intimate room on the first floor can be reserved for special events . 
+           Overlooking the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Grand Canal
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+          , just a few meters from the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Rialto Bridge
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+          , 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          La Porta d'Acqua
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           offers 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Mediterranean cuisine
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           inspired by 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Neapolitan
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           and 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Venetian
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           traditions and fish from the nearby fish market. A varied 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          menu
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           connected to the seasons with particular care in plating. A pleasant 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          cocktail bar
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           area with a garden and view of the canal featuring signature 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          cocktails
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           and revisited 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          spritz
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+          . The intimate room on the first floor can be 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          reserved
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           for 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          special events
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+          . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1754,18 +1802,51 @@
           decisamente fuori dall’ordinario. 
         </source>
         <target>
-           La Porta d'Acqua is a guarantee. Well-known by Venetians and
-          non-Venetians alike, this splendid establishment of Venetian dining
-          has now moved just a few meters to gain an incredible view of the
-          Grand Canal . Overlooking Riva del Vin, a few meters from the Rialto
-          Bridge , the restaurant is housed in a finely restored 15th-century
-          building with contemporary taste. From the beautiful interior rooms
-          (one on the first floor, also available for events , private parties,
-          business dinners) to the magnificent outdoor area, and the stunning
-          garden where you can enjoy an aperitif at the cocktail bar , every
-          detail of this place has been meticulously thought out. Easily
-          accessible from any direction, La Porta d'Acqua successfully combines
-          the quality of its dishes with a decidedly extraordinary location. 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          La Porta d'Acqua
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           is a guarantee. Well-known by 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Venetians
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           and 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          non-Venetians
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           alike, this splendid establishment of 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Venetian dining
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           has now moved just a few meters to gain an incredible view of the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Grand Canal
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+          . Overlooking Riva del Vin, a few meters from the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Rialto Bridge
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          restaurant
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           is housed in a finely restored 15th-century building with
+          contemporary taste. From the beautiful interior rooms (one on the
+          first floor, also 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          available for events
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , private parties, business dinners) to the magnificent outdoor area,
+          and the stunning garden where you can enjoy an aperitif at the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          cocktail bar
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , every detail of this place has been meticulously thought out.
+          Easily accessible from any direction, 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          La Porta d'Acqua
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           successfully combines the quality of its dishes with a decidedly
+          extraordinary location. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1798,13 +1879,19 @@
           con un aperitivo originale o un digestivo a regola d’arte. 
         </source>
         <target>
-           At the entrance of the venue, a spacious counter leads to a pleasant
-          bar area that encompasses two equally appealing aspects: a tasty
-          bacaro from morning until early afternoon; a refined cocktail bar with
-          signature cocktails and enticing revisited spritzes created by the
-          skilled hands of the bartender. The perfect place to enjoy delicious
-          cicchetti and crostini and to complete your magnificent dinner with an
-          original aperitif or a well-crafted digestif. 
+           At the entrance of the venue, a spacious counter leads to a pleasant 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          bar
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           area that encompasses two equally appealing aspects: a tasty bacaro
+          from morning until early afternoon; a refined 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          cocktail bar
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           with signature cocktails and enticing revisited spritzes created by
+          the skilled hands of the bartender. The perfect place to enjoy
+          delicious cicchetti and crostini and to complete your magnificent
+          dinner with an original aperitif or a well-crafted digestif. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1847,8 +1934,10 @@
            È nel passato? O è stata eliminata? 
         </source>
         <target>
-           We were unable to find your reservation. Is it in the past? Or has it
-          been deleted? 
+          <x id='START_TAG_SPAN' ctype='x-span' equiv-text='&lt;span class=&quot;text-red-600&quot; &gt;'/>
+          We were unable to find your reservation.
+          <x id='CLOSE_TAG_SPAN' ctype='x-span' equiv-text='&lt;/span&gt;'/>
+           Is it in the past? Or has it been deleted? 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.html</context>
@@ -2605,7 +2694,11 @@
           <x id='INTERPOLATION' equiv-text='{{categoryId}}'/>
            non trovata. 
         </source>
-        <target> Category # not found. </target>
+        <target>
+          Category #
+          <x id='INTERPOLATION' equiv-text='{{categoryId}}'/>
+           not found.
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -4099,7 +4192,10 @@
            Tutti i piatti ordinati per 
           <x id='PH' equiv-text='field'/>
         </source>
-        <target> All the dishes ordered for </target>
+        <target>
+          All the dishes ordered for 
+          <x id='PH' equiv-text='field'/>
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.ts</context>
           <context context-type='linenumber'>263</context>
@@ -4360,11 +4456,31 @@
            con una location decisamente fuori dall’ordinario. 
         </source>
         <target>
-           In the heart of Venice , just a stone's throw from the Rialto Bridge
-          , the restaurant is situated in a 15th-century palace overlooking the
-          Grand Canal . Easily accessible from every direction, La Porta d’Acqua
-          successfully combines the quality of its dishes with a truly
-          extraordinary location. 
+           In the heart of 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Venice
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , just a stone's throw from the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Rialto Bridge
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          restaurant
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           is situated in a 15th-century palace overlooking the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          Grand Canal
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           . Easily accessible from every direction, 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          La Porta d’Acqua
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           successfully combines the quality of its 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+          dishes
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           with a truly extraordinary location. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-about/public-home-about.component.html</context>
@@ -4458,15 +4574,59 @@
            alla sera. 
         </source>
         <target>
-           Venice has always been a meeting point of various cultures and
-          peoples . The idea behind our dishes is to combine tradition with
-          innovation, respecting the seasonality of the ingredients. A
-          successful blend of Mediterranean recipes with classic Venetian dishes
-          . The cuisine ranges from a wide selection of daily catches , selected
-          meats and vegetables from the lagoon islands. All accompanied by the
-          best Italian wines with a selection from small winemakers' cellars .
-          Stop by the bar for a cicchetto at lunch or for a cocktail and a
-          revisited spritz in the evening. 
+           Venice has always been a meeting point of various 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           cultures 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           and 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           peoples 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           . The idea behind our dishes is to combine 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           tradition 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           with innovation, respecting the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           seasonality 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           of the ingredients. A successful 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           blend 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           of Mediterranean recipes with classic 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           Venetian dishes 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           . The cuisine ranges from a wide selection of 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           daily catches 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           , 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           selected meats 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           and 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           vegetables 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           from the lagoon islands. All accompanied by the 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           best Italian wines 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           with a selection from 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           small winemakers' cellars 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           . Stop by the bar for a 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           cicchetto 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           at lunch or for a cocktail and a 
+          <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
+           revisited spritz 
+          <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
+           in the evening. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-menu/public-home-menu.component.html</context>
@@ -4517,7 +4677,12 @@
           <x id='INTERPOLATION_1' equiv-text='{{ createdReservation()?.datetime | date: &apos;HH:mm&apos; }}'/>
            . 
         </source>
-        <target> I'll see you at . </target>
+        <target>
+          I'll see you at 
+          <x id='INTERPOLATION' equiv-text='{{ createdReservation()?.datetime | date: &apos;EEEE d MMMM y&apos; }}'/>
+          <x id='INTERPOLATION_1' equiv-text='{{ createdReservation()?.datetime | date: &apos;HH:mm&apos; }}'/>
+          .
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-reserve/public-home-reserve.component.html</context>
           <context context-type='linenumber'>15,16</context>
@@ -4647,7 +4812,15 @@
            Contattaci 
           <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
         </source>
-        <target> For larger bookings of people, contact us . </target>
+        <target>
+          For larger bookings of 
+          <x id='INTERPOLATION' equiv-text='{{ maxPeople }}'/>
+           people, 
+          <x id='START_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;app-contact-us class=&quot;ms-1&quot; &gt;'/>
+          contact us
+          <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
+          .
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
