@@ -5506,16 +5506,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id='8230350809485058915' datatype='html'>
-        <source>Dashboard | La Porta D'Acqua</source>
-        <target>Dashboard | La Porta D'Acqua</target>
+        <source>Dashboard | La Porta D&apos;Acqua</source>
+        <target>Dashboard | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/dashboard/admin-dashboard.component.ts</context>
           <context context-type='linenumber'>13</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8272843536846027906' datatype='html'>
-        <source>Prenotazioni | La Porta D'Acqua</source>
-        <target>Reservations | La Porta D'Acqua</target>
+        <source>Prenotazioni | La Porta D&apos;Acqua</source>
+        <target>Reservations | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -5525,16 +5525,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id='3494434884988819045' datatype='html'>
-        <source>Impostazioni | La Porta D'Acqua</source>
-        <target>Settings | La Porta D'Acqua</target>
+        <source>Impostazioni | La Porta D&apos;Acqua</source>
+        <target>Settings | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
           <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6641433812625555205' datatype='html'>
-        <source>Preferenze | La Porta D'Acqua</source>
-        <target>Preferences | La Porta D'Acqua</target>
+        <source>Preferenze | La Porta D&apos;Acqua</source>
+        <target>Preferences | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -5544,8 +5544,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id='6311311280798469211' datatype='html'>
-        <source>Comunicazioni | La Porta D'Acqua</source>
-        <target>Comunications | La Porta D'Acqua</target>
+        <source>Comunicazioni | La Porta D&apos;Acqua</source>
+        <target>Comunications | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -5555,80 +5555,80 @@
         </context-group>
       </trans-unit>
       <trans-unit id='179129353201505772' datatype='html'>
-        <source>Impostazioni di Sistema | La Porta D'Acqua</source>
-        <target>System settings | La Porta D'Acqua</target>
+        <source>Impostazioni di Sistema | La Porta D&apos;Acqua</source>
+        <target>System settings | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.ts</context>
           <context context-type='linenumber'>77</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8653704637981486749' datatype='html'>
-        <source>Impostazioni utenti | La Porta D'Acqua</source>
-        <target>Users settings | La Porta D'Acqua</target>
+        <source>Impostazioni utenti | La Porta D&apos;Acqua</source>
+        <target>Users settings | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
           <context context-type='linenumber'>68</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6744509264785696220' datatype='html'>
-        <source>Accedi | La Porta D'Acqua</source>
-        <target>Login | La Porta D'Acqua</target>
+        <source>Accedi | La Porta D&apos;Acqua</source>
+        <target>Login | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/login/login.component.ts</context>
           <context context-type='linenumber'>70</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8774077296708338428' datatype='html'>
-        <source>Password dimenticata | La Porta D'Acqua</source>
-        <target>Forgot password | La Porta D'Acqua</target>
+        <source>Password dimenticata | La Porta D&apos;Acqua</source>
+        <target>Forgot password | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
           <context context-type='linenumber'>54</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3505486800547071972' datatype='html'>
-        <source>Imposta password | La Porta D'Acqua</source>
-        <target>Update password | La Porta D'Acqua</target>
+        <source>Imposta password | La Porta D&apos;Acqua</source>
+        <target>Update password | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.ts</context>
           <context context-type='linenumber'>50</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8821688182438523096' datatype='html'>
-        <source>Chi siamo | La Porta D'Acqua</source>
-        <target>About us | La Porta D'Acqua</target>
+        <source>Chi siamo | La Porta D&apos;Acqua</source>
+        <target>About us | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.ts</context>
           <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3332318425722395223' datatype='html'>
-        <source>Elimina prenotazione | La Porta D'Acqua</source>
-        <target>Cancel reservation | La Porta D'Acqua</target>
+        <source>Elimina prenotazione | La Porta D&apos;Acqua</source>
+        <target>Cancel reservation | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.ts</context>
           <context context-type='linenumber'>48</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7365062572684668446' datatype='html'>
-        <source>Menu | La Porta D'Acqua</source>
-        <target>Menu | La Porta D'Acqua</target>
+        <source>Menu | La Porta D&apos;Acqua</source>
+        <target>Menu | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/menu/menu.component.ts</context>
           <context context-type='linenumber'>12</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4484980098004342174' datatype='html'>
-        <source>Prenota un tavolo | La Porta D'Acqua</source>
-        <target>Book a table | La Porta D'Acqua</target>
+        <source>Prenota un tavolo | La Porta D&apos;Acqua</source>
+        <target>Book a table | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/reserve/reserve.component.ts</context>
           <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6987724657254480174' datatype='html'>
-        <source>Modifica menù | La Porta D'Acqua</source>
-        <target>Edit menù | La Porta D'Acqua</target>
+        <source>Modifica menù | La Porta D&apos;Acqua</source>
+        <target>Edit menù | La Porta D&apos;Acqua</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/menu-root/menu-root.component.ts</context>
           <context context-type='linenumber'>25</context>
