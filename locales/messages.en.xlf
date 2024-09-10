@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?> 
 <xliff xmlns='urn:oasis:names:tc:xliff:document:1.2' version='1.2'>
   <file source-language='it' datatype='plaintext' original='ng2.template'>
     <body>
@@ -1348,9 +1348,9 @@
            giorni da oggi. 
         </source>
         <target>
-          Reservations can be made up to a limit of 
+           Reservations can be made up to a limit of 
           <x id='INTERPOLATION' equiv-text='{{ form.value[&apos;reservation_max_days_in_advance&apos;] }}'/>
-           days from today.
+           days from today. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
@@ -1693,53 +1693,53 @@
         <target>
            Overlooking the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
+           Grand Canal 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          , just a few meters from the 
+           , just a few meters from the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
+           Rialto Bridge 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          , 
+           , 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
+           La Porta d'Acqua 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            offers 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Mediterranean cuisine
+           Mediterranean cuisine 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            inspired by 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Neapolitan
+           Neapolitan 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            and 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetian
+           Venetian 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            traditions and fish from the nearby fish market. A varied 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          menu
+           menu 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            connected to the seasons with particular care in plating. A pleasant 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
+           cocktail bar 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            area with a garden and view of the canal featuring signature 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktails
+           cocktails 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            and revisited 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          spritz
+           spritz 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . The intimate room on the first floor can be 
+           . The intimate room on the first floor can be 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          reserved
+           reserved 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            for 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          special events
+           special events 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . 
+           . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/about/about.component.html</context>
@@ -1803,47 +1803,47 @@
         </source>
         <target>
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
+           La Porta d'Acqua 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            is a guarantee. Well-known by 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetians
+           Venetians 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            and 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          non-Venetians
+           non-Venetians 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            alike, this splendid establishment of 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venetian dining
+           Venetian dining 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            has now moved just a few meters to gain an incredible view of the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
+           Grand Canal 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-          . Overlooking Riva del Vin, a few meters from the 
+           . Overlooking Riva del Vin, a few meters from the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
+           Rialto Bridge 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            , the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          restaurant
+           restaurant 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            is housed in a finely restored 15th-century building with
           contemporary taste. From the beautiful interior rooms (one on the
           first floor, also 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          available for events
+           available for events 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            , private parties, business dinners) to the magnificent outdoor area,
           and the stunning garden where you can enjoy an aperitif at the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
+           cocktail bar 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            , every detail of this place has been meticulously thought out.
           Easily accessible from any direction, 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d'Acqua
+           La Porta d'Acqua 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            successfully combines the quality of its dishes with a decidedly
           extraordinary location. 
@@ -1881,12 +1881,12 @@
         <target>
            At the entrance of the venue, a spacious counter leads to a pleasant 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          bar
+           bar 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            area that encompasses two equally appealing aspects: a tasty bacaro
           from morning until early afternoon; a refined 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          cocktail bar
+           cocktail bar 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            with signature cocktails and enticing revisited spritzes created by
           the skilled hands of the bartender. The perfect place to enjoy
@@ -1935,7 +1935,7 @@
         </source>
         <target>
           <x id='START_TAG_SPAN' ctype='x-span' equiv-text='&lt;span class=&quot;text-red-600&quot; &gt;'/>
-          We were unable to find your reservation.
+           We were unable to find your reservation. 
           <x id='CLOSE_TAG_SPAN' ctype='x-span' equiv-text='&lt;/span&gt;'/>
            Is it in the past? Or has it been deleted? 
         </target>
@@ -2695,9 +2695,9 @@
            non trovata. 
         </source>
         <target>
-          Category #
+           Category # 
           <x id='INTERPOLATION' equiv-text='{{categoryId}}'/>
-           not found.
+           not found. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -4193,7 +4193,7 @@
           <x id='PH' equiv-text='field'/>
         </source>
         <target>
-          All the dishes ordered for 
+           All the dishes ordered for 
           <x id='PH' equiv-text='field'/>
         </target>
         <context-group purpose='location'>
@@ -4458,27 +4458,27 @@
         <target>
            In the heart of 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Venice
+           Venice 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            , just a stone's throw from the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Rialto Bridge
+           Rialto Bridge 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            , the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          restaurant
+           restaurant 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            is situated in a 15th-century palace overlooking the 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          Grand Canal
+           Grand Canal 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            . Easily accessible from every direction, 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          La Porta d’Acqua
+           La Porta d’Acqua 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            successfully combines the quality of its 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b&gt;'/>
-          dishes
+           dishes 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
            with a truly extraordinary location. 
         </target>
@@ -4678,10 +4678,10 @@
            . 
         </source>
         <target>
-          I'll see you at 
+           I'll see you at 
           <x id='INTERPOLATION' equiv-text='{{ createdReservation()?.datetime | date: &apos;EEEE d MMMM y&apos; }}'/>
           <x id='INTERPOLATION_1' equiv-text='{{ createdReservation()?.datetime | date: &apos;HH:mm&apos; }}'/>
-          .
+           . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-reserve/public-home-reserve.component.html</context>
@@ -4813,13 +4813,13 @@
           <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
         </source>
         <target>
-          For larger bookings of 
+           For larger bookings of 
           <x id='INTERPOLATION' equiv-text='{{ maxPeople }}'/>
            people, 
           <x id='START_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;app-contact-us class=&quot;ms-1&quot; &gt;'/>
-          contact us
+           contact us 
           <x id='CLOSE_TAG_APP_CONTACT_US' ctype='x-app_contact_us' equiv-text='&lt;/app-contact-us&gt;'/>
-          .
+           . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
