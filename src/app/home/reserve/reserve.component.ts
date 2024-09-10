@@ -12,5 +12,5 @@ import {PublicHomeReserveComponent} from "@core/components/public-home-reserve/p
   styleUrl: './reserve.component.scss'
 })
 export class ReserveComponent {
-  readonly _ = inject(Title).setTitle($localize`Prenota un tavolo | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Prenota un tavolo | La Porta D'Acqua`);
 }

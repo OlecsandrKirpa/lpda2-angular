@@ -61,7 +61,7 @@ export class ListPublicMessagesComponent implements OnInit {
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
-  readonly _ = inject(Title).setTitle($localize`Comunicazioni | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Comunicazioni | La Porta D'Acqua`);
 
   readonly inputSize: "s" | "m" | "l" = 'm';
 

@@ -29,7 +29,7 @@ export type Setting = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminSettingsHomeComponent {
-  readonly _ = inject(Title).setTitle($localize`Impostazioni | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Impostazioni | La Porta D'Acqua`);
 
   readonly settings: Setting[] = [
     {

@@ -5,6 +5,8 @@
 # echo "Ensure you have extracted the locales with 'ng extract-i18n' and you have the latest version of the locales inside 'locales' folder."
 
 echo " *** Don't forget to update config.json for production ***"
+echo "current config.json:"
+cat src/assets/config/config.json
 
 rm -rf dist/lpda2/*
 

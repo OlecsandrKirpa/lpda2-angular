@@ -100,7 +100,7 @@ export class AdminReservationsHomeComponent implements OnInit {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
-  readonly _ = inject(Title).setTitle($localize`Prenotazioni | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Prenotazioni | La Porta D'Acqua`);
 
   @ViewChild(ReservationTurnSelectComponent, {static: true}) turnSelect?: ReservationTurnSelectComponent;
 

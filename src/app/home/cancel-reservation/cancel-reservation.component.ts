@@ -45,7 +45,7 @@ export class CancelReservationComponent implements OnInit {
 
   private secret: string | null = null;
 
-  readonly _ = inject(Title).setTitle($localize`Elimina prenotazione | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Elimina prenotazione | La Porta D'Acqua`);
 
   ngOnInit(): void {
     this.route.params.pipe(

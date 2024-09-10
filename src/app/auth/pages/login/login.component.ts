@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   private readonly configs: ConfigsService = inject(ConfigsService);
   private readonly profile = inject(ProfileService);
 
-  readonly _ = inject(Title).setTitle($localize`Accedi | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Accedi | La Porta D'Acqua`);
 
   cu = this.profile.cu;
 

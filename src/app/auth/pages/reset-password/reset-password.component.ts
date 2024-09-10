@@ -47,7 +47,7 @@ export class ResetPasswordComponent {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
-  readonly _ = inject(Title).setTitle($localize`Imposta password | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Imposta password | La Porta D'Acqua`);
 
   readonly form: FormGroup = new FormGroup({
     code: new FormControl(null, [Validators.required]),

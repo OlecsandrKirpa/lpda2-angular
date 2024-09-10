@@ -22,5 +22,5 @@ import { Title } from '@angular/platform-browser';
   }
 })
 export class MenuRootComponent {
-  readonly _ = inject(Title).setTitle($localize`Modifica menù | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Modifica menù | La Porta D'Acqua`);
 }

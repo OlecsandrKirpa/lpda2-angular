@@ -10,5 +10,5 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent {
-  readonly _ = inject(Title).setTitle($localize`Dashboard | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Dashboard | La Porta D'Acqua`);
 }

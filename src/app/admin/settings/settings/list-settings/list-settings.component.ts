@@ -74,7 +74,7 @@ export class ListSettingsComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
-  readonly _ = inject(Title).setTitle($localize`Impostazioni di Sistema | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Impostazioni di Sistema | La Porta D'Acqua`);
 
   readonly languagePipe: LanguagePipe = inject(LanguagePipe)
 

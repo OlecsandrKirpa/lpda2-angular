@@ -65,7 +65,7 @@ export class ListUsersComponent implements OnInit {
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
 
-  readonly _ = inject(Title).setTitle($localize`Impostazioni utenti | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Impostazioni utenti | La Porta D'Acqua`);
 
   // @ViewChild(UserTurnSelectComponent, {static: true}) turnSelect?: UserTurnSelectComponent;
 

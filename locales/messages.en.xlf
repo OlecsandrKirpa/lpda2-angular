@@ -2,14 +2,6 @@
 <xliff xmlns='urn:oasis:names:tc:xliff:document:1.2' version='1.2'>
   <file source-language='it' datatype='plaintext' original='ng2.template'>
     <body>
-      <trans-unit id='3751602496416772541' datatype='html'>
-        <source>Dashboard | La porta d'acqua</source>
-        <target>Dashboard | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/dashboard/admin-dashboard.component.ts</context>
-          <context context-type='linenumber'>13</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='7532968965335544251' datatype='html'>
         <source>Allergeni</source>
         <target>Allergens</target>
@@ -628,17 +620,6 @@
           <context context-type='linenumber'>20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='2992474334090822758' datatype='html'>
-        <source>Prenotazioni | La porta d'acqua</source>
-        <target>Bookings | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
-          </context>
-          <context context-type='linenumber'>103</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='6923005459778676818' datatype='html'>
         <source>Sei sicuro di voler cancellare questa prenotazione?</source>
         <target>Are you sure you want to cancel this reservation?</target>
@@ -709,14 +690,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
           <context context-type='linenumber'>106</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='2819214936140499237' datatype='html'>
-        <source>Impostazioni | La porta d'acqua</source>
-        <target>Settings | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7062165667677938789' datatype='html'>
@@ -829,17 +802,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>40</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='8386732515308879822' datatype='html'>
-        <source>Preferenze | La porta d'acqua</source>
-        <target>Preferences | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/settings/preferences/list-preferences/list-preferences.component.ts 
-          </context>
-          <context context-type='linenumber'>48</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2820322329212035921' datatype='html'>
@@ -1262,17 +1224,6 @@
           <context context-type='linenumber'>21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='2065042243475526797' datatype='html'>
-        <source>Comunicazioni | La porta d'acqua</source>
-        <target>Communications | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
-          </context>
-          <context context-type='linenumber'>64</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='1526651525871386464' datatype='html'>
         <source>Impostazioni di sistema</source>
         <target>System settings</target>
@@ -1498,14 +1449,6 @@
           <context context-type='linenumber'>121</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='2891916414879461217' datatype='html'>
-        <source>Impostazioni di Sistema | La porta d'acqua</source>
-        <target>System Settings | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.ts</context>
-          <context context-type='linenumber'>77</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='3724620174037767332' datatype='html'>
         <source>Filtra utenti</source>
         <target>Filter users</target>
@@ -1538,14 +1481,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.html</context>
           <context context-type='linenumber'>61</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='6828164134344265612' datatype='html'>
-        <source>Impostazioni utenti | La porta d'acqua</source>
-        <target>User settings | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
-          <context context-type='linenumber'>68</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6364093894253938685' datatype='html'>
@@ -1620,22 +1555,6 @@
           <context context-type='linenumber'>22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='793104162150949045' datatype='html'>
-        <source>Accedi | La porta d'acqua</source>
-        <target>Login | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/auth/pages/login/login.component.ts</context>
-          <context context-type='linenumber'>70</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='5665628516258619998' datatype='html'>
-        <source>Password dimenticata | La porta d'acqua</source>
-        <target>Forgotten password | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
-          <context context-type='linenumber'>54</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='4400218478060683170' datatype='html'>
         <source>Le abbiamo inviato un email con i dettagli su come resettare la password.</source>
         <target>We have sent you an email with details on how to reset your password.</target>
@@ -1666,14 +1585,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.html</context>
           <context context-type='linenumber'>8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='3009517544234496660' datatype='html'>
-        <source>Imposta password | La porta d'acqua</source>
-        <target>Set password | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.ts</context>
-          <context context-type='linenumber'>50</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6835379988100167191' datatype='html'>
@@ -1900,14 +1811,6 @@
           <context context-type='linenumber'>72,77</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='3777811082057401382' datatype='html'>
-        <source>Chi siamo | La porta d'acqua</source>
-        <target>About us | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/home/about/about.component.ts</context>
-          <context context-type='linenumber'>15</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='2922025001072258145' datatype='html'>
         <source>Cancella tua prenotazione</source>
         <target>Cancel your reservation.</target>
@@ -1964,14 +1867,6 @@
           <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='5778154282926830250' datatype='html'>
-        <source>Elimina prenotazione | La porta d'acqua</source>
-        <target>Cancel reservation | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.ts</context>
-          <context context-type='linenumber'>48</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='6168094040476431637' datatype='html'>
         <source>Prenotazione cancellata.</source>
         <target>Reservation cancelled.</target>
@@ -1990,22 +1885,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-menu/public-home-menu.component.html</context>
           <context context-type='linenumber'>4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='7247362417047071128' datatype='html'>
-        <source>Menu | La porta d'acqua</source>
-        <target>Menu | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/home/menu/menu.component.ts</context>
-          <context context-type='linenumber'>12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='3277501286191035989' datatype='html'>
-        <source>Prenota un tavolo | La porta d'acqua</source>
-        <target>Book a table | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/home/reserve/reserve.component.ts</context>
-          <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2102825898069375693' datatype='html'>
@@ -4226,14 +4105,6 @@
           <context context-type='linenumber'>263</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='7705795364979507129' datatype='html'>
-        <source>Modifica menù | La porta d'acqua</source>
-        <target>Menu modification | La porta d'acqua</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/menu-root/menu-root.component.ts</context>
-          <context context-type='linenumber'>25</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='6053098897625449145' datatype='html'>
         <source>Immagini piatto</source>
         <target>Flat images</target>
@@ -5632,6 +5503,135 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/services/notifications.service.ts</context>
           <context context-type='linenumber'>71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8230350809485058915' datatype='html'>
+        <source>Dashboard | La Porta D'Acqua</source>
+        <target>Dashboard | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/dashboard/admin-dashboard.component.ts</context>
+          <context context-type='linenumber'>13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8272843536846027906' datatype='html'>
+        <source>Prenotazioni | La Porta D'Acqua</source>
+        <target>Reservations | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3494434884988819045' datatype='html'>
+        <source>Impostazioni | La Porta D'Acqua</source>
+        <target>Settings | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6641433812625555205' datatype='html'>
+        <source>Preferenze | La Porta D'Acqua</source>
+        <target>Preferences | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/settings/preferences/list-preferences/list-preferences.component.ts 
+          </context>
+          <context context-type='linenumber'>48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6311311280798469211' datatype='html'>
+        <source>Comunicazioni | La Porta D'Acqua</source>
+        <target>Comunications | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
+          </context>
+          <context context-type='linenumber'>64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='179129353201505772' datatype='html'>
+        <source>Impostazioni di Sistema | La Porta D'Acqua</source>
+        <target>System settings | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.ts</context>
+          <context context-type='linenumber'>77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8653704637981486749' datatype='html'>
+        <source>Impostazioni utenti | La Porta D'Acqua</source>
+        <target>Users settings | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
+          <context context-type='linenumber'>68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6744509264785696220' datatype='html'>
+        <source>Accedi | La Porta D'Acqua</source>
+        <target>Login | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/login/login.component.ts</context>
+          <context context-type='linenumber'>70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8774077296708338428' datatype='html'>
+        <source>Password dimenticata | La Porta D'Acqua</source>
+        <target>Forgot password | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/require-reset-password/require-reset-password.component.ts</context>
+          <context context-type='linenumber'>54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3505486800547071972' datatype='html'>
+        <source>Imposta password | La Porta D'Acqua</source>
+        <target>Update password | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.ts</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8821688182438523096' datatype='html'>
+        <source>Chi siamo | La Porta D'Acqua</source>
+        <target>About us | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/about/about.component.ts</context>
+          <context context-type='linenumber'>15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3332318425722395223' datatype='html'>
+        <source>Elimina prenotazione | La Porta D'Acqua</source>
+        <target>Cancel reservation | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.ts</context>
+          <context context-type='linenumber'>48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7365062572684668446' datatype='html'>
+        <source>Menu | La Porta D'Acqua</source>
+        <target>Menu | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/menu/menu.component.ts</context>
+          <context context-type='linenumber'>12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4484980098004342174' datatype='html'>
+        <source>Prenota un tavolo | La Porta D'Acqua</source>
+        <target>Book a table | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/reserve/reserve.component.ts</context>
+          <context context-type='linenumber'>15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6987724657254480174' datatype='html'>
+        <source>Modifica menù | La Porta D'Acqua</source>
+        <target>Edit menù | La Porta D'Acqua</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/menu-root/menu-root.component.ts</context>
+          <context context-type='linenumber'>25</context>
         </context-group>
       </trans-unit>
     </body>

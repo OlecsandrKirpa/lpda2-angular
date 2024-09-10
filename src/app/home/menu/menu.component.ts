@@ -9,5 +9,5 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
-  readonly _ = inject(Title).setTitle($localize`Menu | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Menu | La Porta D'Acqua`);
 }

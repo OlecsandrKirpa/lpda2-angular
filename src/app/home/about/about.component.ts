@@ -12,5 +12,5 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  readonly _ = inject(Title).setTitle($localize`Chi siamo | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Chi siamo | La Porta D'Acqua`);
 }

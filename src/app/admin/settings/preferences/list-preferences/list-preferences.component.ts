@@ -45,7 +45,7 @@ export class ListPreferencesComponent implements OnInit {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
-  readonly _ = inject(Title).setTitle($localize`Preferenze | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Preferenze | La Porta D'Acqua`);
 
   readonly inputSize: TuiSizeS | TuiSizeL = 'l';
 

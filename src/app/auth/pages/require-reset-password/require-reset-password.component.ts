@@ -51,7 +51,7 @@ export class RequireResetPasswordComponent implements OnInit {
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
 
-  readonly _ = inject(Title).setTitle($localize`Password dimenticata | La porta d'acqua`);
+  readonly _ = inject(Title).setTitle($localize`Password dimenticata | La Porta D'Acqua`);
 
   readonly form: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email])
