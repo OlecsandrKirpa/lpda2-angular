@@ -196,18 +196,18 @@ export class PublicReservationFormComponent implements OnInit {
     /**
      * DEVELOPMENT ONLY:
      */
-    // setTimeout(() => {
-    //   this.loadPrevious({
-    //     adults: 2,
-    //     children: 1,
-    //     datetime: `2024-07-22T12:00:00.000Z`,
-    //     firstName: `Sasha`,
-    //     lastName: `Kirpachov`,
-    //     email: `sasha@opinioni.net`,
-    //     phone: `3515590063`,
-    //     phoneCountry: `IT`
-    //   });
-    // }, 500);
+    setTimeout(() => {
+      this.loadPrevious({
+        adults: 2,
+        children: 1,
+        datetime: `2024-09-28T18:00:00.000Z`,
+        firstName: `Sasha`,
+        lastName: `Kirpachov`,
+        email: `sasha@opinioni.net`,
+        phone: `3515590063`,
+        phoneCountry: `IT`
+      });
+    }, 500);
   }
 
   nextStep(): void {
@@ -335,9 +335,13 @@ export class PublicReservationFormComponent implements OnInit {
       finalize(() => this.submitting.set(false)),
     ).subscribe({
       next: (item: Reservation): void => {
-        this.createdReservation.emit(item);
-        this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
-        this.reset();
+        if (item.payment?.hpp_url) {
+          window.location.href = item.payment.hpp_url;
+        } else {
+          this.createdReservation.emit(item);
+          this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
+          this.reset();
+        }
       },
       error: (response: unknown): void => {
         if (response instanceof HttpErrorResponse && response.status === 422) {
