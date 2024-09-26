@@ -321,7 +321,6 @@ export class PublicReservationFormComponent implements OnInit {
     this.submitted.set(true);
 
     const out = this.formatOutput();
-    console.log(`submitting!!!`, {out, self: this});
 
     if (!out) {
       this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);

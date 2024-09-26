@@ -99,9 +99,6 @@ export class DuplicateDishComponent implements OnInit {
 
     this.route.params.pipe(
       takeUntil(this.destroy$),
-      tap((p: Params) => {
-        console.log(`myparams`, p);
-      }),
       map((p: Params) => Number(p['dish_id'])),
       filter((id: unknown): id is number => typeof id === "number" && !isNaN(id) && id > 0),
     ).subscribe({
