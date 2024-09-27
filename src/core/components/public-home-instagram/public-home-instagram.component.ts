@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, signal, WritableSignal} from '@angular/core';
 import {BypassSecurityTrustResourceUrlPipe, SafeUrlPipe} from "@core/pipes/safe-url.pipe";
-import {AutosizeIframeDirective} from "@core/directives/autosize-iframe.directive";
 import {PublicIconComponent} from "@core/components/public-icon/public-icon.component";
 
 @Component({
@@ -9,7 +8,6 @@ import {PublicIconComponent} from "@core/components/public-icon/public-icon.comp
   imports: [
     SafeUrlPipe,
     BypassSecurityTrustResourceUrlPipe,
-    AutosizeIframeDirective,
     PublicIconComponent
   ],
   templateUrl: './public-home-instagram.component.html',

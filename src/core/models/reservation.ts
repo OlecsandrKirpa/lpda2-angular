@@ -2,6 +2,7 @@ import {ReservationData, ReservationStatus} from "@core/lib/interfaces/reservati
 import {BaseModel} from "@core/lib/base-model";
 import {DeliveredEmail} from "@core/models/delivered-email";
 import {DeliveredEmailData} from "@core/lib/interfaces/delivered-email-data";
+import { ReservationPayment } from "./reservation-payment";
 
 export class Reservation extends BaseModel {
   fullname?: string;
@@ -14,6 +15,7 @@ export class Reservation extends BaseModel {
   notes?: string;
   email?: string;
   phone?: string;
+  payment?: ReservationPayment;
 
   delivered_emails?: DeliveredEmail[];
 
@@ -30,6 +32,7 @@ export class Reservation extends BaseModel {
     this.notes = data.notes;
     this.email = data.email;
     this.phone = data.phone;
+    this.payment = data.payment ? new ReservationPayment(data.payment) : undefined;
 
     this.delivered_emails = data.delivered_emails ? data.delivered_emails.map((data: DeliveredEmailData) => new DeliveredEmail(data)) : [];
   }

@@ -75,8 +75,6 @@ export class PublicNavigateMenuV1Component implements OnInit {
   navigateBack() {
     const lastCategory: MenuCategory | null = this.breadcrumbs().pop() || null;
 
-    console.log("navigateBack", {lastCategory, self: this});
-
     this.selectCategory(lastCategory);
   }
 

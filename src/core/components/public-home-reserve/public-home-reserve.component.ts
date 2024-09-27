@@ -17,6 +17,7 @@ import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 import {finalize, takeUntil} from "rxjs";
 import {ContactUsComponent} from "@core/components/contact-us/contact-us.component";
+import { PublicReservationConfirmationComponent } from "../public-reservation-confirmation/public-reservation-confirmation.component";
 
 
 @Component({
@@ -29,8 +30,9 @@ import {ContactUsComponent} from "@core/components/contact-us/contact-us.compone
     PublicMessageComponent,
     RouterLink,
     TuiLinkModule,
-    ContactUsComponent
-  ],
+    ContactUsComponent,
+    PublicReservationConfirmationComponent
+],
   templateUrl: './public-home-reserve.component.html',
   styleUrl: './public-home-reserve.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,23 +57,5 @@ export class PublicHomeReserveComponent implements OnInit {
         this.createdReservation.set(reservation);
       }
     })
-  }
-
-  resendConfirmation(): void {
-    const secret: string | undefined = this.createdReservation()?.secret;
-    if (!secret) return;
-
-    this.resendingConfirmation.set(true);
-    this.reservations.resendConfirmation(secret).pipe(
-      takeUntil(this.destroy$),
-      finalize(() => this.resendingConfirmation.set(false)),
-    ).subscribe({
-      next: (): void => {
-        this.notifications.fireSnackBar($localize`L'email arriverà a breve.`);
-      },
-      error: (e: unknown) => {
-        this.notifications.error(e instanceof HttpErrorResponse ? parseHttpErrorMessage(e) : SOMETHING_WENT_WRONG_MESSAGE);
-      }
-    });
   }
 }
