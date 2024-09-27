@@ -1,0 +1,12 @@
+@if(reservation()) {
+  <app-public-reservation-confirmation
+  [reservation]="reservation()"
+></app-public-reservation-confirmation>
+} @else if (loading()) {
+  <tui-loader size="xl" ></tui-loader>
+} @else {
+  <p class="text-xl text-center mb-3">
+    <ng-container i18n><span class="text-red-600" >Non siamo stati in grado di trovare la tua prenotazione.</span> È nel passato? O è stata eliminata?
+    </ng-container>
+  </p>
+}

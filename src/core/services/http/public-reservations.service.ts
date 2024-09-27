@@ -35,8 +35,8 @@ export class PublicReservationsService extends DomainService {
   readonly created: BehaviorSubject<Reservation | null> = new BehaviorSubject<Reservation | null>(null);
 
   load(secret: string): Observable<Reservation> {
-    return this.get<ReservationData>(`${secret}`).pipe(
-      map((data: ReservationData): Reservation => new Reservation(data))
+    return this.get<{ item: ReservationData }>(`${secret}`).pipe(
+      map((data: { item: ReservationData }): Reservation => new Reservation(data.item))
     )
   }
 

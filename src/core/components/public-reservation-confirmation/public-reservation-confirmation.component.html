@@ -1,0 +1,25 @@
+@if(reservation) {
+  <p class="text-xl text-center mb-3" i18n>La tua prenotazione è stata creata. Riceverai a breve un'email di
+    conferma.</p>
+  <p class="text-xl text-center mb-3" i18n>Ci vediamo il {{ reservation.datetime | date: 'EEEE d MMMM y' }}
+    alle ore {{ reservation.datetime | date: 'HH:mm' }}. </p>
+
+  <app-public-message class="block mb-3 text-center text-xl"
+                      [location]="'existing-reservation-form'"></app-public-message>
+
+  <div class="flex items-center justify-center mb-3">
+    <button [showLoader]="resendingConfirmation()" class="btn-primary me-2" (click)="resendConfirmation()" type="button" size="m" tuiButton appearance="custom">
+      <ng-container i18n>Rimanda email</ng-container>
+    </button>
+
+    <a routerLink="/cr/{{ reservation.secret }}" size="m" tuiButton appearance="secondary-destructive">
+      <ng-container i18n>Cancella prenotazione</ng-container>
+    </a>
+  </div>
+
+  <div class="flex items-center justify-center mb-3 text-xl">
+    <ng-container i18n>Dimenticato qualcosa?</ng-container>
+    <app-contact-us>Contattaci</app-contact-us>
+  </div>
+
+}
