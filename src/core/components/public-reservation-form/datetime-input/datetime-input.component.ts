@@ -116,7 +116,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       takeUntil(this.destroy$),
       filter((date: TuiDay | null): date is TuiDay => date instanceof TuiDay),
       tap(() => this.loadingTimes.set(true)),
-      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date.toLocalNativeDate()).pipe(
+      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date).pipe(
         finalize(() => this.loadingTimes.set(false)),
       ))
     ).subscribe({

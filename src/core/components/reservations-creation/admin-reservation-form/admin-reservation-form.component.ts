@@ -129,7 +129,7 @@ export class AdminReservationFormComponent implements OnInit {
       tap(() => this.dateOpen.set(false)),
       tap(() => this.timeOpen.set(true)),
       tap(() => this.loadingTimes.set(true)),
-      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date.toLocalNativeDate())),
+      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date)),
       finalize(() => this.loadingTimes.set(false)),
     ).subscribe({
       next: (turns: ReservationTurn[]) => {

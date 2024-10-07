@@ -8,6 +8,7 @@ import {PublicPagesDataService} from "@core/services/http/public-pages-data.serv
 import {ReservationTurn} from "@core/models/reservation-turn";
 import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
 import {JWT_INTERCEPTOR_SKIP_REQUEST_PARAM} from "@core/interceptors/jwt.interceptor";
+import { TuiDay } from '@taiga-ui/cdk';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,14 @@ export class PublicReservationsService extends DomainService {
     });
   }
 
-  getValidTimes(date: Date): Observable<ReservationTurn[]> {
-    return this.get<ReservationTurnData[]>(`valid_times`, {params: { date: date.toISOString()}}).pipe(
+  getValidTimes(d: TuiDay): Observable<ReservationTurn[]> {
+    let date: string = "";
+
+    if (d instanceof TuiDay) {
+      date = `${d.year}-${d.month + 1}-${d.day}`;
+    }
+
+    return this.get<ReservationTurnData[]>(`valid_times`, {params: { date: date }}).pipe(
       map((data: ReservationTurnData[]): ReservationTurn[] => data.map((d: ReservationTurnData): ReservationTurn => new ReservationTurn(d))),
     )
   }
