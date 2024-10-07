@@ -80,6 +80,7 @@ export class CancelReservationComponent implements OnInit {
       finalize(() => this.loading.set(false)),
     ).subscribe({
         next: (): void => {
+          this.reservations.created.next(null);
           this.notifications.fireSnackBar($localize`Prenotazione cancellata.`);
           this.router.navigate(["/"]);
         },
