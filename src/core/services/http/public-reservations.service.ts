@@ -31,7 +31,7 @@ export class PublicReservationsService extends DomainService {
     let date: string = "";
 
     if (d instanceof TuiDay) {
-      date = `${d.year}-${d.month + 1}-${d.day}`;
+      date = `${d.year}-${(d.month + 1) % 13}-${d.day}`;
     }
 
     return this.get<ReservationTurnData[]>(`valid_times`, {params: { date: date }}).pipe(

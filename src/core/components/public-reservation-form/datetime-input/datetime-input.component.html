@@ -28,14 +28,20 @@
   @if (loadingTimes()) {
     <tui-loader [showLoader]="true"></tui-loader>
   } @else {
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-      @for (item of validTimes(); track item) {
-        <button type="button" (click)="onTimeClick(item)" size="m" tuiButton appearance="custom"
-                [ngClass]="{'btn-primary': time.value && time.value.hours == item.hours && time.value.minutes == item.minutes, 'btn-primary-outline': !(time.value && time.value.hours == item.hours && time.value.minutes == item.minutes)}">
-          {{ item }}
-        </button>
-      }
-    </div>
+    @if(validTimes().length > 0) {
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        @for (item of validTimes(); track item) {
+          <button type="button" (click)="onTimeClick(item)" size="m" tuiButton appearance="custom"
+                  [ngClass]="{'btn-primary': time.value && time.value.hours == item.hours && time.value.minutes == item.minutes, 'btn-primary-outline': !(time.value && time.value.hours == item.hours && time.value.minutes == item.minutes)}">
+            {{ item }}
+          </button>
+        }
+      </div>
+    } @else {
+      <div>
+        <p class="text-xl text-danger" i18n>Siamo spiacenti, non sono disponibili orari per la data selezionata. Modifica la data e riprova.</p>
+      </div>
+    }
   }
 </tui-expand>
 
