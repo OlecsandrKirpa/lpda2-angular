@@ -3,6 +3,7 @@ import {
   Component, computed,
   EventEmitter,
   inject,
+  isDevMode,
   OnInit,
   Output, Signal,
   signal,
@@ -196,18 +197,20 @@ export class PublicReservationFormComponent implements OnInit {
     /**
      * DEVELOPMENT ONLY:
      */
-    setTimeout(() => {
-      this.loadPrevious({
-        adults: 2,
-        children: 1,
-        datetime: `2024-09-28T18:00:00.000Z`,
-        firstName: `Sasha`,
-        lastName: `Kirpachov`,
-        email: `sasha@opinioni.net`,
-        phone: `3515590063`,
-        phoneCountry: `IT`
-      });
-    }, 500);
+    if (isDevMode()){
+      setTimeout(() => {
+        this.loadPrevious({
+          adults: 2,
+          children: 1,
+          datetime: `2024-09-28T18:00:00.000Z`,
+          firstName: `Sasha`,
+          lastName: `Kirpachov`,
+          email: `sasha@opinioni.net`,
+          phone: `3515590063`,
+          phoneCountry: `IT`
+        });
+      }, 500);
+    }
   }
 
   nextStep(): void {
