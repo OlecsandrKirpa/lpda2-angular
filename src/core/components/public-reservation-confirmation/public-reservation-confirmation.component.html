@@ -1,25 +1,57 @@
 @if(reservation) {
-  <p class="text-xl text-center mb-3" i18n>La tua prenotazione è stata creata. Riceverai a breve un'email di
-    conferma.</p>
-  <p class="text-xl text-center mb-3" i18n>Ci vediamo il {{ reservation.datetime | date: 'EEEE d MMMM y' }}
-    alle ore {{ reservation.datetime | date: 'HH:mm' }}. </p>
+  @if(reservation.payment) {
+    @switch (reservation.payment.status) {
+      @case("todo") {
+        @if(isFreshReservation()){
+          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione non risulta essere andato a buon fine, ma è possibile che sia necessario aspettare qualche minuto. Riprova più tardi.</p>
+        } @else {
+          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione non risulta essere andato a buon fine.</p>
 
-  <app-public-message class="block mb-3 text-center text-xl"
-                      [location]="'existing-reservation-form'"></app-public-message>
+          <div class="flex items-center justify-center mb-3">
+            <a href="{{ reservation.payment.hpp_url }}" class="btn-primary me-2" size="m" tuiButton appearance="custom">
+              <ng-container i18n>Esegui pagamento</ng-container>
+            </a>
+          </div>
+        }
+      }
 
-  <div class="flex items-center justify-center mb-3">
-    <button [showLoader]="resendingConfirmation()" class="btn-primary me-2" (click)="resendConfirmation()" type="button" size="m" tuiButton appearance="custom">
-      <ng-container i18n>Rimanda email</ng-container>
-    </button>
+      @case ("paid") {
+        <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è andato a buon fine e la prenotazione è confermata.</p>
+      }
+    }
+  } @else {
+    <!-------------------------- Payment not required -------------------------->
+    <p class="text-xl text-center mb-3" i18n>La tua prenotazione è stata creata.</p>
+  }
 
-    <a routerLink="/cr/{{ reservation.secret }}" size="m" tuiButton appearance="secondary-destructive">
-      <ng-container i18n>Cancella prenotazione</ng-container>
-    </a>
-  </div>
+    <p class="text-xl text-center mb-3">
+      @if(isFreshReservation()){
+        <ng-container i18n>Riceverai a breve un'email di conferma.</ng-container>
+      } @else {
+        <ng-container i18n>Dovresti aver ricevuto una mail di conferma. Non è arrivata?</ng-container>
+
+        <span class="cursor-pointer inline-flex items-center ms-2 underline" (click)="resendConfirmation()" type="button" role="button" size="m">
+          @if(resendingConfirmation()) {
+            <tui-loader size="xs" ></tui-loader>
+          } @else {
+            <ng-container i18n>Rimanda email</ng-container>
+          }
+        </span>
+      }
+    </p>
+
+    <p class="text-xl text-center mb-3">
+      <ng-container i18n>La prenotazione è fissata per </ng-container>
+      {{ reservation.datetime | date: 'EEEE d MMMM y' }} {{ reservation.datetime | date: 'HH:mm' }}. </p>
+  
+    <app-public-message class="block mb-3 text-center text-xl"
+                        [location]="'existing-reservation-form'"></app-public-message>
 
   <div class="flex items-center justify-center mb-3 text-xl">
     <ng-container i18n>Dimenticato qualcosa?</ng-container>
     <app-contact-us>Contattaci</app-contact-us>
+    <span class="mx-2">-</span>
+    <a routerLink="/cr/{{ reservation.secret }}" tuiLink><ng-container i18n>Cancella prenotazione</ng-container></a>
   </div>
 
 }

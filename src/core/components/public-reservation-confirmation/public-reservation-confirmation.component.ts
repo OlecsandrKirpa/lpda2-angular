@@ -7,11 +7,11 @@ import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-mes
 import { PublicReservationsService } from '@core/services/http/public-reservations.service';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { NotificationsService } from '@core/services/notifications.service';
-import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
 import { takeUntil, finalize } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TuiButtonModule, TuiLinkModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
 import { ContactUsComponent } from '../contact-us/contact-us.component';
 import { PublicReservationFormComponent } from '../public-reservation-form/public-reservation-form.component';
 
@@ -26,6 +26,7 @@ import { PublicReservationFormComponent } from '../public-reservation-form/publi
     RouterLink,
     TuiLinkModule,
     ContactUsComponent,
+    TuiLoaderModule,
   ],
   templateUrl: './public-reservation-confirmation.component.html',
   styleUrl: './public-reservation-confirmation.component.scss',
@@ -40,6 +41,16 @@ export class PublicReservationConfirmationComponent {
   readonly resendingConfirmation: WritableSignal<boolean> = signal(false);
 
   @Input({required: true}) reservation?: Reservation | null;
+
+  // @tuiPure
+  isFreshReservation(): boolean {
+    if (!(this.reservation && this.reservation.created_at)) {
+      console.warn("isFreshReservation", "missing reservation or created_at", this.reservation);
+      return false;
+    }
+
+    return this.reservation.created_at.getTime() - Date.now() < 5 * 60 * 1000;
+  }
 
   resendConfirmation(): void {
     const secret: string | undefined = this.reservation?.secret;
