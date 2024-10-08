@@ -9,13 +9,13 @@ import {
   WritableSignal
 } from '@angular/core';
 import {TuiBooleanHandler, TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TuiButtonModule, TuiCalendarModule, TuiExpandModule, TuiLoaderModule} from "@taiga-ui/core";
 import {filter, finalize, merge, switchMap, take, takeUntil, tap} from "rxjs";
 import {isoStringToTuiDay, isoStringToTuiTime, tuiDatetimeToIsoString} from "@core/lib/tui-datetime-to-iso-string";
 import {ReservationTurn} from "@core/models/reservation-turn";
 import {strTimeTimezone} from "@core/lib/str-time-timezone";
-import {DatePipe, NgClass} from "@angular/common";
+import {CurrencyPipe, DatePipe, JsonPipe, NgClass} from "@angular/common";
 import {ReservationsService} from "@core/services/http/reservations.service";
 import {MatIcon} from "@angular/material/icon";
 import {NotificationsService} from "@core/services/notifications.service";
@@ -23,6 +23,9 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
 import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-message";
 import {PublicReservationsService} from "@core/services/http/public-reservations.service";
+import { PreorderReservationGroup } from '@core/models/preorder-reservation-group';
+import {TuiCheckboxBlockModule} from '@taiga-ui/kit';
+
 
 /**
  * TODO 21 luglio 2024:
@@ -52,7 +55,11 @@ import {PublicReservationsService} from "@core/services/http/public-reservations
     NgClass,
     DatePipe,
     MatIcon,
-    TuiLoaderModule
+    TuiLoaderModule,
+    TuiCheckboxBlockModule,
+    ReactiveFormsModule,
+    JsonPipe,
+    CurrencyPipe,
   ],
   templateUrl: './datetime-input.component.html',
   styleUrl: './datetime-input.component.scss',
@@ -79,7 +86,10 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   readonly date: FormControl<TuiDay | null> = new FormControl(null, [Validators.required]);
   readonly time: FormControl<TuiTime | null> = new FormControl(null, [Validators.required]);
+  readonly group: WritableSignal<PreorderReservationGroup | null> = signal<PreorderReservationGroup | null>(null);
 
+  readonly paymentAccepted: FormControl<boolean | null> = new FormControl<boolean | null>(false);
+  readonly groups: WritableSignal<{[time: string]: PreorderReservationGroup}> = signal<{ [time: string]: PreorderReservationGroup }>({});
   readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
 
@@ -93,21 +103,49 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   };
 
   @Input() maxDaysInAdvance: number = 300;
+  
+  readonly defaultMessage: string = $localize`Per assicurarti uno dei nostro vavoli sarà necessario un pagamento che verrà scalato dal conto finale al ristorante.`;
 
   ngOnInit(): void {
-    merge(this.date.valueChanges.pipe(
-      takeUntil(this.destroy$),
-      filter(() => this.date.valid)
-    ), this.time.valueChanges.pipe(
-      takeUntil(this.destroy$),
-      filter(() => this.time.valid)
-    ),).subscribe({
+    this.time.valueChanges.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (p: TuiTime | null): void => {
+        this.paymentAccepted.setValue(false);
+
+        const groups = {...this.groups()};
+        if (p) {
+          const v = groups[p.toString()];
+
+          this.group.set(v);
+        } else {
+          this.group.set(null);
+        }
+      }
+    });
+
+    merge(
+      this.date.valueChanges.pipe(
+        takeUntil(this.destroy$),
+        filter(() => this.date.valid)
+      ),
+      this.time.valueChanges.pipe(
+        takeUntil(this.destroy$),
+        filter(() => this.time.valid)
+      ),
+      this.paymentAccepted.valueChanges.pipe(
+        takeUntil(this.destroy$),
+        filter(() => this.paymentAccepted.value === true),
+      )
+    ).subscribe({
       next: (): void => {
         this.touched();
         const date: TuiDay | null = this.date.value;
         const time: TuiTime | null = this.time.value;
         if (date && time) {
-          this.emit(tuiDatetimeToIsoString(date, time));
+          if (!this.group() || this.paymentAccepted.value) {
+            this.emit(tuiDatetimeToIsoString(date, time));
+          }
         }
       }
     });
@@ -123,6 +161,15 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       next: (turns: ReservationTurn[]) => {
         const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
         this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))));
+
+        this.groups.set(
+          turns.reduce((acc: {[time: string]: PreorderReservationGroup}, turn: ReservationTurn) => {
+            turn.valid_times?.forEach((time: string) => {
+              if (turn.preorder_reservation_group) acc[strTimeTimezone(time)] = turn.preorder_reservation_group;
+            });
+            return acc;
+          }, {})
+        )
       },
       error: (error: unknown): void => {
         this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);
@@ -156,6 +203,13 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.inputTouch.subscribe(fn);
   }
+
+  // groupAccepted(): boolean {
+  //   if (!(this.group())) return true;
+
+  //   console.warn("missing groupAccepted()");
+  //   return false;
+  // }
 
   setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {

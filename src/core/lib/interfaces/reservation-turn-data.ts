@@ -1,4 +1,5 @@
 import {BaseModelData} from "@core/lib/interfaces/base-model-data";
+import { PreorderReservationGroupData } from "./preorder-reservation-group-data";
 
 export interface ReservationTurnData extends BaseModelData {
   starts_at?: string;
@@ -8,4 +9,6 @@ export interface ReservationTurnData extends BaseModelData {
   step?: number;
 
   valid_times?: string[];
+
+  preorder_reservation_group?: PreorderReservationGroupData;
 }

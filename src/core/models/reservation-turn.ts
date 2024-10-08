@@ -1,6 +1,7 @@
 import {BaseModel} from "@core/lib/base-model";
 import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
 import {strTimeTimezone} from "@core/lib/str-time-timezone";
+import { PreorderReservationGroup } from "./preorder-reservation-group";
 
 export class ReservationTurn extends BaseModel {
   starts_at?: string; // Something like "HH:mm"
@@ -10,6 +11,8 @@ export class ReservationTurn extends BaseModel {
   step?: number;
 
   valid_times?: string[];
+
+  preorder_reservation_group?: PreorderReservationGroup;
 
   constructor(data: ReservationTurnData) {
     super(data);
@@ -25,5 +28,7 @@ export class ReservationTurn extends BaseModel {
     this.starts_at = data.starts_at ? strTimeTimezone(data.starts_at) : undefined;
 
     this.ends_at = data.ends_at ? strTimeTimezone(data.ends_at) : undefined;
+
+    this.preorder_reservation_group = data.preorder_reservation_group ? new PreorderReservationGroup(data.preorder_reservation_group) : undefined;
   }
 }
