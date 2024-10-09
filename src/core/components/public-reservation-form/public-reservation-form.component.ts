@@ -162,10 +162,8 @@ export class PublicReservationFormComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
-
     this.configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
-      this.locale = locale;
+      this.locale = locale ? locale.split('-')[0] : 'en';
     });
 
     /**
