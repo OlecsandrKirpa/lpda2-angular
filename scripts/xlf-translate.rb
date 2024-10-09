@@ -97,7 +97,7 @@ original_file.search("trans-unit").each_with_index do |orig_trans, index|
     out_target = out_trans.search("target").first
     if original_source.to_s.gsub(/\s+/, " ").strip == trans_source.to_s.gsub(/\s+/, " ").strip && out_target && out_target.text.length > 0
       @report[:skipped_present] << { id: trans_id, source: original_source, target: out_target.text }
-      translated_str = out_target.text
+      translated_str = out_target.children.to_s
     end
   end
 
