@@ -45,6 +45,7 @@ import {
 } from "@core/lib/parse-http-error-message";
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
+import { ConfigsService } from '@core/services/configs.service';
 
 interface FormStep {
   form: FormGroup | AbstractControl;
@@ -128,10 +129,14 @@ export class PublicReservationFormComponent implements OnInit {
 
   readonly countries: readonly TuiCountryIsoCode[] = Object.values(TuiCountryIsoCode);
 
+  private readonly configs: ConfigsService = inject(ConfigsService);
+
   /**
    * TODO this field should be set depending on the user's headers AND the selected language for the website.
    */
   countryIsoCode = TuiCountryIsoCode.IT;
+
+  locale: string = 'en';
 
   readonly steps: { [index: number]: FormStep } = {
     0: {
@@ -157,6 +162,12 @@ export class PublicReservationFormComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+
+    this.configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
+      this.locale = locale;
+    });
+
     /**
      * Listen to the people form changes and move to the next step.
      */
@@ -310,6 +321,7 @@ export class PublicReservationFormComponent implements OnInit {
       children,
       notes,
       adults,
+      lang: this.locale,
       firstName: firstName,
       lastName: lastName
     });

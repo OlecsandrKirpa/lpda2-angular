@@ -7,6 +7,7 @@ export interface CreateReservationData {
   first_name: string;
   last_name: string;
   notes: string | null;
+  lang: string;
 }
 
 export function formatReservationData(data: {
@@ -18,12 +19,14 @@ export function formatReservationData(data: {
   notes: unknown;
   firstName: unknown;
   lastName: unknown;
+  lang: unknown;
 }): CreateReservationData | null {
   const invalid = (fieldName: string, value: unknown) => {
     console.warn(`Invalid field ${fieldName}`, value);
     return null;
   };
 
+  if (!(typeof data.lang === "string" && data.lang.length > 0)) return invalid(`lang`, data.lang);
   if (!(typeof data.email === "string" && data.email.length > 0)) return invalid(`email`, data.email);
   if (!(typeof data.phone === "string" && data.phone.length > 0)) return invalid(`phone`, data.phone);
   if (!(typeof data.firstName === "string" && data.firstName.length > 0)) return invalid(`firstName`, data.firstName);
@@ -35,6 +38,7 @@ export function formatReservationData(data: {
   if (!(typeof data.adults === "number" && data.adults > 0)) return invalid(`adults`, data.adults);
 
   return {
+    lang: data.lang,
     email: data.email,
     phone: data.phone,
     datetime: data.datetime,
