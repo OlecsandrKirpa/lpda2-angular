@@ -13,8 +13,6 @@ import {PublicReservationsService} from "@core/services/http/public-reservations
 })
 export class ReservationsService extends CommonHttpService<Reservation> {
 
-  private readonly publicReservations: PublicReservationsService = inject(PublicReservationsService);
-
   constructor() {
     super(Reservation, `admin/reservations`);
   }
@@ -22,8 +20,6 @@ export class ReservationsService extends CommonHttpService<Reservation> {
   tablesSummary(params: Record<string, string|number|boolean> = {}): Observable<ReservationTableSummary[]> {
     return this.get<ReservationTableSummary[]>(`tables_summary`, { params });
   }
-
-  readonly getValidTimes = this.publicReservations.getValidTimes;
 
   deliverConfirmationEmail(id: number): Observable<Reservation> {
     return this.post(`${id}/deliver_confirmation_email`, {}).pipe(

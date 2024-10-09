@@ -26,6 +26,7 @@ import {tuiDatetimeToIsoString, tuiTimeToIsoString} from "@core/lib/tui-datetime
 import {
   ReservationTablesSummaryComponent
 } from "@core/components/reservation-tables-summary/reservation-tables-summary.component";
+import { PublicReservationsService } from '@core/services/http/public-reservations.service';
 
 /**
  * NEW and EDIT reservation's data
@@ -59,6 +60,7 @@ import {
 })
 export class AdminReservationFormComponent implements OnInit {
   private readonly reservationsService: ReservationsService = inject(ReservationsService);
+  private readonly publicRes = inject(PublicReservationsService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly datePipe = inject(DatePipe);
 
@@ -129,7 +131,7 @@ export class AdminReservationFormComponent implements OnInit {
       tap(() => this.dateOpen.set(false)),
       tap(() => this.timeOpen.set(true)),
       tap(() => this.loadingTimes.set(true)),
-      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date)),
+      switchMap((date: TuiDay) => this.publicRes.getValidTimes(date)),
       finalize(() => this.loadingTimes.set(false)),
     ).subscribe({
       next: (turns: ReservationTurn[]) => {
