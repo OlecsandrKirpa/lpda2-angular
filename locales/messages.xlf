@@ -1651,15 +1651,6 @@
           <context context-type='linenumber'>21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='187187500641108332' datatype='html'>
-        <source>
-          <x id='INTERPOLATION' equiv-text='rrors[&apos;tooShort&apos;]}}'/>
-        </source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
-          <context context-type='linenumber'>33,34</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='8565354821609201746' datatype='html'>
         <source>Scegli una nuova password per il tuo account</source>
         <context-group purpose='location'>
