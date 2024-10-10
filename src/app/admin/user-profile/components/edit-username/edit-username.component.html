@@ -2,9 +2,9 @@
   <tui-input [formControl]="control" (keydown.enter)="submit()" [tuiTextfieldLabelOutside]="true" tuiAutoFocus></tui-input>
 
   @if(control.touched && control.errors; as errors){
-    @if(errors['required']){ <p class="form-text error" i18n>Il nome non può essere vuoto</p> }
-    @if(errors['minlength']){ <p class="form-text error" i18n>Il nome deve essere lungo almeno {{errors['minlength'].requiredLength}} caratteri</p> }
+    @if(errors['required']){ <p class="form-text error" i18n>Lo username non può essere vuoto</p> }
+    @if(errors['minlength']){ <p class="form-text error" i18n>Lo username deve essere lungo almeno {{errors['minlength'].requiredLength}} caratteri</p> }
   } @else {
-    <p class="form-text" i18n>Inserisci il tuo nome completo</p>
+    <p class="form-text" i18n>Inserisci il tuo username</p>
   }
 </div>
