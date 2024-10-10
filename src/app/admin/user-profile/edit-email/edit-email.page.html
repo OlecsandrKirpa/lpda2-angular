@@ -50,7 +50,7 @@
               @if(errors['invalid']){ <p class="form-text error">Il codice inserito non è valido oppure è scaduto.</p> }
               @if(errors['required']){ <p class="form-text error" i18n>Il codice non può essere vuoto!</p> }
               @if(errors['emailRequired']){ <p class="form-text error" i18n>L'indirizzo email non può essere vuoto!</p> }
-              @if(errors['emailInvalid']){ <p class="form-text error" i18n>{{errors['emailInvalid']}}</p> }
+              @if(errors['emailInvalid']){ <p class="form-text error">{{errors['emailInvalid']}}</p> }
               @if(errors['emailTaken']){ <p class="form-text error" i18n>Un altro utente con questo indirizzo email esiste già</p> }
               @if(errors['emailNotChanged']){ <p class="form-text error" i18n>Devi inserire un indirizzo email diverso da quello attuale</p> }
               @if(errors['userBlocked']) { <p class="form-text error" i18n>Questo account è bloccato! La modifica dell'indirizzo email non è disponibile.</p>}

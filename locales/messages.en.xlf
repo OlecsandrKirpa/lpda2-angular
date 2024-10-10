@@ -909,6 +909,10 @@
           <context context-type='linenumber'>38</context>
         </context-group>
         <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>27</context>
+        </context-group>
+        <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/allergen-form/allergen-form.component.html</context>
           <context context-type='linenumber'>28</context>
         </context-group>
@@ -993,6 +997,18 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/new-user/new-user.component.html</context>
           <context context-type='linenumber'>42</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>33</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>63</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.html</context>
@@ -1602,9 +1618,366 @@
           <context context-type='linenumber'>62</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='4990235034443709758' datatype='html'>
+        <source>Il nome non può essere vuoto</source>
+        <target>The name cannot be empty.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-fullname/edit-fullname.component.html 
+          </context>
+          <context context-type='linenumber'>5</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
+          </context>
+          <context context-type='linenumber'>5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9092363610742432852' datatype='html'>
+        <source>
+           Il nome deve essere lungo almeno 
+          <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/>
+           caratteri 
+        </source>
+        <target>The name must be at least <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/> characters long.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-fullname/edit-fullname.component.html 
+          </context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
+          </context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1938788456109164854' datatype='html'>
+        <source>Inserisci il tuo nome completo</source>
+        <target>Enter your full name.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-fullname/edit-fullname.component.html 
+          </context>
+          <context context-type='linenumber'>8</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
+          </context>
+          <context context-type='linenumber'>8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5919586739150259543' datatype='html'>
+        <source>Cancellazione</source>
+        <target>Deletion</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>4</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5638927414601060303' datatype='html'>
+        <source> La cancellazione dell'account è un'operazione irreversibile: </source>
+        <target>The account deletion is an irreversible operation:</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>9,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8639291260723980980' datatype='html'>
+        <source>
+           Sono consapevole che la cancellazione dell'account porterà alla
+          distruzione di tutti i dati associati al mio account 
+        </source>
+        <target>
+          I am aware that the deletion of the account will lead to the
+          destruction of all data associated with my account.
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>14,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='298465737700320974' datatype='html'>
+        <source>
+           Scrivi 
+          <x id='START_TAG_CODE' ctype='x-code' equiv-text='&lt;code class=&quot;inline-block px-2 bg-orange-100&quot;&gt;'/>
+          <x id='INTERPOLATION' equiv-text='{{user.email}}'/>
+          <x id='CLOSE_TAG_CODE' ctype='x-code' equiv-text='&lt;/code&gt;'/>
+           per confermare la cancellazione dell'account 
+        </source>
+        <target>Write
+          <x id='START_TAG_CODE' ctype='x-code' equiv-text='&lt;code class=&quot;inline-block px-2 bg-orange-100&quot;&gt;'/>
+          <x id='INTERPOLATION' equiv-text='{{user.email}}'/>
+          <x id='CLOSE_TAG_CODE' ctype='x-code' equiv-text='&lt;/code&gt;'/>
+        to confirm the account cancellation.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2502649728176377632' datatype='html'>
+        <source>Scrivi il tuo indirizzo email per confermare la cancellazione dell'account</source>
+        <target>Please enter your email address to confirm the cancellation of the account.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4130068322032386210' datatype='html'>
+        <source>Modifica email</source>
+        <target>Change email</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8830598660749797429' datatype='html'>
+        <source>
+           Inserisci il tuo nuovo indirizzo email e premi 
+          <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
+           Avanti 
+          <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
+           per proseguire. 
+        </source>
+        <target>Enter your new email address and press
+          <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
+          Next
+          <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
+          to continue.
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4222230801324703940' datatype='html'>
+        <source>Nuovo indirizzo email</source>
+        <target>New email address</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6450387526469128347' datatype='html'>
+        <source>L'indirizzo email non può essere vuoto!</source>
+        <target>The email address cannot be empty!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>22</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4910395013078456991' datatype='html'>
+        <source>Indirizzo email non valido!</source>
+        <target>Invalid email address!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8522719479248341322' datatype='html'>
+        <source>Un altro utente con questo indirizzo email esiste già</source>
+        <target>Another user with this email address already exists.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>24</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8128647832938651595' datatype='html'>
+        <source>Devi inserire un indirizzo email diverso da quello attuale</source>
+        <target>You need to enter a different email address from the current one.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>25</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4015618424290254281' datatype='html'>
+        <source>
+           Questo account è bloccato! La modifica dell'indirizzo email non è
+          disponibile. 
+        </source>
+        <target>This account is blocked! Changing the email address is not available.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6260551218211480855' datatype='html'>
+        <source>Inserisci il tuo nuovo indirizzo email</source>
+        <target>Enter your new email address.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5671484990443496166' datatype='html'>
+        <source>Avanti</source>
+        <target>Forward</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>34</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='972308884376439490' datatype='html'>
+        <source>Il codice non può essere vuoto!</source>
+        <target>The code cannot be empty!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3840680629306463977' datatype='html'>
+        <source>Inserisci il codice ricevuto via email</source>
+        <target>Enter the code received via email.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
+          <context context-type='linenumber'>58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='727179835693426543' datatype='html'>
+        <source>Indirizzo email aggiornato con successo!</source>
+        <target>Email address updated successfully!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.ts</context>
+          <context context-type='linenumber'>121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='939547412442764435' datatype='html'>
+        <source>Modifica password</source>
+        <target>Change password</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1095697543474553898' datatype='html'>
+        <source>
+           Inserisci la tua password corrente e scegli una nuova password,
+          quindi premi 
+          <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
+           Avanti 
+          <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
+           per proseguire 
+        </source>
+        <target>
+          Enter your current password and choose a new password, then press
+          <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
+          Next
+          <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
+          to continue.
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5339871191026069910' datatype='html'>
+        <source>La password non può essere vuota!</source>
+        <target>The password cannot be empty!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>18</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6193087143791985795' datatype='html'>
+        <source>Inserisci la tua password attuale</source>
+        <target>Enter your current password.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8565354821609201746' datatype='html'>
+        <source>Scegli una nuova password per il tuo account</source>
+        <target>Choose a new password for your account.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
+          <context context-type='linenumber'>35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6077962825199601472' datatype='html'>
+        <source>Password aggiornata con successo!</source>
+        <target>Password successfully updated!</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.ts</context>
+          <context context-type='linenumber'>53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='468936577720775415' datatype='html'>
+        <source>Il tuo profilo</source>
+        <target>Your profile</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7416219813143415407' datatype='html'>
+        <source>Il tuo nome</source>
+        <target>Your name</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3641477329797898964' datatype='html'>
+        <source>Username di accesso</source>
+        <target>Login username</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1178915714217912357' datatype='html'>
+        <source>Indirizzo email</source>
+        <target>Email address</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='1431416938026210429' datatype='html'>
         <source>Password</source>
         <target>Password</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>43</context>
+        </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/login/login.component.html</context>
           <context context-type='linenumber'>20</context>
@@ -1612,6 +1985,59 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/auth/pages/reset-password/reset-password.component.html</context>
           <context context-type='linenumber'>14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2161638988561884058' datatype='html'>
+        <source>Account creato</source>
+        <target>Account created.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2962926942845666612' datatype='html'>
+        <source>Cancella il tuo account ed elimina tutti i dati associati</source>
+        <target>Delete your account and remove all associated data.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6664009792542642709' datatype='html'>
+        <source>
+           Se desideri cancellare il tuo account dalla nostra piattaforma, segui
+          le indicazioni di seguito. 
+        </source>
+        <target>
+          If you wish to delete your account from our platform, follow the
+          instructions below.
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8061262514322460993' datatype='html'>
+        <source>
+           ATTENZIONE: questa operazione è irreversibile e procedendo con la
+          cancellazione dell'account tutti i tuoi dati andranno persi e non
+          potranno essere recuperati! 
+        </source>
+        <target>
+          WARNING: this operation is irreversible and by proceeding with the
+          account deletion all your data will be lost and cannot be recovered!
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6572044649314929485' datatype='html'>
+        <source>Cancella account</source>
+        <target>Delete account</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
+          <context context-type='linenumber'>106</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8998368868727342452' datatype='html'>
@@ -5246,7 +5672,7 @@
             
             src/core/components/public-reservation-form/public-reservation-form.component.ts 
           </context>
-          <context context-type='linenumber'>357</context>
+          <context context-type='linenumber'>355</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7810101333022324148' datatype='html'>
