@@ -1,0 +1,12 @@
+<div class="container">
+  @for(control of controls; track control; let index = $index){
+    <input
+      appInlineInput
+      type="number"
+      [formControl]="control"
+      [ngClass]="{filled: control.value }"
+      (click)="focusInput(index)"
+      class="input border-b-4 text-[40px]/[40px] font-bold text-center py-4"
+    >
+  }
+</div>

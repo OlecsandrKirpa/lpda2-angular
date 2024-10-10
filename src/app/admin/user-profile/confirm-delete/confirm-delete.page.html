@@ -1,0 +1,31 @@
+<tui-loader [overlay]="true" [showLoader]="loading || submitting">
+  <h1 class="text-3xl font-bold uppercase | flex items-center | border-b-2 border-b-slate-100 | pb-4 mb-4 | text-orange-600">
+    <mat-icon inline class="me-3">delete_forever</mat-icon>
+    <ng-container i18n>Cancellazione</ng-container>
+  </h1>
+
+  @if(user){
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <p class="mb-3" i18n>
+        La cancellazione dell'account è un'operazione irreversibile:
+      </p>
+
+      <div class="mb-3">
+        <tui-checkbox-labeled formControlName="confirm_data_removal" size="l" i18n>
+          Sono consapevole che la cancellazione dell'account porterà alla distruzione di tutti i dati associati al mio account
+        </tui-checkbox-labeled>
+      </div>
+
+      <div class="mb-3">
+        <p class="mb-1" i18n>Scrivi <code class="inline-block px-2 bg-orange-100">{{user.email}}</code> per confermare la cancellazione dell'account</p>
+        <tui-input formControlName="email" [tuiTextfieldLabelOutside]="true">{{user.email}}</tui-input>
+        <p class="form-text" i18n>Scrivi il tuo indirizzo email per confermare la cancellazione dell'account</p>
+      </div>
+
+      <div class="flex flex-row items-center justify-between">
+        <a tuiButton appearance="secondary-destructive" routerLink=".." i18n>Annulla</a>
+        <button tuiButton appearance="accent" [disabled]="!form.valid" i18n>Conferma</button>
+      </div>
+    </form>
+  }
+</tui-loader>

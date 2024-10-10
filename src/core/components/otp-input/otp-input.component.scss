@@ -1,0 +1,28 @@
+:host{
+  --size: 6;
+
+  @apply block w-full;
+
+  .container {
+    @apply grid gap-2 w-full;
+    grid-template-columns: repeat(var(--size), minmax(0, 1fr));
+  }
+
+  &.disabled {
+    @apply cursor-not-allowed;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .filled:not(._focused) {
+    @apply border-b-gray-950;
+  }
+
+  .input:focus {
+    @apply text-blue-400 border-b-blue-400 outline-none;
+    caret-color: black;
+    &::selection {
+      @apply bg-transparent;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+:host {
+  @apply flex flex-row items-center p-4 border border-b-0;
+
+  &:hover {
+    @apply bg-gray-50;
+  }
+
+  &:first-of-type {
+    @apply rounded-t-xl;
+  }
+
+  &:last-of-type {
+    @apply border-b rounded-b-xl;
+  }
+}

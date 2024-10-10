@@ -1,0 +1,42 @@
+<div class="w-[40px] min-w-[40px] h-[40px] text-[40px]/[40px] me-4">
+  @if (icon) {
+    <mat-icon inline>{{icon}}</mat-icon>
+  }
+</div>
+
+<div class="flex flex-col w-full min-h-[40px]">
+  <h4 class="font-light uppercase text-gray-400">
+    @switch(labelType){
+      @case ('string') {
+        {{label}}
+      }
+      @case('template'){
+        <ng-container *polymorpheusOutlet="label"></ng-container>
+      }
+    }
+  </h4>
+  <div class="font-bold text-lg">
+    @if(editing && editTemplate){
+      <tui-loader [overlay]="true" [showLoader]="submitting">
+        <ng-container *polymorpheusOutlet="editTemplate; context: {$implicit: edit$}"></ng-container>
+      </tui-loader>
+    } @else {
+      <ng-content></ng-content>
+    }
+  </div>
+</div>
+
+@if(editable && !editing){
+  <a tuiButton appearance="custom" class="me-4" style="--tui-padding: 0" (click)="startEdit()" (keydown.enter)="startEdit()" (keydown.space)="startEdit()" tabindex="1">
+    <span class="text-3xl">
+      @switch(labelType){
+        @case ('string') {
+          <mat-icon inline>{{editIcon}}</mat-icon>
+        }
+        @case('template'){
+          <ng-container *polymorpheusOutlet="editIcon"></ng-container>
+        }
+      }
+    </span>
+  </a>
+}

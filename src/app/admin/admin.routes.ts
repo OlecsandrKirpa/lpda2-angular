@@ -6,6 +6,11 @@ export const routes: Routes = [
     loadComponent: () => import(`./dashboard/admin-dashboard.component`).then(m => m.AdminDashboardComponent),
   },
   {
+    path: `profile`,
+    loadChildren: () => import(`./user-profile/profile.routes`).then(m => m.routes)
+    // loadComponent: () => import(`./user-profile/user-profile.component`).then(m => m.UserProfileComponent)
+  },
+  {
     path: `menu`,
     loadChildren: () => import(`./menu/menu.routes`).then(m => m.routes)
   },

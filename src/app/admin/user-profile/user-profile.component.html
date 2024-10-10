@@ -1,0 +1,112 @@
+<tui-loader [overlay]="true" [showLoader]="!user">
+  <h1 class="block mb-[5]" i18n>Il tuo profilo</h1>
+
+  @if(user){
+    <div>
+      <ng-template #editFullname let-observable>
+        <div class="flex flex-row flex-wrap gap-2">
+          <app-edit-fullname [user]="user" [observable$]="observable" ></app-edit-fullname>
+          <div class="flex flex-row gap-2">
+            <button tuiIconButton appearance="primary" type="button" (click)="observable.next('submit')" [icon]="confirmIcon"> </button>
+            <button tuiIconButton appearance="secondary-destructive" type="button" (click)="observable.next('cancel')" [icon]="cancelIcon" > </button>
+          </div>
+          <ng-template #confirmIcon><mat-icon>done</mat-icon></ng-template>
+          <ng-template #cancelIcon><mat-icon>close</mat-icon></ng-template>
+        </div>
+      </ng-template>
+
+      <ng-template #editUsername let-observable>
+        <div class="flex flex-row flex-wrap gap-2">
+          <app-edit-username [user]="user" [observable$]="observable" ></app-edit-username>
+          <div class="flex flex-row gap-2">
+            <button tuiIconButton appearance="primary" type="button" (click)="observable.next('submit')" [icon]="confirmIcon"> </button>
+            <button tuiIconButton appearance="secondary-destructive" type="button" (click)="observable.next('cancel')" [icon]="cancelIcon" > </button>
+          </div>
+          <ng-template #confirmIcon><mat-icon>done</mat-icon></ng-template>
+          <ng-template #cancelIcon><mat-icon>close</mat-icon></ng-template>
+        </div>
+      </ng-template>
+
+      <app-profile-item icon="badge" i18n-label label="Il tuo nome" [editTemplate]="editFullname">
+        <span>{{user.fullname || '--'}}</span>
+      </app-profile-item>
+
+
+      <app-profile-item icon="badge" i18n-label label="Username di accesso" [editTemplate]="editUsername">
+        <span>{{user.username || '--'}}</span>
+      </app-profile-item>
+
+      <app-profile-item icon="alternate_email" i18n-label label="Indirizzo email" link="edit-email">
+        <span class="break-all">{{user.email || '--'}}</span>
+      </app-profile-item>
+
+      <app-profile-item icon="lock" i18n-label label="Password" link="edit-password">
+        <span>*********</span>
+      </app-profile-item>
+
+      <!-- <app-profile-item icon="smartphone" i18n-label label="Cellulare" link="edit-mobile">
+        <span>{{user.phone || '--'}}</span>
+      </app-profile-item> -->
+
+      <!-- <app-profile-item icon="import_contacts" i18n-label label="Dati anagrafici e Titolo di studio" link="edit-anagraphic-data">
+        <div class="flex flex-col sm:flex-row flex-wrap">
+          <span class="anagraphic-data-item">
+            @switch (user.gender) {
+              @case('male'){ <mat-icon class="me-1">male</mat-icon><ng-container i18n>Maschio</ng-container> }
+              @case('female'){ <mat-icon class="me-1">female</mat-icon><ng-container i18n>Femmina</ng-container> }
+              @case('other'){ <mat-icon class="me-1">transgender</mat-icon><ng-container i18n>Altro</ng-container> }
+              @default {
+                <mat-icon class="me-1">wc</mat-icon> --
+              }
+            }
+          </span>
+
+          <span class="anagraphic-data-item">
+            <mat-icon class="me-1">cake</mat-icon>
+            @if(user.bdate){
+              {{user.bdate | date:'longDate'}}
+            } @else { -- }
+          </span>
+
+          <span class="anagraphic-data-item">
+            <mat-icon class="me-1">location_on</mat-icon>
+            @if(user.municipality){
+              <span>
+                <span class="break-all">{{user.municipality.name}}</span>{{user.zip_code ? ', ' + user.zip_code : ''}}
+              </span>
+            } @else { -- }
+          </span>
+
+          <span class="anagraphic-data-item">
+            <mat-icon class="me-1">school</mat-icon>
+            @if(user.qualification){
+              {{user.qualification.title}}
+            } @else { -- }
+          </span>
+        </div>
+      </app-profile-item> -->
+
+      <app-profile-item icon="edit_calendar" i18n-label label="Account creato" [editable]="false">
+        <span>{{user.created_at | date:'longDate'}}, {{user.created_at | date:'shortTime'}}</span>
+      </app-profile-item>
+    </div>
+
+    <tui-accordion-item class="container mt-5" [showArrow]="false" [(open)]="deleteAccordionOpen">
+      <h3 class="flex flex-row items-center justify-between | text-2xl font-bold | whitespace-normal">
+        <div class="flex flex-col">
+          <span i18n>Cancellazione</span>
+          <span class="text-sm text-gray-400 font-normal" i18n>Cancella il tuo account ed elimina tutti i dati associati</span>
+        </div>
+        <span class="text-[40px]/[20px]"><mat-icon inline class="me-2 transition-all duration-500" [ngClass]="{'rotate-180': deleteAccordionOpen}">keyboard_arrow_down</mat-icon></span>
+      </h3>
+
+      <ng-template tuiAccordionItemContent>
+        <p class="mb-2" i18n>Se desideri cancellare il tuo account dalla nostra piattaforma, segui le indicazioni di seguito.</p>
+        <p class="text-red-800 font-bold mb-2" i18n>ATTENZIONE: questa operazione è irreversibile e procedendo con la cancellazione dell'account tutti i tuoi dati andranno persi e non potranno essere recuperati!</p>
+        <a tuiButton appearance="accent" routerLink="delete" i18n>Cancella account</a>
+      </ng-template>
+    </tui-accordion-item>
+  }
+</tui-loader>
+
+<router-outlet></router-outlet>

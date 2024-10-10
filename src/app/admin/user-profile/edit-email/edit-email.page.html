@@ -1,0 +1,75 @@
+<div>
+  <h1 class="text-3xl font-bold uppercase | flex items-center | border-b-2 border-b-slate-100 | pb-4 mb-4">
+    <mat-icon inline class="me-3">alternate_email</mat-icon>
+    <ng-container i18n>Modifica email</ng-container>
+  </h1>
+
+  <tui-loader [overlay]="true" [showLoader]="submitting">
+    <form [formGroup]="form" (ngSubmit)="next()">
+      <mat-stepper [linear]="true" [selectedIndex]="0" #stepper (animationDone)="stepper.selectedIndex === 1 && otpInput.focus()">
+        <mat-step label="Nuovo indirizzo email" [stepControl]="email">
+          <p class="mb-2" i18n>
+            Inserisci il tuo nuovo indirizzo email e premi <strong>Avanti</strong> per proseguire.
+          </p>
+
+          <div class="mb-3">
+            <tui-input [formControl]="email" [tuiTextfieldIconLeft]="emailIcon" tuiAutoFocus>
+              <ng-container i18n>Nuovo indirizzo email</ng-container>
+            </tui-input>
+
+            @if(email.touched && email.errors; as errors){
+              @if(errors['invalid']){ <p class="form-text error">{{errors['invalid']}}</p> }
+              @if(errors['required']){ <p class="form-text error" i18n>L'indirizzo email non può essere vuoto!</p> }
+              @if(errors['email']){ <p class="form-text error" i18n>Indirizzo email non valido!</p> }
+              @if(errors['taken']){ <p class="form-text error" i18n>Un altro utente con questo indirizzo email esiste già</p> }
+              @if(errors['notChanged']){ <p class="form-text error" i18n>Devi inserire un indirizzo email diverso da quello attuale</p> }
+              @if(errors['userBlocked']) { <p class="form-text error" i18n>Questo account è bloccato! La modifica dell'indirizzo email non è disponibile.</p>}
+            } @else {
+              <p class="form-text" i18n>Inserisci il tuo nuovo indirizzo email</p>
+            }
+          </div>
+
+          <div class="flex flex-row items-center justify-between">
+            <a tabindex="0" tuiButton appearance="secondary-destructive" (click)="cancel()" (keydown.space)="cancel()" (keydown.enter)="cancel()" i18n>Annulla</a>
+            <button tuiButton [disabled]="!email.valid" i18n>Avanti</button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Verifica OTP" [stepControl]="otp">
+          <!-- <a tuiLink tabindex="0" (click)="back()" (keydown.space)="back()" (keydown.enter)="back" class="mb-2">
+            <mat-icon class="me-1">arrow_back</mat-icon>
+            Indietro
+          </a> -->
+          <p class="mb-2">
+            Abbiamo inviato un codice di verifica all'indirizzo <strong>{{email.value}}</strong>. Controlla la tua casella di posta elettronica e inserisci il codice qui sotto:
+          </p>
+
+          <div tuiGroup class="mb-2">
+            <app-otp-input #otpInput [size]="6" [formControl]="otp" (ready)="next()"></app-otp-input>
+            @if(otp.touched && otp.errors; as errors){
+              @if(errors['invalid']){ <p class="form-text error">Il codice inserito non è valido oppure è scaduto.</p> }
+              @if(errors['required']){ <p class="form-text error" i18n>Il codice non può essere vuoto!</p> }
+              @if(errors['emailRequired']){ <p class="form-text error" i18n>L'indirizzo email non può essere vuoto!</p> }
+              @if(errors['emailInvalid']){ <p class="form-text error" i18n>{{errors['emailInvalid']}}</p> }
+              @if(errors['emailTaken']){ <p class="form-text error" i18n>Un altro utente con questo indirizzo email esiste già</p> }
+              @if(errors['emailNotChanged']){ <p class="form-text error" i18n>Devi inserire un indirizzo email diverso da quello attuale</p> }
+              @if(errors['userBlocked']) { <p class="form-text error" i18n>Questo account è bloccato! La modifica dell'indirizzo email non è disponibile.</p>}
+            } @else {
+              <p class="form-text" i18n>Inserisci il codice ricevuto via email</p>
+            }
+          </div>
+
+          <div class="flex flex-row items-center justify-between">
+            <a tabindex="0" tuiButton appearance="secondary-destructive" (click)="cancel()" (keydown.space)="cancel()" (keydown.enter)="cancel()" i18n>Annulla</a>
+            <!-- <button tuiButton [disabled]="!otp.valid" i18n>Avanti</button> -->
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </tui-loader>
+</div>
+
+
+<ng-template #emailIcon>
+  <mat-icon>email</mat-icon>
+</ng-template>
