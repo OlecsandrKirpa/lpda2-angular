@@ -1403,12 +1403,6 @@
           </context>
           <context context-type='linenumber'>5</context>
         </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/app/admin/user-profile/components/edit-username/edit-username.component.html
-          </context>
-          <context context-type='linenumber'>5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id='9092363610742432852' datatype='html'>
         <source>
@@ -1422,12 +1416,6 @@
           </context>
           <context context-type='linenumber'>6</context>
         </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/app/admin/user-profile/components/edit-username/edit-username.component.html
-          </context>
-          <context context-type='linenumber'>6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id='1938788456109164854' datatype='html'>
         <source>Inserisci il tuo nome completo</source>
@@ -1437,6 +1425,31 @@
           </context>
           <context context-type='linenumber'>8</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id='131121342239220606' datatype='html'>
+        <source>Lo username non può essere vuoto</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html
+          </context>
+          <context context-type='linenumber'>5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1416282313349388419' datatype='html'>
+        <source>
+          Lo username deve essere lungo almeno 
+          <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/>
+           caratteri
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html
+          </context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='845596939866383416' datatype='html'>
+        <source>Inserisci il tuo username</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             src/app/admin/user-profile/components/edit-username/edit-username.component.html

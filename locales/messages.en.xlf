@@ -1628,13 +1628,6 @@
           </context>
           <context context-type='linenumber'>5</context>
         </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
-          </context>
-          <context context-type='linenumber'>5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id='9092363610742432852' datatype='html'>
         <source>
@@ -1642,18 +1635,15 @@
           <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/>
            caratteri 
         </source>
-        <target>The name must be at least <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/> characters long.</target>
+        <target>
+          The name must be at least 
+          <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/>
+           characters long.
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/app/admin/user-profile/components/edit-fullname/edit-fullname.component.html 
-          </context>
-          <context context-type='linenumber'>6</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
           </context>
           <context context-type='linenumber'>6</context>
         </context-group>
@@ -1668,6 +1658,36 @@
           </context>
           <context context-type='linenumber'>8</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id='131121342239220606' datatype='html'>
+        <source>Lo username non può essere vuoto</source>
+        <target>The username cannot be empty.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
+          </context>
+          <context context-type='linenumber'>5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1416282313349388419' datatype='html'>
+        <source>
+           Lo username deve essere lungo almeno 
+          <x id='INTERPOLATION' equiv-text='{{errors[&apos;minlength&apos;].requiredLength}}'/>
+           caratteri 
+        </source>
+        <target>The username must be at least characters long.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/user-profile/components/edit-username/edit-username.component.html 
+          </context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='845596939866383416' datatype='html'>
+        <source>Inserisci il tuo username</source>
+        <target>Enter your username</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
@@ -1702,8 +1722,8 @@
           distruzione di tutti i dati associati al mio account 
         </source>
         <target>
-          I am aware that the deletion of the account will lead to the
-          destruction of all data associated with my account.
+           I am aware that the deletion of the account will lead to the
+          destruction of all data associated with my account. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
@@ -1718,11 +1738,13 @@
           <x id='CLOSE_TAG_CODE' ctype='x-code' equiv-text='&lt;/code&gt;'/>
            per confermare la cancellazione dell'account 
         </source>
-        <target>Write
+        <target>
+          Write 
           <x id='START_TAG_CODE' ctype='x-code' equiv-text='&lt;code class=&quot;inline-block px-2 bg-orange-100&quot;&gt;'/>
           <x id='INTERPOLATION' equiv-text='{{user.email}}'/>
           <x id='CLOSE_TAG_CODE' ctype='x-code' equiv-text='&lt;/code&gt;'/>
-        to confirm the account cancellation.</target>
+           to confirm the account cancellation.
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
           <context context-type='linenumber'>20</context>
@@ -1752,11 +1774,12 @@
           <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
            per proseguire. 
         </source>
-        <target>Enter your new email address and press
+        <target>
+          Enter your new email address and press 
           <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
-          Next
+           Next 
           <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
-          to continue.
+           to continue. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/edit-email/edit-email.page.html</context>
@@ -1892,11 +1915,11 @@
            per proseguire 
         </source>
         <target>
-          Enter your current password and choose a new password, then press
+           Enter your current password and choose a new password, then press 
           <x id='START_TAG_STRONG' ctype='x-strong' equiv-text='&lt;strong&gt;'/>
-          Next
+           Next 
           <x id='CLOSE_TAG_STRONG' ctype='x-strong' equiv-text='&lt;/strong&gt;'/>
-          to continue.
+           to continue. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/edit-password/edit-password.page.html</context>
@@ -2009,8 +2032,8 @@
           le indicazioni di seguito. 
         </source>
         <target>
-          If you wish to delete your account from our platform, follow the
-          instructions below.
+           If you wish to delete your account from our platform, follow the
+          instructions below. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>
@@ -2024,8 +2047,8 @@
           potranno essere recuperati! 
         </source>
         <target>
-          WARNING: this operation is irreversible and by proceeding with the
-          account deletion all your data will be lost and cannot be recovered!
+           WARNING: this operation is irreversible and by proceeding with the
+          account deletion all your data will be lost and cannot be recovered! 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/user-profile/user-profile.component.html</context>

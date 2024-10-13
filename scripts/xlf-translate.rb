@@ -11,7 +11,7 @@ require "oj" # 3.16.3, 3.16.5
 # Step 1: Check if the files exist and load them.
 original_file = ARGV[0] || "locales/messages.xlf"
 output_file_path = ARGV[1] || "locales/messages.en.xlf"
-SAFE = true # when enabled, output file will not be updated. Instead a file called .safe will be saved in the same directory.
+SAFE = false # when enabled, output file will not be updated. Instead a file called .safe will be saved in the same directory.
 skip_present = true # when enabled, will skip translations that are already present in the output file.
 
 pwd = Dir.pwd + "/scripts/"
