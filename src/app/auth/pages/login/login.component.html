@@ -7,12 +7,12 @@
       <h2 class="mb-1">Benvenuto.</h2>
       <span class="text-slate-400 mb-3">Accedi per proseguire</span>
       <div class="flex flex-col mb-2">
-        <tui-input class="min-width" [tuiAutoFocus]="true" formControlName="email">
-          <ng-container i18n>Email</ng-container>
-          <input autocomplete="email" tuiTextfield>
+        <tui-input class="min-width" [tuiAutoFocus]="true" formControlName="username">
+          <ng-container i18n>Username o email</ng-container>
+          <input autocomplete="username" tuiTextfield>
           </tui-input>
-          @if (se('email')) {
-    <app-errors [errors]="e('email')"></app-errors>
+          @if (se('username')) {
+    <app-errors [errors]="e('username')"></app-errors>
     }
     </div>
     <div class="flex flex-col mb-3">
@@ -27,7 +27,7 @@
     <app-errors [errors]="form.errors"></app-errors>
     }
     </div>
-    <a class="mb-1" tuiLink [routerLink]="'reset-password'" [queryParams]="{email: form.value.email}" >Password dimenticata?</a>
+    <a class="mb-1" tuiLink [routerLink]="'reset-password'" [queryParams]="{email: username.value}" >Password dimenticata?</a>
             <button [showLoader]="submitting" [disabled]="submitting" type="submit" tuiButton size="m">
               <ng-container i18n>Accedi</ng-container>
             </button>

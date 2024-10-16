@@ -47,9 +47,11 @@ export class LoginComponent implements OnInit {
    * and that can be confusing.
    */
 
+  readonly username: FormControl<string | null> = new FormControl(null, [Validators.required]);
+  readonly password: FormControl<string | null> = new FormControl(null, [Validators.required]);
   readonly form: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    username: this.username,
+    password: this.password,
   });
 
   private readonly destroy$ = inject(TuiDestroyService);
@@ -86,8 +88,9 @@ export class LoginComponent implements OnInit {
     this.auth.refreshTokenIfNotCalled().subscribe(nue());
 
     const qParams = this.route.snapshot.queryParams;
-    if (qParams['email']) this.form.get('email')?.setValue(qParams['email']);
-    if (qParams['password'] && isDevMode()) this.form.get('password')?.setValue(qParams['password']);
+    if (qParams['email']) this.username.setValue(qParams['email']);
+    if (qParams['username']) this.username.setValue(qParams['username']);
+    if (qParams['password'] && isDevMode()) this.password.setValue(qParams['password']);
     if (qParams['url']) this.redirectUrl = qParams['url'].replace(window.location.origin, ``).replace(`#`, ``);
   }
 
