@@ -7,7 +7,7 @@ export class ReservationTurn extends BaseModel {
   starts_at?: string; // Something like "HH:mm"
   ends_at?: string; // Something like "HH:mm"
   name?: string;
-  weekday?: number; // 0 to 6 where 0 is sunday
+  weekday?: 0|1|2|3|4|5|6; // 0 to 6 where 0 is sunday
   step?: number;
 
   valid_times?: string[];

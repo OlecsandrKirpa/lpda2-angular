@@ -1,4 +1,6 @@
 import { BaseModelData } from "./base-model-data";
+import { PreorderReservationDateData } from "./preorder-reservation-date-data";
+import { ReservationTurnData } from "./reservation-turn-data";
 
 export interface PreorderReservationGroupData extends BaseModelData {
   title?: string;
@@ -8,6 +10,9 @@ export interface PreorderReservationGroupData extends BaseModelData {
   preorder_type?: PreorderType;
   payment_value?: number;
   message?: string;
+
+  turns: ReservationTurnData[];
+  dates: PreorderReservationDateData[];
 }
 
 export const PreorderReservationGroupStatuses = ["active", "inactive"] as const;
