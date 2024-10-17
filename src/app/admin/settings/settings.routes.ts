@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: `public_messages`,
     loadChildren: () => import(`./public_messages/public_messages.routes`).then(m => m.routes)
+  },
+  {
+    path: `preorder_reservation_groups`,
+    loadChildren: () => import(`./preorder-reservation-groups/routes`).then(m => m.routes)
   }
 ];

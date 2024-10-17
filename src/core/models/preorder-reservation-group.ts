@@ -8,8 +8,8 @@ import { PreorderReservationDateData } from "@core/lib/interfaces/preorder-reser
 export class PreorderReservationGroup extends BaseModel {
   title?: string;
   status?: PreorderReservationGroupStatus;
-  active_from?: Date;
-  active_to?: Date;
+  // active_from?: Date;
+  // active_to?: Date;
   preorder_type?: PreorderType;
   payment_value?: number;
   message?: string;
@@ -22,8 +22,8 @@ export class PreorderReservationGroup extends BaseModel {
 
     this.title = data.title;
     this.status = data.status;
-    this.active_from = data.active_from ? new Date(data.active_from) : undefined;
-    this.active_to = data.active_to ? new Date(data.active_to) : undefined;
+    // this.active_from = data.active_from ? new Date(data.active_from) : undefined;
+    // this.active_to = data.active_to ? new Date(data.active_to) : undefined;
     this.preorder_type = data.preorder_type;
     this.payment_value = data.payment_value;
     this.message = data.message;

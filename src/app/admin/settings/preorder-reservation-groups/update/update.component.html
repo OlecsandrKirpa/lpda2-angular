@@ -1,0 +1,14 @@
+<h1 i18n>Aggiorna pagamento alla prenotazione</h1>
+
+@if(item()){
+  <app-preorder-reservation-group-form
+    [item]="item()"
+    (submit)="submit($event)"
+  ></app-preorder-reservation-group-form>
+} @else if (loading()) {
+  <tui-loader [showLoader]="true" ></tui-loader>
+} @else {
+  <p>
+    <ng-container i18n>Non trovato :'(</ng-container>
+  </p>
+}

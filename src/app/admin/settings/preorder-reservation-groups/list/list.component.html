@@ -1,0 +1,61 @@
+<h1>
+  <ng-container i18n>Pagamenti alla prenotazione</ng-container>
+</h1>
+
+<a class="mb-3 me-3" tuiButton appearance="flat" routerLink="new">
+  <span class="flex items-center">
+    <mat-icon>add</mat-icon>
+    <span i18n>Crea nuovo</span>
+  </span>
+</a>
+
+@if(items().length > 0){
+  @for(item of items(); track item.id){
+    <div class="border rounded-lg flex flex-col mb-5">
+      <div class="w-full p-4 border-b">
+        <a tuiLink routerLink="{{ item.id }}">
+          <span class="text-3xl" >{{ item.title }}</span>
+        </a>
+      </div>
+
+      <div class="flex flex-row justify-between p-4">
+        <div class="flex flex-col">
+          <app-preorder-reservation-group-status [item]="item" ></app-preorder-reservation-group-status>
+        </div>
+
+        <div class="flex flex-col">
+          <!-- @if (item.active_from) {
+            <p class="text-xl" >Dal {{ item.active_from | date }}</p>
+          }
+
+          @if (item.active_to) {
+            <p class="text-xl" >fino al {{ item.active_to | date }}</p>
+          } -->
+        </div>
+
+        <div>
+          <div>
+            <app-preorder-reservation-group-preorder-type class="text-xl" [item]="item" ></app-preorder-reservation-group-preorder-type>
+          </div>
+
+          @if(item.payment_value && item.payment_value > 0) {
+            <p class="text-xl text-success-dark" >{{ item.payment_value | currency }} </p>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <tui-table-pagination class="my-2"
+                        [items]="[10, 20, 50, 100]"
+                        [total]="data()?.metadata?.total_count ?? 0"
+                        (paginationChange)="paginationChange($event)">
+  </tui-table-pagination>
+
+} @else {
+  <p>
+    <ng-container i18n>Nessun pagamento anticipato richiesto.</ng-container>
+  </p>
+}
+
+<router-outlet></router-outlet>

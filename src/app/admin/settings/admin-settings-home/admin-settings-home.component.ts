@@ -60,6 +60,15 @@ export class AdminSettingsHomeComponent {
       }
     },
     {
+      name: $localize`Pagamenti alla prenotazione`,
+      description: $localize`Definisci quando è richiesto un pagamento per una prenotazione e di quanto.`,
+      path: `preorder_reservation_groups`,
+      icon: {
+        source: `material`,
+        name: `price_change`
+      }
+    },
+    {
       name: $localize`Comunicazioni pubbliche`,
       description: $localize`Mostra messaggi personalizzati nelle pagine pubbliche`,
       path: `public_messages`,
