@@ -9,6 +9,7 @@ import { PreorderReservationGroupPreorderTypeComponent } from "../../../../../co
 import { PreorderReservationGroupStatusComponent } from "../../../../../core/components/preorder-reservation-group-status/preorder-reservation-group-status.component";
 import { CurrencyPipe } from '@angular/common';
 import { NotificationsService } from '@core/services/notifications.service';
+import { PreorderReservationGroupCasesComponent } from "../../../../../core/components/preorder-reservation-group-cases/preorder-reservation-group-cases.component";
 
 @Component({
   selector: 'app-show',
@@ -21,7 +22,8 @@ import { NotificationsService } from '@core/services/notifications.service';
     TuiLinkModule,
     RouterModule,
     TuiButtonModule,
-  ],
+    PreorderReservationGroupCasesComponent
+],
   templateUrl: './show.component.html',
   styleUrl: './show.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,7 @@
 <h1 i18n>Dettagli pagamento alla prenotazione</h1>
 
 @if(item()){
-  <table class="tui-table">
+  <table class="tui-table mb-3">
     <tbody>
       <tr class="tui-table__tr tui-table__tr_border_none">
         <td class="tui-table__td">
@@ -50,6 +50,13 @@
 
     </tbody>
   </table>
+
+  <h2 class="mb-3 text-2xl" >Quando sono richiesti pagamenti?</h2>
+
+  <app-preorder-reservation-group-cases
+    class="block mb-3"
+    [item]="item()"
+  ></app-preorder-reservation-group-cases>
 
   <div>
     <a class="mb-3" routerLink="edit" tuiButton appearance="flat">

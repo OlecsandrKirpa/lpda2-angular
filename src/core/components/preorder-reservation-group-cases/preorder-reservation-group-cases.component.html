@@ -1,0 +1,27 @@
+@for(scenario of cases(); track scenario.turn.id) {
+  <div class="mb-3 rounded-lg border flex flex-row">
+    <div class="p-3 grow">
+      <div class="flex flex-row items-center">
+        <span class="text-xl me-2">{{ scenario.turn.name }}</span>
+      </div>
+
+      <div class="flex items-center" >
+        <span class="text-slate-400 me-1">{{ scenario.turn.weekday | weekday }}</span>
+        <span class="text-slate-400 me-1"><ng-container i18n>Dalle ore</ng-container> {{ scenario.turn.starts_at }}</span>
+        <span class="text-slate-400"><ng-container i18n>alle ore</ng-container> {{ scenario.turn.ends_at }}</span>
+      </div>
+    </div>
+
+    <div class="border-s grow flex items-center justify-center">
+      <div class="flex flex-col items-center justify-center">
+        @if(scenario.dates === true){
+          <span i18n class="text-xl text-green-500">Sempre</span>
+        } @else {
+          @for(date of scenario.dates; track date) {
+            <span>{{ date | date: 'shortDate' }}</span>
+          }
+        }
+      </div>
+    </div>
+  </div>
+}
