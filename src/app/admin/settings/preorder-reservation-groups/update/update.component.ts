@@ -6,6 +6,10 @@ import { TuiDestroyService } from '@taiga-ui/cdk';
 import { finalize, takeUntil } from 'rxjs';
 import { PreorderReservationGroup } from '@core/models/preorder-reservation-group';
 import { TuiLoaderModule } from '@taiga-ui/core';
+import { NotificationsService } from '@core/services/notifications.service';
+import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
+import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-update',
@@ -27,6 +31,7 @@ export class UpdateComponent {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly notifications: NotificationsService = inject(NotificationsService);
 
   readonly item: WritableSignal<PreorderReservationGroup | null> = signal(null);
   readonly loading: WritableSignal<boolean> = signal(false);
@@ -49,6 +54,7 @@ export class UpdateComponent {
 
   submit(data: Record<string, unknown>): void {
     if (!(this.itemId)) return;
+    if (this.loading()) return;
 
     this.loading.set(true);
     this.service.update(this.itemId, data).pipe(
@@ -57,6 +63,9 @@ export class UpdateComponent {
     ).subscribe({
       next: () => {
         this.router.navigate(['../'], { relativeTo: this.route });
+      },
+      error: (e: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(e) || SOMETHING_WENT_WRONG_MESSAGE);
       }
     })
   }

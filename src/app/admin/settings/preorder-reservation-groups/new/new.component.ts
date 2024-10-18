@@ -5,6 +5,10 @@ import { PreorderReservationGroup } from '@core/models/preorder-reservation-grou
 import { PreorderReservationGroupsService } from '@core/services/http/preorder-reservation-groups.service';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { takeUntil, finalize } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
+import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
+import { NotificationsService } from '@core/services/notifications.service';
 
 @Component({
   selector: 'app-new',
@@ -23,6 +27,7 @@ export class NewComponent {
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly notifications: NotificationsService = inject(NotificationsService);
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
@@ -36,6 +41,9 @@ export class NewComponent {
     ).subscribe({
       next: () => {
         this.router.navigate(['../'], { relativeTo: this.route });
+      },
+      error: (e: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(e) || SOMETHING_WENT_WRONG_MESSAGE);
       }
     })
   }

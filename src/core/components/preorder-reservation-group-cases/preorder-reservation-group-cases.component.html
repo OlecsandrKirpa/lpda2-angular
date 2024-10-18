@@ -1,27 +1,74 @@
-@for(scenario of cases(); track scenario.turn.id) {
-  <div class="mb-3 rounded-lg border flex flex-row">
-    <div class="p-3 grow">
-      <div class="flex flex-row items-center">
-        <span class="text-xl me-2">{{ scenario.turn.name }}</span>
-      </div>
-
-      <div class="flex items-center" >
-        <span class="text-slate-400 me-1">{{ scenario.turn.weekday | weekday }}</span>
-        <span class="text-slate-400 me-1"><ng-container i18n>Dalle ore</ng-container> {{ scenario.turn.starts_at }}</span>
-        <span class="text-slate-400"><ng-container i18n>alle ore</ng-container> {{ scenario.turn.ends_at }}</span>
-      </div>
+@for(scenario of cases(); track scenario.turn.id; let index = $index) {
+<div class="mb-3 rounded-lg border flex flex-row">
+  <div class="p-3 grow">
+    <div class="flex flex-row items-center">
+      <span class="text-xl me-2">{{ scenario.turn.name }}</span>
     </div>
 
-    <div class="border-s grow flex items-center justify-center">
-      <div class="flex flex-col items-center justify-center">
-        @if(scenario.dates === true){
-          <span i18n class="text-xl text-green-500">Sempre</span>
-        } @else {
-          @for(date of scenario.dates; track date) {
-            <span>{{ date | date: 'shortDate' }}</span>
-          }
-        }
+    <div class="flex items-center">
+      <span class="text-slate-400 me-1">{{ scenario.turn.weekday | weekday }}</span>
+      <span class="text-slate-400 me-1"><ng-container i18n>Dalle ore</ng-container> {{ scenario.turn.starts_at }}</span>
+      <span class="text-slate-400"><ng-container i18n>alle ore</ng-container> {{ scenario.turn.ends_at }}</span>
+    </div>
+
+
+    @if(editable){
+    <div class="flex items-center justify-around my-2">
+      <button (click)="scenario.editing = !scenario.editing" type="button" tuiButton appearance="outline" size="s">
+        <ng-container i18n>Modifica</ng-container>
+      </button>
+
+      <button (click)="deleteAt(index)" type="button" tuiButton appearance="secondary-destructive" size="s">
+        <ng-container i18n>Elimina</ng-container>
+      </button>
+    </div>
+    }
+
+    <tui-expand [expanded]="scenario.editing === true">
+      <div class="block mb-3">
+        <div tuiGroup class="group" [collapsed]="true">
+          <tui-radio-block (ngModelChange)="$event ? updateScenarioDates(index, true) : null" contentAlign="right"
+            size="l" [ngModel]="scenario.dates == true ? true : 'array'" [hideRadio]="true" [item]="true">
+            <ng-container i18n>Sempre attivo</ng-container>
+          </tui-radio-block>
+
+          <tui-radio-block (ngModelChange)="$event ? updateScenarioDates(index, []) : null" contentAlign="right"
+            [ngModel]="scenario.dates == true ? true : 'array'" size="l" [hideRadio]="true" [item]="'array'">
+            <ng-container i18n>Seleziona date</ng-container>
+          </tui-radio-block>
+        </div>
       </div>
+
+      <tui-expand [expanded]="scenario.dates != true">
+        <tui-input-date [expandable]="true" [disabledItemHandler]="scenario.turn.weekday | tuiWeekdayHandler"
+          [ngModel]="scenario.dates | toTuiDays" (ngModelChange)="updateScenarioDates(index, $event)" multiple>
+          <ng-container i18n>Seleziona i giorni</ng-container>
+        </tui-input-date>
+      </tui-expand>
+    </tui-expand>
+
+  </div>
+
+  <div class="border-s grow flex items-center justify-center">
+    <div class="flex flex-col items-center justify-center">
+      @if(scenario.dates === true){
+      <span i18n class="text-xl text-green-500">Sempre</span>
+      } @else {
+      @for(date of scenario.dates; track date) {
+      <span class="mx-2 mb-1">{{ date | date: 'shortDate' }}</span>
+      }
+      }
     </div>
   </div>
+</div>
+}
+
+@if(editable){
+  <app-reservation-turn-select
+    [formControl]="addingTurn"
+    [per_page]="1000"
+    [disabledItemHandler]="selectedTurns"
+  >
+  <ng-container i18n>Aggiungi turni</ng-container>
+</app-reservation-turn-select>
 }

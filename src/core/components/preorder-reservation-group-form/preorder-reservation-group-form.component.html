@@ -53,6 +53,17 @@
     <app-errors [errors]="e('active')"></app-errors>
   </div>
 
+
+
+  <div class="block mb-3">
+    <app-preorder-reservation-group-cases
+      class="block mb-3"
+      [item]="item"
+      [editable]="true"
+      (outputMamiChanges)="cases.set($event)"
+    ></app-preorder-reservation-group-cases>
+  </div>
+
   <div class="flex items-center">
     <button type="submit" tuiButton appearance="primary">
       <ng-container i18n>Conferma</ng-container>

@@ -33,7 +33,7 @@ import {
 })
 export class ReservationTurnSelectComponent extends CommonDynamicSelectComponent<ReservationTurn> {
 
-  override stringify = (c: ReservationTurn): string => `${c.name} (${c.starts_at} - ${c.ends_at})` ?? ``;
+  override stringify = (c: ReservationTurn): string => `${c.name} (${c.starts_at} - ${c.ends_at})`;
 
   override readonly service: ReservationTurnsService = inject(ReservationTurnsService);
 

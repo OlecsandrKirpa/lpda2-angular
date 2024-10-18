@@ -16,6 +16,7 @@ import { ErrorsComponent } from '../errors/errors.component';
 import { ReservationTurnData } from '@core/lib/interfaces/reservation-turn-data';
 import { PreorderReservationDateData } from '@core/lib/interfaces/preorder-reservation-date-data';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PreorderReservationGroupCasesComponent, TurnDateOutputFormat } from "../preorder-reservation-group-cases/preorder-reservation-group-cases.component";
 
 @Component({
   selector: 'app-preorder-reservation-group-form',
@@ -40,6 +41,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     TuiCheckboxBlockModule,
     TuiExpandModule,
     TuiInputDateModule,
+    PreorderReservationGroupCasesComponent
 ],
   templateUrl: './preorder-reservation-group-form.component.html',
   styleUrl: './preorder-reservation-group-form.component.scss',
@@ -66,19 +68,29 @@ export class PreorderReservationGroupFormComponent {
 
   private submitted: boolean = false;
 
+  private _item: PreorderReservationGroup | null = null;
+  readonly cases: WritableSignal<TurnDateOutputFormat | null> = signal(null);
+
   @Input()
   set item(obj: unknown) {
     if (!(obj instanceof PreorderReservationGroup)) {
       console.warn('PreorderReservationGroupFormComponent: value is blank or invalid', obj);
       this.form.reset();
+      this._item = null;
       return;
     }
+
+    this._item = obj;
 
     this.form.patchValue({
       payment_value: obj.payment_value ?? null,
       title: obj.title ?? null,
       active: obj.status === "active",
     })
+  }
+
+  get item(): PreorderReservationGroup | null {
+    return this._item;
   }
 
   readonly e = this.errorsForControl;
@@ -99,7 +111,10 @@ export class PreorderReservationGroupFormComponent {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    const data: Record<string, unknown> = this.form.value;
+    const data: Record<string, unknown> = {
+      ...this.form.value,
+      ...(this.cases() ?? {}),
+    };
 
     data["status"] = data["active"] ? "active" : "inactive";
     delete data["active"];
