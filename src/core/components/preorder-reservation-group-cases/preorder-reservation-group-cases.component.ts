@@ -12,7 +12,6 @@ import { ToTuiDaysPipe } from "../../pipes/to-tui-days.pipe";
 import { TuiWeekdayHandlerPipe } from "../../pipes/tui-weekday-handler.pipe";
 import { ReservationTurnSelectComponent } from "../dynamic-selects/reservation-turn-select/reservation-turn-select.component";
 import { takeUntil } from 'rxjs';
-import { SelectTurnsPaymentComponent } from "../select-turns-payment/select-turns-payment.component";
 
 /**
  * Case when payment is required.
@@ -51,7 +50,6 @@ export interface TurnDateOutputFormat {
     TuiWeekdayHandlerPipe,
     ReservationTurnSelectComponent,
     ReactiveFormsModule,
-    SelectTurnsPaymentComponent
 ],
   templateUrl: './preorder-reservation-group-cases.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

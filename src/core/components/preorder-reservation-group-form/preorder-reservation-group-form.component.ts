@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Input, Output, signal, WritableSignal } from '@angular/core';
-import { SelectTurnsPaymentComponent } from "../select-turns-payment/select-turns-payment.component";
 import { ReservationTurn } from '@core/models/reservation-turn';
 import { ControlValueAccessor, FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CurrencyPipe, JsonPipe } from '@angular/common';
@@ -23,7 +22,6 @@ import { SelectTurnsPaymentv2Component } from "../select-turns-paymentv2/select-
   selector: 'app-preorder-reservation-group-form',
   standalone: true,
   imports: [
-    SelectTurnsPaymentComponent,
     FormsModule,
     JsonPipe,
     ReactiveFormsModule,

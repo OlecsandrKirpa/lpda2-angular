@@ -12,7 +12,6 @@ import { TuiButtonModule, TuiCalendarModule, TuiDropdownModule, TuiHostedDropdow
 import { TuiCheckboxBlockModule, TuiInputDateMultiModule } from '@taiga-ui/kit';
 import { catchError, finalize, map, Observable, of, takeUntil } from 'rxjs';
 import { TuiWeekdayHandlerPipe } from "../../pipes/tui-weekday-handler.pipe";
-import { ToTuiDaysPipe } from "../../pipes/to-tui-days.pipe";
 import { dateToTuiDay } from '@core/lib/tui-datetime-to-iso-string';
 import { FromTuiDayPipe } from '@core/pipes/from-tui-day.pipe';
 
@@ -21,17 +20,6 @@ export interface TurnDateOutputFormat {
   turns: number[];
   dates: { turn_id: number, date: string }[];
 };
-
-// interface Turn extends ReservationTurn {
-//   selected?: boolean;
-//   dates?: Date[];
-// }
-
-// When a user selecs a turn. May have dates.
-// interface Selection {
-//   turn_id: number;
-//   dates: Date[];
-// }
 
 type Selections = Record<number, TuiDay[]>;
 
@@ -49,12 +37,8 @@ type Selections = Record<number, TuiDay[]>;
     DatePipe,
     TuiHostedDropdownModule,
     TuiWeekdayHandlerPipe,
-    ToTuiDaysPipe,
-    // TuiInputDateMultiModule,
-    TuiTextfieldControllerModule,
     TuiDropdownModule,
     TuiCalendarModule,
-    JsonPipe,
     TuiButtonModule,
     TuiLetModule,
     FromTuiDayPipe,
@@ -131,10 +115,6 @@ export class SelectTurnsPaymentv2Component implements OnInit {
       if (turn.weekday == null || turn.weekday == undefined) {
         throw new Error('Turns must have a weekday');
       }
-
-      // if (!this.editable$()) {
-
-      // }
 
       if (this.editable$() || (turn.id && Object.keys(this.selections()).includes(turn.id.toString()))) {
         result[turn.weekday] ||= [];
