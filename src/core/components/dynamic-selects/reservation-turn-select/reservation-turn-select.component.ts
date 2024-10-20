@@ -11,6 +11,7 @@ import {ReservationTurnsService} from "@core/services/http/reservation-turns.ser
 import {
   CommonDynamicSelectComponent
 } from "@core/components/dynamic-selects/common-dynamic-select/common-dynamic-select.component";
+import { WeekdayPipe } from '@core/pipes/weekday.pipe';
 
 @Component({
   templateUrl: `../common-dynamic-select/common-dynamic-select.component.html`,
@@ -28,12 +29,15 @@ import {
     },
 
     TuiDestroyService,
+    WeekdayPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReservationTurnSelectComponent extends CommonDynamicSelectComponent<ReservationTurn> {
 
-  override stringify = (c: ReservationTurn): string => `${c.name} (${c.starts_at} - ${c.ends_at})`;
+  private readonly weekday = inject(WeekdayPipe);
+
+  override stringify = (c: ReservationTurn): string => `${c.name} (${c.starts_at} - ${c.ends_at}, ${this.weekday.transform(c.weekday)})`;
 
   override readonly service: ReservationTurnsService = inject(ReservationTurnsService);
 
