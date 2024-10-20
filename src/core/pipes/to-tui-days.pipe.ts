@@ -13,8 +13,18 @@ export class ToTuiDaysPipe implements PipeTransform {
    */
   transform(value: unknown): TuiDay[] | null {
     if (!Array.isArray(value)) return null;
+    const result: TuiDay[] = [];
+    for (const v of value) {
+      if (v instanceof Date) {
+        result.push(TuiDay.fromUtcNativeDate(v));
+      } else if (v instanceof TuiDay) {
+        result.push(v);
+      } else {
+        console.warn('Invalid date', v);
+      }
+    }
 
-    return value.filter(v => v instanceof Date).map(v => TuiDay.fromLocalNativeDate(v));
+    return result;
   }
 
 }

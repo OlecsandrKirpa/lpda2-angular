@@ -53,10 +53,16 @@
 
   <h2 class="mb-3 text-2xl" i18n>Quando sono richiesti pagamenti?</h2>
 
-  <app-preorder-reservation-group-cases
+  <app-select-turns-paymentv2
+  class="block mb-3"
+  [item]="item()"
+  [editable]="false"
+></app-select-turns-paymentv2>
+
+  <!-- <app-preorder-reservation-group-cases
     class="block mb-3"
     [item]="item()"
-  ></app-preorder-reservation-group-cases>
+  ></app-preorder-reservation-group-cases> -->
 
   <div>
     <a class="mb-3" routerLink="edit" tuiButton appearance="flat">

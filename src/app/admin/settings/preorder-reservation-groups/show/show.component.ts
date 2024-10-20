@@ -10,6 +10,7 @@ import { PreorderReservationGroupStatusComponent } from "../../../../../core/com
 import { CurrencyPipe } from '@angular/common';
 import { NotificationsService } from '@core/services/notifications.service';
 import { PreorderReservationGroupCasesComponent } from "../../../../../core/components/preorder-reservation-group-cases/preorder-reservation-group-cases.component";
+import { SelectTurnsPaymentv2Component } from "../../../../../core/components/select-turns-paymentv2/select-turns-paymentv2.component";
 
 @Component({
   selector: 'app-show',
@@ -22,7 +23,8 @@ import { PreorderReservationGroupCasesComponent } from "../../../../../core/comp
     TuiLinkModule,
     RouterModule,
     TuiButtonModule,
-    PreorderReservationGroupCasesComponent
+    PreorderReservationGroupCasesComponent,
+    SelectTurnsPaymentv2Component
 ],
   templateUrl: './show.component.html',
   styleUrl: './show.component.scss',

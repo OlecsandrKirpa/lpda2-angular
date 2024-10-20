@@ -17,6 +17,7 @@ import { ReservationTurnData } from '@core/lib/interfaces/reservation-turn-data'
 import { PreorderReservationDateData } from '@core/lib/interfaces/preorder-reservation-date-data';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PreorderReservationGroupCasesComponent, TurnDateOutputFormat } from "../preorder-reservation-group-cases/preorder-reservation-group-cases.component";
+import { SelectTurnsPaymentv2Component } from "../select-turns-paymentv2/select-turns-paymentv2.component";
 
 @Component({
   selector: 'app-preorder-reservation-group-form',
@@ -41,7 +42,8 @@ import { PreorderReservationGroupCasesComponent, TurnDateOutputFormat } from "..
     TuiCheckboxBlockModule,
     TuiExpandModule,
     TuiInputDateModule,
-    PreorderReservationGroupCasesComponent
+    PreorderReservationGroupCasesComponent,
+    SelectTurnsPaymentv2Component
 ],
   templateUrl: './preorder-reservation-group-form.component.html',
   styleUrl: './preorder-reservation-group-form.component.scss',

@@ -55,13 +55,25 @@
 
   <h2 class="mb-3 text-2xl" i18n>Quando sono richiesti pagamenti?</h2>
 
-  <div class="block mb-3">
+  <!-- <div class="block mb-3">
     <app-preorder-reservation-group-cases
       class="block mb-3"
       [item]="item"
       [editable]="true"
       (outputMamiChanges)="cases.set($event)"
     ></app-preorder-reservation-group-cases>
+  </div>
+
+  <hr> -->
+
+    <!-- <h1>NEW:</h1> -->
+  <div class="block mb-3">
+    <app-select-turns-paymentv2
+      class="block mb-3"
+      [item]="item"
+      [editable]="true"
+      (outputMamiChanges)="cases.set($event)"
+    ></app-select-turns-paymentv2>
   </div>
 
   <div class="flex items-center">
