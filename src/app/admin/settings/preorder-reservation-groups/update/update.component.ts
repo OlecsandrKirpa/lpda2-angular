@@ -19,7 +19,6 @@ import { HttpErrorResponse } from '@angular/common/http';
     TuiLoaderModule,
   ],
   templateUrl: './update.component.html',
-  styleUrl: './update.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,

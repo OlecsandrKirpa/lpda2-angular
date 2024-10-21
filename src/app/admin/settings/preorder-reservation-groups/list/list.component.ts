@@ -37,7 +37,6 @@ interface GroupsFilters {
     TuiButtonModule,
   ],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService

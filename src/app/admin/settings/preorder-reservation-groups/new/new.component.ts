@@ -15,7 +15,6 @@ import { NotificationsService } from '@core/services/notifications.service';
   standalone: true,
   imports: [PreorderReservationGroupFormComponent],
   templateUrl: './new.component.html',
-  styleUrl: './new.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,

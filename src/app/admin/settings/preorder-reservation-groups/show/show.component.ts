@@ -27,7 +27,6 @@ import { SelectTurnsPaymentv2Component } from "../../../../../core/components/se
     SelectTurnsPaymentv2Component
 ],
   templateUrl: './show.component.html',
-  styleUrl: './show.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,
