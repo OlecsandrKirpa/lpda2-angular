@@ -1,0 +1,13 @@
+@switch (status) {
+  @case("active"){
+    <div class="text-xl border-success-dark rounded text-success-dark">
+      <ng-container i18n>Attivo</ng-container>
+    </div>
+  }
+
+  @case("inactive") {
+    <div class="text-xl border-secondary rounded text-secondary">
+      <ng-container i18n>Inattivo</ng-container>
+    </div>
+  }
+}

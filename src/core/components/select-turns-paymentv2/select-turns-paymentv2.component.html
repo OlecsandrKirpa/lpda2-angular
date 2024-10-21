@@ -1,0 +1,63 @@
+<tui-loader size="xl" [overlay]="true" [showLoader]="loading()">
+  <table class="tui-table">
+    <tbody>
+      @for(wday of weekdays(); track wday){
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <td class="tui-table__td">
+          <p class="text-xl">{{ wday | weekday }}</p>
+
+        </td>
+
+        <td class="tui-table__td">
+          <div class="flex flex-col">
+            @for(turn of turnsPerDay()[wday]; track turn.id; let turnIndex = $index){
+              @if(turn.id) {
+                <ng-container *tuiLet="selections()[turn.id] as selection">
+                  <ng-template #selectDatesTemplate>
+
+                    <tui-calendar
+                      tuiPreventDefault="mousedown"
+                      [disabledItemHandler]="turn.weekday | tuiWeekdayHandler"
+                      [value]="selection ?? []"
+                      (dayClick)="triggerDate(turn.id, $event)"
+                    ></tui-calendar>
+
+                  </ng-template>
+
+                  <div class="flex flex-row items-center mb-5">
+                    <tui-checkbox-block
+                      [readOnly]="!editable"
+                      class="me-1"
+                      (ngModelChange)="triggerSelection(turn.id)"
+                      [ngModel]="selection !== undefined">
+                      {{ turn.name }}
+                    </tui-checkbox-block>
+
+                    @if(selection != undefined) {
+                      <div class="flex flex-col">
+                        @for(date of selection ?? []; track date) {
+                          <span class="mx-2 mb-1">{{ date | fromTuiDay | date: 'd MMMM y' }}</span>
+                        } @empty {
+                          <span i18n class="text-xl text-green-500">Sempre</span>
+                        }
+
+                        @if(editable){
+                          <tui-hosted-dropdown [content]="selectDatesTemplate">
+                            <button tuiButton tuiHint="Modifica date" appearance="outline" size="s" type="button">
+                              <ng-container i18n>Modifica date</ng-container>
+                            </button>
+                          </tui-hosted-dropdown>
+                        }
+                      </div>
+                    }
+                  </div>
+                </ng-container>
+              }
+            }
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</tui-loader>

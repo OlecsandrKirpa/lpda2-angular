@@ -200,3 +200,11 @@ $colWidth: math.div(100, 12);
 .border-info {
   @apply border-blue-500;
 }
+
+.text-secondary {
+  @apply text-gray-500;
+}
+
+.border-secondary {
+  @apply border-gray-500;
+}

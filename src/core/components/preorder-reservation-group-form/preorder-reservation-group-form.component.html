@@ -1,0 +1,88 @@
+<!-- <p>preorder-reservation-group-form works!</p> -->
+
+<!-- <app-select-turns-payment
+  [ngModel]="turns"
+  (ngModelChange)="outTurns = $event"
+  [dates]="dates"
+></app-select-turns-payment> -->
+
+<!-- <pre [innerText]="form.value | json" ></pre> -->
+
+
+<form (ngSubmit)="formSubmit()" [formGroup]="form">
+  <div class="block mb-3">
+    <tui-input [tuiAutoFocus]="true" formControlName="title">
+      <ng-container i18n>Titolo: visibile solo a te</ng-container>
+    </tui-input>
+
+    <app-errors [errors]="e('title')"></app-errors>
+  </div>
+
+  <!-- <div class="block mb-3">
+    <tui-select class="hidden" formControlName="preorder_type">
+      <ng-container i18n>Tipologia pagamento</ng-container>
+
+      <tui-data-list *tuiDataList>
+        <button tuiOption [value]="'nexi_payment'">
+          <app-preorder-reservation-group-preorder-type
+            [type]="'nexi_payment'"></app-preorder-reservation-group-preorder-type>
+        </button>
+      </tui-data-list>
+    </tui-select>
+
+    <app-errors [errors]="e('preorder_type')"></app-errors>
+  </div> -->
+
+  <div class="block mb-3">
+    <tui-input-number
+      [formControlName]="'payment_value'" [tuiTextfieldPrefix]="'€'">
+      <ng-container i18n>Valore pagamento</ng-container>
+      <input tuiTextfield>
+    </tui-input-number>
+
+    <app-errors [errors]="e('payment_value')"></app-errors>
+  </div>
+
+  <div class="block mb-3">
+    <p class="text-xl"><ng-container i18n>Attivazione</ng-container></p>
+
+    <tui-checkbox-block contentAlign="right" formControlName="active" size="l">
+      <ng-container i18n>Richiedere il pagamento?</ng-container>
+    </tui-checkbox-block>
+
+    <app-errors [errors]="e('active')"></app-errors>
+  </div>
+
+  <h2 class="mb-3 text-2xl" i18n>Quando sono richiesti pagamenti?</h2>
+
+  <!-- <div class="block mb-3">
+    <app-preorder-reservation-group-cases
+      class="block mb-3"
+      [item]="item"
+      [editable]="true"
+      (outputMamiChanges)="cases.set($event)"
+    ></app-preorder-reservation-group-cases>
+  </div>
+
+  <hr> -->
+
+    <!-- <h1>NEW:</h1> -->
+  <div class="block mb-3">
+    <app-select-turns-paymentv2
+      class="block mb-3"
+      [item]="item"
+      [editable]="true"
+      (outputMamiChanges)="cases.set($event)"
+    ></app-select-turns-paymentv2>
+  </div>
+
+  <div class="flex items-center">
+    <button type="submit" tuiButton appearance="primary">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button (click)="cancel()" tuiButton appearance="icon" type="button">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>
