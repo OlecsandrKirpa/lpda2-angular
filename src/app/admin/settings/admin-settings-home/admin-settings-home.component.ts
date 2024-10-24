@@ -77,5 +77,14 @@ export class AdminSettingsHomeComponent {
         name: `chat`
       }
     },
+    {
+      name: $localize`Chiusure`,
+      description: $localize`Modifica giorni di ferie e chiusure settimanali`,
+      path: `holidays`,
+      icon: {
+        source: `material`,
+        name: `beach_access`
+      }
+    },
   ];
 }

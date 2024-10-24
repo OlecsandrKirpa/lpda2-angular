@@ -1,0 +1,37 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="block mb-3">
+    <tui-input-date-range [tuiDropdownOpen]="true" [formControl]="dates">
+      <ng-container i18n>Date di inizio e fine</ng-container>
+    </tui-input-date-range>
+
+    @if(submitted()) {
+    <app-errors [errors]="dates.errors"></app-errors>
+    }
+
+    <p i18n>Selezia la data d'inizio e fine della chiusura in programma.</p>
+  </div>
+
+  <div class="block mb-3">
+    <app-i18n-input [long]="false" [formControl]="message">
+      <ng-container i18n>Messaggio per i clienti che cercano di prenotare</ng-container>
+    </app-i18n-input>
+
+    @if(submitted()) {
+      <app-errors [errors]="message.errors"></app-errors>
+    }
+  </div>
+
+  @if(submitted()) {
+    <app-errors [errors]="form.errors"></app-errors>
+  }
+
+  <div class="flex items-center">
+    <button class="me-2" type="submit" tuiButton appearance="primary">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button type="button" (click)="cancel()" tuiButton appearance="outline">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

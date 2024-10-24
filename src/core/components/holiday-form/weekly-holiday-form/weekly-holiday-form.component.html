@@ -1,0 +1,70 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="block mb-3">
+    <p>Seleziona il giorno della settimana</p>
+    <app-weekday-select [autofocus]="true" formControlName="weekday"></app-weekday-select>
+    @if(submitted()) {
+    <app-errors [errors]="form.get('weekday')?.errors"></app-errors>
+    }
+  </div>
+
+  <div class="block mb-3">
+    <tui-checkbox-block [formControl]="wholeDay">
+      <ng-container i18n>Chiusi tutto il giorno</ng-container>
+    </tui-checkbox-block>
+    @if(submitted()) {
+      <app-errors [errors]="wholeDay.errors"></app-errors>
+    }
+
+    <tui-expand [expanded]="wholeDay.value === false">
+      <div class="my-3">
+        <p>Orario di chiusura</p>
+
+        <div class="flex items-center justify-around">
+          <div>
+            <tui-input-time formControlName="weekly_from">
+              Chiusi dalle ore (Formato 24h):
+            </tui-input-time>
+
+            @if(submitted()) {
+              <app-errors [errors]="weeklyFrom.errors"></app-errors>
+            }
+          </div>
+
+          <div>
+            <tui-input-time formControlName="weekly_to">
+              Chiusi fino alle ore (Formato 24h):
+            </tui-input-time>
+
+            @if(submitted()) {
+              <app-errors [errors]="weeklyTo.errors"></app-errors>
+            }
+          </div>
+        </div>
+      </div>
+    </tui-expand>
+  </div>
+
+  <div class="block mb-3">
+    <app-i18n-input [long]="false" [formControl]="message">
+      <ng-container i18n>Messaggio per i clienti che cercano di prenotare</ng-container>
+    </app-i18n-input>
+
+    @if(submitted()) {
+      <app-errors [errors]="message.errors"></app-errors>
+    }
+  </div>
+
+  @if(submitted()) {
+    <app-errors [errors]="form.errors"></app-errors>
+  }
+
+  <div class="flex items-center">
+    <button class="me-2" type="submit" tuiButton appearance="primary">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button type="button" (click)="cancel()" tuiButton appearance="outline">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

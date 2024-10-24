@@ -1,0 +1,18 @@
+<ng-template #selectItem let-value>{{ value | weekday }}</ng-template>
+
+<tui-select
+  [tuiAutoFocus]="initialAutofocus()"
+  [tuiDropdownOpen]="dropdownOpen()"
+  (tuiDropdownOpenChange)="dropdownOpen.set($event)"
+  [valueContent]="selectItem"
+  [tuiTextfieldCleaner]="showCleaner"
+  [formControl]="control">
+    <ng-container i18n>Giorno della settimana</ng-container>
+
+  <input tuiTextfield>
+  <tui-data-list-wrapper
+      *tuiDataList
+      [items]="[0, 1, 2, 3, 4, 5, 6]"
+      [itemContent]="selectItem"
+  ></tui-data-list-wrapper>
+</tui-select>

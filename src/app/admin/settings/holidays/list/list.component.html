@@ -1,0 +1,83 @@
+<h1>
+  <ng-container i18n>Ferie</ng-container>
+</h1>
+
+<p>
+  Di seguito l'elenco delle ferie o giorni di chiusura settimanli.
+</p>
+
+<a class="mb-3 me-3" tuiButton appearance="flat" routerLink="new">
+  <span class="flex items-center">
+    <mat-icon>add</mat-icon>
+    <span i18n>Crea nuovo</span>
+  </span>
+</a>
+
+@if(items().length > 0){
+@for(item of items(); track item.id){
+  <div class="border rounded-lg flex flex-col mb-5">
+    <app-show-translations [translations]="item.translations.message"></app-show-translations>
+
+    <div class="flex flex-row justify-between p-4">
+      <div>
+        <span class="me-1" i18n="from date">Dal</span>
+        <span class="me-1">{{ item.from_timestamp | date: 'shortDate' }}</span>
+        @if(item.to_timestamp){
+        <span class="me-1" i18n="until date">al</span>
+        <span class="me-1">{{ item.to_timestamp | date: 'shortDate' }}</span>
+        } @else {
+        <ng-container i18n>In poi</ng-container>
+        }
+      </div>
+
+      <div>
+        @if(item.isWeekly){
+          <span class="me-1" i18n>Chiusi ogni</span>
+          <span class="me-1" >{{ item.weekday | weekday }}</span>
+          @if(item.isWholeDay){
+            <span i18n>Tutto il giorno</span>
+          } @else {
+            <span class="me-1" i18n>Dalle ore</span>
+            <span class="me-1">{{ item.weekly_from }}</span>
+            <span class="me-1" i18n>Alle ore</span>
+            <span class="me-1">{{ item.weekly_to }}</span>
+          }
+        } @else {
+          <ng-container i18n>Sempre chiusi durante questo periodo</ng-container>
+        }
+      </div>
+    </div>
+
+    <div class="flex items-center justify-end">
+      <div>
+        <button type="button" size="m" tuiButton appearance="secondary-destructive" (click)="delete(item.id)">
+          <span class="flex items-center justify-between p-4">
+            <span class="me-1" i18n>Elimina</span>
+            <mat-icon>delete</mat-icon>
+          </span>
+        </button>
+      </div>
+
+      <div>
+        <a routerLink="{{ item.id }}" tuiLink>
+          <span class="flex items-center justify-between p-4">
+            <span class="me-1" i18n>Modifica</span>
+            <mat-icon>edit</mat-icon>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+}
+
+<tui-table-pagination class="my-2" [items]="[10, 20, 50, 100]" [total]="data()?.metadata?.total_count ?? 0"
+  (paginationChange)="paginationChange($event)">
+</tui-table-pagination>
+
+} @else {
+<p>
+  <ng-container i18n>Nessun elemento trovato.</ng-container>
+</p>
+}
+
+<router-outlet></router-outlet>

@@ -1,0 +1,40 @@
+<!-- <pre [innerText]="holiday | json" ></pre> -->
+
+@if(weekly() != null) {
+  @if(weekly() === true) {
+    <app-weekly-holiday-form
+      [holiday]="holiday"
+      (cancelEvent)="cancelEvent.emit()"
+      (submitEvent)="submitEvent.emit($event)"
+    ></app-weekly-holiday-form>
+  } @else {
+    <app-once-holiday-form
+    [holiday]="holiday"
+    (cancelEvent)="cancelEvent.emit()"
+    (submitEvent)="submitEvent.emit($event)"
+    ></app-once-holiday-form>
+  }
+} @else {
+  <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-row justify-center items-center">
+      <div>
+        <p i18n>Che tipo di chiusura vuoi creare?</p>
+
+        <div class="flex items-center justify-around">
+          <div class="me-2">
+            <button (click)="weekly.set(true)" type="button" appearance="outline" tuiButton>
+              <ng-container i18n>Ripetizione settimanale</ng-container>
+            </button>
+          </div>
+  
+          <div>
+            <button (click)="weekly.set(false)" type="button" appearance="outline" tuiButton>
+              <ng-container i18n>Una tantum</ng-container>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+}

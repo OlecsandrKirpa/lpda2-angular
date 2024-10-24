@@ -1,0 +1,9 @@
+<h1>Modifica chiusura</h1>
+
+<tui-loader [showLoader]="holiday() === null" [overlay]="true" >
+  <app-holiday-form
+  (cancelEvent)="cancel()"
+    (submitEvent)="submit($event)"
+    [holiday]="holiday()"
+  ></app-holiday-form>
+</tui-loader>

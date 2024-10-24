@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { ReactiveErrors } from '@core/lib/reactive-errors/reactive-errors';
 import { TuiErrorModule } from '@taiga-ui/core';
 
@@ -25,11 +25,26 @@ import { TuiErrorModule } from '@taiga-ui/core';
 })
 export class ErrorsComponent {
 
-  // @Input() showErrors: boolean = true;
+  /**
+   * ISSUE:
+   * if you add errors to the form control after the component is initialized, the component will not display the errors.
+   */
+  // @Input() set control(control: FormGroup | AbstractControl | FormControl | null | undefined) {
+  //   if (!control) {
+  //     console.error("Control not found", control);
+  //     throw new Error("Control not found");
+  //   }
+
+  //   this.errors = control.errors;
+
+  //   control.valueChanges.subscribe(() => {
+  //     this.errors = control.errors;
+  //   });
+  // }
 
   private _errors?: ValidationErrors | null = null;
 
-  get errors(): ValidationErrors | undefined | null{
+  get errors(): ValidationErrors | undefined | null {
     return this._errors;
   }
 
@@ -37,7 +52,6 @@ export class ErrorsComponent {
   set errors(v: ValidationErrors | undefined | null) {
     this._errors = v;
   }
-
 
   allErrors(): ValidationErrors | null {
     return this.errors || null;
