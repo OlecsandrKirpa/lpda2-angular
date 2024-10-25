@@ -1,6 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="form">
   <div class="block mb-3">
-    <tui-input-date-range [tuiDropdownOpen]="true" [formControl]="dates">
+    <tui-input-date-range [min]="today" [tuiDropdownOpen]="true" [formControl]="dates">
       <ng-container i18n>Date di inizio e fine</ng-container>
     </tui-input-date-range>
 
@@ -9,6 +9,7 @@
     }
 
     <p i18n>Selezia la data d'inizio e fine della chiusura in programma.</p>
+    <p i18n>Attenzione: La chiusura sarà attiva dal primo giorno compreso fino all'ultimo escluso (Selezionando dal 1 all'8 settembre, Non sarà possibile prenotare il primo, il due, etc.. ma sarà possibile prenotare l'8.).</p>
   </div>
 
   <div class="block mb-3">

@@ -40,6 +40,8 @@ type HolidayOutputFormat = {
 })
 export class OnceHolidayFormComponent {
 
+  readonly today: TuiDay = TuiDay.currentLocal();
+
   @Output() submitEvent = new EventEmitter<HolidayOutputFormat>();
   @Output() cancelEvent: EventEmitter<void> = new EventEmitter<void>();
 
