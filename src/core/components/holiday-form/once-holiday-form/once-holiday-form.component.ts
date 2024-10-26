@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output, signal, WritableSignal } from '
 import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomValidators } from '@core/lib/custom-validators';
 import { HolidayData } from '@core/lib/interfaces/holiday-data';
-import { isoStringToTuiDay } from '@core/lib/tui-datetime-to-iso-string';
+import { isoStringToTuiDay, stringToTuiDay } from '@core/lib/tui-datetime-to-iso-string';
 import { Holiday } from '@core/models/holiday';
-import { TuiAutoFocusModule, TuiDay, TuiDestroyService, TuiTime } from '@taiga-ui/cdk';
+import { TuiAutoFocusModule, TuiDay, TuiDayRange, TuiDestroyService, TuiTime } from '@taiga-ui/cdk';
 import { from } from 'rxjs';
 import { ErrorsComponent } from "../../errors/errors.component";
 import { TuiButtonModule, TuiDropdownModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
@@ -45,7 +45,7 @@ export class OnceHolidayFormComponent {
   @Output() submitEvent = new EventEmitter<HolidayOutputFormat>();
   @Output() cancelEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  readonly dates: FormControl<{from: TuiDay, to: TuiDay} | null> = new FormControl<{from: TuiDay, to: TuiDay} | null>(null, [Validators.required]);
+  readonly dates: FormControl<TuiDayRange | null> = new FormControl<TuiDayRange | null>(null, [Validators.required]);
   readonly message: FormControl<Record<string, string> | null> = new FormControl<Record<string, string> | null>(null, [
     Validators.required,
     CustomValidators.objectNotEmpty
@@ -77,12 +77,12 @@ export class OnceHolidayFormComponent {
   @Input() set holiday(obj: Holiday | HolidayData | null) {
     const data: HolidayData | null | undefined = obj instanceof Holiday ? obj.data : obj;
     if (data) {
-      const newFormVal: Record<string, unknown> = {};
-      const fromTimestamp = data.from_timestamp ? isoStringToTuiDay(data.from_timestamp) : null;
-      const toTimestamp = data.to_timestamp ? isoStringToTuiDay(data.to_timestamp) : null;
+      const newFormVal: { dates: TuiDayRange | null, message: Record<string, string> | null } = { dates: null, message: obj?.translations?.message || null };
+      const fromTimestamp: TuiDay | null = data.from_timestamp ? stringToTuiDay(data.from_timestamp) : null;
+      const toTimestamp: TuiDay | null = data.to_timestamp ? stringToTuiDay(data.to_timestamp) : null;
 
       if (fromTimestamp && toTimestamp) {
-        newFormVal["dates"] = { from: fromTimestamp, to: toTimestamp };
+        newFormVal["dates"] = new TuiDayRange(fromTimestamp, toTimestamp)
       }
 
       this.form.patchValue(newFormVal);

@@ -1,4 +1,4 @@
-import {TuiDay, TuiTime, TuiTimeMode} from "@taiga-ui/cdk";
+import {TuiDateMode, TuiDay, TuiTime, TuiTimeMode} from "@taiga-ui/cdk";
 
 export const isoTimezoneRexExp: RegExp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
 
@@ -22,6 +22,25 @@ export function isoStringToTuiDay(isoString: unknown): TuiDay | null {
 
   const date: Date = new Date(isoString);
   return new TuiDay(date.getFullYear(), date.getMonth() + 1, date.getDate());
+}
+
+/**
+ * Will convert string in format 'YYYY-MM-DD' to TuiDay.
+ * @param str
+ */
+export function stringToTuiDay(str: unknown): TuiDay | null {
+  if (typeof str == "string" && str.length > 0 && str.match(/^\d{4}-\d{1,2}-\d{1,2}\s{1}00:00$/)) {
+    str = str.split(" ")[0];
+  }
+
+  if (!(typeof str == 'string' && str.length > 0 && str.match(/^\d{4}-\d{1,2}-\d{1,2}$/))) {
+    console.error(`Invalid string provided to stringToTuiDay. Expected format YYYY-MM-DD, got`, {str});
+    return null;
+  }
+
+  const { day, month, year } = TuiDay.parseRawDateString(str, "YMD");
+
+  return new TuiDay(year, month, day);
 }
 
 /**
