@@ -7,8 +7,8 @@
     <tui-calendar
         [disabledItemHandler]="disabledDates"
         (touchend)="touched()"
-        [value]="today()"
         (dayClick)="onDayClick($event)"
+        [value]="lastDate()"
     ></tui-calendar>
   </div>
 </tui-expand>
@@ -39,12 +39,12 @@
       </div>
 
       @if(group()){
-        <tui-checkbox-block
-          class="w-full my-5"
-          [formControl]="paymentAccepted"
-        >
-        <div class="w-full text-pretty my-3">{{ group()?.message || defaultMessage }}</div>
-      </tui-checkbox-block>
+        <div class="w-full my-5 border border-primary p-3 rounded-lg">
+          <div class="w-full text-pretty my-3 text-xl">{{ group()?.message || defaultMessage }}</div>
+          <button class="mb-3" tuiButton (click)="paymentAccepted.setValue(true)" appearance="primary" size="m" type="button">
+            <ng-container i18n>Conferma</ng-container>
+          </button>
+        </div>
       }
     } @else {
       <div>

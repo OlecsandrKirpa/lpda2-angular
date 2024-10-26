@@ -82,7 +82,8 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   @Output() readonly valueChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() readonly inputTouch: EventEmitter<void> = new EventEmitter<void>();
-  private lastEmitted: string | null = null;
+
+  readonly lastDate: WritableSignal<TuiDay | null> = signal<TuiDay | null>(null);
 
   readonly date: FormControl<TuiDay | null> = new FormControl(null, [Validators.required]);
   readonly time: FormControl<TuiTime | null> = new FormControl(null, [Validators.required]);
@@ -107,6 +108,12 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   readonly defaultMessage: string = $localize`Per assicurarti uno dei nostro vavoli sarà necessario un pagamento che verrà scalato dal conto finale al ristorante.`;
 
   ngOnInit(): void {
+    this.date.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      tap( () => this.time.setValue(null)),
+      tap((day: TuiDay | null) => { if (day) this.lastDate.set(day) })
+    ).subscribe();
+
     this.time.valueChanges.pipe(
       takeUntil(this.destroy$)
     ).subscribe({
@@ -230,9 +237,6 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   }
 
   private emit(s: string): void {
-    // if (this.lastEmitted === s) return;
-
-    this.lastEmitted = s;
     this.valueChanged.emit(s);
   }
 
