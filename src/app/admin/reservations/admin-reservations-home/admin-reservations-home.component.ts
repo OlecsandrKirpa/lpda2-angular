@@ -12,7 +12,7 @@ import {CommonModule, DatePipe} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TuiInputModule} from "@taiga-ui/kit";
 import {TuiAutoFocusModule, TuiDay, TuiDestroyService} from "@taiga-ui/cdk";
-import {TuiButtonModule, TuiHintModule, TuiLinkModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiHintModule, TuiLinkModule, TuiLoaderModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {ShowImageComponent} from "@core/components/show-image/show-image.component";
@@ -58,6 +58,7 @@ import {PhoneToComponent} from "@core/components/phone-to/phone-to.component";
 import {MailToComponent} from "@core/components/mail-to/mail-to.component";
 import {ReservationPeopleComponent} from "@core/components/reservation-people/reservation-people.component";
 import { Title } from '@angular/platform-browser';
+import { NoItemsComponent } from "../../../../core/components/no-items/no-items.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -85,7 +86,9 @@ import { Title } from '@angular/platform-browser';
     PhoneToComponent,
     MailToComponent,
     ReservationPeopleComponent,
-  ],
+    NoItemsComponent,
+    TuiLoaderModule,
+],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

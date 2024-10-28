@@ -35,46 +35,53 @@
   <ng-container i18n>Contatti</ng-container>
 </ng-template>
 
-<app-list-reservations-filters (filtersChanged)="filtersChanged($event)" [data]="data()">
-  <table class="responsive-table collapse-md">
-    <thead>
-    <tr>
-      <th class="text-start">
-        <app-order-by [item]="'datetime'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <app-order-by [item]="'fullname'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="nameCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <app-order-by [item]="'people'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <app-order-by [item]="'status'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="statusCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <app-order-by [item]="'table'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="tableCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <app-order-by [item]="'notes'" [formControl]="order">
-          <ng-container *ngTemplateOutlet="notesCol"></ng-container>
-        </app-order-by>
-      </th>
-      <th class="text-start">
-        <ng-container *ngTemplateOutlet="contactsCol"></ng-container>
-      </th>
+<ng-template #noItems>
+  <app-no-items [showLoader]="loading()" >
+    <h4 i18n>Nessuna prenotazione</h4>
+    <span i18n>Prova a modificare i filtri di ricerca</span>
+  </app-no-items>
+</ng-template>
 
-      <th></th>
-    </tr>
+<app-list-reservations-filters [loading]="loading()" (filtersChanged)="filtersChanged($event)" [data]="data()">
+  <table *ngIf="loading() || items().length > 0; else noItems" class="responsive-table collapse-md">
+    <thead>
+      <tr>
+        <th class="text-start">
+          <app-order-by [item]="'datetime'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="datetimeCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <app-order-by [item]="'fullname'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="nameCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <app-order-by [item]="'people'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <app-order-by [item]="'status'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="statusCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <app-order-by [item]="'table'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="tableCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <app-order-by [item]="'notes'" [formControl]="order">
+            <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+          </app-order-by>
+        </th>
+        <th class="text-start">
+          <ng-container *ngTemplateOutlet="contactsCol"></ng-container>
+        </th>
+
+        <th></th>
+      </tr>
     </thead>
     <tbody>
       @for (item of items(); track item.id) {
@@ -102,7 +109,6 @@
                   <ng-container *ngTemplateOutlet="peopleCol"></ng-container>
                 </span>
 
-<!--            <span>{{ (item.adults ?? 0) + (item.children ?? 0) }}</span>-->
             <app-reservation-people
                 [adults]="item.adults"
                 [children]="item.children"
