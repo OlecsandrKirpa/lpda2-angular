@@ -27,7 +27,7 @@
   <ng-container i18n>Tavolo</ng-container>
 </ng-template>
 
-<ng-template #notesCol>
+<ng-template #detailsCol>
   <ng-container i18n>Note</ng-container>
 </ng-template>
 
@@ -73,7 +73,7 @@
         </th>
         <th class="text-start">
           <app-order-by [item]="'notes'" [formControl]="order">
-            <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+            <ng-container *ngTemplateOutlet="detailsCol"></ng-container>
           </app-order-by>
         </th>
         <th class="text-start">
@@ -130,10 +130,11 @@
           </td>
           <td>
                 <span class="collapse-header">
-                  <ng-container *ngTemplateOutlet="notesCol"></ng-container>
+                  <ng-container *ngTemplateOutlet="detailsCol"></ng-container>
                 </span>
 
             <span>{{ item.notes }}</span>
+            <app-admin-reservation-payment [reservation]="item"></app-admin-reservation-payment>
           </td>
           <td>
                 <span class="collapse-header">

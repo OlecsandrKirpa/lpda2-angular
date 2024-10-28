@@ -59,6 +59,7 @@ import {MailToComponent} from "@core/components/mail-to/mail-to.component";
 import {ReservationPeopleComponent} from "@core/components/reservation-people/reservation-people.component";
 import { Title } from '@angular/platform-browser';
 import { NoItemsComponent } from "../../../../core/components/no-items/no-items.component";
+import { AdminReservationPaymentComponent } from "../../../../core/components/admin-reservation-payment/admin-reservation-payment.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -88,6 +89,7 @@ import { NoItemsComponent } from "../../../../core/components/no-items/no-items.
     ReservationPeopleComponent,
     NoItemsComponent,
     TuiLoaderModule,
+    AdminReservationPaymentComponent
 ],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

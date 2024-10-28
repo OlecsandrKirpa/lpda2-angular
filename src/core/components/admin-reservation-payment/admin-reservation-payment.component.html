@@ -1,0 +1,20 @@
+@if(payment()) {
+
+  <ng-template #modalTemplate>
+    <p>Link per completare il pagamento:</p>
+
+    <div class="flex items-center justify-center">
+      <a class="me-2" tuiLink href="{{payment()?.hpp_url}}">{{payment()?.hpp_url}}</a>
+
+      <app-copy-content [content]="payment()?.hpp_url"></app-copy-content>
+    </div>
+  </ng-template>
+
+<div (click)="showDialog(modalTemplate)" [ngClass]="{'text-danger border-danger': !paid()}" class="border flex items-center px-3 py-2 justify-center rounded-lg border-slate-400">
+  @if(paid()) {
+  <span class="text-center text-nowrap" i18n>Pagata</span>
+  } @else {
+  <span class="text-center text-nowrap" i18n>Non pagata</span>
+  }
+</div>
+}
