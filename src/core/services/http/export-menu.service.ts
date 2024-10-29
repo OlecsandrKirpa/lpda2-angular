@@ -29,7 +29,7 @@ export class ExportMenuService extends DomainService {
         (response: any): void => {
 
           if (response instanceof HttpResponse && response.body) {
-            const filename: string = exportFilenameFromContentDisposition(response.headers?.get(`Content-Disposition`)) ?? `gigi-menu.xlsx`;
+            const filename: string = exportFilenameFromContentDisposition(response.headers?.get(`Content-Disposition`)) ?? `Menu.xlsx`;
             const contentType: string = response.headers?.get(`Content-Type`) ?? `application/octet-stream`;
             const downloadURL: string = window.URL.createObjectURL(new Blob([response.body], {type: contentType}));
 

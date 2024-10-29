@@ -10,10 +10,10 @@
     </tui-input>
 
     <a routerLink="new" tuiLink>
-    <span class="flex items-center">
-      <mat-icon>add</mat-icon>
-      <ng-container i18n>Crea prenotazione</ng-container>
-    </span>
+      <span class="flex items-center">
+        <mat-icon>add</mat-icon>
+        <ng-container i18n>Crea prenotazione</ng-container>
+      </span>
     </a>
   </div>
 
@@ -44,6 +44,15 @@
                         [items]="[10, 20, 50, 100]" [total]="data?.metadata?.total_count ?? 0"
                         (paginationChange)="paginationChange($event)">
   </tui-table-pagination>
+
+  <div class="flex items-center mb-2">
+    <a routerLink="export" tuiLink>
+      <span class="flex items-center">
+        <mat-icon>download_file</mat-icon>
+        <ng-container i18n>Esporta prenotazioni</ng-container>
+      </span>
+    </a>
+  </div>
 
 @if(dateStr()) {
   <app-reservation-tables-summary

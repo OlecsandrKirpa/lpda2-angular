@@ -1,0 +1,9 @@
+<tui-input-date-range [min]="appProductionDate" [max]="max" [formControl]="control" [items]="periodOptions">
+  <span #content><ng-content></ng-content></span>
+  @if(!content.children.length){ {{label}} }
+
+</tui-input-date-range>
+
+@if(control.value?.from && control.value?.to){
+  <small class="d-block text-muted">{{ control.value | datePeriodSummary }}</small>
+}

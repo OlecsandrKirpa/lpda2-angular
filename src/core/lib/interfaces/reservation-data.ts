@@ -20,3 +20,7 @@ export interface ReservationData extends BaseModelData {
 
 export const ReservationStatuses = [`active`, `arrived`, `deleted`, `noshow`, `cancelled`] as const;
 export type ReservationStatus = typeof ReservationStatuses[number];
+
+export function isReservationStatus(value: unknown): value is ReservationStatus {
+  return typeof value === "string" && ([...ReservationStatuses] as string[]).includes(value);
+}
