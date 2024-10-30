@@ -86,5 +86,14 @@ export class AdminSettingsHomeComponent {
         name: `beach_access`
       }
     },
+    {
+      name: $localize`Turni di prenotazione`,
+      description: $localize`Configura gli orari in cui è possibile creare prenotazioni`,
+      path: `reservation-turns`,
+      icon: {
+        source: `material`,
+        name: `view_timeline`
+      }
+    },
   ];
 }

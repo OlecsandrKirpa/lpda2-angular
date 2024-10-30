@@ -1,0 +1,7 @@
+<h1 i18n>Nuovo turno di prenotazione</h1>
+<app-reservation-turn-form
+  (submitted)="create($event)"
+  (cancelled)="cancel()"
+  [loading]="loading()"
+  [context]="'create'"
+></app-reservation-turn-form>

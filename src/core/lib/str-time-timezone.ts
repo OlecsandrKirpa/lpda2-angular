@@ -7,7 +7,7 @@ export const offsetHours: number = ((new Date()).getTimezoneOffset() / 60);
  * will convert in current timezone string
  */
 export function strTimeTimezone(string: unknown, offset: number = offsetHours): string {
-  if (!(typeof string == 'string' && string.length > 0 && string.match(/\d{2}:\d{2}/))) {
+  if (!(typeof string == 'string' && string.length > 0 && string.match(/\d{1,2}:\d{1,2}/))) {
     console.error(`Invalid string provided to strTimeTimezone`, {string});
     return ``;
   }

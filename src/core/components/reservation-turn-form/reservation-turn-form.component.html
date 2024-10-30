@@ -1,0 +1,77 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="mb-3 block">
+    <tui-input tuiAutoFocus [formControlName]="'name'">
+      <ng-container i18n>Nome turno</ng-container>
+    </tui-input>
+
+    @if(formSubmitted() || form.controls['name'].touched) {
+      <app-errors [errors]="form.controls['name'].errors" ></app-errors>
+    }
+  </div>
+
+  <div class="mb-3 block">
+    <app-weekday-select [formControlName]="'weekday'" ></app-weekday-select>
+
+    @if(formSubmitted() || form.controls['weekday'].touched) {
+      <app-errors [errors]="form.controls['weekday'].errors" ></app-errors>
+    }
+  </div>
+
+  <div class="mb-3 block">
+    <tui-input-number [min]="1" [max]="59" [formControlName]="'step'">
+      <ng-container i18n>Minuti tra una prenotazione e l'altra</ng-container>
+    </tui-input-number>
+
+    @if(formSubmitted() || form.controls['step'].touched) {
+      <app-errors [errors]="form.controls['step'].errors" ></app-errors>
+    }
+  </div>
+
+  <div class="mb-3 block">
+    <div class="flex items-center">
+      <div class="me-2 grow">
+        <tui-input-time [formControlName]="'starts_at'">
+          <ng-container i18n>Dalle ore</ng-container>
+        </tui-input-time>
+
+        @if(formSubmitted() || form.controls['starts_at'].touched) {
+          <app-errors [errors]="form.controls['starts_at'].errors" ></app-errors>
+        }
+      </div>
+
+      <div class="me-2 grow">
+        <tui-input-time [formControlName]="'ends_at'">
+          <ng-container i18n>Fino alle ore</ng-container>
+        </tui-input-time>
+
+        @if(formSubmitted() || form.controls['ends_at'].touched) {
+          <app-errors [errors]="form.controls['ends_at'].errors" ></app-errors>
+        }
+      </div>
+    </div>
+
+    <tui-expand [expanded]="concurrent().length > 0">
+      <div class="text-slate-400">
+        <span i18n>Nota che per {{ form.value.weekday | weekday | downcase }} sono presenti anche i seguenti turni:</span>
+        @for(turn of concurrent(); track turn.id) {
+          <div class="block">{{ turn.name }}: {{ turn.starts_at }} - {{ turn.ends_at }}</div>
+        }
+      </div>
+    </tui-expand>
+
+  </div>
+
+  @if(formSubmitted()) {
+    <app-errors [errors]="form.errors" ></app-errors>
+  }
+
+  <div class="flex items-center">
+    <button [showLoader]="loading()" type="submit" tuiButton appearance="primary">
+      <ng-container i18n>Salva</ng-container>
+    </button>
+
+    <button [disabled]="loading()" (click)="cancel()" type="button" tuiButton appearance="icon">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

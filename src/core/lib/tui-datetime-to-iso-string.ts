@@ -70,12 +70,30 @@ export function tuiDayToString(day: TuiDay): string {
  * @param time - TuiTime object.
  * @param mode - format of time. Default 'HH:MM'.
  */
-export function tuiTimeToString(time: TuiTime, mode: TuiTimeMode = "HH:MM"): string {
-  return time.toString(mode);
-}
+// export function tuiTimeToString(time: TuiTime, mode: TuiTimeMode = "HH:MM"): string {
+//   return time.toString(mode);
+// }
 
 export function tuiTimeToIsoString(time: TuiTime): string {
   return new Date(`1970-01-01 ${time.toString()}`).toISOString();
+}
+
+/**
+ * Given a string like 'HH:MM' will return a string in format 'HH:MM'.
+ * @param time
+ * 
+ * Example:
+ * When in Rome, input '10:00' will return '9:00'.
+ */
+export function fromTocalToUtcTimeString(time: string): string {
+  const date = new Date(`1970-01-01 ${time}`);
+  const hours = `${date.getUTCHours()}`.padStart(2, '0');
+  const minutes = `${date.getUTCMinutes()}`.padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+export function tuiTimeToUTCString(time: TuiTime): string {
+  return fromTocalToUtcTimeString(time.toString());
 }
 
 export function dateToTuiDay(date: Date): TuiDay {

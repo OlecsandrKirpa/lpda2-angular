@@ -1,0 +1,69 @@
+<h1 i18n>Turni di prenotazioni</h1>
+
+  @if(items().length > 0){
+    <table class="tui-table">
+      <tbody>
+        @for(wday of weekdays; track wday){
+        <tr class="tui-table__tr tui-table__tr_border_none">
+          <td class="tui-table__td">
+            <p class="text-xl">{{ wday | weekday }}</p>
+
+          </td>
+
+          <td class="tui-table__td">
+            <div class="flex flex-col">
+              @for(turn of itemsByWeekday()[wday]; track turn.id; let turnIndex = $index){
+                @if(turn.id) {
+                  <div class="flex flex-row items-center justify-between mb-5">
+                    <div class="border border-slate-400 rounded-lg p-3 me-2">
+                      {{ turn.name }}
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center">
+                      <div class="flex flex-row items-center justify-center">
+                        <span class="me-1">{{ turn.starts_at }}</span>
+                        <span class="me-2" >- {{ turn.ends_at }}</span>
+                      </div>
+
+                      <span class="text-sm text-slate-400">
+                        <ng-container i18n>Ogni {{ turn.step }} minuti</ng-container>
+                      </span>
+                    </div>
+
+                    <div class="flex items-center">
+                      <a class="me-2" routerLink="{{ turn.id }}" tuiLink>
+                        <mat-icon>edit</mat-icon>
+                      </a>
+  
+                      <button size="m" tuiIconButton type="button" appearance="secondary-destructive" (click)="delete(turn.id)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+
+            <a routerLink="new" [queryParams]="{ weekday: wday }" tuiLink>
+              <span class="flex items-center">
+                <mat-icon>add</mat-icon>
+                <span i18n>Aggiungi</span>
+              </span>
+            </a>
+
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    @if(loading()){
+      <tui-loader size="xl" [overlay]="true" [showLoader]="loading()"></tui-loader>
+    } @else {
+      <app-no-items>
+        <h2>Dev'esserci stato un errore :'(</h2>
+      </app-no-items>
+    }
+  }
+
+  <router-outlet></router-outlet>

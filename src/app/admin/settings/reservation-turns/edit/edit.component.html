@@ -1,0 +1,9 @@
+<h1 i18n>Modifica turno di prenotazione</h1>
+
+<app-reservation-turn-form
+  (submitted)="update($event)"
+  (cancelled)="cancel()"
+  [loading]="loading()"
+  [turn]="item()"
+  [context]="'update'"
+></app-reservation-turn-form>
