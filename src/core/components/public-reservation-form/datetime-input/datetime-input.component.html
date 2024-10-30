@@ -15,7 +15,7 @@
 
 <tui-expand [expanded]="date.valid">
   @if (date.value) {
-    <p class="text-xl">
+    <p class="text-xl mb-2">
       <ng-container i18n>Seleziona l'orario per il giorno</ng-container>
       <span (click)="date.reset()" class="cursor-pointer inline-flex items-center ms-2 underline">
         {{ date.value.toLocalNativeDate() | date: 'EEEE d MMMM y' }}
@@ -46,6 +46,10 @@
           </button>
         </div>
       }
+
+      <span class="text-slate-400 text-lg">
+        <ng-container i18n>Gli orari indicati fanno riferimento all'orario del luogo in cui ti trovi. Gli orari nella mail di conferma, invece, faranno riferimento all'orario in Italia.</ng-container>
+      </span>
     } @else {
       <div>
         <p class="text-xl text-danger" i18n>Siamo spiacenti, non sono disponibili orari per la data selezionata. Modifica la data e riprova.</p>
