@@ -56,7 +56,7 @@ export class DatePeriodComponent implements ControlValueAccessor {
         new TuiDayRange(
           TuiDay.fromLocalNativeDate(new Date(`${year}-01-01`)),
           TuiDay.fromLocalNativeDate(new Date(`${year}-12-31`)),
-        ), $localize`${year}`)
+        ), `${year}`)
     ),
   ];
 
