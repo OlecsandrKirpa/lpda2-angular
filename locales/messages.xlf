@@ -303,6 +303,14 @@
           <context context-type='linenumber'>92</context>
         </context-group>
         <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/edit/edit.component.ts</context>
+          <context context-type='linenumber'>86</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/new/new.component.ts</context>
+          <context context-type='linenumber'>60</context>
+        </context-group>
+        <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/new-user/new-user.component.ts</context>
           <context context-type='linenumber'>74</context>
         </context-group>
@@ -843,6 +851,10 @@
           <context context-type='linenumber'>85</context>
         </context-group>
         <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>80</context>
+        </context-group>
+        <context-group purpose='location'>
           <context context-type='sourcefile'>
             src/core/components/reservations-creation/admin-reservation-form/admin-reservation-form.component.html
           </context>
@@ -980,6 +992,20 @@
           <context context-type='linenumber'>82</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='5812077413088934272' datatype='html'>
+        <source>Turni di prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9056045263588730219' datatype='html'>
+        <source>Configura gli orari in cui è possibile creare prenotazioni</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>91</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='7287418178921823023' datatype='html'>
         <source>Ferie</source>
         <context-group purpose='location'>
@@ -1104,6 +1130,10 @@
             src/core/components/eip-category-visibility/timestamps-modal/timestamps-modal.component.html
           </context>
           <context context-type='linenumber'>110</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>40</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2219756022494379103' datatype='html'>
@@ -1540,6 +1570,82 @@
             src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts
           </context>
           <context context-type='linenumber'>64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3817825423737046185' datatype='html'>
+        <source>Modifica turno di prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/edit/edit.component.html</context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5155145754859131092' datatype='html'>
+        <source>Modificato.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/edit/edit.component.ts</context>
+          <context context-type='linenumber'>71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2160490429176537105' datatype='html'>
+        <source>Turni di prenotazioni</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/list/list.component.html</context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5808928484858844919' datatype='html'>
+        <source>
+          Ogni 
+          <x id='INTERPOLATION' equiv-text='{{ turn.step }}'/>
+           minuti
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/list/list.component.html</context>
+          <context context-type='linenumber'>29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1654470830488327501' datatype='html'>
+        <source>Aggiungi</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/list/list.component.html</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/menu-dashboard/dish-suggestions/dish-suggestions.component.html
+          </context>
+          <context context-type='linenumber'>52</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/menu-dashboard/list-categories/list-categories.component.html
+          </context>
+          <context context-type='linenumber'>44</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.html</context>
+          <context context-type='linenumber'>40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4389267519219970179' datatype='html'>
+        <source>Sei sicuro di voler cancellare questo turno?</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/list/list.component.ts</context>
+          <context context-type='linenumber'>82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1775088401664104349' datatype='html'>
+        <source>Nuovo turno di prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/new/new.component.html</context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4181815530667058870' datatype='html'>
+        <source>Turno creato.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turns/new/new.component.ts</context>
+          <context context-type='linenumber'>45</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1526651525871386464' datatype='html'>
@@ -3912,25 +4018,6 @@
           <context context-type='linenumber'>46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='1654470830488327501' datatype='html'>
-        <source>Aggiungi</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/core/components/menu-dashboard/dish-suggestions/dish-suggestions.component.html
-          </context>
-          <context context-type='linenumber'>52</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/core/components/menu-dashboard/list-categories/list-categories.component.html
-          </context>
-          <context context-type='linenumber'>44</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.html</context>
-          <context context-type='linenumber'>40</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='3749933307261670292' datatype='html'>
         <source>Aggiungi suggerimento</source>
         <context-group purpose='location'>
@@ -5402,6 +5489,45 @@
             src/core/components/reservation-tables-summary/reservation-tables-summary.component.html
           </context>
           <context context-type='linenumber'>35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3751149526186668089' datatype='html'>
+        <source>Nome turno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6519048856288789895' datatype='html'>
+        <source>Minuti tra una prenotazione e l&apos;altra</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3433314771526289485' datatype='html'>
+        <source>Fino alle ore</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='250353887416064020' datatype='html'>
+        <source>
+          Nota che per 
+          <x id='INTERPOLATION' equiv-text='{{ form.value.weekday | weekday | downcase }}'/>
+           sono presenti anche i seguenti turni:
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8942984265029849841' datatype='html'>
+        <source>Salva</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
+          <context context-type='linenumber'>76</context>
         </context-group>
       </trans-unit>
       <trans-unit id='40109521701643383' datatype='html'>
