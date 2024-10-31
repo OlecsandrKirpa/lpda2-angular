@@ -8,8 +8,8 @@ import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-mes
 import { ReservationTurn } from '@core/models/reservation-turn';
 import { NotificationsService } from '@core/services/notifications.service';
 import { TuiAutoFocusModule, TuiDestroyService, TuiTime } from '@taiga-ui/cdk';
-import { TuiButtonModule, TuiExpandModule, TuiLoaderModule } from '@taiga-ui/core';
-import { TuiInputModule, TuiInputNumberModule, TuiInputTimeModule } from '@taiga-ui/kit';
+import { TuiButtonModule, TuiExpandModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiDataListWrapperModule, TuiInputModule, TuiInputNumberModule, TuiInputTimeModule, TuiSelectModule } from '@taiga-ui/kit';
 import { distinctUntilChanged, finalize, takeUntil, tap } from 'rxjs';
 import { ErrorsComponent } from "../errors/errors.component";
 import { WeekdaySelectComponent } from '../weekday-select/weekday-select.component';
@@ -36,6 +36,9 @@ import { JsonPipe } from '@angular/common';
     WeekdayPipe,
     TuiExpandModule,
     DowncasePipe,
+    TuiDataListWrapperModule,
+    TuiTextfieldControllerModule,
+    TuiSelectModule,
 ],
   templateUrl: './reservation-turn-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -86,7 +89,7 @@ export class ReservationTurnFormComponent implements OnInit {
     weekday: new FormControl<number | null>(null, [Validators.required]),
     starts_at: new FormControl<TuiTime | null>(null, [Validators.required]),
     ends_at: new FormControl<TuiTime | null>(null, [Validators.required]),
-    step: new FormControl<number | null>(30, [Validators.required, Validators.min(1), Validators.max(59)]),
+    step: new FormControl<number | null>(30, [Validators.required, Validators.min(15), Validators.max(60)]),
     name: new FormControl<string | null>(null, [Validators.required]),
   });
 

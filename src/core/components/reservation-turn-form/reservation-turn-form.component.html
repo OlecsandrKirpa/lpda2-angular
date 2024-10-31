@@ -18,9 +18,15 @@
   </div>
 
   <div class="mb-3 block">
-    <tui-input-number [min]="1" [max]="59" [formControlName]="'step'">
+    <tui-select [formControlName]="'step'">
       <ng-container i18n>Minuti tra una prenotazione e l'altra</ng-container>
-    </tui-input-number>
+    
+      <input tuiTextfield>
+      <tui-data-list-wrapper
+          *tuiDataList
+          [items]="[15, 30, 45, 60]"
+      ></tui-data-list-wrapper>
+    </tui-select>
 
     @if(formSubmitted() || form.controls['step'].touched) {
       <app-errors [errors]="form.controls['step'].errors" ></app-errors>
