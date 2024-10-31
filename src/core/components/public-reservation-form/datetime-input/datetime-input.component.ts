@@ -167,7 +167,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
     ).subscribe({
       next: (turns: ReservationTurn[]) => {
         const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
-        this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))));
+        this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))).sort((a: TuiTime, b: TuiTime) => a.toAbsoluteMilliseconds() - b.toAbsoluteMilliseconds()));
 
         this.groups.set(
           turns.reduce((acc: {[time: string]: PreorderReservationGroup}, turn: ReservationTurn) => {
