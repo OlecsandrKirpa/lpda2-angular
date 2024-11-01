@@ -1,0 +1,41 @@
+<h1 i18n>Modifica contatto</h1>
+
+@if(item()) {
+  <p class="text-xl">
+    {{ item()?.key | humanizeContactKey }}
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="block mb-3">
+      <tui-input [tuiAutoFocus]="true" [formControl]="valueControl">
+        {{ item()?.key | humanizeContactKey }}
+      </tui-input>
+
+      <app-errors [errors]="valueControl.errors" ></app-errors>
+    </div>
+
+    <app-errors [errors]="form.errors" ></app-errors>
+
+    <div class="flex items-center">
+      <button class="me-2" type="submit" tuiButton>
+        <ng-container i18n>Conferma</ng-container>
+      </button>
+
+      <button (click)="cancel()" type="button" tuiButton appearance="icon">
+        <ng-container i18n>Annulla</ng-container>
+      </button>
+    </div>
+
+
+  </form>
+} @else if (loading()) {
+  <tui-loader [size]="'l'"></tui-loader>
+} @else {
+  <app-no-item>
+    <ng-container i18n>Non abbiamo trovato il contatto che cercavi :'(</ng-container>
+
+    <button (click)="close()" type="button" tuiButton appearance="icon">
+      <ng-container i18n>Esci</ng-container>
+    </button>
+  </app-no-item>
+}

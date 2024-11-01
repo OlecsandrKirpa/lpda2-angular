@@ -1,0 +1,25 @@
+<h1 i18n>Contatti</h1>
+<p class="text-slate-400 mb-3" i18n>
+  I contatti che imposterai saranno visibili nelle pagine pubbliche e nelle email che inviamo.
+</p>
+
+@for(contact of items(); track contact.key) {
+<div class="border rounded-lg border-slate-300 p-3 mb-3">
+  <div class="text-lg text-slate-500 block">{{ contact.key | humanizeContactKey }}</div>
+
+  <div class="flex items-center">
+    <div class="text-lg inline-block me-2">
+      {{ contact.value }}
+    </div>
+
+    <a tuiLink routerLink="{{contact.key}}">
+      <span class="flex items-center justify-center">
+        <mat-icon class="me-1">edit</mat-icon>
+        <span i18n>Modifica</span>
+      </span>
+    </a>
+  </div>
+</div>
+}
+
+<router-outlet></router-outlet>

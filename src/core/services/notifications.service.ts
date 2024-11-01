@@ -5,6 +5,7 @@ import {Observable, switchMap} from 'rxjs';
 import {MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar} from "@angular/material/snack-bar";
 import {PolymorpheusComponent, PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import {TUI_PROMPT, TuiPromptData} from "@taiga-ui/kit";
+import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,8 @@ export class NotificationsService {
     }).subscribe(nue());
   }
 
-  error(message: string | null, params: Partial<TuiAlertOptions<any>> = {}): void {
-    message ??= $localize`Qualcosa è andato storto. Riprova più tardi.`;
+  error(message?: string | null, params: Partial<TuiAlertOptions<any>> = {}): void {
+    message ??= SOMETHING_WENT_WRONG_MESSAGE;
 
     this.open(message, {
       ...{

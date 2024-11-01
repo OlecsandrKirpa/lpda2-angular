@@ -51,6 +51,15 @@ export class AdminSettingsHomeComponent {
       }
     },
     {
+      name: $localize`Contatti`,
+      description: $localize`Modifica contatti visibili sul sito e nelle mail`,
+      path: `contacts`,
+      icon: {
+        source: `material`,
+        name: `call`
+      }
+    },
+    {
       name: $localize`Impostazioni`,
       description: $localize`Modifica impostazioni al livello di sistema`,
       path: `settings`,
