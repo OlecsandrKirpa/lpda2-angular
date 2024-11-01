@@ -9,6 +9,7 @@ import { NotificationsService } from '@core/services/notifications.service';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { takeUntil, finalize, map, switchMap, filter, tap } from 'rxjs';
 import { ReservationTurn } from '@core/models/reservation-turn';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit',
@@ -26,6 +27,8 @@ export class EditComponent implements OnInit {
   private readonly notifications = inject(NotificationsService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+
+  readonly _ = inject(Title).setTitle($localize`Modifica turni di prenotazioni | La Porta D'Acqua`);
 
   @ViewChild(ReservationTurnFormComponent)
   form?: ReservationTurnFormComponent;

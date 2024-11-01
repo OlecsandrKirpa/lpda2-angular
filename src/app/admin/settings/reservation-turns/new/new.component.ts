@@ -8,6 +8,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-new',
@@ -25,6 +26,8 @@ export class NewComponent {
   private readonly notifications = inject(NotificationsService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+
+  readonly _ = inject(Title).setTitle($localize`Nuovo turno di prenotazioni | La Porta D'Acqua`);
 
   @ViewChild(ReservationTurnFormComponent)
   form?: ReservationTurnFormComponent;

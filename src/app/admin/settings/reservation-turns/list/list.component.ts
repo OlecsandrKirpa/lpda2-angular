@@ -14,6 +14,7 @@ import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
 import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
 import { NoItemsComponent } from "../../../../../core/components/no-items/no-items.component";
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list',
@@ -34,6 +35,8 @@ export class ListComponent implements OnInit {
   private readonly service: ReservationTurnsService = inject(ReservationTurnsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly router = inject(Router);
+
+  readonly _ = inject(Title).setTitle($localize`Turni di prenotazioni | La Porta D'Acqua`);
 
   readonly weekdays: string[] = Array.from({ length: 7 }, (_, i) => `${i}`);
 
