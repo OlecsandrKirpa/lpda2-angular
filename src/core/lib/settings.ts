@@ -2,7 +2,6 @@ export const SettingKeys = [
   `available_locales`,
   `default_language`,
   `max_people_per_reservation`,
-  `email_contacts`,
   `reservation_max_days_in_advance`
 ] as const;
 

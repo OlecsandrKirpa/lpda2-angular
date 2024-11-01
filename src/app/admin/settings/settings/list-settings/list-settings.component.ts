@@ -186,16 +186,16 @@ export class ListSettingsComponent implements OnInit {
     /**
      * JSON object
      */
-    ([
-      `email_contacts`
-    ] as SettingKey[]).forEach((key: SettingKey): void => {
-      const pref = settings.find((setting: Setting) => setting.key === key);
+    // ([
+    //   `email_contacts`
+    // ] as SettingKey[]).forEach((key: SettingKey): void => {
+    //   const pref = settings.find((setting: Setting) => setting.key === key);
 
-      if (pref && typeof pref.value == 'string') data[key] = JSON.parse(pref.value);
-      else if (pref && typeof pref.value == 'object' && pref.value) data[key] = pref.value;
-      else if (!pref) console.warn(`Setting ${key} not found`);
-      else console.warn(`Setting ${key} not found or invalid`, pref.value);
-    });
+    //   if (pref && typeof pref.value == 'string') data[key] = JSON.parse(pref.value);
+    //   else if (pref && typeof pref.value == 'object' && pref.value) data[key] = pref.value;
+    //   else if (!pref) console.warn(`Setting ${key} not found`);
+    //   else console.warn(`Setting ${key} not found or invalid`, pref.value);
+    // });
 
     /**
      * Add here keys you don't want to manage in this page.

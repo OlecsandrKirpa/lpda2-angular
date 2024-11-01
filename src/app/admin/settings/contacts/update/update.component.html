@@ -17,7 +17,7 @@
     <app-errors [errors]="form.errors" ></app-errors>
 
     <div class="flex items-center">
-      <button class="me-2" type="submit" tuiButton>
+      <button [showLoader]="loading()" class="me-2" type="submit" tuiButton>
         <ng-container i18n>Conferma</ng-container>
       </button>
 

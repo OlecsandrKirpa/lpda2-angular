@@ -56,17 +56,6 @@
   </div>
 
   <div class="mb-4">
-    <p class="text-lg font-bold" i18n>Contatti email</p>
-    <p class="text-slate-400" i18n>Modifica i contatti presenti nella mail.</p>
-
-    <app-preferences-json-input
-      [formControlName]="'email_contacts'"
-      (submit)="save('email_contacts', $event)"
-      [inputSize]="inputSize"
-    ></app-preferences-json-input>
-  </div>
-
-  <div class="mb-4">
     <p class="text-lg font-bold" i18n>Anticipo massimo prenotazione</p>
     <p class="text-slate-400" i18n>Si potranno creare prenotazioni fino ad un limite di {{ form.value['reservation_max_days_in_advance'] }} giorni da oggi.</p>
 
