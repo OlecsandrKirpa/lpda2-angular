@@ -16,4 +16,6 @@ export interface PublicData {
   settings: Record<SettingKey, SettingValue>;
 
   public_messages: PublicMessages;
+
+  contacts: Record<string, string>;
 }

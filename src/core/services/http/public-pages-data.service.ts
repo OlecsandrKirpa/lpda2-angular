@@ -35,9 +35,7 @@ export class PublicPagesDataService extends DomainService {
     map((data: PublicData | null) => {
       if (!(typeof data === "object" && data !== null)) return null;
 
-      console.warn(`TODO place here contacts. Take from contacts instead of settings.`)
-      return null;
-      // return toJsonIfPossible(data.settings.email_contacts);
+      return data.contacts;
     }),
     tap((c: Record<string, string> | null) => this.contacts.set(c))
   );
