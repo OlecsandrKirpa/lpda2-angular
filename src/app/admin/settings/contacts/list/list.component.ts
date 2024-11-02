@@ -73,7 +73,7 @@ export class ListComponent implements OnInit {
     ).subscribe({
       next: (data: { items: Contact[] }): void => {
         // this.updateFormByData(data.items);
-        this.items.set(data.items);
+        this.items.set(data.items.sort((a, b) => a.key > b.key ? 1 : -1));
       },
       error: (e: HttpErrorResponse): void => {
         this.notifications.error(parseHttpErrorMessage(e) || SOMETHING_WENT_WRONG_MESSAGE);
