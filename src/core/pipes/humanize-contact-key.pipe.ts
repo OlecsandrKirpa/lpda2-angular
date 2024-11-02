@@ -8,7 +8,7 @@ import { ContactKey, isContactKey } from '@core/lib/interfaces/contact';
 })
 export class HumanizeContactKeyPipe implements PipeTransform {
 
-  readonly mapping: Record<ContactKey, string> = {
+  readonly mapping: Partial<Record<ContactKey, string>> = {
     address: $localize`Indirizzo del ristorante.`,
     email: $localize`Indirizzo email`,
     facebook_url: $localize`URL alla pagina Facebook del ristorante`,
@@ -28,8 +28,7 @@ export class HumanizeContactKeyPipe implements PipeTransform {
       return null;
     }
 
-    return this.mapping[value];
-
+    return this.mapping[value] ?? null;
   }
 
 }

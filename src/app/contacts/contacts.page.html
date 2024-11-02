@@ -1,8 +1,110 @@
-  <h1 class="text-4xl font-bold uppercase flex items-center justify-center border-b-2 border-b-slate-100 pb-4 mb-4">
-    <mat-icon inline class="me-3">contacts</mat-icon>
-    <ng-container i18n>Contatti</ng-container>
-  </h1>
+<h1 class="text-4xl font-bold uppercase flex items-center justify-center border-b-2 border-b-slate-100 pb-4 mb-4">
+  <mat-icon inline class="me-3">contacts</mat-icon>
+  <ng-container i18n>Contatti</ng-container>
+</h1>
 
-  <p class="mb-2">
-    <ng-container i18n>Per qualsiasi informazione o chiarimento, non esitare a contattarci:</ng-container>
-  </p>
+<p class="mb-2">
+  <ng-container i18n>Per qualsiasi informazione o chiarimento, non esitare a contattarci:</ng-container>
+</p>
+
+@if(contacts()){
+
+  
+  <ul class="contact-items">
+    @if(contacts() | key: 'email') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <mat-icon inline>email</mat-icon>
+        </span>
+        <span class="flex flex-col">
+          <span class="text-sm text-slate-400">Email</span>
+          <a target="_blank" tuiLink href="mailto:{{ contacts() | key: 'email' }}" >{{ contacts() | key: 'email' }}</a>
+        </span>
+      </li>
+    }
+  
+    @if(contacts() | key: 'phone') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <mat-icon inline>phone</mat-icon>
+        </span>
+        <span class="flex flex-col">
+          <span class="text-sm text-slate-400">Telefono</span>
+          <a target="_blank" tuiLink href="tel:{{ contacts() | key: 'phone' }}" >{{ contacts() | key: 'phone' }}</a>
+        </span>
+      </li>
+    }
+  
+    @if((contacts() | key: 'whatsapp_url') && (contacts() | key: 'whatsapp_number')) {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <app-icon [name]="'whatsapp-svg'" ></app-icon>
+        </span>
+        <span class="flex flex-col">
+          <span class="text-sm text-slate-400">Whatsapp</span>
+          <a target="_blank" tuiLink href="{{ contacts() | key: 'whatsapp_url' }}" >{{ contacts() | key: 'whatsapp_number' }}</a>
+        </span>
+      </li>
+    }
+  
+    @if(contacts() | key: 'facebook_url') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <app-icon [name]="'facebook-svg'" ></app-icon>
+        </span>
+        <span class="flex flex-col">
+          <a target="_blank" tuiLink href="{{ contacts() | key: 'facebook_url' }}" >
+            <ng-container i18n>Pagina Facebook</ng-container>
+          </a>
+        </span>
+      </li>
+    }
+  
+    @if(contacts() | key: 'instagram_url') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <app-icon [name]="'instagram-svg'" ></app-icon>
+        </span>
+        <span class="flex flex-col">
+          <a target="_blank" tuiLink href="{{ contacts() | key: 'instagram_url' }}" >
+            <ng-container i18n>Pagina Instagram</ng-container>
+          </a>
+        </span>
+      </li>
+    }
+  
+    @if(contacts() | key: 'tripadvisor_url') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <app-icon [name]="'tripadvisor-svg'" ></app-icon>
+        </span>
+        <span class="flex flex-col">
+          <a target="_blank" tuiLink href="{{ contacts() | key: 'tripadvisor_url' }}" >
+            <ng-container i18n>Pagina TripAdvisor</ng-container>
+          </a>
+        </span>
+      </li>
+    }
+  
+    @if(contacts() | key: 'address') {
+      <li class="flex flex-row items-center text-lg py-2">
+        <span class="inline-flex items-center w-[50px] text-4xl">
+          <mat-icon>location_on</mat-icon>
+        </span>
+        <span class="flex flex-col">
+          @if(contacts() | key: 'google_url'){
+            <a target="_blank" tuiLink href="{{ contacts() | key: 'google_url' }}" >
+              <ng-container i18n>{{ contacts() | key: 'address' }}</ng-container>
+            </a>
+          } @else {
+            <span>
+              <ng-container i18n>{{ contacts() | key: 'address' }}</ng-container>
+            </span>
+          }
+        </span>
+      </li>
+    }
+  </ul>
+} @else {
+  <tui-loader [showLoader]="true" [size]="'l'" ></tui-loader>
+}

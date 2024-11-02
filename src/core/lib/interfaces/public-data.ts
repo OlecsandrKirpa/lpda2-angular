@@ -1,6 +1,8 @@
 import {ReservationData} from "@core/lib/interfaces/reservation-data";
 import {Setting, SettingKey, SettingValue} from "@core/lib/settings";
 import {PublicMessages} from "@core/components/public-message/public-message.component";
+import { ContactKey } from "./contact";
+
 
 /**
  * Data preloaded on public pages that is essential to make the public part of the app work.
@@ -17,5 +19,5 @@ export interface PublicData {
 
   public_messages: PublicMessages;
 
-  contacts: Record<string, string>;
+  contacts: Record<ContactKey, string | null>;
 }

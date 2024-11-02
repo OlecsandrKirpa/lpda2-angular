@@ -8,6 +8,9 @@ import {MatIcon} from "@angular/material/icon";
 import {PublicMessages} from "@core/components/public-message/public-message.component";
 import {RouterLink} from "@angular/router";
 import {PublicMessageLocation} from "@core/lib/interfaces/public-message";
+import { PublicData } from '@core/lib/interfaces/public-data';
+import { ContactKey } from '@core/lib/interfaces/contact';
+import { IconComponent } from "../icon/icon.component";
 
 @Component({
   selector: 'app-public-footer',
@@ -17,8 +20,9 @@ import {PublicMessageLocation} from "@core/lib/interfaces/public-message";
     TuiLinkModule,
     NgOptimizedImage,
     MatIcon,
-    RouterLink
-  ],
+    RouterLink,
+    IconComponent
+],
   templateUrl: './public-footer.component.html',
   styleUrl: './public-footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,8 +38,8 @@ export class PublicFooterComponent {
   readonly messages = this.public.messages;
 
   @tuiPure
-  contact(key: string): string | null {
-    const contacts: Record<string, string> | null = this.contacts();
+  contact(key: ContactKey): string | null {
+    const contacts: PublicData["contacts"] | null = this.contacts();
 
     if (!contacts) return null;
 

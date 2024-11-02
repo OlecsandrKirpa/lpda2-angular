@@ -3,6 +3,7 @@ export const ContactKeys = [
   `email`,
   `phone`,
   `whatsapp_number`,
+  `whatsapp_url`, // Generated from whatsapp_number server-side.
   `facebook_url`,
   `instagram_url`,
   `tripadvisor_url`,

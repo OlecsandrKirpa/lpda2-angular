@@ -8,6 +8,7 @@ import {SOMETHING_WENT_WRONG_MESSAGE} from "@core/lib/something-went-wrong-messa
 import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {toJsonIfPossible} from "@core/lib/interfaces/to_json_if_possible";
 import { PublicMessages} from "@core/components/public-message/public-message.component";
+import { ContactKey } from '@core/lib/interfaces/contact';
 
 /**
  * This service will preload all the data needed for the public pages.
@@ -30,14 +31,14 @@ export class PublicPagesDataService extends DomainService {
     tap((m: PublicMessages | null) => this.messages.set(m))
   );
 
-  readonly contacts: WritableSignal<Record<string, string> | null> = signal(null);
+  readonly contacts: WritableSignal<PublicData["contacts"] | null> = signal(null);
   readonly contacts$ = this.data$.pipe(
     map((data: PublicData | null) => {
       if (!(typeof data === "object" && data !== null)) return null;
 
       return data.contacts;
     }),
-    tap((c: Record<string, string> | null) => this.contacts.set(c))
+    tap((c: PublicData["contacts"] | null) => this.contacts.set(c))
   );
 
   constructor() {
