@@ -78,7 +78,7 @@ export class UpdateComponent implements OnInit {
     this.saving.set(true);
     this.service.update(key, value).pipe(
       takeUntil(this.destroy),
-      finalize(() => this.saving.set(true))
+      finalize(() => this.saving.set(false))
     ).subscribe({
       next: () => this.close(),
       error: (e: unknown) => {
