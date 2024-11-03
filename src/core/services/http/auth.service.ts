@@ -6,8 +6,13 @@ import { LocalStorageService } from '../local-storage.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../notifications.service';
 import {ProfileService} from "@core/services/http/profile.service";
-import {JWT_INTERCEPTOR_DONT_SKIP_REQUEST_PARAM} from "@core/interceptors/jwt.interceptor";
+import {JWT_INTERCEPTOR_DONT_SKIP_REQUEST_PARAM, JWT_INTERCEPTOR_SKIP_REQUEST_PARAM} from "@core/interceptors/jwt.interceptor";
 
+export type AuthRootResponse = {
+  sucess: true,
+  // root_at: current_user.root_at,
+  duration: number // in seconds, how many time the root mode will be active.
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +30,9 @@ export class AuthService extends DomainService {
     super(`/auth`);
   }
 
+  root(password: string): Observable<AuthRootResponse> {
+    return this.http.post<AuthRootResponse>(`/root?${JWT_INTERCEPTOR_DONT_SKIP_REQUEST_PARAM}`, { password: password });
+  }
 
   login(params: { email: string, password: string }): Observable<true> {
     return this.post(`/login`, params).pipe(

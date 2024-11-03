@@ -1,0 +1,29 @@
+<h1 i18n>Accesso amministratore richiesto</h1>
+<p i18n>Per proseguire, è richiesto l'accesso come amministratore. Inserisci la tua password per continuare.</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <div class="block mb-3">
+    <tui-input-password [tuiAutoFocus]="true" [formControlName]="'password'">
+      <ng-container i18n>Password</ng-container>
+    </tui-input-password>
+
+    @if(submitted() || password.touched) {
+      <app-errors [errors]="form.controls.password.errors" ></app-errors>
+    }
+  </div>
+
+  @if(submitted()){
+    <app-errors [errors]="form.errors"></app-errors>
+  }
+
+  <div class="flex items-center">
+    <button [showLoader]="loading()" class="me-2" tuiButton type="submit">
+      <ng-container i18n>Invia</ng-container>
+    </button>
+
+    <button tuiButton appearance="icon" type="button" (click)="close()">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

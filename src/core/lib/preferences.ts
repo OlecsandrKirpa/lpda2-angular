@@ -20,6 +20,5 @@ export interface Preference {
   key: string,
   value: PreferenceValue,
   user_id: number,
-  require_root: boolean,
   updated_at: string
 }

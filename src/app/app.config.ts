@@ -20,6 +20,7 @@ import {addLanguageHeaderInterceptor} from "@core/interceptors/add-language-head
 import {SessionService} from "@core/services/admin-session.service";
 import {jwtInterceptor} from "@core/interceptors/jwt.interceptor";
 import { provideServiceWorker } from '@angular/service-worker';
+import { catchRequireRootInterceptor } from "@core/interceptors/catch-require-root.interceptor";
 
 registerLocaleData(localeIT);
 
@@ -28,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withHashLocation()),
     importProvidersFrom(TuiRootModule),
     DatePipe,
-    provideHttpClient(withInterceptors([addLanguageHeaderInterceptor, jwtInterceptor])),
+    provideHttpClient(withInterceptors([addLanguageHeaderInterceptor, jwtInterceptor, catchRequireRootInterceptor])),
     provideAnimations(),
     provideAnimationsAsync(),
     importProvidersFrom(TuiRoutableDialogModule),

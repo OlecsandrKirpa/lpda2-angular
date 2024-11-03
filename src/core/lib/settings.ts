@@ -25,6 +25,5 @@ export interface Setting {
   key: string,
   value: SettingValue,
   // user_id: number,
-  require_root: boolean,
   updated_at: string
 }
