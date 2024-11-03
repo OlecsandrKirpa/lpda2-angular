@@ -5,6 +5,9 @@
 
   <div class="flex items-center justify-center">
     <tui-calendar
+        [min]="today()"
+        [max]="maxDate()"
+        (monthChange)="onMonthChange($event)"
         [disabledItemHandler]="disabledDates"
         (touchend)="touched()"
         (dayClick)="onDayClick($event)"

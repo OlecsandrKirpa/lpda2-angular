@@ -39,6 +39,12 @@ export class PublicReservationsService extends DomainService {
     )
   }
 
+  getValidDates(params?: { from_date: string, to_date: string }): Observable<TuiDay[]> {
+    return this.get<string[]>(`valid_dates`, { params: params }).pipe(
+      map((data: string[]): TuiDay[] => data.map((d: string): TuiDay => TuiDay.fromLocalNativeDate(new Date(d)))),
+    )
+  }
+
   readonly created: BehaviorSubject<Reservation | null> = new BehaviorSubject<Reservation | null>(null);
 
   load(secret: string): Observable<Reservation> {

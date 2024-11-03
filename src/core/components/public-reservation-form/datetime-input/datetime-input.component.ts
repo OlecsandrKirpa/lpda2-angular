@@ -6,9 +6,10 @@ import {
   OnInit,
   Output,
   signal,
+  SimpleChanges,
   WritableSignal
 } from '@angular/core';
-import {TuiBooleanHandler, TuiDay, TuiDestroyService, TuiTime} from "@taiga-ui/cdk";
+import {TuiBooleanHandler, TuiDay, TuiDestroyService, TuiMonth, TuiTime} from "@taiga-ui/cdk";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TuiButtonModule, TuiCalendarModule, TuiExpandModule, TuiLoaderModule} from "@taiga-ui/core";
 import {filter, finalize, merge, switchMap, take, takeUntil, tap} from "rxjs";
@@ -79,6 +80,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   private readonly reservationsService: PublicReservationsService = inject(PublicReservationsService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly destroy$ = inject(TuiDestroyService);
+  private readonly datePipe: DatePipe = inject(DatePipe);
 
   @Output() readonly valueChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() readonly inputTouch: EventEmitter<void> = new EventEmitter<void>();
@@ -91,23 +93,36 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   readonly paymentAccepted: FormControl<boolean | null> = new FormControl<boolean | null>(false);
   readonly groups: WritableSignal<{[time: string]: PreorderReservationGroup}> = signal<{ [time: string]: PreorderReservationGroup }>({});
+  readonly validDates: WritableSignal<readonly TuiDay[]> = signal<readonly TuiDay[]>([]);
   readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
+  readonly loadingDates: WritableSignal<boolean> = signal(false);
 
   readonly today: WritableSignal<TuiDay> = signal(TuiDay.currentLocal());
+
+  @Input() maxDaysInAdvance: number = 300;
+
+  readonly maxDate: WritableSignal<TuiDay | null> = signal(null);
 
   readonly disabledDates: TuiBooleanHandler<TuiDay> = (day: TuiDay): boolean => {
     if (day.dayBefore(this.today())) return true;
     if (day.dayAfter(this.today().append({day: this.maxDaysInAdvance}))) return true;
 
-    return false;
-  };
+    // If no valid dates are provided, don't disable any day.
+    if (this.validDates().length === 0) return false;
 
-  @Input() maxDaysInAdvance: number = 300;
+    // If day is after the last valid date, dont disable it as we may have not loaded the next valid dates yet.
+    if (day.dayAfter(this.validDates()[this.validDates().length - 1])) return false;
+
+    return (this.validDates().find((d: TuiDay) => d.daySame(day))) ? false : true;
+  };
   
   readonly defaultMessage: string = $localize`Per assicurarti uno dei nostro vavoli sarà necessario un pagamento che verrà scalato dal conto finale al ristorante.`;
 
   ngOnInit(): void {
+    this.updateMaxDate();
+    this.loadDates();
+
     this.date.valueChanges.pipe(
       takeUntil(this.destroy$),
       tap( () => this.time.setValue(null)),
@@ -228,6 +243,10 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  ngOnChanges(s: SimpleChanges): void {
+    this.updateMaxDate();
+  }
+
   onDayClick(day: TuiDay): void {
     this.date.setValue(day);
   }
@@ -242,5 +261,45 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   onTimeClick(time: TuiTime) {
     this.time.setValue(time);
+  }
+
+  onMonthChange(m: TuiMonth) {
+    this.loadDates(m);
+  }
+
+  private loadDates(month: TuiMonth = TuiMonth.currentLocal()): void {
+    const from = new TuiDay(month.year, month.month, 1);
+    const to = from.append({month: 1}).append({day: -1});
+
+    this.loadingDates.set(true);
+    this.reservationsService.getValidDates({
+      from_date: this.datePipe.transform(from.toUtcNativeDate(), 'yyyy-MM-dd') || '',
+      to_date: this.datePipe.transform(to.toUtcNativeDate(), 'yyyy-MM-dd') || ''
+    }).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loadingDates.set(false)),
+    ).subscribe({
+      next: (response: TuiDay[]) => {
+        // Concatenate the new dates with the existing ones but avoid duplicates.
+        this.validDates.update((dates: readonly TuiDay[]): TuiDay[] => {
+          let all: TuiDay[] = [...dates];
+          response.forEach((date: TuiDay) => {
+            if (!all.find((d: TuiDay) => d.daySame(date))) all.push(date);
+          })
+
+          return all;
+        })
+      },
+      error: (error: unknown): void => {
+        console.error(error);
+        this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);
+      }
+    });
+  }
+
+  private updateMaxDate(): void {
+    this.maxDate.set(
+      TuiDay.currentLocal().append({day: this.maxDaysInAdvance})
+    );
   }
 }
