@@ -137,7 +137,7 @@ export class PublicNavigateMenuV1Component implements OnInit {
    * Will load the root categories from the API.
    */
   private loadRootCategories(): void {
-    this.loadCategories({ root: true });
+    this.loadCategories({ root: true, per_page: 100 });
   }
 
   private loadCategories(params = {}): void {
