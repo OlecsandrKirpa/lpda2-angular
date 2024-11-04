@@ -92,6 +92,20 @@ export function fromTocalToUtcTimeString(time: string): string {
   return `${hours}:${minutes}`;
 }
 
+/**
+ * Given UTC datetime string in format 'YYYY-MM-DD HH:MM' will localize it to the user's timezone.
+ */
+export function fromUtcTimeDateToLocal(time: string): string {
+  const utcDate = new Date(`${time}Z`); // Interpreta la stringa come UTC
+  const year = utcDate.getFullYear();
+  const month = String(utcDate.getMonth() + 1).padStart(2, '0');
+  const day = String(utcDate.getDate()).padStart(2, '0');
+  const hours = String(utcDate.getHours()).padStart(2, '0');
+  const minutes = String(utcDate.getMinutes()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
 export function tuiTimeToUTCString(time: TuiTime): string {
   return fromTocalToUtcTimeString(time.toString());
 }
