@@ -93,8 +93,8 @@
         </span>
         <span class="flex flex-col">
           @if(contacts() | key: 'google_url'){
-            <a target="_blank" tuiLink href="{{ contacts() | key: 'google_url' }}" >
-              <ng-container i18n>{{ contacts() | key: 'address' }}</ng-container>
+            <a target="_blank" tuiLink href="{{ contacts() | key: 'google_url' }}">
+              {{ contacts() | key: 'address' }}
             </a>
           } @else {
             <span>{{ contacts() | key: 'address' }}</span>
