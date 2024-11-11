@@ -49,7 +49,7 @@ export class PublicReservationConfirmationComponent {
       return false;
     }
 
-    return this.reservation.created_at.getTime() - Date.now() < 5 * 60 * 1000;
+    return Date.now() - this.reservation.created_at.getTime() < 5 * 60 * 1000;
   }
 
   resendConfirmation(): void {
