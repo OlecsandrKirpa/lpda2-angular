@@ -97,9 +97,7 @@
               <ng-container i18n>{{ contacts() | key: 'address' }}</ng-container>
             </a>
           } @else {
-            <span>
-              <ng-container i18n>{{ contacts() | key: 'address' }}</ng-container>
-            </span>
+            <span>{{ contacts() | key: 'address' }}</span>
           }
         </span>
       </li>
