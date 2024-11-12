@@ -36,7 +36,7 @@
                     @if(selection != undefined) {
                       <div class="flex flex-col">
                         @for(date of selection ?? []; track date) {
-                          <span class="mx-2 mb-1">{{ date | fromTuiDay | date: 'd MMMM y' }}</span>
+                          <span [ngClass]="{'text-slate-400': !(date | fromTuiDay | dateAfter: today)}" class="mx-2 mb-1">{{ date | fromTuiDay | date: 'd MMMM y' }}</span>
                         } @empty {
                           <span i18n class="text-xl text-green-500">Sempre</span>
                         }

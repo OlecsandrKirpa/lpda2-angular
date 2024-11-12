@@ -1,4 +1,4 @@
-import { DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, EventEmitter, inject, Input, OnInit, Output, Signal, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SearchResult } from '@core/lib/search-result.model';
@@ -14,6 +14,7 @@ import { catchError, finalize, map, Observable, of, takeUntil } from 'rxjs';
 import { TuiWeekdayHandlerPipe } from "../../pipes/tui-weekday-handler.pipe";
 import { dateToTuiDay } from '@core/lib/tui-datetime-to-iso-string';
 import { FromTuiDayPipe } from '@core/pipes/from-tui-day.pipe';
+import { DateAfterPipe } from "../../pipes/date-after.pipe";
 
 
 export interface TurnDateOutputFormat {
@@ -42,7 +43,9 @@ type Selections = Record<number, TuiDay[]>;
     TuiButtonModule,
     TuiLetModule,
     FromTuiDayPipe,
-  ],
+    NgClass,
+    DateAfterPipe
+],
   templateUrl: './select-turns-paymentv2.component.html',
   styleUrl: './select-turns-paymentv2.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +63,7 @@ export class SelectTurnsPaymentv2Component implements OnInit {
   readonly loading: WritableSignal<boolean> = signal(false);
 
   readonly selections: WritableSignal<Selections> = signal({});
+  readonly today: Date = new Date();
 
   @Input() set turns(v: ReservationTurn[]) {
     this.selections.update((selections: Selections) => {
