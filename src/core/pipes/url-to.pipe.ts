@@ -19,7 +19,8 @@ const pages: Record<string, Record<string, string>> = {
 
 @Pipe({
   name: 'urlTo',
-  standalone: true
+  standalone: true,
+  pure: true
 })
 export class UrlToPipe implements PipeTransform {
 

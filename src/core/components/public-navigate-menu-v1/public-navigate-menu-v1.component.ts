@@ -11,7 +11,7 @@ import { PublicReservationsService } from '@core/services/http/public-reservatio
 import { NotificationsService } from '@core/services/notifications.service';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiDialogService, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
-import { finalize, takeUntil } from 'rxjs';
+import { distinctUntilChanged, filter, finalize, map, switchMap, takeUntil, tap } from 'rxjs';
 // import { ShowImageComponent } from '../show-image/show-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
@@ -63,6 +63,18 @@ export class PublicNavigateMenuV1Component implements OnInit {
 
   ngOnInit(): void {
     this.loadRootCategories();
+
+    this.route.params.pipe(
+      map((params: Params) => params["categoryId"]),
+      filter((category_id: unknown): category_id is string => typeof category_id === "string" && category_id.length > 0),
+      distinctUntilChanged(),
+      switchMap((category_id: string) => this.menuService.showCategory(category_id)),
+      takeUntil(this.destroy),
+    ).subscribe({
+      next: (category: MenuCategory): void => {
+        this.selectCategory(category);
+      }
+    })
 
     // this.loadingCategories.set(false); // DEVELOPMENT ONLY. REMOVE.
     // this.loadingDishes.set(false); // DEVELOPMENT ONLY. REMOVE.

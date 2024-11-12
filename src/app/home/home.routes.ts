@@ -19,7 +19,16 @@ export const routes: Routes = [
   },
   {
     path: `menu`,
-    loadComponent: () => import(`./menu/menu.component`).then(m => m.MenuComponent),
+    children: [
+      {
+        path: `:categoryId`,
+        loadComponent: () => import(`./menu/menu.component`).then(m => m.MenuComponent),
+      },
+      {
+        path: ``,
+        loadComponent: () => import(`./menu/menu.component`).then(m => m.MenuComponent),
+      }
+    ]
   },
   {
     path: `about`,
