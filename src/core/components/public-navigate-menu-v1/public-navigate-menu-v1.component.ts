@@ -29,7 +29,7 @@ import { PublicShowImagesComponent } from "../public-show-images/public-show-ima
     TuiButtonModule,
     MatIconModule,
     CurrencyPipe,
-    PublicShowImagesComponent
+    PublicShowImagesComponent,
 ],
   templateUrl: './public-navigate-menu-v1.component.html',
   styleUrl: './public-navigate-menu-v1.component.scss',
@@ -96,8 +96,13 @@ export class PublicNavigateMenuV1Component implements OnInit {
    */
   navigateTo(breadcrumbIndex: number): void {
     const category: MenuCategory = this.breadcrumbs()[breadcrumbIndex];
-    this.breadcrumbs.update((prev) => prev.slice(0, breadcrumbIndex + 1));
+    this.breadcrumbs.update((prev) => prev.slice(0, breadcrumbIndex));
     this.selectCategory(category);
+  }
+
+  navigateToRoot(): void {
+    this.selectCategory(null);
+    this.breadcrumbs.set([]);
   }
 
   /**

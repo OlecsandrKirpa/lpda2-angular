@@ -5,29 +5,54 @@
   >
 
   @if(selectedCategory()) {
-    <div class="flex">
-      <div class="me-3">
-        <p class="text-5xl">{{ selectedCategory()?.name }}</p>
-        <p class="text-2xl text-slate-400">{{ selectedCategory()?.description }}</p>
-        @if(selectedCategory()?.price) {
-          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ selectedCategory()?.price | currency }}</div>
+    <!-- <div class="block" > -->
+      <!-- <div class="me-3"> -->
+        <p class="text-5xl block mb-3">{{ selectedCategory()?.name }}</p>
+
+        @if(selectedCategory()?.description?.length) {
+          <p class="text-xl block mb-2 text-slate-400">{{ selectedCategory()?.description }}</p>
         }
+
+        @if(selectedCategory()?.price) {
+          <div class="text-lg w-fit text-success-dark rounded border border-success-dark mb-2 py-2 px-4">Menù a prezzo fisso: {{ selectedCategory()?.price | currency }}</div>
+        }
+      <!-- </div> -->
+
+      <div class="block mb-3">
+        <div class="flex items-center">
+          <button type="button" (click)="navigateToRoot()" class="btn btn-primary me-1">
+            Menu
+          </button>
+  
+          <span class="me-1">
+            <mat-icon>chevron_right</mat-icon>
+          </span>
+  
+          @for(cat of breadcrumbs(); track cat.id; let last = $last; let index = $index){
+            <button type="button" (click)="navigateTo(index)" class="btn btn-primary me-1">
+              {{ cat.name }}
+            </button>
+            
+            <!-- @if(!last){ -->
+              <span class="me-1">
+                <mat-icon>chevron_right</mat-icon>
+              </span>
+            <!-- } -->
+          }
+  
+          <span class="me-1">
+            {{ selectedCategory()?.name }}
+          </span>
+        </div>
       </div>
 
-      <div>
+      <!-- <div>
         <app-public-show-images class="block max-w-[200px]" [images]="selectedCategory()?.images" ></app-public-show-images>
-      </div>
-    </div>
-
-    <button type="button" tuiLink (click)="navigateBack()">
-      <span class="flex">
-        <mat-icon>arrow_back</mat-icon>
-        <span i18n>Indietro</span>
-      </span>
-    </button>
+      </div> -->
+    <!-- </div> -->
   } @else {
-    <h1 class="text-5xl" i18n>Menù</h1>
-    <p class="text-slate-400 text-xl" i18n>Naviga attraverso il menù cliccando sopra ai piatti per consultarne i dettagli.</p>
+    <h1 class="text-5xl block mb-3" i18n>Menù</h1>
+    <p class="text-xl block mb-2 text-slate-400" i18n>Naviga attraverso il menù cliccando sopra ai piatti per consultarne i dettagli.</p>
   }
 
   @if(categories().length == 0 && dishes().length == 0) {
@@ -38,38 +63,45 @@
     }
   }
 
-  @for(category of categories(); track category.id) {
-    <div (click)="clickOnCategory(category)" role="button" class="hover-transition cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
-      <div class="w-[25%] justify-center align-center me-3">
-        <app-public-show-images class="block" [images]="category?.images" ></app-public-show-images>
-      </div>
-
-      <div class="justify-center align-center">
-        <p class="text-3xl">{{ category.name }}</p>
-        <p class="text-lg text-slate-400">{{ category.description }}</p>
-        @if(category.price) {
-          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ category.price | currency }}</div>
-        }
+  @for(category of categories(); track category.id; let last = $last) {
+    <div (click)="clickOnCategory(category)" role="button" class="hover-transition justify-between cursor-pointer flex items-center py-3">
+      <div class="flex items-center">
+        <div class="w-[25%] justify-center align-center me-3">
+          <app-public-show-images class="block" [images]="category?.images" ></app-public-show-images>
+        </div>
+  
+        <div class="justify-center align-center">
+          <p class="text-xl">{{ category.name }}</p>
+          <p class="text-lg text-slate-400">{{ category.description }}</p>
+          @if(category.price) {
+            <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ category.price | currency }}</div>
+          }
+        </div>
       </div>
 
       <div>
-        <button type="button" tuiButton appearance="flat">
+        <button type="button" size="m" tuiButton appearance="flat">
           <ng-container i18n>Apri</ng-container>
         </button>
       </div>
     </div>
+
+    @if(!last){
+      <hr style="height: 1px" class="border-slate-200 mb-5">
+    }
   }
 
-  @for(dish of dishes(); track dish.id) {
-    <div (click)="clickOnDish(dish)" role="button" class="hover-transition | cursor-pointer flex items-center mb-5 border-t-slate-200 border-t border-b border-solid border-b-slate-200 py-3">
-      <div class="w-[25%] justify-center align-center me-3">
-        <app-public-show-images class="block" [images]="dish?.images" ></app-public-show-images>
-      </div>
-
-      <div class="justify-center align-center">
-        <p class="text-3xl">{{ dish.name }}</p>
-        <p class="text-lg text-slate-400">{{ dish.description }}</p>
-
+  @for(dish of dishes(); track dish.id; let last = $last) {
+    <div (click)="clickOnDish(dish)" role="button" class="hover-transition justify-between cursor-pointer flex items-center py-3">
+      <div class="flex items-center">
+        <div class="w-[25%] justify-center align-center me-3">
+          <app-public-show-images class="block" [images]="dish?.images" ></app-public-show-images>
+        </div>
+  
+        <div class="justify-center align-center">
+          <p class="text-xl">{{ dish.name }}</p>
+          <p class="text-lg text-slate-400">{{ dish.description }}</p>
+        </div>
       </div>
 
       <div>
@@ -81,6 +113,21 @@
             }
           </div>
       </div>
+    </div>
+
+    @if(!last){
+      <hr style="height: 1px" class="border-slate-200 mb-5">
+    }
+  }
+
+  @if(selectedCategory()) {
+    <div class="block my-3" >
+      <button type="button" tuiLink (click)="navigateBack()">
+        <span class="flex">
+          <mat-icon>arrow_back</mat-icon>
+          <span i18n>Indietro</span>
+        </span>
+      </button>
     </div>
   }
 
