@@ -1,0 +1,56 @@
+<h3 class="text-2xl" i18n>Ridimensiona l'immagine</h3>
+<p class="text-slate-400" i18n>Puoi decidere se ritagliare o ridimensionare l'immagine in questione. Quando hai finito, prosegui cliccando 'conferma' in fondo a questa pagina.</p>
+
+<div class="mb-3">
+  <image-cropper
+    [imageFile]="image() ?? undefined"
+    [maintainAspectRatio]="maintainAspectRatio()"
+    [containWithinAspectRatio]="containWithinAspectRatio()"
+    [cropperMinWidth]="cropperMinWidth()"
+    [aspectRatio]="aspectRatio()"
+    [onlyScaleDown]="onlyScaleDown()"
+    [roundCropper]="roundCropper()"
+    [transform]="transform()"
+    [alignImage]="'left'"
+    format="png"
+    output="blob"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+  ></image-cropper>
+</div>
+
+<div class="d-inline-block my-2">
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="rotateLeft()" i18n>Ruota a sinistra</button>
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="rotateRight()" i18n>Ruota a destra</button>
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="flipHorizontal()" i18n>Ruota in orizzontale</button>
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="flipVertical()" i18n>Ruota in verticale</button>
+
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="containWithinAspectRatio.set(!containWithinAspectRatio())">
+    @if(containWithinAspectRatio()) {
+      <ng-container>Fill Aspect Ratio</ng-container>
+    } @else {
+      <ng-container>Contain Within Aspect Ratio</ng-container>
+    }
+  </button>
+
+  <button tuiButton [appearance]="'outline'" [size]="'s'" type="button" class="mb-2 text-nowrap mx-2" (click)="resetImage()" i18n>Reimposta</button>
+
+
+  <button tuiButton [appearance]="'outline'" size="s" type="button" class="mb-2 text-nowrap mx-2" (click)="zoomOut()">Zoom -</button>
+  <button tuiButton [appearance]="'outline'" size="s" type="button" class="mb-2 text-nowrap mx-2" (click)="zoomIn()">Zoom +</button>
+</div>
+
+<h3 class="text-2xl" i18n>Risultato</h3>
+<div class="mb-3" >
+  <img class="mx-auto border w-100" [src]="croppedImageBase64()" />
+</div>
+
+<div class="flex items-center">
+  <button (click)="submit()" tuiButton [appearance]="'primary'" [size]="'xl'" type="button">
+    <ng-container i18n>Conferma</ng-container>
+  </button>
+
+  <button (click)="cancel()" tuiButton appearance="icon" [size]="'xl'" type="button">
+    <ng-container i18n>Annulla</ng-container>
+  </button>
+</div>

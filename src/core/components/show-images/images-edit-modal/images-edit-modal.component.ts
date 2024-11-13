@@ -61,7 +61,7 @@ export class ImagesEditModalComponent implements OnInit {
   private readonly service: ImagesService = inject(ImagesService);
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
-  readonly newImage: FormControl = new FormControl(null);
+  readonly newImage: FormControl<Blob | null> = new FormControl<Blob | null>(null);
   readonly data = signal<SearchResult<Image> | null>(null);
   readonly images = computed(() => this.data()?.items ?? []);
 
@@ -93,7 +93,7 @@ export class ImagesEditModalComponent implements OnInit {
       takeUntil(this.destroy$),
       catchError(() => of(null)),
       distinctUntilChanged(),
-      filter((v: File | null) => v !== null && v !== undefined),
+      filter((v: Blob | null) => v !== null && v !== undefined),
     ).subscribe({
       next: () => this.saveNewImage(),
     });
@@ -194,7 +194,7 @@ export class ImagesEditModalComponent implements OnInit {
 
   private newImageFormData(): FormData {
     if (!(this.contextData && this.contextData.record_type && this.contextData.record_id)) throw new Error(`Invalid context data.`);
-    if (!this.newImage.valid && this.newImage.value) throw new Error(`Invalid new image.`);
+    if (!(this.newImage.valid && this.newImage.value)) throw new Error(`Invalid new image.`);
 
     const formData: FormData = new FormData();
 

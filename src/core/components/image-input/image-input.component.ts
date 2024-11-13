@@ -2,9 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   forwardRef, inject,
+  Injector,
   Input,
   OnInit,
+  Output,
   signal,
   WritableSignal
 } from '@angular/core';
@@ -13,13 +16,17 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModul
 import {CommonModule} from "@angular/common";
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {$localize} from "@angular/localize/init";
-import {TuiButtonModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiDialogService, TuiHintModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {takeUntil} from "rxjs";
 import {Image} from "@core/models/image";
 import {DomainService} from "@core/services/domain.service";
 import {ImagesService} from "@core/services/http/images.service";
 import {ShowImageComponent} from "@core/components/show-image/show-image.component";
+import { NotificationsService } from '@core/services/notifications.service';
+import { ResizeImageModalComponent } from './resize-image-modal/resize-image-modal.component';
+import {PolymorpheusContent, PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
+import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
 
 /**
  * TODO:
@@ -37,6 +44,7 @@ import {ShowImageComponent} from "@core/components/show-image/show-image.compone
     TuiButtonModule,
     MatIcon,
     ShowImageComponent,
+    TuiHintModule,
   ],
   templateUrl: './image-input.component.html',
   styleUrl: './image-input.component.scss',
@@ -51,15 +59,15 @@ import {ShowImageComponent} from "@core/components/show-image/show-image.compone
     TuiDestroyService,
   ],
 })
-export class ImageInputComponent implements ControlValueAccessor, OnInit {
-  private readonly destroy$: TuiDestroyService = new TuiDestroyService();
-  private readonly imagesService: ImagesService = inject(ImagesService);
+export class ImageInputComponent implements OnInit,ControlValueAccessor {
+  private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
+  private readonly dialogs = inject(TuiDialogService);
+  private readonly injector = inject(Injector);
+  private readonly notifications = inject(NotificationsService);
 
-  readonly control: FormControl = new FormControl<File | null>(null);
+  readonly control: FormControl<File | null> = new FormControl<File | null>(null);
 
   @Input() loading: boolean = false;
-
-  // readonly imageUrl: WritableSignal<string | null> = signal(null);
 
   @Input() link: string = $localize`Scegli un'immagine`;
 
@@ -67,24 +75,29 @@ export class ImageInputComponent implements ControlValueAccessor, OnInit {
 
   @Input() accept: string = "image/*";
 
+  /**
+   * Some settings may be ignored. Check ResizeImageModalComponent to see which settings are actually used.
+   */
+  @Input() cropperSettings: Record<string, unknown> | null | undefined = null;
+
+  @Output() readonly imageChange = new EventEmitter<unknown>();
+
   ngOnInit(): void {
-    // this.control.valueChanges.pipe(
-    //   takeUntil(this.destroy$),
-    // ).subscribe({
-    //   next: (value: File | null) => {
-    //     this.imageUrl.set(value ? this.formatUrlFromFile(value) : null);
-    //   }
-    // })
+    this.control.valueChanges.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({next: (value: File | null) => {
+      if (value instanceof File) this.fireResizeModal();
+    }});
   }
 
   registerOnChange(fn: any): void {
-    this.control.valueChanges.pipe(
+    this.imageChange.pipe(
       takeUntil(this.destroy$),
     ).subscribe({next: (value) => fn(value)});
   }
 
   registerOnTouched(fn: any): void {
-    this.control.valueChanges.pipe(
+    this.imageChange.pipe(
       takeUntil(this.destroy$),
     ).subscribe({next: () => fn()});
   }
@@ -100,17 +113,10 @@ export class ImageInputComponent implements ControlValueAccessor, OnInit {
       return;
     }
 
-    if (obj instanceof Image && obj.url) {
-      this.control.setValue(obj, { emitEvent: false });
-      // this.control.setValue(null, {emitEvent: false});
-      // this.imagesService.downloadUrl(obj.id!).subscribe({
-      //   next: (url: string) => {
-      //     this.imageUrl.set(url);
-      //   },
-      // })
-      // this.imageUrl.set(obj.url);
-      return;
-    }
+    // if (obj instanceof Image && obj.url) {
+    //   this.control.setValue(obj, { emitEvent: false });
+    //   return;
+    // }
 
     console.warn(`Invalid value for ImageInputComponent`, obj);
   }
@@ -119,7 +125,36 @@ export class ImageInputComponent implements ControlValueAccessor, OnInit {
     this.control.reset();
   }
 
-  private formatUrlFromFile(file: File): string {
-    return URL.createObjectURL(file);
+  emit(blob: Blob | null): void {
+    this.imageChange.emit(blob);
+  }
+
+  fireResizeModal(): void {
+    const file = this.control.value;
+    if (!file) return;
+
+    this.dialogs.open<Blob | null>(
+      new PolymorpheusComponent(ResizeImageModalComponent, this.injector),
+      {
+        size: 'l',
+        closeable: true,
+        dismissible: true,
+        data: {
+          ...(this.cropperSettings || {}),
+          image: file
+        },
+      }
+    ).subscribe({
+      next: (result: Blob | null) => {
+        if (result) {
+          this.emit(result);
+        } else {
+          this.control.setValue(null, { emitEvent: true });
+        }
+      },
+      error: (err: any) => {
+        this.notifications.error(SOMETHING_WENT_WRONG_MESSAGE);
+      }
+    })
   }
 }
