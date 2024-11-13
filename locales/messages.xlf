@@ -806,6 +806,12 @@
           <context context-type='linenumber'>67</context>
         </context-group>
         <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>54</context>
+        </context-group>
+        <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/ingredient-form/ingredient-form.component.html</context>
           <context context-type='linenumber'>32</context>
         </context-group>
@@ -1130,6 +1136,12 @@
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html
           </context>
           <context context-type='linenumber'>63</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>50</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/ingredient-form/ingredient-form.component.html</context>
@@ -2976,7 +2988,7 @@
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>37</context>
+          <context context-type='linenumber'>62</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6520561070532383856' datatype='html'>
@@ -3451,6 +3463,82 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/icon/icon.component.html</context>
           <context context-type='linenumber'>51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8916489497039648537' datatype='html'>
+        <source>Ridimensiona l&apos;immagine</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2425307454795251478' datatype='html'>
+        <source>
+          Puoi decidere se ritagliare o ridimensionare l&apos;immagine in
+          questione. Quando hai finito, prosegui cliccando &apos;conferma&apos;
+          in fondo a questa pagina.
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1294831657874671931' datatype='html'>
+        <source>Ruota a sinistra</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1328742079823429306' datatype='html'>
+        <source>Ruota a destra</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6964151324536098837' datatype='html'>
+        <source>Ruota in orizzontale</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5646241963930677899' datatype='html'>
+        <source>Ruota in verticale</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6076435302805417843' datatype='html'>
+        <source>Reimposta</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8389013513531416843' datatype='html'>
+        <source>Risultato</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html
+          </context>
+          <context context-type='linenumber'>43</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6496430709586338285' datatype='html'>
@@ -4569,7 +4657,7 @@
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>29</context>
+          <context context-type='linenumber'>54</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1229005893415965964' datatype='html'>
@@ -5210,22 +5298,13 @@
           <context context-type='linenumber'>80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='342918222899482457' datatype='html'>
-        <source>Indietro</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
-          </context>
-          <context context-type='linenumber'>25</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='8800044362055275389' datatype='html'>
         <source>Naviga attraverso il menù cliccando sopra ai piatti per consultarne i dettagli.</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>30</context>
+          <context context-type='linenumber'>55</context>
         </context-group>
       </trans-unit>
       <trans-unit id='633961462470193792' datatype='html'>
@@ -5234,7 +5313,7 @@
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>35</context>
+          <context context-type='linenumber'>60</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8167274690213408728' datatype='html'>
@@ -5243,7 +5322,7 @@
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>57</context>
+          <context context-type='linenumber'>84</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1564974445977546920' datatype='html'>
@@ -5252,7 +5331,16 @@
           <context context-type='sourcefile'>
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
           </context>
-          <context context-type='linenumber'>78</context>
+          <context context-type='linenumber'>110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='342918222899482457' datatype='html'>
+        <source>Indietro</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html
+          </context>
+          <context context-type='linenumber'>128</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7817407164794787045' datatype='html'>
