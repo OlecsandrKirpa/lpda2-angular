@@ -5,8 +5,6 @@
   >
 
   @if(selectedCategory()) {
-    <!-- <div class="block" > -->
-      <!-- <div class="me-3"> -->
         <p class="text-5xl block mb-3">{{ selectedCategory()?.name }}</p>
 
         @if(selectedCategory()?.description?.length) {
@@ -14,33 +12,26 @@
         }
 
         @if(selectedCategory()?.price) {
-          <div class="text-lg w-fit text-success-dark rounded border border-success-dark mb-2 py-2 px-4">Menù a prezzo fisso: {{ selectedCategory()?.price | currency }}</div>
+          <div class="text-lg w-fit text-primary rounded mb-2">Menù a prezzo fisso: {{ selectedCategory()?.price | currency }}</div>
         }
-      <!-- </div> -->
 
       <div class="block mb-3">
         <div class="flex items-center">
-          <button type="button" (click)="navigateToRoot()" class="btn btn-primary me-1">
+          <span role="button" (click)="navigateToRoot()" class="text-lg like-anchor me-1">
             Menu
-          </button>
-  
-          <span class="me-1">
-            <mat-icon>chevron_right</mat-icon>
           </span>
   
+            <mat-icon class="me-1">chevron_right</mat-icon>
+  
           @for(cat of breadcrumbs(); track cat.id; let last = $last; let index = $index){
-            <button type="button" (click)="navigateTo(index)" class="btn btn-primary me-1">
+            <span role="button" (click)="navigateTo(index)" class="text-lg like-anchor me-1">
               {{ cat.name }}
-            </button>
-            
-            <!-- @if(!last){ -->
-              <span class="me-1">
-                <mat-icon>chevron_right</mat-icon>
-              </span>
-            <!-- } -->
+            </span>
+
+            <mat-icon class="me-1">chevron_right</mat-icon>
           }
   
-          <span class="me-1">
+          <span class="me-1 text-lg text-slate-600">
             {{ selectedCategory()?.name }}
           </span>
         </div>
@@ -74,7 +65,7 @@
           <p class="text-xl">{{ category.name }}</p>
           <p class="text-lg text-slate-400">{{ category.description }}</p>
           @if(category.price) {
-            <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">Menù a prezzo fisso: {{ category.price | currency }}</div>
+            <div class="text-lg w-fit text-primary rounded">Menù a prezzo fisso: {{ category.price | currency }}</div>
           }
         </div>
       </div>
@@ -105,7 +96,7 @@
       </div>
 
       <div>
-          <div class="text-lg w-fit text-success-dark rounded border border-success-dark py-2 px-4">
+          <div class="text-lg w-fit text-primary rounded py-2 px-4">
             @if(dish.price == 0) {
               <ng-container i18n>Gratis</ng-container>
             } @else {

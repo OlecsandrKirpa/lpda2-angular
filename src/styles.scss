@@ -73,6 +73,20 @@ app-home-layout {
     font-weight: bold;
   }
 
+  .like-anchor {
+    text-decoration: none;
+    transition-property: color;
+    transition-duration: var(--tui-duration, .3s);
+    transition-timing-function: ease-in-out;
+    color: var(--tui-link);
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      color: var(--tui-link-hover);
+    }
+  }
+
   a.dark-link {
     color: black;
     fill: black;
@@ -84,22 +98,6 @@ app-home-layout {
     &:hover {
       color: var(--first-color);
       fill: var(--first-color);
-    }
-  }
-
-  $colors: var(--first-color), var(--second-color);
-  $names: primary, secondary;
-  @each $color, $name in zip($colors, $names) {
-    .text-#{$name} {
-      color: $color;
-    }
-
-    .border-#{$name} {
-      border-color: $color;
-    }
-
-    .bg-#{$name}, .background-color-#{$name} {
-      background-color: $color;
     }
   }
 
@@ -159,52 +157,4 @@ $colWidth: math.div(100, 12);
       flex: 0 0 $width;
     }
   }
-}
-
-.text-success {
-  @apply text-green-500;
-}
-
-.border-success {
-  @apply border-green-500;
-}
-
-.text-success-dark {
-  @apply text-green-700;
-}
-
-.border-success-dark {
-  @apply border-green-700;
-}
-
-.text-warning {
-  @apply text-yellow-500;
-}
-
-.border-warning {
-  @apply border-yellow-500;
-}
-
-.text-danger {
-  @apply text-red-500;
-}
-
-.border-danger {
-  @apply border-red-500;
-}
-
-.text-info {
-  @apply text-blue-500;
-}
-
-.border-info {
-  @apply border-blue-500;
-}
-
-.text-secondary {
-  @apply text-gray-500;
-}
-
-.border-secondary {
-  @apply border-gray-500;
 }
