@@ -28,16 +28,26 @@
 <nav #navbar class="navbar | fixed w-full z-20 top-0 start-0">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="assets/img/logo.png" alt="Lpda2" class="h-[52px]"/>
+      <img src="assets/img/logo-partial-building.svg" alt="Logo" class="block sm:hidden h-[52px]"/>
+      <img src="assets/img/logo.png" alt="Logo" class="hidden sm:block h-[52px]"/>
     </a>
 
-    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
 
-      <a tuiButton size="m" appearance="custom" routerLink="/reserve"
-              class="btn-primary text-base">
-        <ng-container i18n>Prenota ora</ng-container>
-      </a>
+      <span class="hidden md:inline-block">
+        <a tuiButton size="m" appearance="custom" routerLink="/reserve"
+                class="btn-primary text-base">
+          <ng-container i18n>Prenota ora</ng-container>
+        </a>
+      </span>
+
+      <span class="inline-block md:hidden">
+        <a tuiButton size="s" appearance="custom" routerLink="/reserve"
+                class="btn-primary text-base">
+          <ng-container i18n>Prenota ora</ng-container>
+        </a>
+      </span>
 
       <div class="block md:hidden" >
         <button (click)="triggerMenu()" size="m" appearance="outline" tuiIconButton>

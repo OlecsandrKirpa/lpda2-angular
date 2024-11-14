@@ -13,7 +13,7 @@ import {TuiDestroyService} from "@taiga-ui/cdk";
 import {
   AdminLanguageSwitcherComponent
 } from "@core/components/admin-language-switcher/admin-language-switcher.component";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ActivatedRoute, NavigationStart, Router, RouterModule, RouterOutlet} from "@angular/router";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {
@@ -59,6 +59,7 @@ export interface LangData {
     MenuIconModule,
     TuiFlagPipeModule,
     TuiLinkModule,
+    NgOptimizedImage,
   ],
   templateUrl: './public-navbar.component.html',
   styleUrl: './public-navbar.component.scss',
