@@ -2947,11 +2947,11 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>68</context>
+          <context context-type='linenumber'>78</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>82</context>
+          <context context-type='linenumber'>92</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7143068328363277082' datatype='html'>
@@ -3569,7 +3569,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>62</context>
+          <context context-type='linenumber'>53</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6520561070532383856' datatype='html'>
@@ -4173,8 +4173,8 @@
           pagina. 
         </source>
         <target>
-          You can choose to crop or resize the image in question. When you are
-          finished, proceed by clicking 'confirm' at the bottom of this page.
+           You can choose to crop or resize the image in question. When you are
+          finished, proceed by clicking 'confirm' at the bottom of this page. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -5541,18 +5541,18 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>61</context>
+          <context context-type='linenumber'>71</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>81</context>
+          <context context-type='linenumber'>91</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>54</context>
+          <context context-type='linenumber'>45</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1229005893415965964' datatype='html'>
@@ -6352,7 +6352,11 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>39</context>
+          <context context-type='linenumber'>41</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
+          <context context-type='linenumber'>48</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1248957141004209503' datatype='html'>
@@ -6371,7 +6375,7 @@
         <target>Home</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>80</context>
+          <context context-type='linenumber'>90</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8800044362055275389' datatype='html'>
@@ -6382,7 +6386,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>55</context>
+          <context context-type='linenumber'>46</context>
         </context-group>
       </trans-unit>
       <trans-unit id='633961462470193792' datatype='html'>
@@ -6396,7 +6400,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>60</context>
+          <context context-type='linenumber'>51</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8167274690213408728' datatype='html'>
@@ -6407,7 +6411,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>84</context>
+          <context context-type='linenumber'>75</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1564974445977546920' datatype='html'>
@@ -6418,7 +6422,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>110</context>
+          <context context-type='linenumber'>101</context>
         </context-group>
       </trans-unit>
       <trans-unit id='342918222899482457' datatype='html'>
@@ -6429,7 +6433,7 @@
             
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
-          <context context-type='linenumber'>128</context>
+          <context context-type='linenumber'>119</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7817407164794787045' datatype='html'>
