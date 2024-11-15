@@ -15,7 +15,6 @@ import {TuiInputFilesModule, TuiInputModule} from "@taiga-ui/kit";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {TuiDestroyService} from "@taiga-ui/cdk";
-import {$localize} from "@angular/localize/init";
 import {TuiButtonModule, TuiDialogService, TuiHintModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {takeUntil} from "rxjs";

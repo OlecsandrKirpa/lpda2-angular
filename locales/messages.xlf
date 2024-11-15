@@ -3465,6 +3465,20 @@
           <context context-type='linenumber'>51</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='836234029801613409' datatype='html'>
+        <source>Scegli un&apos;immagine</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/image-input/image-input.component.ts</context>
+          <context context-type='linenumber'>72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2587700333061717344' datatype='html'>
+        <source>oppure trascinala qui</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/image-input/image-input.component.ts</context>
+          <context context-type='linenumber'>74</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='8916489497039648537' datatype='html'>
         <source>Ridimensiona l&apos;immagine</source>
         <context-group purpose='location'>
