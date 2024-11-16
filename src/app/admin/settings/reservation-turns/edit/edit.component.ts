@@ -40,7 +40,6 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.pipe(
       takeUntil(this.destroy$),
-      // tap((...args: any) => console.log(`params`, args)),
       map((p: Params) => Number(p["id"])),
       filter((id: unknown): id is number => typeof id === "number" && id > 0 && !isNaN(id)),
       tap(() => this.loading.set(true)),

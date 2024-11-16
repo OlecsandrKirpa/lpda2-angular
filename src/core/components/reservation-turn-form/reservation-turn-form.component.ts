@@ -159,8 +159,6 @@ export class ReservationTurnFormComponent implements OnInit {
       step: step ?? 30,
     }
 
-    console.log(`formatting`, {...data}, {context: this.context, m: this.form.controls.weekday.value});
-
     if (this.context == "create") data["weekday"] = this.form.controls.weekday.value || 0;
 
     return data;

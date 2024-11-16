@@ -102,7 +102,6 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
 
     configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
       this.localeId = locale;
-      console.log(`configs.locale$`, {locale});
       this.updateCurrentLanguage();
     });
 

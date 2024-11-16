@@ -41,7 +41,6 @@ export class PublicDishModalComponent {
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<null, { dish: Dish }>,
   ) {
-    // console.log("PublicDishModalComponent", {context: this.context});
     this.dish.set(this.context.data.dish);
   }
 

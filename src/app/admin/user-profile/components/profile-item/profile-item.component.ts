@@ -54,7 +54,6 @@ export class ProfileItemComponent implements OnInit {
         case 'cancel':
           this.submitting = false;
           this.editing = false;
-          console.log('Terminated');
           break;
         case 'submitting':
           this.submitting = true;

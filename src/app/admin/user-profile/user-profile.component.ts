@@ -50,6 +50,5 @@ export class UserProfileComponent {
   }
 
   onEdit(item: ProfileItemComponent): void {
-    console.log('Editing', item);
   }
 }

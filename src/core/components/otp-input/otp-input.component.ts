@@ -51,7 +51,6 @@ export class OtpInputComponent implements ControlValueAccessor, OnInit {
   onPaste(event: ClipboardEvent) {
     event.preventDefault();
     this.value = (event.clipboardData?.getData('text') || '').replace(/\D/g, '').substring(0, this.size);
-    console.log("paste", this.value);
     this.refreshControlsFromValue();
     this.focusInput(this.value.length);
 
@@ -69,7 +68,6 @@ export class OtpInputComponent implements ControlValueAccessor, OnInit {
       return;
     }
 
-    console.log("input", event);
     this.updateValue();
   }
 
@@ -173,7 +171,6 @@ export class OtpInputComponent implements ControlValueAccessor, OnInit {
     this.value = this.value.substring(0, this.size);
     this.triggerValueChange();
 
-    console.log("updateValue", this.value, focusNext);
 
     setTimeout(() => {
       this.refreshControlsFromValue(focusNext);

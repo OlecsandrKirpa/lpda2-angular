@@ -89,7 +89,6 @@ export class PreferencesCommonInputComponent<T> implements ControlValueAccessor,
     ).subscribe({
       next: (value: T | null): void => {
         const diff = areDifferent(value, this.initialValue);
-        // console.log(`control value change`, {value, initial: this.initialValue, diff});
 
         if (diff) this.somethingChanged.set(true);
         else this.somethingChanged.set(false);

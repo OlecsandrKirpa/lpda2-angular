@@ -53,7 +53,6 @@ export class ResizeImageModalComponent implements OnInit {
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<Blob | null, Record<string, unknown> & { image: File }>,
   ) {
-    console.log(`context`, {...context});
     this.image.set(context.data.image);
   }
 

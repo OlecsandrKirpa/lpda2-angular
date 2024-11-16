@@ -173,7 +173,6 @@ export class PublicReservationFormComponent implements OnInit {
      */
     this.people.valueChanges.pipe(
       takeUntil(this.destroy$),
-      // tap((value: number | null) => console.log('people', {value, step: this.currentIndex()})),
       filter((value: unknown): value is number => typeof value === "number" && value > 0),
       filter(() => this.currentIndex() === 0)
     ).subscribe({
@@ -225,7 +224,6 @@ export class PublicReservationFormComponent implements OnInit {
   }
 
   nextStep(): void {
-    // console.log(`nextStep()`, this.currentStep().form.invalid);
     this.currentStep().submitted = true;
     if (this.currentStep().form.invalid) return;
 

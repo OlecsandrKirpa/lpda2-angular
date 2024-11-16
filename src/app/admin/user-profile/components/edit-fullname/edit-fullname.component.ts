@@ -30,7 +30,6 @@ export class EditFullnameComponent implements OnInit {
   private readonly profile: ProfileService = inject(ProfileService);
 
   ngOnInit() {
-    console.log("EditFullnameComponent initialized");
     this.control.setValue(this.profile.cu()?.fullname);
 
     this.observable$?.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
