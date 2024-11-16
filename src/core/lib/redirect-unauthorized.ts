@@ -1,6 +1,7 @@
 import {Injector} from "@angular/core";
 import {Router, UrlTree} from "@angular/router";
 import {NotificationsService} from "@core/services/notifications.service";
+import { supportedLanguages } from "./supported-languages";
 
 export function redirectUnauthorized(injector: Injector, fireNotification: boolean = true): void {
   const router: Router = injector.get(Router);
@@ -11,15 +12,18 @@ export function redirectUnauthorized(injector: Injector, fireNotification: boole
     notifications.error($localize`Accedi per proseguire.`);
   }
 
-  const url = window.location.pathname.indexOf(`/auth`) === -1 ? window.location.href.replace(window.location.origin, ``) : null;
-
   router.navigateByUrl(redirectUnauthorizedUrl(injector));
 }
 
 export function redirectUnauthorizedUrl(injector: Injector): UrlTree {
   const router: Router = injector.get(Router);
 
-  const url: string | null = window.location.pathname.indexOf(`/auth`) === -1 ? window.location.href.replace(window.location.origin, ``) : null;
+  if (window.location.pathname.indexOf(`/auth`) != -1) return router.createUrlTree([`/auth`]);
+
+  let url = window.location.href.replace(window.location.origin, ``).replace(`/#/`, ``);
+  supportedLanguages.forEach((lang) => {
+    if (url.indexOf(`/${lang.code}`) === 0) url = url.replace(`/${lang.code}`, ``);
+  });
 
   return router.createUrlTree([`/auth`], { queryParams: { url } });
 }
