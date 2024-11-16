@@ -42,7 +42,7 @@ export class ResizeImageModalComponent implements OnInit {
    * Settings for the cropper.
    */
   readonly containWithinAspectRatio: WritableSignal<boolean> = signal(true);
-  readonly aspectRatio: WritableSignal<number> = signal(3 / 4);
+  readonly aspectRatio: WritableSignal<number> = signal(4 / 3);
   readonly cropperMinWidth: WritableSignal<number | undefined> = signal(256);
   readonly maintainAspectRatio: WritableSignal<boolean> = signal(true);
   readonly onlyScaleDown: WritableSignal<boolean> = signal(true);
