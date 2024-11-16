@@ -46,6 +46,7 @@ import {
 import {ReactiveErrors} from "@core/lib/reactive-errors/reactive-errors";
 import {ErrorsComponent} from "@core/components/errors/errors.component";
 import { ConfigsService } from '@core/services/configs.service';
+import { Router } from '@angular/router';
 
 interface FormStep {
   form: FormGroup | AbstractControl;
@@ -86,6 +87,7 @@ export class PublicReservationFormComponent implements OnInit {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly publicDataService: PublicPagesDataService = inject(PublicPagesDataService);
   private readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private readonly router: Router = inject(Router);
 
   @Output() createdReservation: EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
@@ -354,6 +356,9 @@ export class PublicReservationFormComponent implements OnInit {
           this.createdReservation.emit(item);
           this.notifications.success($localize`La tua prenotazione è stata creata. A breve ti invieremo un'email di conferma.`);
           this.reset();
+
+          if (item.secret)
+            this.router.navigate([`/r/`, item.secret]);
         }
       },
       error: (response: unknown): void => {
