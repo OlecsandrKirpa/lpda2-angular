@@ -20,14 +20,14 @@
       size="m"
   >
     @for (lang of languages; track lang) {
-      @if (lang != session.language()) {
+      @if (lang.code != session.language()) {
         <button
             tuiOption
             type="button"
-            (click)="setLanguage(lang)"
+            (click)="setLanguage(lang.code)"
         >
           <span class="flex items-center">
-            <span class="me-1">{{ lang | language }}</span>
+            <span class="me-1">{{ lang.name }}</span>
             <mat-icon>open_in_new</mat-icon>
           </span>
         </button>

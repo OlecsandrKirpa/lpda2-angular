@@ -32,15 +32,9 @@ import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {
   CreateReservationModalComponent
 } from "@core/components/reservations-creation/create-reservation-modal/create-reservation-modal.component";
-import { TuiCountryIsoCode } from '@taiga-ui/i18n';
 import {MenuIconModule} from "@core/components/menu-icon/menu-icon.module";
 import {ConfigsService} from "@core/services/configs.service";
-
-export interface LangData {
-  name: string;
-  code: string;
-  iso: TuiCountryIsoCode;
-}
+import { LangData, supportedLanguages } from "@core/lib/supported-languages";
 
 @Component({
   selector: 'app-public-navbar',
@@ -92,18 +86,7 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
 
   readonly scrolled: WritableSignal<boolean> = signal(false);
 
-  readonly languages: LangData[] = [
-    {
-      name: "Italiano",
-      code: "it",
-      iso: TuiCountryIsoCode.IT
-    },
-    {
-      name: "English",
-      code: "en",
-      iso: TuiCountryIsoCode.US
-    },
-  ];
+  readonly languages = supportedLanguages;
 
   readonly currentLanguage: WritableSignal<LangData> = signal(this.languages[0]);
 
@@ -119,6 +102,7 @@ export class PublicNavbarComponent implements OnInit, AfterViewInit {
 
     configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
       this.localeId = locale;
+      console.log(`configs.locale$`, {locale});
       this.updateCurrentLanguage();
     });
 

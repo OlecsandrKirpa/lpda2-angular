@@ -15,6 +15,8 @@
     </tui-data-list>
   </ng-template>
 
+  [currentLanguage=>{{currentLanguage() | json}}]
+
   <tui-hosted-dropdown [content]="dataList">
     <button class="md:me-2" tuiIconButton appearance="custom" size="m">
       <img class="flag" [src]="currentLanguage().iso | tuiFlag" />
