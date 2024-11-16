@@ -57,7 +57,7 @@
   @for(category of categories(); track category.id; let last = $last) {
     <div (click)="clickOnCategory(category)" role="button" class="hover-transition justify-between cursor-pointer flex items-center py-3">
       <div class="flex items-center">
-        <div class="w-[20vw] justify-center align-center me-3">
+        <div class="min-w-[20vw] max-w-[20vw] justify-center align-center me-3">
           <app-public-show-images class="block" [images]="category?.images" ></app-public-show-images>
         </div>
   
@@ -85,7 +85,7 @@
   @for(dish of dishes(); track dish.id; let last = $last) {
     <div (click)="clickOnDish(dish)" role="button" class="hover-transition justify-between cursor-pointer flex items-center py-3">
       <div class="flex items-center">
-        <div class="w-[20vw] justify-center align-center me-3">
+        <div class="min-w-[20vw] max-w-[20vw] justify-center align-center me-3">
           <app-public-show-images class="block" [images]="dish?.images" ></app-public-show-images>
         </div>
   
