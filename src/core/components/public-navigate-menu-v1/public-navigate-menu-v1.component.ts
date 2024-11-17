@@ -157,9 +157,11 @@ export class PublicNavigateMenuV1Component implements OnInit {
     this.loadCategories({ root: true, per_page: 100 });
   }
 
-  private loadCategories(params = {}): void {
+  private loadCategories(params: Record<string, boolean|number|string> = {}): void {
     // TODO add big delay server side and check if the requests is cancelled when changing page.
     this.loadingCategories.set(true);
+    params ||= {};
+    params["skip_categories_without_dishes"] = true;
     this.menuService.searchCategories(params).pipe(
       takeUntil(this.destroy),
       finalize(() => this.loadingCategories.set(false)),
