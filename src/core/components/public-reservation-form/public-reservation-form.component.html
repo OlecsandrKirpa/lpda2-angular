@@ -8,7 +8,7 @@
     }
   </button>
 
-  <button (click)="setState(1)" [stepState]="getState(1)" tuiStep>
+  <button (click)="setState(1)" [stepState]="getState(1)" [disabled]="maxIndex() < 1" tuiStep>
     @if (datetime.value && datetime.valid && currentIndex() > 1) {
       {{ datetime.value | date: 'EEEE d MMMM y HH:mm' }}
     } @else {
@@ -16,11 +16,11 @@
     }
   </button>
 
-  <button (click)="setState(2)" [stepState]="getState(2)" tuiStep>
+  <button (click)="setState(2)" [stepState]="getState(2)" [disabled]="maxIndex() < 2" tuiStep>
     <ng-container i18n>Contatti</ng-container>
   </button>
 
-  <button (click)="setState(3)" [stepState]="getState(3)" tuiStep>
+  <button (click)="setState(3)" [stepState]="getState(3)" [disabled]="maxIndex() < 3" tuiStep>
     <ng-container i18n>Riepilogo</ng-container>
   </button>
 </tui-stepper>
@@ -29,6 +29,7 @@
     class="w-full h-full"
     [draggable]="false"
     [(index)]="currentIndex"
+    [itemsCount]="1"
 >
   <div class="p-3 flex items-center justify-center" *tuiItem>
     <div class="max-w-[500px]">
@@ -50,14 +51,14 @@
 
   <div class="p-3 flex items-center justify-center" *tuiItem>
     <div class="max-w-[500px]">
-      <app-datetime-input class="block mb-3" [maxDaysInAdvance]="maxDaysInAdvance()"
+      <app-datetime-input #datetimeInput class="block mb-3" [maxDaysInAdvance]="maxDaysInAdvance()"
                           [formControl]="datetime"></app-datetime-input>
 
       @if (showErrorsFor(1)) {
         <app-errors [errors]="datetime.errors"></app-errors>
       }
 
-      <tui-expand [expanded]="datetime.valid || maxIndex() > 1">
+      <tui-expand [expanded]="datetime.valid">
         <button (click)="nextStep()" tuiButton appearance="custom" class="btn-primary" type="button">
           <ng-container i18n>Continua</ng-container>
         </button>

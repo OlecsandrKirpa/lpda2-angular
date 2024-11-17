@@ -42,7 +42,7 @@
       </div>
 
       @if(group()){
-        <div class="w-full my-5 border border-primary p-3 rounded-lg">
+        <div #groupDiv class="w-full my-5 border border-primary p-3 rounded-lg">
           <div class="w-full text-pretty my-3 text-xl">{{ group()?.message || defaultMessage }}</div>
           <button class="mb-3" tuiButton (click)="paymentAccepted.setValue(true)" appearance="primary" size="m" type="button">
             <ng-container i18n>Conferma</ng-container>
