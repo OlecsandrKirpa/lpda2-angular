@@ -161,7 +161,7 @@ export class PublicNavigateMenuV1Component implements OnInit {
     // TODO add big delay server side and check if the requests is cancelled when changing page.
     this.loadingCategories.set(true);
     params ||= {};
-    params["skip_categories_without_dishes"] = true;
+    params["skip_empty_categories"] = true;
     this.menuService.searchCategories(params).pipe(
       takeUntil(this.destroy),
       finalize(() => this.loadingCategories.set(false)),
