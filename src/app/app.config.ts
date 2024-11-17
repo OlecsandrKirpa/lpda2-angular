@@ -16,6 +16,7 @@ import { of } from 'rxjs';
 import {TUI_LANGUAGE, TUI_ITALIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {DatePipe, registerLocaleData} from '@angular/common';
 import localeIT from '@angular/common/locales/it';
+import localeEN from '@angular/common/locales/en';
 import {addLanguageHeaderInterceptor} from "@core/interceptors/add-language-header.interceptor";
 import {SessionService} from "@core/services/admin-session.service";
 import {jwtInterceptor} from "@core/interceptors/jwt.interceptor";
@@ -23,6 +24,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { catchRequireRootInterceptor } from "@core/interceptors/catch-require-root.interceptor";
 
 registerLocaleData(localeIT);
+registerLocaleData(localeEN);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,8 +35,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideAnimationsAsync(),
     importProvidersFrom(TuiRoutableDialogModule),
-    { provide: TUI_LANGUAGE, useValue: of(TUI_ITALIAN_LANGUAGE) },
-    { provide: LOCALE_ID, useValue: 'it' },
+    // if you build with `ng build --localize`, these tokens will be added for each locale.
+    // { provide: TUI_LANGUAGE, useValue: of(TUI_ITALIAN_LANGUAGE) },
+    // { provide: LOCALE_ID, useValue: 'it' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     provideServiceWorker('ngsw-worker.js', {
         enabled: !isDevMode(),
