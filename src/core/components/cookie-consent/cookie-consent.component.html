@@ -1,0 +1,23 @@
+<div class="cookie-box">
+  <div class="container mx-auto flex flex-row items-center py-4 px-2">
+    <div class="content">
+      <!-- <h2 class="mb-4 mt-2">
+        <app-logo-with-title [stackTitles]="true"></app-logo-with-title>
+      </h2> -->
+
+      <div i18n class="mb-3 px-1">
+        La porta d'Acqua utilizza i cookie per migliorare la tua esperienza di navigazione, offrirti contenuti personalizzati
+        e ricordare le tue preferenze. Alcuni cookie sono necessari per utilizzare il nostro servizio.
+      </div>
+    </div>
+
+    <div class="actions | flex flex-col items-center">
+      <button tuiButton appearance="primary" (click)="accept('all')" class="mb-2 w-full" i18n>
+        Accetta tutti
+      </button>
+      <button tuiButton appearance="outline" i18n class="w-full" (click)="accept('essential')">
+        Accetta solo essenziali
+      </button>
+    </div>
+  </div>
+</div>

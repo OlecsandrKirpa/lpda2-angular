@@ -3,11 +3,12 @@ import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { CookieConsentComponent } from "../core/components/cookie-consent/cookie-consent.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule],
+  imports: [CommonModule, RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule, CookieConsentComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }]
