@@ -35,7 +35,7 @@ export function formatReservationData(data: {
   if (!(data.notes === null || (typeof data.notes === "string" && data.notes.length > 0))) return invalid(`notes`, data.notes);
 
   if (!(typeof data.children === "number" && data.children >= 0)) return invalid(`children`, data.children);
-  if (!(typeof data.adults === "number" && data.adults > 0)) return invalid(`adults`, data.adults);
+  if (!(typeof data.adults === "number" && data.adults >= 0)) return invalid(`adults`, data.adults);
 
   return {
     lang: data.lang,
