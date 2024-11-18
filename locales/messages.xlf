@@ -2849,7 +2849,7 @@
             
             src/core/components/public-reservation-confirmation/public-reservation-confirmation.component.html 
           </context>
-          <context context-type='linenumber'>54</context>
+          <context context-type='linenumber'>56</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6606022092476675135' datatype='html'>
@@ -2880,6 +2880,28 @@
             src/core/components/public-reservation-confirmation/public-reservation-confirmation.component.html 
           </context>
           <context context-type='linenumber'>51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7313405590499002792' datatype='html'>
+        <source>Contattaci</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/cancel-reservation/cancel-reservation.component.html</context>
+          <context context-type='linenumber'>36</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
+          <context context-type='linenumber'>83</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
+          <context context-type='linenumber'>98</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-reservation-confirmation/public-reservation-confirmation.component.html 
+          </context>
+          <context context-type='linenumber'>53</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3332318425722395223' datatype='html'>
@@ -6160,17 +6182,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-reserve/public-home-reserve.component.html</context>
           <context context-type='linenumber'>16,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='7313405590499002792' datatype='html'>
-        <source>Contattaci</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>83</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/public-navbar/public-navbar.component.html</context>
-          <context context-type='linenumber'>98</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2821179408673282599' datatype='html'>
