@@ -1,13 +1,15 @@
 import { Component, inject } from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import { Title } from '@angular/platform-browser';
+import { PublicImageHeaderComponent } from "../../../core/components/public-image-header/public-image-header.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [
-    NgOptimizedImage
-  ],
+    NgOptimizedImage,
+    PublicImageHeaderComponent
+],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })

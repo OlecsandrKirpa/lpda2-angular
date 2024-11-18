@@ -3315,6 +3315,742 @@
           <context context-type='linenumber'>84</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='3690363109766585648' datatype='html'>
+        <source>
+           Aggiornamenti informativa in materia di protezione dei dati personali
+          resa ai sensi del Regolamento UE N. 2016/679 
+        </source>
+        <target>
+           Information on the protection of personal data provided pursuant to
+          the UE Regulation n. 2016/679 (GDPR) 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6202745327152845291' datatype='html'>
+        <source>
+           Gentile Cliente, quando visita il nostro sito web
+          www.laportadacqua.com, può scegliere di non comunicare alcun dato
+          personale, ma può anche decidere di comunicarci alcune informazioni
+          che La riguardano come ad esempio il Suo nome e cognome, l’indirizzo,
+          l’e-mail. Queste informazioni si possono rendere necessarie per
+          contattarLa, per elaborare il Suo ordine o per offrirLe delle
+          informazioni che potrebbero esserLe utili. Vogliamo che Lei sia messo
+          al corrente di come i Suoi dati personali saranno trattati e quali
+          sono i Suoi diritti. L'informativa è resa solo per il sito in oggetto
+          e non anche per altri siti web eventualmente consultati dall'utente
+          tramite link. 
+        </source>
+        <target>
+           When you visit our website www.laportadacqua.com, you may choose not
+          to provide us with any personal information about yourself or you may
+          have the opportunity to provide some information that can identify
+          you, such as your first and last name, postal or e-mail addresses.
+          Please note that this information is required in order to contact you,
+          to process your order or to offer a subscription. We want you know in
+          advance how your personal data will be used. The policy is provided
+          only for this website in question and not for other websites that may
+          be consulted by the user via links. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>10,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5270907366101732620' datatype='html'>
+        <source> Protezione dei dati personali </source>
+        <target>Protection of Personal Data</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>19,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7145062316685578800' datatype='html'>
+        <source>
+           La informiamo che, secondo il Regolamento UE N. 2016/679, il
+          trattamento dei Suoi dati personali sarà improntato ai principi di
+          correttezza, liceità e trasparenza, oltre che alla tutela della Sua
+          riservatezza e dei Suoi diritti. Ai sensi dell’art. 13 del Regolamento
+          UE N. 2016/679 (GDPR) Le forniamo le seguenti informazioni. Il
+          Titolare del trattamento dei dati personali comunicati è (Nome
+          azienda: Sospiri S.A.S. Di Manzi Giuseppe &amp; C. Rappresentante
+          legale pro tempore: Giuseppe Manzi. Sede legale: San Polo 1097, 30125
+          VENEZIA. Partita Iva: 03780730275. Numero di telefono: +39 041
+          2412124. E-mail: info@laportadacqua.it). 
+        </source>
+        <target>
+           We inform you that, according to the GDPR, the processing of your
+          personal data will be based on principles of fairness, lawfulness and
+          transparency, as well as the protection of your privacy and your
+          rights. Therefore, in compliance with Article 13 of the GDPR, we
+          provide you the following information. The Data Controller is (Company
+          name: Sospiri S.A.S. Di Manzi Giuseppe &amp; C. Pro tempore legal
+          representative: Giuseppe Manzi. Registered office: San Polo 1097,
+          30125 VENEZIA. VAT number: 03780730275. Telephone number: +39 041
+          2412124. E-mail: info@laportadacqua.it). 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>22,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1687837637871823703' datatype='html'>
+        <source> Oggetto, finalità e base giuridica del trattamento </source>
+        <target>Subject Matter, Purpose and Legal Basis of the Processing</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6725480335919699930' datatype='html'>
+        <source>
+           Il Titolare tratta i dati personali delle persone fisiche,
+          identificativi e non sensibili, forniti nell’ambito del rapporto
+          contrattuale (a titolo esemplificativo, ma non esaustivo, nome,
+          cognome, ragione sociale, indirizzo, telefono, e-mail) per le seguenti
+          finalità: 
+        </source>
+        <target>
+           The Data Controller processes the personal data o fan identifying and
+          non-sensitive nature, of the phisical persons, provided by you within
+          the farmework of the contractual relationship (by way of example, but
+          not limited to, name, surname, company name, address, telephone,
+          e-mail) for the following purposes: 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>34,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7369672326578484897' datatype='html'>
+        <source>Senza il Suo consenso espresso per:</source>
+        <target>Without your express consent for:</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4941261263544768139' datatype='html'>
+        <source>
+           Trattative precontrattuali e attività comunque necessarie alla
+          conclusione del contratto e conseguente adempimento, ivi compresa la
+          registrazione all’area riservata presente sul sito internet; 
+        </source>
+        <target>
+           Pre-contractual negotiations and activities that, in any case, are
+          necessary for the execution of the contract and its subsequent
+          fulfiment, including registration in the riserve area on our website; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>43,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2929266836021795465' datatype='html'>
+        <source>
+           L’adempimento agli obblighi di legge, da un regolamento, dalla
+          normativa comunitaria o da un Ordine dell’Autorità ivi comprese, a
+          titolo esemplificativo, attività amministrative, contabili e fiscali; 
+        </source>
+        <target>
+           The fulfiment of the bligations provided for by any law, regulation,
+          EU legislation or by an order of the Autority including, by way for
+          example, administrative, accounting and fiscal activities; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>47,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2874068231624672596' datatype='html'>
+        <source>
+           La informiamo che, tenuto conto delle finalità del trattamento come
+          sopra illustrate, il conferimento dei dati è facoltativo, ma il loro
+          mancato, parziale o inesatto conferimento avrà come conseguenza
+          l’impossibilità di concludere il contratto. 
+        </source>
+        <target>
+           We inform you that, taking into account the purposes of the
+          processing as above descrive, the conferral of data is optional but
+          the failure, partial or inaccurate conferral of personal data will
+          determine the impossibility to execute the contract. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>54,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8414916328553955674' datatype='html'>
+        <source>Solo previo Suo specifico e distinto consenso, per le seguenti finalità:</source>
+        <target>
+           Only with your specific and distinct consent, for the following
+          different purposes : 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6871863702571109617' datatype='html'>
+        <source> L’invio a mezzo e-mail di newsletter e/o inviti ad eventi </source>
+        <target>
+           The sending by e-mail of newsletters and/or invitations to events or
+          subcription to events. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>63,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3352689613660995191' datatype='html'>
+        <source>
+           In relazione a tale ultima finalità, precisiamo che il conferimento
+          dei dati personali è facoltativo. Può quindi decidere di non fornire
+          alcun dato o di negare successivamente la possibilità di trattare dati
+          già forniti: in tal caso, non potrà ricevere via e-mail inviti ad
+          eventi, newsletter, sondaggi di opinione e di gradimento. In ogni caso
+          avrà diritto ai servizi di cui alla lettera A). 
+        </source>
+        <target>
+           In relation to the letter purpose, we clarify that the coonferral of
+          personal data is optional. You can therefore decide not to provide any
+          data or to subsequently deny the possibility of processing data
+          already provided: in this case, you will not receive via e-mail any
+          invitations to events, newsletters and opinion or liking polls. In any
+          case, you will continue to be entitled to the services referred to
+          under letter A). 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>69,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='217507008765071046' datatype='html'>
+        <source> Modalità di trattamento </source>
+        <target> Processing methods </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>77,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4309775225750149329' datatype='html'>
+        <source>
+           Il trattamento dei Suoi dati personali è realizzato per mezzo delle
+          operazioni indicate dall’art. 4, n. 2, GDPR e precisamente: raccolta,
+          registrazione, organizzazione, strutturazione, conservazione,
+          adattamento, modifica, estrazione, consultazione, uso, comunicazione
+          mediante trasmissione, diffusione o qualsiasi altra forma di messa a
+          disposizione, raffronto, interconnessione, limitazione, cancellazione
+          e distruzione. I Suoi dati personali sono sottoposti a trattamento sia
+          cartaceo che elettronico e/o digitale, con logiche di organizzazione
+          ed elaborazione strettamente correlate alle finalità stesse e comunque
+          in modo da garantire la sicurezza, l’integrità e la riservatezza dei
+          dati stessi. 
+        </source>
+        <target>
+           The processing of your personal data is acrried out by means of the
+          operations indicated in art. 4 n. 2) of the GDPR, namely: collection,
+          recording, organization, structuring, preservation, adaptation,
+          modification, extraction, consultation, use, communication by
+          trasmission, dissemination or any other form making available,
+          comparison, interconnection, limitation, erasure and destruction. Your
+          personal data are processed both on paper and electronically and/or
+          digitally, with organisational and processing logics strictly related
+          to the purposes and in any case in such a way a sto guarantee the
+          security, integrity and confidentially of the data. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>80,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9056563583381683085' datatype='html'>
+        <source> Accesso e comunicazione </source>
+        <target>Access and Communication</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>91,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5089749430554968228' datatype='html'>
+        <source> I Suoi dati potranno essere resi accessibili e/o comunicati: </source>
+        <target> Your data may be made accessibile and/or communicated: </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>94,96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6612242301448322726' datatype='html'>
+        <source>
+           a dipendenti e collaboratori del titolare, nella loro qualità di
+          soggetti autorizzati e/o responsabili interni del trattamento e/o
+          amministratori del sistema; 
+        </source>
+        <target>
+           To employees and collaborators of the Data Controller, in their
+          capacity of authorised subjects and/or internal data processors and/or
+          system administrators; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>98,101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8143827406262612385' datatype='html'>
+        <source>
+           a società terze o altri soggetti, comunque legati contrattualmente al
+          Titolare che svolgono attività in outsourcing per conto del Titolare,
+          anche eventualmente nella loro qualità di responsabili del
+          trattamento; 
+        </source>
+        <target>
+           To third compagnie or other subjects, who are contractually bound to
+          the Data Controller, Who carry out outsourcing activities on behalf of
+          the Data Controller, also their capacity of data processor, as the
+          case may be; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>102,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='551119527758819278' datatype='html'>
+        <source>
+           a Organismi di vigilanza, Autorità giudiziarie nonché a tutti gli
+          altri soggetti ai quali la comunicazione sia obbligatoria per legge
+          per l’espletamento delle finalità suddette. 
+        </source>
+        <target>
+           To supervisor bodies, judicialauthorities and all other parties to
+          whom the communication is requered by law for the fulfilment of the
+          above purposes. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>106,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1275905653521429121' datatype='html'>
+        <source> i Suoi dati non saranno diffusi. </source>
+        <target>Your data will not be disseminated.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>111,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7741639480392794822' datatype='html'>
+        <source> Trasferimento dei dati </source>
+        <target>Data Transfer</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>116,118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6189808073476659811' datatype='html'>
+        <source>
+           La gestione e la conservazione dei dati personali verrà svolta
+          all’interno dell’Unione Europea su server ubicati in Germania del
+          Titolare e/o di società terze incaricate e debitamente nominate quali
+          Responsabili del trattamento. 
+        </source>
+        <target>
+           The management and storage of personal data will take place within
+          the European Union on servers located in Germany of the Data
+          Controller and/or third company appointed as data Processors. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>119,122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6271953279817317986' datatype='html'>
+        <source> Periodo di conservazione dei dati </source>
+        <target> Period of data retention </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>125,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1923962628151865553' datatype='html'>
+        <source> Il Titolare tratterrà i dati personali raccolti </source>
+        <target> The Data Controller will process the personal data collected: </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>128,130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1220265267426603409' datatype='html'>
+        <source>
+           per le finalità di cui alla lettera A): per il tempo necessario
+          all’adempimento contrattuale e comunque per non oltre 10 anni dalla
+          cessazione del rapporto; 
+        </source>
+        <target>
+           For the purpose referred to under letter A): for the time necessary
+          to fulfil the contract and, in any case, for no more than ten years
+          from the termination of the relationship; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>132,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6567888194204314434' datatype='html'>
+        <source>
+           per le finalità di cui al punto B): per non oltre 2 anni dalla
+          raccolta dei dati. 
+        </source>
+        <target>
+           For the purpose referred to under letter B): for a maximum period of
+          2 years from the date of the data collection. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>136,138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4700574113416023156' datatype='html'>
+        <source> Diritti dell’Interessato </source>
+        <target> Rights of the Data Subject </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>141,143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5800874357809495212' datatype='html'>
+        <source>
+           Nella Sua qualità di interessato potrà, in qualsiasi momento,
+          esercitare i seguenti diritti: 
+        </source>
+        <target> As a data subject you may at any time exercise the following rights: </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>144,146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1935702900936132678' datatype='html'>
+        <source> di accesso ai dati personali; </source>
+        <target> To access your personal data; </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>148,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7970699817388849478' datatype='html'>
+        <source>
+           di ottenere la rettifica e l’aggiornamento o la cancellazione degli
+          stessi o la limitazione del trattamento che li riguardano; 
+        </source>
+        <target>
+           To obtain the retification, updating, erasure or restriction of
+          processing operations concerning the personal data; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>151,154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4675746543953973203' datatype='html'>
+        <source> di opporsi al trattamento; </source>
+        <target> To bject the processing; </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>155,157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8165653031281389603' datatype='html'>
+        <source> di ottenere la portabilità dei dati; </source>
+        <target> To achieve the portability of the personal data; </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>158,160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1845845270717332436' datatype='html'>
+        <source>
+           di revocare il consenso, ove previsto: la revoca del consenso non
+          pregiudica la liceità del trattamento basato sul consenso conferito
+          prima della revoca; 
+        </source>
+        <target>
+           To revoke the consent, where applicable: revocation of the consent
+          shall not affect the lawfulness of the processing based on the consent
+          given before revocation; 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>161,164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3556280511474403479' datatype='html'>
+        <source> di proporre reclamo all’Autorità di controllo. </source>
+        <target>To file a complaint with a supervispry Authority.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>165,167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7246302941246199816' datatype='html'>
+        <source>
+           L’esercizio dei Suoi diritti potrà avvenire attraverso l’invio di una
+          e-mail all’indirizzo info@laportadacqua.it. 
+        </source>
+        <target>
+           You may exercises your rights by sending a request via e-mail to
+          info@laportadacqua.it. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>169,171</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3241688061690593734' datatype='html'>
+        <source> Autorizzazione per il trattamento dei dati personali: </source>
+        <target> Autorization for processing your data: </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>174,176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1061227712424711728' datatype='html'>
+        <source>
+           Gentile Cliente, a seguito dell’entrata in vigore del Regolamento
+          generale sulla protezione dei dati personali (GDPR) U.E. N. 2016/679,
+          se vuole continuare a ricevere comunicazioni via e-mail deve
+          indicarlo. Altrimenti, non sarà possibile mandarLe comunicazioni che
+          crediamo essere nel Suo interesse. 
+        </source>
+        <target>
+           Dear Valued Partner, we inform you that according to the UE
+          Regulation n. 2016/679 (GDPR) if you want to continue receiving our
+          communications via e-mail we need you to indicate it. Otherwise, it
+          will be impossibile to send e-mail campaigns that we believe are of
+          your interest. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>177,181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='772270447049580640' datatype='html'>
+        <source>Amministrazione</source>
+        <target>Administration</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/public-footer/public-footer.component.html</context>
+          <context context-type='linenumber'>98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8440128775129354214' datatype='html'>
+        <source>Privacy</source>
+        <target>Privacy</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/privacy/privacy.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4991111665365985889' datatype='html'>
+        <source>Disclaimers</source>
+        <target>Disclaimers</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2205606781969970075' datatype='html'>
+        <source>Disclaimers per La Porta D&apos;Acqua</source>
+        <target> Disclaimers for La Porta D&apos;Acqua </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2125928233382289430' datatype='html'>
+        <source>
+           Se hai bisogno di qualsiasi altra informazione riguardante i
+          disclaimers del nostro sito, sentiti libero di contattarci attraverso
+          il nostro indirizzo email (info@laportadacqua.com) 
+        </source>
+        <target>
+           If you require any more information or have any questions about our
+          site's disclaimer, please feel free to contact us by email at
+          info@laportadacqua.com. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1721066453784292352' datatype='html'>
+        <source>Disclaimers per laportadacqua.com</source>
+        <target>Disclaimers for laportadacqua.com</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9129854033362087158' datatype='html'>
+        <source>
+           Tutte le informazioni in questo sito - https://laportadacqua.com/ -
+          sono pubblicate in buona fede e solo a scopo informativo generale.
+          laportadacqua.com non fornisce alcuna garanzia circa la completezza,
+          l&apos;affidabilità e l&apos;accuratezza di queste informazioni.
+          Qualsiasi azione da Lei intrapresa sulle informazioni che trova in
+          questo sito web (laportadacqua.com), è strettamente a Suo rischio.
+          laportadacqua.com non sarà responsabile per eventuali perdite e/o
+          danni in relazione all&apos;utilizzo del nostro sito web. 
+        </source>
+        <target>
+           All the information on this website - https://laportadacqua.com/ - is
+          published in good faith and for general information purpose only.
+          laportadacqua.com does not make any warranties about the completeness,
+          reliability and accuracy of this information. Any action you take upon
+          the information you find on this website (laportadacqua.com), is
+          strictly at your own risk. laportadacqua.com will not be liable for
+          any losses and/or damages in connection with the use of our website. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>12,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4517586558694415464' datatype='html'>
+        <source>
+           Il sito viene fornito &quot;così com &apos;è&quot;/&quot;come
+          disponibile&quot; e la società e i nostri fornitori declinano
+          espressamente qualsiasi garanzia e condizione di qualunque tipo,
+          espressa, implicita o legale, comprese tutte le garanzie o condizioni
+          di commerciabilità, idoneità per uno scopo particolare, titolo,
+          pacifico godimento, accuratezza o non violazione. Noi e i nostri
+          fornitori non garantiamo che il sito soddisfi le vostre esigenze, sia
+          disponibile in modo ininterrotto, tempestivo, sicuro o privo di
+          errori, o sia accurato, affidabile, privo di virus o altri codici
+          dannosi, completo, legale, o sicuro. Se la legge applicabile richiede
+          garanzie in relazione al sito, tutte queste garanzie hanno una durata
+          limitata a novanta (90) giorni dalla data del primo utilizzo. Alcune
+          giurisdizioni non consentono l&apos;esclusione delle garanzie
+          implicite, pertanto l &apos;esclusione di cui sopra potrebbe non
+          essere applicabile. Alcune giurisdizioni non consentono limitazioni
+          sulla durata di una garanzia implicita, pertanto la limitazione di cui
+          sopra potrebbe non essere applicabile. 
+        </source>
+        <target>
+           The site is provided on an \"as-is\" and \"as available\" basis, and
+          company and our suppliers expressly disclaim any and all warranties
+          and conditions of any kind, whether express, implied, or statutory,
+          including all warranties or conditions of merchantability, fitness for
+          a particular purpose, title, quiet enjoyment, accuracy, or
+          non-infringement. We and our suppliers make not guarantee that the
+          site will meet your requirements, will be available on an
+          uninterrupted, timely, secure, or error-free basis, or will be
+          accurate, reliable, free of viruses or other harmful code, complete,
+          legal, or safe. If applicable law requires any warranties with respect
+          to the site, all such warranties are limited in duration to ninety
+          (90) days from the date of first use. \nSome jurisdictions do not
+          allow the exclusion of implied warranties, so the above exclusion may
+          not apply to you. Some jurisdictions do not allow limitations on how
+          long an implied warranty lasts, so the above limitation may not apply
+          to you. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4166320398329184572' datatype='html'>
+        <source>
+           Dal nostro sito Web è possibile visitare altri siti Web seguendo i
+          collegamenti ipertestuali a tali siti esterni. Sebbene ci sforziamo di
+          fornire solo collegamenti di qualità a siti Web utili ed etici, non
+          abbiamo alcun controllo sul contenuto e sulla natura di questi siti.
+          Questi collegamenti ad altri siti Web non implicano una
+          raccomandazione per tutti i contenuti presenti su questi siti. I
+          proprietari del sito e il contenuto possono cambiare senza preavviso e
+          ciò può verificarsi prima che si presenti l&apos;opportunità di
+          rimuovere un collegamento, dal nostro sito, che potrebbe essere
+          peggiorato a livello di contenuti. 
+        </source>
+        <target>
+           From our website, you can visit other websites by following
+          hyperlinks to such external sites. While we strive to provide only
+          quality links to useful and ethical websites, we have no control over
+          the content and nature of these sites. These links to other websites
+          do not imply a recommendation for all the content found on these
+          sites. Site owners and content may change without notice and may occur
+          before we have the opportunity to remove a link which may have gone
+          'bad'. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>18,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6071384538977285508' datatype='html'>
+        <source>
+           Tieni inoltre presente che quando esci dal nostro sito Web, altri
+          siti potrebbero avere politiche e termini sulla privacy diversi che
+          sono fuori dal nostro controllo. Assicurati di controllare le privacy
+          policies di questi siti e i loro &quot;Termini di servizio&quot; prima
+          di intraprendere qualsiasi attività commerciale o caricare qualsiasi
+          informazione. 
+        </source>
+        <target>
+           Please be also aware that when you leave our website, other sites may
+          have different privacy policies and terms which are beyond our
+          control. Please be sure to check the Privacy Policies of these sites
+          as well as their \"Terms of Service\" before engaging in any business
+          or uploading any information. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>21,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6383648496352875399' datatype='html'>
+        <source>Consenso</source>
+        <target>Consent</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='275687884000543478' datatype='html'>
+        <source>
+           Utilizzando il nostro sito Web, acconsenti al nostro disclaimer e
+          accetti i suoi termini. 
+        </source>
+        <target>
+           By using our website, you hereby consent to our disclaimer and agree
+          to its terms. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>26,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8920574082898975667' datatype='html'>
+        <source>Aggiornamento</source>
+        <target>Update</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8302879644918651302' datatype='html'>
+        <source>
+           Se dovessimo aggiornare, modificare o apportare modifiche a questo
+          documento, tali modifiche verranno pubblicate in modo ben visibile
+          qui. 
+        </source>
+         Should we update, amend or make any changes to this document, those
+        changes will be prominently posted here. 
+        <target> </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/home/disclaimers/disclaimers.component.html</context>
+          <context context-type='linenumber'>31,33</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='2426056137160348049' datatype='html'>
         <source>Il nostro menù</source>
         <target>Our menu</target>
