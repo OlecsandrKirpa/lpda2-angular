@@ -1,12 +1,10 @@
 import {HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
-import {SessionService} from "@core/services/admin-session.service";
-import {inject} from "@angular/core";
+import {inject, LOCALE_ID} from "@angular/core";
 import {Observable} from "rxjs";
+import { ConfigsService } from '@core/services/configs.service';
 
 export const addLanguageHeaderInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
-  const session = inject(SessionService);
-
-  const cl = req.clone({ setHeaders: { 'Accept-Language': session.language() } });
+  const cl = req.clone({ setHeaders: { 'Accept-Language': inject(LOCALE_ID) } });
 
   return next(cl);
 };
