@@ -666,7 +666,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/contacts/contacts.page.html</context>
-          <context context-type='linenumber'>3</context>
+          <context context-type='linenumber'>6</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -2903,7 +2903,7 @@
         <target>For any information or clarification, do not hesitate to contact us:</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/contacts/contacts.page.html</context>
-          <context context-type='linenumber'>7</context>
+          <context context-type='linenumber'>10</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3098683682064241873' datatype='html'>
@@ -2911,7 +2911,7 @@
         <target>Facebook page</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/contacts/contacts.page.html</context>
-          <context context-type='linenumber'>57</context>
+          <context context-type='linenumber'>76</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1145471760565265440' datatype='html'>
@@ -2919,7 +2919,7 @@
         <target>Instagram page</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/contacts/contacts.page.html</context>
-          <context context-type='linenumber'>70</context>
+          <context context-type='linenumber'>89</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6053549219569278382' datatype='html'>
@@ -2927,7 +2927,7 @@
         <target>TripAdvisor page</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/contacts/contacts.page.html</context>
-          <context context-type='linenumber'>83</context>
+          <context context-type='linenumber'>102</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1763642922374597515' datatype='html'>
@@ -4941,7 +4941,7 @@
         <target>Choose an image.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/image-input/image-input.component.ts</context>
-          <context context-type='linenumber'>71</context>
+          <context context-type='linenumber'>72</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2587700333061717344' datatype='html'>
@@ -4949,7 +4949,7 @@
         <target>or drag it here</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/image-input/image-input.component.ts</context>
-          <context context-type='linenumber'>73</context>
+          <context context-type='linenumber'>74</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8916489497039648537' datatype='html'>
@@ -5190,7 +5190,7 @@
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.html 
           </context>
-          <context context-type='linenumber'>47</context>
+          <context context-type='linenumber'>53</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4073904695260802327' datatype='html'>
@@ -5435,28 +5435,28 @@
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.ts 
           </context>
-          <context context-type='linenumber'>120</context>
+          <context context-type='linenumber'>121</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.ts 
           </context>
-          <context context-type='linenumber'>143</context>
+          <context context-type='linenumber'>165</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.ts 
           </context>
-          <context context-type='linenumber'>169</context>
+          <context context-type='linenumber'>191</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.ts 
           </context>
-          <context context-type='linenumber'>190</context>
+          <context context-type='linenumber'>212</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/lib/something-went-wrong-message.ts</context>
@@ -7578,6 +7578,17 @@
           <context context-type='linenumber'>81</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='1228068933367959368' datatype='html'>
+        <source>Quanti bambini ci saranno con voi?</source>
+        <target>How many children will be with you?</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-reservation-form/public-reservation-form.component.html 
+          </context>
+          <context context-type='linenumber'>134</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='8039085386398703393' datatype='html'>
         <source>Informazioni aggiuntive, se necessario, sono da aggiungere qui!</source>
         <target>Additional information, if necessary, should be added here!</target>
@@ -7896,7 +7907,7 @@
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.html 
           </context>
-          <context context-type='linenumber'>18</context>
+          <context context-type='linenumber'>24</context>
         </context-group>
       </trans-unit>
       <trans-unit id='248655586590571804' datatype='html'>
@@ -7907,7 +7918,7 @@
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.html 
           </context>
-          <context context-type='linenumber'>22</context>
+          <context context-type='linenumber'>28</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2344375346822875543' datatype='html'>
@@ -7918,7 +7929,7 @@
             
             src/core/components/show-images/images-edit-modal/images-edit-modal.component.html 
           </context>
-          <context context-type='linenumber'>39,41</context>
+          <context context-type='linenumber'>45,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4305243440320007975' datatype='html'>
