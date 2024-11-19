@@ -26,7 +26,6 @@ import {ContactUsComponent} from "@core/components/contact-us/contact-us.compone
   imports: [
     NgClass,
     NgStyle,
-    RouterLink,
     TuiLinkModule,
     ContactUsComponent
   ],

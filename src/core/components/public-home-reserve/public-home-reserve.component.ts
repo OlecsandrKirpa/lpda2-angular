@@ -24,13 +24,10 @@ import { PublicReservationConfirmationComponent } from "../public-reservation-co
   selector: 'app-public-home-reserve',
   standalone: true,
   imports: [
-    DatePipe,
     TuiButtonModule,
     PublicReservationFormComponent,
     PublicMessageComponent,
-    RouterLink,
     TuiLinkModule,
-    ContactUsComponent,
     PublicReservationConfirmationComponent
 ],
   templateUrl: './public-home-reserve.component.html',
