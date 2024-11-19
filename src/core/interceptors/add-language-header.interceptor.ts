@@ -4,7 +4,8 @@ import {Observable} from "rxjs";
 import { ConfigsService } from '@core/services/configs.service';
 
 export const addLanguageHeaderInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
-  const cl = req.clone({ setHeaders: { 'Accept-Language': inject(LOCALE_ID) } });
+  const locale = inject(LOCALE_ID);
+  const cl = req.clone({ setHeaders: { 'Accept-Language': locale } });
 
   return next(cl);
 };

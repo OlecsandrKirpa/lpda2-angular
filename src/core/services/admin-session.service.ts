@@ -1,5 +1,4 @@
-import {computed, inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import { defaultLocale } from '@core/lib/default-locale';
+import {computed, inject, Injectable, LOCALE_ID, Signal, signal, WritableSignal} from '@angular/core';
 import {LocalStorageService} from "@core/services/local-storage.service";
 
 const session_key = `lpda2-e5d03c044b1729d3c4bf2975423c8eea`
@@ -14,7 +13,8 @@ export class SessionService {
   private readonly storage: LocalStorageService = inject(LocalStorageService);
 
   readonly language: Signal<string> = computed(() => this.writableLanguage());
-  private writableLanguage: WritableSignal<string> = signal(defaultLocale);
+  private readonly defaultLanguage = inject(LOCALE_ID);
+  private writableLanguage: WritableSignal<string> = signal(this.defaultLanguage);
 
   constructor() {
     this.loadSession();

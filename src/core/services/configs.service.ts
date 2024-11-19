@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, LOCALE_ID, WritableSignal, inject, signal } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, filter, forkJoin, map, of, switchMap, tap, timeout } from 'rxjs';
 import { DomainService } from './domain.service';
-import { defaultLocale } from '@core/lib/default-locale';
 
 const AvaliableLocalConfigs = [
   `api.domain`,
@@ -28,9 +27,10 @@ type Configs = Partial<Record<ConfigKey, any>>;
 export class ConfigsService {
   private readonly configs$ = new BehaviorSubject<Configs | null>(null);
   private readonly http = inject(HttpClient);
+  private readonly defaultLocale = inject(LOCALE_ID);
 
   readonly locale$: Observable<string> = this.configs$.pipe(
-    map((configs: Configs | null) => (configs || {})["locale"] ?? defaultLocale),
+    map((configs: Configs | null) => (configs || {})["locale"] ?? this.defaultLocale),
   )
 
   get(key: ConfigKey): Observable<any | null> {
