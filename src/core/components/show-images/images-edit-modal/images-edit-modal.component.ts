@@ -10,7 +10,7 @@ import {
   TuiLoaderModule
 } from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
-import {FormControl, ReactiveFormsModule, ValidationErrors} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule, ValidationErrors} from "@angular/forms";
 import {ImageInputComponent} from "@core/components/image-input/image-input.component";
 import {NotificationsService} from "@core/services/notifications.service";
 import {JsonPipe} from "@angular/common";
@@ -48,6 +48,7 @@ import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from 
     CdkDragHandle,
     TuiHostedDropdownModule,
     TuiDataListModule,
+    FormsModule,
   ],
   templateUrl: './images-edit-modal.component.html',
   styleUrl: './images-edit-modal.component.scss',
@@ -119,6 +120,27 @@ export class ImagesEditModalComponent implements OnInit {
       error: (r: HttpErrorResponse) => {
         this.notifications.error(parseHttpErrorMessage(r) || $localize`Qualcosa è andato storto.`);
       }
+    })
+  }
+
+  updateImage(event: Blob, image: Image) {
+    if (!(event instanceof Blob && image instanceof Image && image.id)) {
+      this.notifications.error();
+      return;
+    }
+
+    const formData: FormData = new FormData();
+
+    formData.append('image', event);
+
+    this.savingImage.set(true);
+
+    this.service.update(image.id, formData).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.savingImage.set(false))
+    ).subscribe({
+      next: () => this.loadImages(),
+      error: (r: HttpErrorResponse) => this.notifications.error(parseHttpErrorMessage(r))
     })
   }
 

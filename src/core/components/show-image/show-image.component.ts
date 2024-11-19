@@ -25,14 +25,14 @@ export class ShowImageComponent {
 
   @Input() imgClass: string = `block rounded`;
 
-  readonly image$: BehaviorSubject<Image | File |null> = new BehaviorSubject<Image | File | null>(null);
-  @Input({ required: true }) set image(value: Image | null | undefined | File) {
+  readonly image$: BehaviorSubject<Image | Blob |null> = new BehaviorSubject<Image | Blob | null>(null);
+  @Input({ required: true }) set image(value: Image | null | undefined | Blob) {
     this.image$.next(value ?? null);
   }
 
   readonly imageSrc$: Observable<string | null> = this.image$.pipe(
-    switchMap((image: Image | File | null): Observable<string | null> => {
-      if (image instanceof File) {
+    switchMap((image: Image | Blob | null): Observable<string | null> => {
+      if (image instanceof Blob) {
         return of(URL.createObjectURL(image));
       }
 

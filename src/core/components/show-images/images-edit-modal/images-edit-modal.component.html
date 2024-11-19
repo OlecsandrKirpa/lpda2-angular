@@ -10,7 +10,13 @@
                 <mat-icon>drag_indicator</mat-icon>
               </button>
 
-              <app-show-image class="mb-2" style="max-width: 200px;" [image]="image"></app-show-image>
+              <app-image-input
+                [cropperSettings]="{scale: 4 / 3}"
+                [loading]="savingImage()"
+                [ngModel]="image"
+                (ngModelChange)="updateImage($event, image)"
+              ></app-image-input>
+              <!-- <app-show-image class="mb-2" style="max-width: 200px;" [image]="image"></app-show-image> -->
             </div>
 
             <ng-template #removeImageContent>

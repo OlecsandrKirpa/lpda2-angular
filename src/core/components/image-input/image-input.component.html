@@ -3,18 +3,20 @@
 @if (control.value) {
   <div class="block items-center border border-solid rounded-sm border-slate-200 relative my-1 p-2">
     <div class="!absolute me-1 mt-1 top-0 right-0">
-      <div class="flex flex-col">
-        <button [tuiHint]="'Conferma'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="emit(control.value)" size="m" appearance="outline" tuiIconButton type="button">
-          <mat-icon>check</mat-icon>
-        </button>
-
+      <div class="flex flex-col bg-white bg-opacity-50 ps-2 rounded-md">
         <button [tuiHint]="'Ridimensiona e ritaglia'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="fireResizeModal()" size="m" appearance="outline" tuiIconButton type="button">
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button [tuiHint]="'Rimuovi immagine'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="resetControl()" size="m" appearance="secondary-destructive" tuiIconButton type="button">
-          <mat-icon>delete</mat-icon>
-        </button>
+        @if(isFileUploaded()){
+          <button [tuiHint]="'Conferma'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="emit(control.value)" size="m" appearance="outline" tuiIconButton type="button">
+            <mat-icon>check</mat-icon>
+          </button>
+
+          <button [tuiHint]="'Rimuovi immagine'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="resetControl()" size="m" appearance="secondary-destructive" tuiIconButton type="button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
       </div>
     </div>
 
