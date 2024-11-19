@@ -5,7 +5,7 @@
       <ng-container *ngFor="let lang of languages">
         <ng-container *ngIf="lang.iso != currentLanguage().iso">
           <button (click)="changePath(lang.code)" tuiOption>
-            <span class="d-flex flex-row align-items-center">
+            <span class="block">
               <span class="me-1" [innerText]="lang.name"></span>
               <img class="flag" [src]="lang.iso | tuiFlag" />
             </span>
@@ -16,8 +16,13 @@
   </ng-template>
 
   <tui-hosted-dropdown [content]="dataList">
-    <button class="md:me-2" tuiIconButton appearance="custom" size="m">
-      <img class="flag" [src]="currentLanguage().iso | tuiFlag" />
+    <button class="md:me-2" tuiButton appearance="custom" size="m">
+       <span class="flex items-center flex-row">
+        <span class="me-1" [innerText]="currentLanguage().name"></span>
+        <img class="flag" [src]="currentLanguage().iso | tuiFlag" />
+        <!-- <span class="material-icons">expand_more</span> -->
+         <mat-icon>expand_more</mat-icon>
+       </span>
     </button>
   </tui-hosted-dropdown>
 </ng-template>
