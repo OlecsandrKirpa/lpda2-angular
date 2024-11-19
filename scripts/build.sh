@@ -11,5 +11,6 @@ cat src/assets/config/config.json
 rm -rf dist/lpda2/*
 
 ng build --localize -c production && \
+  cp -r dist/lpda2/it/* dist/lpda2/ && \
   ./scripts/adjust-configs.sh && \
   echo "Done."

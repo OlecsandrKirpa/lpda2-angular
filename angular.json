@@ -27,9 +27,6 @@
       "i18n": {
         "sourceLocale": "it",
         "locales": {
-          "": {
-            "translation": "locales/messages.xlf"
-          },
           "en": {
             "translation": "locales/messages.en.xlf",
             "baseHref": "/en/"
