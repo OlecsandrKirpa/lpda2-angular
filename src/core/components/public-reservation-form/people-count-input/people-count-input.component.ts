@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnChanges, OnInit} from '@angular/core';
 import {TuiDestroyService} from "@taiga-ui/cdk";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {NgClass, NgStyle} from "@angular/common";
@@ -95,12 +95,23 @@ export class PeopleCountInputComponent implements OnInit, OnChanges, ControlValu
     }
   }
 
+  private innerWidth: number = window.innerWidth;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: number) {
+    this.innerWidth = window.innerWidth;
+    this.recalculatePerRow();
+  }
 
   private recalculatePerRow(): void {
-    // if (this.maxPeople == 6) {
-    //   this.perRow = 3;
-    //   return;
-    // }
+    if (this.innerWidth < 768) {
+      this.perRow = 2;
+      return;
+    }
+
+    if (this.innerWidth < 992 && this.maxPeople % 3 === 0) {
+      this.perRow = 3;
+      return;
+    }
 
     let divisor = 5;
     while(divisor > 2) {
