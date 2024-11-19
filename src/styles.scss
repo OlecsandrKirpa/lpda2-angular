@@ -61,7 +61,7 @@ h1 {
   @apply block;
 }
 
-app-home-layout {
+app-home-layout, app-contacts {
   font-family: Neuton, Roboto, sans-serif;
   --tui-primary: var(--first-color);
   --tui-primary-hover: var(--second-color);

@@ -1,7 +1,10 @@
-<h1 class="text-4xl font-bold uppercase flex items-center justify-center border-b-2 border-b-slate-100 pb-4 mb-4">
-  <mat-icon inline class="me-3">contacts</mat-icon>
-  <ng-container i18n>Contatti</ng-container>
-</h1>
+<div class="flex items-center mb-2 justify-center">
+  <img src="assets/img/logo.png" alt="Logo" class="block me-2 md:me-4 h-[70px]"/>
+</div>
+
+<div class="flex items-center justify-center border-b-2 border-b-slate-100 pb-4 mb-4">
+  <h1 class="text-4xl text-primary font-bold uppercase m-0" i18n>Contatti</h1>
+</div>
 
 <p class="mb-2">
   <ng-container i18n>Per qualsiasi informazione o chiarimento, non esitare a contattarci:</ng-container>
@@ -9,7 +12,35 @@
 
 @if(contacts()){
 
-  
+  @if((contacts() | key: 'whatsapp_url') && (contacts() | key: 'whatsapp_number')) {
+    <li class="flex flex-row items-center text-lg py-2">
+      <span class="inline-flex items-center w-[50px] text-4xl">
+        <app-icon [name]="'whatsapp-svg'" ></app-icon>
+      </span>
+      <span class="flex flex-col">
+        <span class="text-sm text-slate-400">Whatsapp</span>
+        <a target="_blank" tuiLink href="{{ contacts() | key: 'whatsapp_url' }}" >{{ contacts() | key: 'whatsapp_number' }}</a>
+      </span>
+    </li>
+  }
+
+  @if(contacts() | key: 'address') {
+    <li class="flex flex-row items-center text-lg py-2">
+      <span class="inline-flex items-center w-[50px] text-4xl">
+        <mat-icon>location_on</mat-icon>
+      </span>
+      <span class="flex flex-col">
+        @if(contacts() | key: 'google_url'){
+          <a target="_blank" tuiLink href="{{ contacts() | key: 'google_url' }}">
+            {{ contacts() | key: 'address' }}
+          </a>
+        } @else {
+          <span>{{ contacts() | key: 'address' }}</span>
+        }
+      </span>
+    </li>
+  }
+
   <ul class="contact-items">
     @if(contacts() | key: 'email') {
       <li class="flex flex-row items-center text-lg py-2">
@@ -18,7 +49,7 @@
         </span>
         <span class="flex flex-col">
           <span class="text-sm text-slate-400">Email</span>
-          <a target="_blank" tuiLink href="mailto:{{ contacts() | key: 'email' }}" >{{ contacts() | key: 'email' }}</a>
+          <a target="_blank" class="text-primary" tuiLink href="mailto:{{ contacts() | key: 'email' }}" >{{ contacts() | key: 'email' }}</a>
         </span>
       </li>
     }
@@ -31,18 +62,6 @@
         <span class="flex flex-col">
           <span class="text-sm text-slate-400">Telefono</span>
           <a target="_blank" tuiLink href="tel:{{ contacts() | key: 'phone' }}" >{{ contacts() | key: 'phone' }}</a>
-        </span>
-      </li>
-    }
-  
-    @if((contacts() | key: 'whatsapp_url') && (contacts() | key: 'whatsapp_number')) {
-      <li class="flex flex-row items-center text-lg py-2">
-        <span class="inline-flex items-center w-[50px] text-4xl">
-          <app-icon [name]="'whatsapp-svg'" ></app-icon>
-        </span>
-        <span class="flex flex-col">
-          <span class="text-sm text-slate-400">Whatsapp</span>
-          <a target="_blank" tuiLink href="{{ contacts() | key: 'whatsapp_url' }}" >{{ contacts() | key: 'whatsapp_number' }}</a>
         </span>
       </li>
     }
@@ -82,23 +101,6 @@
           <a target="_blank" tuiLink href="{{ contacts() | key: 'tripadvisor_url' }}" >
             <ng-container i18n>Pagina TripAdvisor</ng-container>
           </a>
-        </span>
-      </li>
-    }
-  
-    @if(contacts() | key: 'address') {
-      <li class="flex flex-row items-center text-lg py-2">
-        <span class="inline-flex items-center w-[50px] text-4xl">
-          <mat-icon>location_on</mat-icon>
-        </span>
-        <span class="flex flex-col">
-          @if(contacts() | key: 'google_url'){
-            <a target="_blank" tuiLink href="{{ contacts() | key: 'google_url' }}">
-              {{ contacts() | key: 'address' }}
-            </a>
-          } @else {
-            <span>{{ contacts() | key: 'address' }}</span>
-          }
         </span>
       </li>
     }
