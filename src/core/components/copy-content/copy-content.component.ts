@@ -18,7 +18,6 @@ export class CopyContentComponent {
   private readonly notifications: NotificationsService = inject(NotificationsService);
 
   @Input({required: true}) content?: string | null;
-  @Input() onlyIcon: boolean = true;
   @Input() appearance: string = 'outline';
   @Input() size: 's' | 'm' | 'l' = 'm';
 

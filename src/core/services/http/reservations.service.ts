@@ -29,6 +29,10 @@ export class ReservationsService extends CommonHttpService<Reservation> {
     );
   }
 
+  refoundPayment(id: number): Observable<unknown> {
+    return this.post(`${id}/refund_payment`, {});
+  }
+
   export(params: Record<string, string | number | boolean>): Observable<void> {
     return new Observable<void>((observer: Observer<void>): void => {
       this.get(`export`, {

@@ -1,9 +1,5 @@
-@if (onlyIcon) {
-  <button (click)="copy()" tuiIconButton type="button" [appearance]="appearance" [size]="size">
-    <mat-icon>content_copy</mat-icon>
-  </button>
-} @else {
-  <button (click)="copy()" tuiIconButton type="button" [appearance]="appearance" [size]="size">
-    <mat-icon>content_copy</mat-icon>
-  </button>
-}
+<ng-content></ng-content>
+
+<button class="ms-2" (click)="copy()" tuiIconButton type="button" [appearance]="appearance" [size]="size">
+  <mat-icon>content_copy</mat-icon>
+</button>

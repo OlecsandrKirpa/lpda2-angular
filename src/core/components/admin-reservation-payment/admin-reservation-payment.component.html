@@ -1,20 +1,67 @@
 @if(payment()) {
 
-  <ng-template #modalTemplate>
-    <p>Link per completare il pagamento:</p>
-
-    <div class="flex items-center justify-center">
-      <a class="me-2" tuiLink href="{{payment()?.hpp_url}}">{{payment()?.hpp_url}}</a>
-
-      <app-copy-content [content]="payment()?.hpp_url"></app-copy-content>
-    </div>
+  <ng-template #paymentStatus>
+      @switch(status()){
+        @case("paid"){
+          <span class="text-center text-success-dark text-nowrap" i18n>Pagata</span>
+        }
+        @case("todo") {
+          <span class="text-center text-danger text-nowrap" i18n>Non pagata</span>
+        }
+        @case("refounded") {
+          <span class="text-center text-warning text-nowrap" i18n>Rimborsata</span>
+        }
+        @default{
+          error
+        }
+      }
   </ng-template>
 
-<div (click)="showDialog(modalTemplate)" [ngClass]="{'text-danger border-danger': !paid()}" class="border flex items-center px-3 py-2 justify-center rounded-lg border-slate-400">
-  @if(paid()) {
-  <span class="text-center text-nowrap" i18n>Pagata</span>
-  } @else {
-  <span class="text-center text-nowrap" i18n>Non pagata</span>
-  }
-</div>
+  <ng-template #modalTemplate>
+    <h2 class="text-xl bold mb-3" i18n>Stato pagamento</h2>
+
+    @if(payment()?.value){
+      <div class="w-fit border font-bold rounded-md border-success-dark text-success-dark flex items-center p-2">
+        {{ payment()?.value | currency }}
+      </div>
+    }
+
+    @if(payment()?.external_id) {
+      <p class="mt-3">
+        <ng-container i18n>Id pagamento:</ng-container>
+        <app-copy-content [content]="payment()?.external_id">{{ payment()?.external_id }}</app-copy-content>
+      </p>
+    }
+
+    <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
+
+    @switch(status()){
+      @case("paid"){
+        <p class="my-3" i18n>Il pagamento è stato completato con successo.</p>
+
+        <button [showLoader]="loading()" (click)="cancelPayment()" tuiButton type="button" size="m" appearance="secondary-destructive" >
+          <ng-container i18n>Storna pagamento</ng-container>
+        </button>
+      }
+      @case("todo") {
+        <p i18n>Link per completare il pagamento:</p>
+   
+       <div class="flex items-center justify-center">
+         <a class="me-2" tuiLink href="{{payment()?.hpp_url}}">{{payment()?.hpp_url}}</a>
+   
+         <app-copy-content [content]="payment()?.hpp_url"></app-copy-content>
+       </div>
+      }
+      @case("refounded") {
+        <p i18n>Il pagamento è stato rimborsato.</p>
+      }
+      @default{
+        error
+      }
+    }
+  </ng-template>
+
+  <div (click)="showDialog(modalTemplate)" class="border flex items-center px-3 py-2 justify-center rounded-lg border-slate-400">
+    <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
+  </div>
 }

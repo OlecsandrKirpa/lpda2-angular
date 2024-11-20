@@ -10,6 +10,7 @@ export class ReservationPayment extends BaseModel {
   status?: ReservationPaymentStatus;
   reservation_id?: number;
   preorder_type?: ReservationPaymentPreorderType;
+  external_id?: string; // external id; in case of nexi it's the "idOperazione"
   other?: Record<string, unknown>;
 
   constructor(data: ReservationPaymentData) {
@@ -20,6 +21,7 @@ export class ReservationPayment extends BaseModel {
     this.status = data.status;
     this.reservation_id = data.reservation_id;
     this.preorder_type = data.preorder_type;
+    this.external_id = data.external_id
     this.other = data.other;
   }
 }
