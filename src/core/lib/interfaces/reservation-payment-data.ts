@@ -10,7 +10,7 @@ export interface ReservationPaymentData extends BaseModelData {
   other?: Record<string, unknown>;
 }
 
-export const ReservationPaymentStatusOptions = ["todo", "paid", "refounded"] as const;
+export const ReservationPaymentStatusOptions = ["todo", "paid", "refunded"] as const;
 export type ReservationPaymentStatus = typeof ReservationPaymentStatusOptions[number];
 
 export const ReservationPaymentPreorderTypeOptions = ["html_nexi_payment"] as const;
