@@ -38,7 +38,11 @@
         <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
       </div>
 
-      <button i18n-tuiHint [tuiHint]="'Aggiorna stato (scarica ultima versione dal gateway di pagamento)'" (click)="fetchPaymentStatus()" size="m" type="button" tuiIconButton [showLoader]="loading()">
+      <ng-template #hintForRefresh>
+        <ng-container i18n>Aggiorna stato (scarica ultima versione dal gateway di pagamento)</ng-container>
+      </ng-template>
+
+      <button [tuiHint]="hintForRefresh" (click)="fetchPaymentStatus()" size="m" type="button" tuiIconButton [showLoader]="loading()">
         <mat-icon>refresh</mat-icon>
       </button>
     </div>
