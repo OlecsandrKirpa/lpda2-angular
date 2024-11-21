@@ -33,7 +33,15 @@
       </p>
     }
 
-    <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
+    <div class="flex items-center">
+      <div class="me-2">
+        <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
+      </div>
+
+      <button i18n-tuiHint [tuiHint]="'Aggiorna stato (scarica ultima versione dal gateway di pagamento)'" (click)="fetchPaymentStatus()" size="m" type="button" tuiIconButton [showLoader]="loading()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
 
     @switch(status()){
       @case("paid"){

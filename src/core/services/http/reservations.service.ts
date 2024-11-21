@@ -29,8 +29,16 @@ export class ReservationsService extends CommonHttpService<Reservation> {
     );
   }
 
-  refoundPayment(id: number): Observable<unknown> {
-    return this.post(`${id}/refund_payment`, {});
+  refoundPayment(id: number): Observable<Reservation> {
+    return this.post(`${id}/refund_payment`, {}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    )
+  }
+
+  refreshPaymentStatus(id: number): Observable<Reservation> {
+    return this.post(`${id}/refresh_payment_status`, {}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
   }
 
   export(params: Record<string, string | number | boolean>): Observable<void> {

@@ -2,9 +2,9 @@ import { CurrencyPipe, JsonPipe, NgClass, NgTemplateOutlet } from '@angular/comm
 import { ChangeDetectionStrategy, Component, computed, inject, Input, Signal, signal, WritableSignal } from '@angular/core';
 import { Reservation } from '@core/models/reservation';
 import { ReservationPayment } from '@core/models/reservation-payment';
-import { TuiButtonModule, TuiDialogService, TuiLinkModule } from '@taiga-ui/core';
-import {TuiDialogContext } from '@taiga-ui/core';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import { TuiButtonModule, TuiDialogService, TuiHintModule, TuiLinkModule } from '@taiga-ui/core';
+import { TuiDialogContext } from '@taiga-ui/core';
+import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
 import { CopyContentComponent } from "../copy-content/copy-content.component";
 import { ReservationPaymentStatus } from '@core/lib/interfaces/reservation-payment-data';
 import { ReservationsService } from '@core/services/http/reservations.service';
@@ -13,6 +13,7 @@ import { takeUntil, finalize, switchMap } from 'rxjs';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { HttpErrorResponse } from '@angular/common/http';
 import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-admin-reservation-payment',
@@ -23,7 +24,9 @@ import { parseHttpErrorMessage } from '@core/lib/parse-http-error-message';
     TuiLinkModule,
     CurrencyPipe,
     NgTemplateOutlet,
-],
+    MatIconModule,
+    TuiHintModule,
+  ],
   templateUrl: './admin-reservation-payment.component.html',
   styleUrl: './admin-reservation-payment.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,13 +46,31 @@ export class AdminReservationPaymentComponent {
 
   readonly loading: WritableSignal<boolean> = signal(false);
 
-  @Input({required: true, alias: 'reservation'}) set reservationValue(value: Reservation | null) {
+  @Input({ required: true, alias: 'reservation' }) set reservationValue(value: Reservation | null) {
     this.reservation.set(value);
     this.payment.set(value?.payment || null);
   }
 
   showDialog(content: PolymorpheusContent<TuiDialogContext>): void {
     this.dialogs.open(content).subscribe();
+  }
+
+  fetchPaymentStatus(): void {
+    const id = this.reservation()?.id;
+    if (!(id)) {
+      this.notifications.error();
+      return;
+    }
+
+    this.loading.set(true);
+    this.reservations.refreshPaymentStatus(id).pipe(
+      takeUntil(this.destroy),
+      finalize(() => this.loading.set(false)),
+    ).subscribe((reservation: Reservation) => {
+      this.reservationValue = reservation;
+    }, (e: HttpErrorResponse) => {
+      this.notifications.error(parseHttpErrorMessage(e));
+    });
   }
 
   cancelPayment() {
@@ -59,20 +80,21 @@ export class AdminReservationPaymentComponent {
       return;
     }
 
-    this.notifications.confirm($localize`I soldi della prenotazione verranno ritornati al cliente. Sei sicuro?`).subscribe({next: (confirmed: boolean) => {
-      if (!confirmed) return;
+    this.notifications.confirm($localize`I soldi della prenotazione verranno ritornati al cliente. Sei sicuro?`).subscribe({
+      next: (confirmed: boolean) => {
+        if (!confirmed) return;
 
-      this.loading.set(true);
-      this.reservations.refoundPayment(id).pipe(
-        takeUntil(this.destroy),
-        finalize(() => this.loading.set(false)),
-        switchMap(() => this.reservations.show(id))
-      ).subscribe((reservation: Reservation) => {
-        this.reservationValue = reservation;
-      }, (e: HttpErrorResponse) => {
-        this.notifications.error(parseHttpErrorMessage(e));
-      });
+        this.loading.set(true);
+        this.reservations.refoundPayment(id).pipe(
+          takeUntil(this.destroy),
+          finalize(() => this.loading.set(false)),
+        ).subscribe((reservation: Reservation) => {
+          this.reservationValue = reservation;
+        }, (e: HttpErrorResponse) => {
+          this.notifications.error(parseHttpErrorMessage(e));
+        });
 
-    }})
+      }
+    })
   }
 }
