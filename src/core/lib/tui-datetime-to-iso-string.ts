@@ -93,6 +93,30 @@ export function fromTocalToUtcTimeString(time: string): string {
 }
 
 /**
+ * @param timeUtc string in format 'HH:MM', UTC time
+ * @returns string in format 'HH:MM', local time
+ */
+export function fromUtcTimeToLocal(timeUtc: string): string {
+  // Split the input string into hours and minutes
+  const [hours, minutes] = timeUtc.split(":").map(Number);
+
+  // Create a Date object using the UTC time
+  const utcDate = new Date();
+  utcDate.setUTCHours(hours, minutes, 0, 0);
+
+  // Convert the UTC date to local time
+  const localHours = utcDate.getHours();
+  const localMinutes = utcDate.getMinutes();
+
+  // Format the local time as "HH:MM"
+  const formattedHours = localHours.toString().padStart(2, "0");
+  const formattedMinutes = localMinutes.toString().padStart(2, "0");
+
+  return `${formattedHours}:${formattedMinutes}`;
+}
+
+
+/**
  * Given UTC datetime string in format 'YYYY-MM-DD HH:MM' will localize it to the user's timezone.
  */
 export function fromUtcTimeDateToLocal(time: string): string {

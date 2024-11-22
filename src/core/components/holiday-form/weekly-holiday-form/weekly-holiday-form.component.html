@@ -1,6 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="form">
   <div class="block mb-3">
-    <p>Seleziona il giorno della settimana</p>
+    <p i18n>Seleziona il giorno della settimana</p>
     <app-weekday-select [autofocus]="true" formControlName="weekday"></app-weekday-select>
     @if(submitted()) {
     <app-errors [errors]="form.get('weekday')?.errors"></app-errors>
@@ -17,12 +17,13 @@
 
     <tui-expand [expanded]="wholeDay.value === false">
       <div class="my-3">
-        <p>Orario di chiusura</p>
+        <p i18n>Orario di chiusura in UTC</p>
+        <p i18n>Ricorda, di seguito è necessario inserire l'orario in UTC. Un ora in meno rispetto all'orario italiano.</p>
 
         <div class="flex items-center justify-around">
           <div>
             <tui-input-time formControlName="weekly_from">
-              Chiusi dalle ore (Formato 24h):
+              <ng-container i18n>Chiusi dalle ore (Formato 24h):</ng-container>
             </tui-input-time>
 
             @if(submitted()) {
@@ -32,7 +33,7 @@
 
           <div>
             <tui-input-time formControlName="weekly_to">
-              Chiusi fino alle ore (Formato 24h):
+              <ng-container i18n>Chiusi fino alle ore (Formato 24h):</ng-container>
             </tui-input-time>
 
             @if(submitted()) {
