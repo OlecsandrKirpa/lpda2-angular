@@ -1,5 +1,5 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output, signal, WritableSignal } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HolidayData } from '@core/lib/interfaces/holiday-data';
 import { dateToTuiDay } from '@core/lib/tui-datetime-to-iso-string';
@@ -37,7 +37,8 @@ type WeeklyHolidayOutput = {
   templateUrl: './weekly-holiday-form.component.html',
   providers: [
     TuiDestroyService,
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeeklyHolidayFormComponent {
 

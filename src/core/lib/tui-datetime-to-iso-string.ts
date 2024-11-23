@@ -25,11 +25,15 @@ export function isoStringToTuiDay(isoString: unknown): TuiDay | null {
 }
 
 /**
- * Will convert string in format 'YYYY-MM-DD' to TuiDay.
+ * Will accept strings in the following formats:
+ * - YYYY-MM-DD
+ * - YYYY-MM-DD HH:mm
+ * 
+ * and will return the corresponding TuiDay
  * @param str
  */
 export function stringToTuiDay(str: unknown): TuiDay | null {
-  if (typeof str == "string" && str.length > 0 && str.match(/^\d{4}-\d{1,2}-\d{1,2}\s{1}00:00$/)) {
+  if (typeof str == "string" && str.length > 0 && str.match(/^\d{4}-\d{1,2}-\d{1,2}\s{1}\d{1,2}:\d{1,2}$/)) {
     str = str.split(" ")[0];
   }
 
@@ -41,6 +45,38 @@ export function stringToTuiDay(str: unknown): TuiDay | null {
   const { day, month, year } = TuiDay.parseRawDateString(str, "YMD");
 
   return new TuiDay(year, month, day);
+}
+
+/**
+ * Will accept strings in the following formats:
+ * - YYYY-MM-DD
+ * - YYYY-MM-DD HH:mm
+ * 
+ * and will return the corresponding TuiTime
+ * @param str
+ */
+export function stringToTuiTime(str: unknown): TuiTime | null {
+  if (typeof str == "string" && str.length > 0 && str.match(/^\d{4}-\d{1,2}-\d{1,2}\s{1}\d{1,2}:\d{1,2}$/)) {
+    str = str.split(" ")[1];
+  }
+
+  if (!(typeof str == 'string' && str.length > 0 && str.match(/^\d{1,2}:\d{1,2}$/))) {
+    console.error(`Invalid string provided to stringToTuiDay. Expected format HH:mm, got`, {str});
+    return null;
+  }
+
+  const [hours, minutes] = str.split(":").map((j: string) => Number(j));
+  if (!(typeof hours === "number" && hours >= 0 && hours <= 23)) {
+    console.error(`error while parsing time in stringToTuiTime. hours is invalid `, {hours});
+    return  null;
+  }
+
+  if (!(typeof minutes === "number" && minutes >= 0 && minutes < 60)) {
+    console.error(`error while parsing time in stringToTuiTime. minutes are invalid`, {minutes});
+    return null;
+  }
+
+  return new TuiTime(hours, minutes);
 }
 
 /**

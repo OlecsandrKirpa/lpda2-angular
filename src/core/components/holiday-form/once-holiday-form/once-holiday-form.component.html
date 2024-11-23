@@ -5,11 +5,38 @@
     </tui-input-date-range>
 
     @if(submitted()) {
-    <app-errors [errors]="dates.errors"></app-errors>
+      <app-errors [errors]="dates.errors"></app-errors>
     }
 
-    <p i18n>Selezia la data d'inizio e fine della chiusura in programma.</p>
-    <p i18n>Attenzione: La chiusura sarà attiva dal primo giorno compreso fino all'ultimo escluso (Selezionando dal 1 all'8 settembre, Non sarà possibile prenotare il primo, il due, etc.. ma sarà possibile prenotare l'8.).</p>
+    <p class="text-slate-400" i18n>Selezia la data d'inizio e fine della chiusura in programma.</p>
+    <!-- <p class="text-slate-400" i18n>Attenzione: La chiusura sarà attiva dal primo giorno compreso fino all'ultimo escluso (Selezionando dal 1 all'8 settembre, Non sarà possibile prenotare il primo, il due, etc.. ma sarà possibile prenotare l'8.).</p> -->
+  </div>
+
+  <div class="block mb-3">
+    <div class="flex items-center">
+      <div class="mb-2 me-2">
+        <tui-input-time [formControl]="fromTime">
+          <ng-container i18n>Orario inizio chiusura</ng-container>
+        </tui-input-time>
+      </div>
+
+      <div class="mb-2 me-2">
+        <tui-input-time [formControl]="toTime">
+          <ng-container i18n>Orario termine chiusura</ng-container>
+        </tui-input-time>
+      </div>
+    </div>
+
+    @if(submitted()) {
+      <app-errors [errors]="fromTime.errors"></app-errors>
+      <app-errors [errors]="toTime.errors"></app-errors>
+    }
+
+    <p class="text-slate-400" i18n>Inserisci gli orari di inizio e fine della chiusura. Chiaramente l'orario di inizio fa riferimento al primo giorno mentre l'orario di fine fa riferimento all'ultimo.</p>
+    <p class="text-warning" i18n>
+      Per evitare confusione dovuta al fuso orario, fa' attenzione a inserire orari in UTC.
+      L'orario in UTC è un ora indietro rispetto all'orario in Italia.
+    </p>
   </div>
 
   <div class="block mb-3">

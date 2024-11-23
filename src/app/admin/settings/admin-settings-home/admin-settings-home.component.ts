@@ -88,7 +88,7 @@ export class AdminSettingsHomeComponent {
     },
     {
       name: $localize`Chiusure`,
-      description: $localize`Modifica giorni di ferie e chiusure settimanali`,
+      description: $localize`Modifica chiusure`,
       path: `holidays`,
       icon: {
         source: `material`,

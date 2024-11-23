@@ -1,11 +1,13 @@
 <h1>
-  <ng-container i18n>Ferie</ng-container>
+  <ng-container i18n>Chiusure</ng-container>
 </h1>
 
-<p i18n>Nota che per semplicità tutti gli orari in questa pagina sono espressi in UTC. Dovrai quindi sommare 1 ora per ottenere l'orario in italiano.</p>
+<p class="text-warning" i18n>
+  Nota che per evitare confusione dovuta al fuso orario, tutti gli orari in questa pagina sono espressi in UTC. Dovrai quindi sommare 1 ora per ottenere l'orario italiano.
+</p>
 
-<p>
-  Di seguito l'elenco delle ferie o giorni di chiusura settimanli.
+<p class="text-slate-400" i18n>
+  Di seguito l'elenco delle chiusure.
 </p>
 
 <a class="mb-3 me-3" tuiButton appearance="flat" routerLink="new">
@@ -45,7 +47,17 @@
             <span class="me-1">{{ item.weekly_to }}</span>
           }
         } @else {
-          <ng-container i18n>Sempre chiusi durante questo periodo</ng-container>
+          <span class="me-1" i18n>Chiusi dalle ore</span>
+          <span class="me-1">{{ item.from_timestamp | date: 'HH:mm' }}</span>
+          <span class="me-1" i18n>del giorno</span>
+          <span class="me-1">{{ item.from_timestamp | date: 'fullDate' }}</span>
+
+          <span class="me-1" i18n>fino alle ore</span>
+          <span class="me-1">{{ item.to_timestamp | date: 'HH:mm' }}</span>
+          <span class="me-1" i18n>del giorno</span>
+          <span class="me-1">{{ item.to_timestamp | date: 'fullDate' }}</span>
+
+          <!-- <ng-container i18n>Sempre chiusi durante questo periodo</ng-container> -->
         }
       </div>
     </div>
