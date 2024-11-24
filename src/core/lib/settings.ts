@@ -2,7 +2,9 @@ export const SettingKeys = [
   `available_locales`,
   `default_language`,
   `max_people_per_reservation`,
-  `reservation_max_days_in_advance`
+  `reservation_max_days_in_advance`,
+  `reservation_min_hours_advance_cancel`,
+  `nexi_auto_refund_cancelled_reservations`,
 ] as const;
 
 export type SettingKey = typeof SettingKeys[number];

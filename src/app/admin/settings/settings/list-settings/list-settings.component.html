@@ -23,6 +23,30 @@
   </div>
 
   <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Storno pagamento automatico per prenotazioni cancellate in tempo</p>
+    <p class="text-slate-400" i18n>Se un utente prenota e paga per la prenotazione, nel momento in cui cancella la prenotazione prima del tempo limite, deve avvenire lo storno del pagamento in automatico?</p>
+
+    <ng-template #trueFalseEnabledContent let-item>
+      @if(item === "true"){
+        <ng-container i18n>Attivo</ng-container>
+      } @else {
+        <ng-container i18n>Disattivo</ng-container>
+      }
+    </ng-template>
+
+    <app-preferences-select
+        [formControlName]="'nexi_auto_refund_cancelled_reservations'"
+        [items]="trueFalse"
+        [itemContent]="trueFalseEnabledContent"
+        [stringifyFn]="applyPipeFunction(languagePipe)"
+        (submit)="save('nexi_auto_refund_cancelled_reservations', $event)"
+        [inputSize]="inputSize"
+    >
+      <ng-container i18n>Storno automatico attivo?</ng-container>
+    </app-preferences-select>
+  </div>
+
+  <div class="mb-4">
     <p class="text-lg font-bold" i18n>Lingue di sistema</p>
     <p class="text-slate-400" i18n>Quali lingue vuoi supportare? Le parti "statiche" come le pagine web non verranno
       tradotte in ulteriori lingue in automatico, ma le parti "dinamiche" come nomi e descrizioni del menù potranno
@@ -52,6 +76,20 @@
         [inputSize]="inputSize"
     >
       <ng-container i18n>Inserisci il numero massimo di persone per singola prenotazione.</ng-container>
+    </app-preferences-number-input>
+  </div>
+
+  <div class="mb-4">
+    <p class="text-lg font-bold" i18n>Anticipo minino per cancellare una prenotazione</p>
+    <p class="text-slate-400" i18n>Specifica quante ore prima l'utente può cancellare la prenotazione.</p>
+
+    <app-preferences-number-input
+        [formControlName]="'reservation_min_hours_advance_cancel'"
+        (submit)="save('reservation_min_hours_advance_cancel', $event)"
+        [inputSize]="inputSize"
+        [postfix]="'ore'"
+    >
+      <ng-container i18n>Ore di anticipo minime.</ng-container>
     </app-preferences-number-input>
   </div>
 

@@ -46,11 +46,9 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-list-settings',
   standalone: true,
-  // imports: [],
   templateUrl: './list-settings.component.html',
 
   imports: [
-    AdminLanguageSwitcherComponent,
     TuiMultiSelectModule,
     ReactiveFormsModule,
     TuiDataListWrapperModule,
@@ -59,8 +57,6 @@ import { Title } from '@angular/platform-browser';
     PreferencesMultipleSelectComponent,
     PreferencesSelectComponent,
     PreferencesNumberInputComponent,
-    JsonPipe,
-    PreferencesJsonInputComponent,
     PreferencesTextInputComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -80,6 +76,8 @@ export class ListSettingsComponent implements OnInit {
 
   readonly allLanguages: string[] = Object.keys(LanguageNames);
 
+  readonly trueFalse: [string, string] = ['true', 'false'];
+
   readonly form: FormGroup = new FormGroup({
     available_locales: new FormControl([]),
     default_language: new FormControl(null),
@@ -89,6 +87,8 @@ export class ListSettingsComponent implements OnInit {
     reservation_min_hours_in_advance: new FormControl(null),
     cover_price: new FormControl(null),
     instagram_landing_page_url: new FormControl(null),
+    reservation_min_hours_advance_cancel: new FormControl(null),
+    nexi_auto_refund_cancelled_reservations: new FormControl(null),
   });
 
   private readonly saving: WritableSignal<boolean> = signal(false);
@@ -157,7 +157,8 @@ export class ListSettingsComponent implements OnInit {
      */
     ([
       `default_language`,
-      `instagram_landing_page_url`
+      `instagram_landing_page_url`,
+      `nexi_auto_refund_cancelled_reservations`
     ] as SettingKey[]).forEach((key: SettingKey): void => {
       const pref = settings.find((setting: Setting) => setting.key === key);
 
@@ -173,7 +174,8 @@ export class ListSettingsComponent implements OnInit {
       `max_people_per_reservation`,
       `reservation_max_days_in_advance`,
       `reservation_min_hours_in_advance`,
-      `cover_price`
+      `cover_price`,
+      `reservation_min_hours_advance_cancel`
     ] as SettingKey[]).forEach((key: SettingKey): void => {
       const pref = settings.find((setting: Setting) => setting.key === key);
 
