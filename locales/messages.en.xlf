@@ -910,14 +910,14 @@
             
             src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>35</context>
+          <context context-type='linenumber'>62</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>67</context>
+          <context context-type='linenumber'>68</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1172,10 +1172,14 @@
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
           <context context-type='linenumber'>90</context>
         </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id='4747185062831700992' datatype='html'>
-        <source>Modifica giorni di ferie e chiusure settimanali</source>
-        <target>Change vacation days and weekly closures.</target>
+      <trans-unit id='5418581571073703752' datatype='html'>
+        <source>Modifica chiusure</source>
+        <target>Change closures</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
           <context context-type='linenumber'>91</context>
@@ -1220,7 +1224,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>64</context>
+          <context context-type='linenumber'>78</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/preorder-reservation-groups/show/show.component.html</context>
@@ -1281,14 +1285,14 @@
             
             src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>31</context>
+          <context context-type='linenumber'>58</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>63</context>
+          <context context-type='linenumber'>64</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1400,12 +1404,28 @@
           <context context-type='linenumber'>96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='7287418178921823023' datatype='html'>
-        <source>Ferie</source>
-        <target>Holidays</target>
+      <trans-unit id='275231331936381110' datatype='html'>
+        <source>
+           Nota che per evitare confusione dovuta al fuso orario, tutti gli
+          orari in questa pagina sono espressi in UTC. Dovrai quindi sommare 1
+          ora per ottenere l'orario italiano. 
+        </source>
+        <target>
+           Note that to avoid confusion due to the time zone, all times on this
+          page are expressed in UTC. You will need to add 1 hour to get the
+          Italian time. 
+        </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>2</context>
+          <context context-type='linenumber'>5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8145687939652392553' datatype='html'>
+        <source> Di seguito l'elenco delle chiusure. </source>
+        <target>Below is the list of closures.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
+          <context context-type='linenumber'>9,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1726634436893195740' datatype='html'>
@@ -1413,7 +1433,7 @@
         <target>Create new</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>12</context>
+          <context context-type='linenumber'>16</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/preorder-reservation-groups/list/list.component.html</context>
@@ -1492,7 +1512,7 @@
         <target>From the</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>23</context>
+          <context context-type='linenumber'>27</context>
         </context-group>
         <note priority='1' from='description'>from date</note>
       </trans-unit>
@@ -1501,7 +1521,7 @@
         <target>to the</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>26</context>
+          <context context-type='linenumber'>30</context>
         </context-group>
         <note priority='1' from='description'>until date</note>
       </trans-unit>
@@ -1510,7 +1530,7 @@
         <target>From now on</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>29</context>
+          <context context-type='linenumber'>33</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8286695869376421357' datatype='html'>
@@ -1518,7 +1538,7 @@
         <target>Closed every</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>35</context>
+          <context context-type='linenumber'>39</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5934291662272064924' datatype='html'>
@@ -1526,7 +1546,7 @@
         <target>All day long</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>38</context>
+          <context context-type='linenumber'>42</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3771893316683782060' datatype='html'>
@@ -1534,7 +1554,7 @@
         <target>From the hours</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>40</context>
+          <context context-type='linenumber'>44</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1553,15 +1573,42 @@
         <target>At hours</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>42</context>
+          <context context-type='linenumber'>46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='3595518135242271614' datatype='html'>
-        <source>Sempre chiusi durante questo periodo</source>
-        <target>Always closed during this period.</target>
+      <trans-unit id='5813222742214247195' datatype='html'>
+        <source>Chiusi dalle ore</source>
+        <target>Closed from the hours</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>46</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3429454083403217204' datatype='html'>
+        <source>del giorno</source>
+        <target>of the day</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
+          <context context-type='linenumber'>52</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
+          <context context-type='linenumber'>57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4445880916983114507' datatype='html'>
+        <source>fino alle ore</source>
+        <target>until the hours</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
+          <context context-type='linenumber'>55</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/eip-category-visibility/timestamps-modal/timestamps-modal.component.html 
+          </context>
+          <context context-type='linenumber'>118</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2402846969362487836' datatype='html'>
@@ -1569,7 +1616,7 @@
         <target>Delete</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>55</context>
+          <context context-type='linenumber'>69</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/preorder-reservation-groups/show/show.component.html</context>
@@ -1602,7 +1649,7 @@
         <target>No element found.</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
-          <context context-type='linenumber'>79</context>
+          <context context-type='linenumber'>93</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3937820716676812002' datatype='html'>
@@ -4804,17 +4851,6 @@
           <context context-type='linenumber'>104</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='4445880916983114507' datatype='html'>
-        <source>fino alle ore</source>
-        <target>until the hours</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/eip-category-visibility/timestamps-modal/timestamps-modal.component.html 
-          </context>
-          <context context-type='linenumber'>118</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='4570038445015744924' datatype='html'>
         <source>
            Se attivata, solo gli utenti che conoscono il link potranno
@@ -4911,7 +4947,7 @@
         <target>What type of closure do you want to create?</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/holiday-form/holiday-form.component.html</context>
-          <context context-type='linenumber'>20</context>
+          <context context-type='linenumber'>21</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2813203876837483403' datatype='html'>
@@ -4919,7 +4955,7 @@
         <target>Weekly repetition</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/holiday-form/holiday-form.component.html</context>
-          <context context-type='linenumber'>25</context>
+          <context context-type='linenumber'>26</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8592520140726357251' datatype='html'>
@@ -4927,7 +4963,7 @@
         <target>One time only</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/holiday-form/holiday-form.component.html</context>
-          <context context-type='linenumber'>31</context>
+          <context context-type='linenumber'>32</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7884101297223838082' datatype='html'>
@@ -4952,25 +4988,62 @@
           <context context-type='linenumber'>11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='5885799221944404669' datatype='html'>
+      <trans-unit id='1427198631538059850' datatype='html'>
+        <source>Orario inizio chiusura</source>
+        <target>Closing time schedule</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='266723631697077260' datatype='html'>
+        <source>Orario termine chiusura</source>
+        <target>Closing time schedule</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3791269313709180861' datatype='html'>
         <source>
-           Attenzione: La chiusura sarà attiva dal primo giorno compreso fino
-          all'ultimo escluso (Selezionando dal 1 all'8 settembre, Non sarà
-          possibile prenotare il primo, il due, etc.. ma sarà possibile
-          prenotare l'8.). 
+           Inserisci gli orari di inizio e fine della chiusura. Chiaramente
+          l'orario di inizio fa riferimento al primo giorno mentre l'orario di
+          fine fa riferimento all'ultimo. 
         </source>
         <target>
-           Attention: The closure will be active from the first included day to
-          the last excluded day (By selecting from September 1st to 8th, it will
-          not be possible to book the first, the second, etc., but it will be
-          possible to book the 8th.). 
+           Enter the start and end times of the closure. Clearly, the start time
+          refers to the first day while the end time refers to the last. 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>12</context>
+          <context context-type='linenumber'>35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7237841378119157137' datatype='html'>
+        <source>
+           Per evitare confusione dovuta al fuso orario, fa' attenzione a
+          inserire orari in UTC. L'orario in UTC è un ora indietro rispetto
+          all'orario in Italia. 
+        </source>
+        <target>
+           To avoid confusion due to time zone differences, be careful to enter
+          times in UTC. The time in UTC is one hour behind the time in Italy. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>36,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7509624668672465678' datatype='html'>
@@ -4981,14 +5054,25 @@
             
             src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>17</context>
+          <context context-type='linenumber'>44</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
           </context>
-          <context context-type='linenumber'>49</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5839460738693952504' datatype='html'>
+        <source>Seleziona il giorno della settimana</source>
+        <target>Select the day of the week.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>3</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3678652832211388984' datatype='html'>
@@ -5002,6 +5086,56 @@
           <context context-type='linenumber'>12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='4896208516168806636' datatype='html'>
+        <source>Orario di chiusura in UTC</source>
+        <target>Closing time in UTC</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8430707410114167114' datatype='html'>
+        <source>
+           Ricorda, di seguito è necessario inserire l'orario in UTC. Un ora in
+          meno rispetto all'orario italiano. 
+        </source>
+        <target>
+           Remember, below you need to enter the time in UTC. One hour less than
+          Italian time. 
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4882532337531471158' datatype='html'>
+        <source>Chiusi dalle ore (Formato 24h):</source>
+        <target>Closed from (24h Format):</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4184979085185497772' datatype='html'>
+        <source>Chiusi fino alle ore (Formato 24h):</source>
+        <target>Closed until (24-hour format):</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='6334274336413295159' datatype='html'>
         <source>Inserire l'orario di inizio</source>
         <target>Enter the start time.</target>
@@ -5010,7 +5144,7 @@
             
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.ts 
           </context>
-          <context context-type='linenumber'>68</context>
+          <context context-type='linenumber'>69</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3151090798364111901' datatype='html'>
@@ -5021,7 +5155,7 @@
             
             src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.ts 
           </context>
-          <context context-type='linenumber'>75</context>
+          <context context-type='linenumber'>76</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3331087435785673260' datatype='html'>
@@ -7093,9 +7227,9 @@
           <context context-type='linenumber'>5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='6114110481606132545' datatype='html'>
-        <source>on the Grand Canal</source>
-        <target>sul Canal Grande</target>
+      <trans-unit id='1831797262182463324' datatype='html'>
+        <source>sul Canal Grande</source>
+        <target>on the Grand Canal</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-landing/public-home-landing.component.html</context>
           <context context-type='linenumber'>5</context>
@@ -7112,7 +7246,7 @@
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/public-home-landing/public-home-landing.component.html</context>
-          <context context-type='linenumber'>10</context>
+          <context context-type='linenumber'>11</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5118244346999578366' datatype='html'>
