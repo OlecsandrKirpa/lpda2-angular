@@ -3,9 +3,9 @@
     @switch (reservation.payment.status) {
       @case("todo") {
         @if(isFreshReservation()){
-          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione non risulta essere andato a buon fine, ma è possibile che sia necessario aspettare qualche minuto. Riprova più tardi.</p>
+          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione <b class="text-danger">non risulta essere andato a buon fine</b>, ma è possibile che sia necessario aspettare qualche minuto. Riprova più tardi.</p>
         } @else {
-          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione non risulta essere andato a buon fine.</p>
+          <p class="text-xl text-center mb-3" i18n>Il pagamento di conferma della prenotazione <b class="text-danger">non risulta essere andato a buon fine</b>.</p>
 
           <div class="flex items-center justify-center mb-3">
             <a href="{{ reservation.payment.hpp_url }}" class="btn-primary me-2" size="m" tuiButton appearance="custom">
@@ -20,7 +20,7 @@
       }
 
       @case("refunded"){
-        <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è stato rimborsato.</p>
+        <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è stato <b class="text-danger">rimborsato</b>.</p>
       }
     }
   } @else {
