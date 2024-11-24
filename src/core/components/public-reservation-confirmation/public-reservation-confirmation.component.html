@@ -10,17 +10,29 @@
           <div class="flex items-center justify-center mb-3">
             <a href="{{ reservation.payment.hpp_url }}" class="btn-primary me-2" size="m" tuiButton appearance="custom">
               <ng-container i18n>Esegui pagamento</ng-container>
+
+              @if(reservation.payment.value) {
+                {{ reservation.payment.value | currency }}
+              }
             </a>
           </div>
         }
       }
 
       @case ("paid") {
-        <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è andato a buon fine e la prenotazione è confermata.</p>
+        @if(reservation.payment.value) {
+          <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione di {{ reservation.payment.value | currency }} è andato a buon fine e la prenotazione è confermata.</p>
+         }@else {
+          <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è andato a buon fine e la prenotazione è confermata.</p>
+        }
       }
 
       @case("refunded"){
-        <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è stato <b class="text-danger">rimborsato</b>.</p>
+        @if(reservation.payment.value) {
+          <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione di {{ reservation.payment.value | currency }} è stato <b class="text-danger">rimborsato</b>.</p>
+        } @else {
+          <p class="text-xl text-center mb-3" i18n>Il pagamento della prenotazione è stato <b class="text-danger">rimborsato</b>.</p>
+        }
       }
     }
   } @else {

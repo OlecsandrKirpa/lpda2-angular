@@ -9,7 +9,7 @@ import { LocalStorageService } from '@core/services/local-storage.service';
 import { NotificationsService } from '@core/services/notifications.service';
 import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
 import { takeUntil, finalize } from 'rxjs';
-import { DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TuiButtonModule, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
 import { ContactUsComponent } from '../contact-us/contact-us.component';
@@ -21,12 +21,12 @@ import { PublicReservationFormComponent } from '../public-reservation-form/publi
   imports: [
     DatePipe,
     TuiButtonModule,
-    PublicReservationFormComponent,
     PublicMessageComponent,
     RouterLink,
     TuiLinkModule,
     ContactUsComponent,
     TuiLoaderModule,
+    CurrencyPipe,
   ],
   templateUrl: './public-reservation-confirmation.component.html',
   styleUrl: './public-reservation-confirmation.component.scss',
