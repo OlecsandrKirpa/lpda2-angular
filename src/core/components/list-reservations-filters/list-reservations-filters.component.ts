@@ -7,13 +7,14 @@ import {
   Input,
   OnInit,
   Output, signal,
+  TemplateRef,
   WritableSignal
 } from '@angular/core';
-import {TuiButtonModule, TuiLinkModule} from "@taiga-ui/core";
-import {MatIcon} from "@angular/material/icon";
-import {TuiInputModule} from "@taiga-ui/kit";
-import {TuiAutoFocusModule, TuiDestroyService} from "@taiga-ui/cdk";
-import {RouterLink} from "@angular/router";
+import { TuiButtonModule, TuiDialogService, TuiHostedDropdownModule, TuiLinkModule, TuiTextfieldControllerModule } from "@taiga-ui/core";
+import { MatIcon } from "@angular/material/icon";
+import { TuiInputModule } from "@taiga-ui/kit";
+import { TuiAutoFocusModule, TuiDestroyService } from "@taiga-ui/cdk";
+import { RouterLink } from "@angular/router";
 import {
   ReservationStatusSelectComponent
 } from "@core/components/reservation-status-select/reservation-status-select.component";
@@ -23,19 +24,21 @@ import {
 import {
   ReservationDateSelectComponent
 } from "@core/components/reservation-date-select/reservation-date-select.component";
-import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
-import {Reservation} from "@core/models/reservation";
-import {SearchResult} from "@core/lib/search-result.model";
-import {DatePipe, JsonPipe} from "@angular/common";
-import {ReservationTurn} from "@core/models/reservation-turn";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {ReservationStatus} from "@core/lib/interfaces/reservation-data";
-import {debounceTime, distinctUntilChanged, filter, takeUntil} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {strToUTC} from "@core/lib/str-time-timezone";
+import { TuiTablePagination, TuiTablePaginationModule } from "@taiga-ui/addon-table";
+import { Reservation } from "@core/models/reservation";
+import { SearchResult } from "@core/lib/search-result.model";
+import { DatePipe, JsonPipe } from "@angular/common";
+import { ReservationTurn } from "@core/models/reservation-turn";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { ReservationStatus } from "@core/lib/interfaces/reservation-data";
+import { debounceTime, distinctUntilChanged, filter, Subscription, takeUntil } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { strToUTC } from "@core/lib/str-time-timezone";
 import {
   ReservationTablesSummaryComponent
 } from "@core/components/reservation-tables-summary/reservation-tables-summary.component";
+import { ReservationStatusComponent } from "../reservation-status/reservation-status.component";
+import { ChipComponent } from "../chip/chip.component";
 
 // export type ReservationsFilters = ReservationsFiltersWithDate | ReservationsFiltersWithDatetime;
 
@@ -64,9 +67,12 @@ export interface ReservationsFilters {
     ReservationDateSelectComponent,
     TuiTablePaginationModule,
     ReactiveFormsModule,
-    JsonPipe,
     ReservationTablesSummaryComponent,
-  ],
+    TuiHostedDropdownModule,
+    TuiTextfieldControllerModule,
+    ReservationStatusComponent,
+    ChipComponent
+],
   templateUrl: './list-reservations-filters.component.html',
   providers: [
     TuiDestroyService
@@ -74,10 +80,10 @@ export interface ReservationsFilters {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
-  @Input() loading: boolean = false;
-  @Input({required: true}) data: SearchResult<Reservation> | null = null;
+  private readonly dialogs: TuiDialogService = inject(TuiDialogService);
 
-  @Input() inputSize: 's' | 'm' | 'l' = 'm';
+  @Input() loading: boolean = false;
+  @Input({ required: true }) data: SearchResult<Reservation> | null = null;
 
   @Output() readonly filtersChanged: EventEmitter<Partial<ReservationsFilters>> = new EventEmitter<Partial<ReservationsFilters>>();
   // @Output() readonly submit: EventEmitter<void> = new EventEmitter<void>();
@@ -89,6 +95,11 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
   readonly turn: FormControl<ReservationTurn | null> = new FormControl<ReservationTurn | null>(null);
   readonly date: FormControl<Date | null> = new FormControl<Date | null>(new Date());
   readonly status: FormControl<ReservationStatus | null> = new FormControl<ReservationStatus | null>(`active`);
+
+  readonly hiddenFormGroup = new FormGroup({
+    query: this.query,
+    status: this.status,
+  })
 
   // Date formatted as string
   readonly dateStr: WritableSignal<string | null> = signal(this.formatDate(this.date.value));
@@ -200,6 +211,17 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
     this.offset = event.page;
     this.per_page = event.size;
     this.filtersMayHaveChanged();
+  }
+
+  private filtersSub?: Subscription;
+  fireModal(temp: TemplateRef<any>) {
+    this.filtersSub?.unsubscribe();
+
+    this.filtersSub = this.dialogs.open(temp).subscribe();
+  }
+
+  closeFiltersModal() {
+    this.filtersSub?.unsubscribe();
   }
 
   // Will check if filters changed, and if so, will emit new filters.

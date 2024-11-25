@@ -1,0 +1,6 @@
+<div class="rounded border py-2 px-3 border-slate-200 flex items-center">
+  <span><ng-content></ng-content></span>
+  <button class="!flex ms-1" (click)="removeClick.emit()" size="s" tuiIconButton type="button" appearance="custom">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

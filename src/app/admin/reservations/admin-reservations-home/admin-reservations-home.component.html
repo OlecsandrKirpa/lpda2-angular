@@ -36,15 +36,15 @@
 </ng-template>
 
 <ng-template #noItems>
-  <app-no-items [showLoader]="loading()" >
+  <app-no-items [showLoader]="false" >
     <h4 i18n>Nessuna prenotazione</h4>
     <span i18n>Prova a modificare i filtri di ricerca</span>
   </app-no-items>
 </ng-template>
 
 <app-list-reservations-filters [loading]="loading()" (filtersChanged)="filtersChanged($event)" [data]="data()">
+  <tui-loader [overlay]="true" [showLoader]="loading()">
   @for(item of items(); track item.id) {
-    <tui-loader [overlay]="true" [showLoader]="loading()">
       <div class="p-3 m-2 flex items-center justify-between border rounded-md border-slate-400">
 
         <!-- Left side -->
@@ -114,10 +114,10 @@
           <app-eip-reservation-status [buttonAppearance]="'flat'" class="mb-3" (statusChange)="updateStatus(item, $event)" [reservation]="item" ></app-eip-reservation-status>
          </div>
       </div>
-    </tui-loader>
-  } @empty {
-    <ng-container *ngTemplateOutlet="noItems"></ng-container>
-  }
+    } @empty {
+      <ng-container *ngTemplateOutlet="noItems"></ng-container>
+    }
+  </tui-loader>
   <!-- <table *ngIf="loading() || items().length > 0; else noItems" class="responsive-table collapse-md">
     <thead>
       <tr>

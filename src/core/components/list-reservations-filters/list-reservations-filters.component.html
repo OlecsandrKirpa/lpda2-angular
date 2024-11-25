@@ -1,53 +1,61 @@
-<div class="flex flex-wrap items-center">
-  <div class="col-6 md:col-4">
-    <div class="flex items-center">
-      <button [showLoader]="loading" class="me-2" type="button" (click)="submit()" tuiIconButton appearance="flat">
-        <mat-icon>search</mat-icon>
-      </button>
-  
-      <tui-input class="grow me-2" [tuiAutoFocus]="true" [formControl]="query">
-        <ng-container i18n>Filtra prenotazioni</ng-container>
-        <input tuiTextfield>
-      </tui-input>
+<ng-template #additionalFiltersTemplate>
+  <form (ngSubmit)="closeFiltersModal()" [formGroup]="hiddenFormGroup">
+    <div class="block mb-3">
+      <div class="flex items-center">
+        <tui-input [tuiTextfieldSize]="'l'" class="grow me-2" [tuiAutoFocus]="true" [formControl]="query">
+          <ng-container i18n>Filtra prenotazioni</ng-container>
+          <input tuiTextfield>
+        </tui-input>
+      </div>
     </div>
-  </div>
 
-  <div class="col-6 md:col-4">
-    <app-reservation-date-select [inputSize]="inputSize" [formControl]="date">
+    <div class="block mb-3">
+      <app-reservation-status-select [showCleaner]="true" [inputSize]="'l'" [formControl]="status">
+        <ng-container i18n>Stato</ng-container>
+      </app-reservation-status-select>
+    </div>
+
+    <button tuiButton appearance="primary" type="submit">
+      <ng-container i18n>Chiudi</ng-container>
+    </button>
+  </form>
+</ng-template>
+
+<div class="flex flex-wrap items-center">
+  <div class="col-12 md:col-6">
+    <app-reservation-date-select [inputSize]="'m'" [formControl]="date">
       <ng-container i18n>Data</ng-container>
     </app-reservation-date-select>
   </div>
 
-  <div class="col-6 md:col-4 px-1">
-    <app-reservation-turn-select [showCleaner]="true" [filters]="{date: dateStr()}" [inputSize]="inputSize" style="min-width: 150px;"
-      class="mx-2" [formControl]="turn">
+  <div class="col-11 md:col-5 px-1">
+    <app-reservation-turn-select [showCleaner]="true" [filters]="{date: dateStr()}" [inputSize]="'m'"
+      style="min-width: 150px;" class="mx-2" [formControl]="turn">
       <ng-container i18n>Turno</ng-container>
     </app-reservation-turn-select>
   </div>
 
-  <div class="col-6 md:col-4 px-1">
-    <app-reservation-status-select [showCleaner]="true" [inputSize]="inputSize" [formControl]="status">
-      <ng-container i18n>Stato</ng-container>
-    </app-reservation-status-select>
-  </div>
-
-  <div class="col-6 md:col-4">
-    <a routerLink="new" tuiLink>
-      <span class="flex items-center">
-        <mat-icon>add</mat-icon>
-        <ng-container i18n>Crea prenotazione</ng-container>
-      </span>
-    </a>
-  </div>
-
-  <!-- <div class="col-6 md:col-4">
-    <button tuiButton appearance="flat">
-      <ng-container i18n>Filtra</ng-container>
+  <div class="col-1">
+    <button (click)="fireModal(additionalFiltersTemplate)" type="button" [showLoader]="loading" tuiIconButton
+      appearance="flat">
+      <mat-icon>filter_alt</mat-icon>
     </button>
-  </div> -->
+  </div>
 
+  <div class="col-12">
+    @if(status.value){
+      <app-chip (removeClick)="status.patchValue(null)">
+        <ng-container i18n>Stato</ng-container>: <app-reservation-status [status]="status.value"></app-reservation-status>
+      </app-chip>
+    }
+
+    @if(query.value){
+      <app-chip (removeClick)="query.patchValue(null)">
+        <ng-container i18n>Ricerca per</ng-container>: {{ query.value }}
+      </app-chip>
+    }
+  </div>
 </div>
-<!-- </div> -->
 
 <ng-content></ng-content>
 
