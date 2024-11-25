@@ -250,7 +250,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>161</context>
+          <context context-type='linenumber'>195</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.ts</context>
@@ -607,7 +607,14 @@
             
             src/core/components/list-reservations-filters/list-reservations-filters.component.html 
           </context>
-          <context context-type='linenumber'>23</context>
+          <context context-type='linenumber'>14</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/list-reservations-filters/list-reservations-filters.component.html 
+          </context>
+          <context context-type='linenumber'>48</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8065907609101976641' datatype='html'>
@@ -619,6 +626,13 @@
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
           </context>
           <context context-type='linenumber'>27</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
+          </context>
+          <context context-type='linenumber'>81</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -698,6 +712,43 @@
           <context context-type='linenumber'>41</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='953494472416517212' datatype='html'>
+        <source>Modifica prenotazione</source>
+        <target>Change reservation</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
+          </context>
+          <context context-type='linenumber'>88</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/reservations/edit-reservation/edit-reservation.component.html</context>
+          <context context-type='linenumber'>3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6652677406345413363' datatype='html'>
+        <source>Nascondi dettagli</source>
+        <target>Hide details</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
+          </context>
+          <context context-type='linenumber'>102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7156597206608384051' datatype='html'>
+        <source>Mostra dettagli</source>
+        <target>Show details</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
+          </context>
+          <context context-type='linenumber'>104</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='8272843536846027906' datatype='html'>
         <source>Prenotazioni | La Porta D'Acqua</source>
         <target>Reservations | La Porta D'Acqua</target>
@@ -706,7 +757,54 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>108</context>
+          <context context-type='linenumber'>114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1265862338076652065' datatype='html'>
+        <source>
+           Prenotazione 
+          <x id='PH' equiv-text='item.fullname'/>
+           x 
+          <x id='PH_1' equiv-text='(item.adults || 0) + (item.children || 0)'/>
+           in stato 
+          <x id='PH_2' equiv-text='ReservationStatusTranslations[status].title'/>
+        </source>
+        <target>
+          Booking
+          <x id='PH' equiv-text='item.fullname'/>
+          for
+          <x id='PH_1' equiv-text='(item.adults || 0) + (item.children || 0)'/>
+          in status
+          <x id='PH_2' equiv-text='ReservationStatusTranslations[status].title'/>
+        </target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1405502572574239258' datatype='html'>
+        <source>Stato aggiornato con successo.</source>
+        <target>State updated successfully.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3564020598943330712' datatype='html'>
+        <source>Qualcosa è andato storto nell'aggiornamento dello stato.</source>
+        <target>Something went wrong with the status update.</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>152</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6923005459778676818' datatype='html'>
@@ -717,7 +815,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>129</context>
+          <context context-type='linenumber'>163</context>
         </context-group>
       </trans-unit>
       <trans-unit id='941321116787164262' datatype='html'>
@@ -728,7 +826,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>184</context>
+          <context context-type='linenumber'>218</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.ts</context>
@@ -748,14 +846,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
           <context context-type='linenumber'>136</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='953494472416517212' datatype='html'>
-        <source>Modifica prenotazione</source>
-        <target>Change reservation</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/reservations/edit-reservation/edit-reservation.component.html</context>
-          <context context-type='linenumber'>3</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6058606105267498053' datatype='html'>
@@ -788,7 +878,7 @@
             
             src/core/components/list-reservations-filters/list-reservations-filters.component.html 
           </context>
-          <context context-type='linenumber'>48</context>
+          <context context-type='linenumber'>70</context>
         </context-group>
       </trans-unit>
       <trans-unit id='687418209005337938' datatype='html'>
@@ -4383,13 +4473,6 @@
           <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
           <context context-type='linenumber'>97</context>
         </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/list-reservations-filters/list-reservations-filters.component.html 
-          </context>
-          <context context-type='linenumber'>15</context>
-        </context-group>
       </trans-unit>
       <trans-unit id='2373315999307732380' datatype='html'>
         <source>Nome dell'allergene</source>
@@ -5406,18 +5489,18 @@
             
             src/core/components/list-reservations-filters/list-reservations-filters.component.html 
           </context>
-          <context context-type='linenumber'>8</context>
+          <context context-type='linenumber'>6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='4555534120194934855' datatype='html'>
-        <source>Turno</source>
-        <target>Shift</target>
+      <trans-unit id='145878132662787436' datatype='html'>
+        <source>Chiudi</source>
+        <target>Close</target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/list-reservations-filters/list-reservations-filters.component.html 
           </context>
-          <context context-type='linenumber'>28</context>
+          <context context-type='linenumber'>19</context>
         </context-group>
       </trans-unit>
       <trans-unit id='146442697456175258' datatype='html'>
@@ -5428,7 +5511,7 @@
             
             src/core/components/list-reservations-filters/list-reservations-filters.component.html 
           </context>
-          <context context-type='linenumber'>32</context>
+          <context context-type='linenumber'>27</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -5436,6 +5519,28 @@
             src/core/components/reservations-creation/admin-reservation-form/admin-reservation-form.component.html 
           </context>
           <context context-type='linenumber'>17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4555534120194934855' datatype='html'>
+        <source>Turno</source>
+        <target>Shift</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/list-reservations-filters/list-reservations-filters.component.html 
+          </context>
+          <context context-type='linenumber'>34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4479909772748521405' datatype='html'>
+        <source>Ricerca per</source>
+        <target>Search for</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/list-reservations-filters/list-reservations-filters.component.html 
+          </context>
+          <context context-type='linenumber'>54</context>
         </context-group>
       </trans-unit>
       <trans-unit id='803966016351905957' datatype='html'>
@@ -7054,14 +7159,6 @@
           <context context-type='linenumber'>3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='7578677684520650388' datatype='html'>
-        <source>Clicca per ordinare gli elementi</source>
-        <target>Click to order the items.</target>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/order-by/order-by.component.ts</context>
-          <context context-type='linenumber'>50</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='3556160881080805244' datatype='html'>
         <source>Seleziona...</source>
         <target>Select...</target>
@@ -7648,13 +7745,13 @@
            . 
         </source>
         <target>
-          The payment of 
+           The payment of 
           <x id='INTERPOLATION' equiv-text='{{ reservation.payment.value | currency }}'/>
            for the reservation has been 
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b class=&quot;text-danger&quot;&gt;'/>
            refunded 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           .
+           . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -7677,7 +7774,7 @@
           <x id='START_BOLD_TEXT' ctype='x-b' equiv-text='&lt;b class=&quot;text-danger&quot;&gt;'/>
            refunded 
           <x id='CLOSE_BOLD_TEXT' ctype='x-b' equiv-text='&lt;/b&gt;'/>
-           .
+           . 
         </target>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -8343,6 +8440,10 @@
           </context>
           <context context-type='linenumber'>22</context>
         </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/lib/interfaces/reservation-data.ts</context>
+          <context context-type='linenumber'>35</context>
+        </context-group>
       </trans-unit>
       <trans-unit id='5162052963015568404' datatype='html'>
         <source>Sei sicuro di voler eliminare il piatto?</source>
@@ -8524,6 +8625,38 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/lib/interfaces/public-message.ts</context>
           <context context-type='linenumber'>55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2358208976767875155' datatype='html'>
+        <source>In attesa</source>
+        <target>Waiting</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/lib/interfaces/reservation-data.ts</context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1691406457551848073' datatype='html'>
+        <source>Arrivato</source>
+        <target>Arrived</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/lib/interfaces/reservation-data.ts</context>
+          <context context-type='linenumber'>29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7214208327455009994' datatype='html'>
+        <source>Annullato</source>
+        <target>Canceled</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/lib/interfaces/reservation-data.ts</context>
+          <context context-type='linenumber'>32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2429808774443136465' datatype='html'>
+        <source>No show</source>
+        <target>No show</target>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/lib/interfaces/reservation-data.ts</context>
+          <context context-type='linenumber'>38</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8440659767564987423' datatype='html'>
