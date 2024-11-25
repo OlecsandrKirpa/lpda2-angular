@@ -1,0 +1,20 @@
+<ng-template #dropdownContent>
+  <tui-data-list>
+    @for(o of options; track o){
+      @if(o != status()) {
+        <button type="button" (click)="emit(o)" tuiOption>
+          <app-reservation-status [status]="o"></app-reservation-status>
+        </button>
+      }
+    }
+  </tui-data-list>
+</ng-template>
+
+<tui-hosted-dropdown #dropdown [content]="dropdownContent">
+  <button type="button" size="m" tuiButton [appearance]="buttonAppearance">
+    <span class="flex items-center">
+      <app-reservation-status [status]="status()"></app-reservation-status>
+      <mat-icon class="animation-speed-2" [ngClass]="{'rotate180': dropdown.open}">expand_more</mat-icon>
+    </span>
+  </button>
+</tui-hosted-dropdown>

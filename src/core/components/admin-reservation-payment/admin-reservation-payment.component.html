@@ -73,7 +73,7 @@
     }
   </ng-template>
 
-  <div (click)="showDialog(modalTemplate)" class="border flex items-center px-3 py-2 justify-center rounded-lg border-slate-400">
+  <button type="button" (click)="showDialog(modalTemplate)" tuiButton size="m" appearance="outline">
     <ng-container *ngTemplateOutlet="paymentStatus" ></ng-container>
-  </div>
+  </button>
 }

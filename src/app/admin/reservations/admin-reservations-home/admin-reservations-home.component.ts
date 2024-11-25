@@ -9,10 +9,10 @@ import {
   WritableSignal
 } from '@angular/core';
 import {CommonModule, DatePipe} from "@angular/common";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TuiInputModule} from "@taiga-ui/kit";
 import {TuiAutoFocusModule, TuiDay, TuiDestroyService} from "@taiga-ui/cdk";
-import {TuiButtonModule, TuiHintModule, TuiLinkModule, TuiLoaderModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiExpandModule, TuiHintModule, TuiLinkModule, TuiLoaderModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {ShowImageComponent} from "@core/components/show-image/show-image.component";
@@ -60,6 +60,8 @@ import {ReservationPeopleComponent} from "@core/components/reservation-people/re
 import { Title } from '@angular/platform-browser';
 import { NoItemsComponent } from "../../../../core/components/no-items/no-items.component";
 import { AdminReservationPaymentComponent } from "../../../../core/components/admin-reservation-payment/admin-reservation-payment.component";
+import { EipReservationStatusComponent } from "../../../../core/components/eip-reservation-status/eip-reservation-status.component";
+import { ReservationStatus, ReservationStatusTranslations } from '@core/lib/interfaces/reservation-data';
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -89,7 +91,10 @@ import { AdminReservationPaymentComponent } from "../../../../core/components/ad
     ReservationPeopleComponent,
     NoItemsComponent,
     TuiLoaderModule,
-    AdminReservationPaymentComponent
+    AdminReservationPaymentComponent,
+    FormsModule,
+    EipReservationStatusComponent,
+    TuiExpandModule,
 ],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -98,6 +103,7 @@ import { AdminReservationPaymentComponent } from "../../../../core/components/ad
   ],
 })
 export class AdminReservationsHomeComponent implements OnInit {
+
   readonly loading: WritableSignal<boolean> = signal(false);
   readonly data: WritableSignal<SearchResult<Reservation> | null> = signal(null);
   readonly items: Signal<Reservation[]> = computed(() => this.data()?.items || []);
@@ -121,6 +127,34 @@ export class AdminReservationsHomeComponent implements OnInit {
         this.search();
       }
     })
+  }
+
+  updateStatus(item: Reservation, status: ReservationStatus): void {
+    const id = item.id;
+    if (!(id && status)) {
+      this.notifications.error();
+      return;
+    }
+
+    this.notifications.confirm(`La prenotazione verrà aggiornata.`, { title: $localize`Prenotazione ${item.fullname} x ${(item.adults || 0) + (item.children || 0)} in stato ${ReservationStatusTranslations[status].title}` }).subscribe({
+      next: (confirmed: boolean): void => {
+        if (confirmed) {
+          this.loading.set(true);
+          this.service.updateStatus(id, status).pipe(
+            takeUntil(this.destroy$),
+            finalize(() => this.loading.set(false)),
+          ).subscribe({
+            next: () => {
+              this.notifications.fireSnackBar($localize`Stato aggiornato con successo.`);
+              this.search();
+            },
+            error: (error: HttpErrorResponse) => {
+              this.notifications.error(parseHttpErrorMessage(error) || $localize`Qualcosa è andato storto nell'aggiornamento dello stato.`);
+            }
+          });
+        }
+      }
+    });
   }
 
   delete(reservationId: number | undefined): void {

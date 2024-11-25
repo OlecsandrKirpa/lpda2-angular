@@ -9,6 +9,7 @@ import {ReservationTableSummary} from "@core/lib/interfaces/reservation-table-su
 import {PublicReservationsService} from "@core/services/http/public-reservations.service";
 import { HttpResponse } from '@angular/common/http';
 import { exportFilenameFromContentDisposition } from '@core/lib/export-filename-from-content-disposition';
+import { ReservationStatus } from '@core/lib/interfaces/reservation-data';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class ReservationsService extends CommonHttpService<Reservation> {
 
   constructor() {
     super(Reservation, `admin/reservations`);
+  }
+
+  updateStatus(id: number, status: ReservationStatus): Observable<Reservation> {
+    return this.patch(`${id}/status/${status}`, {}).pipe(
+      map((data: unknown) => this.mapItem(data))
+    );
   }
 
   tablesSummary(params: Record<string, string|number|boolean> = {}): Observable<ReservationTableSummary[]> {

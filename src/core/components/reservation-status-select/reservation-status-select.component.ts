@@ -45,6 +45,8 @@ export class ReservationStatusSelectComponent implements OnInit, ControlValueAcc
     filter(() => this.control.valid),
   );
 
+  @Input() showCleaner: boolean = true;
+
   ngOnInit(): void {}
 
   registerOnChange(fn: any): void {
