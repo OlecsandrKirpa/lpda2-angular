@@ -1,14 +1,37 @@
-<div class="flex sm:flex-col">
-  <div class="flex items-center mb-2">
-    <button [showLoader]="loading" class="me-2" type="button" (click)="submit()" tuiIconButton appearance="flat">
-      <mat-icon>search</mat-icon>
-    </button>
+<div class="flex flex-wrap items-center">
+  <div class="col-6 md:col-4">
+    <div class="flex items-center">
+      <button [showLoader]="loading" class="me-2" type="button" (click)="submit()" tuiIconButton appearance="flat">
+        <mat-icon>search</mat-icon>
+      </button>
+  
+      <tui-input class="grow me-2" [tuiAutoFocus]="true" [formControl]="query">
+        <ng-container i18n>Filtra prenotazioni</ng-container>
+        <input tuiTextfield>
+      </tui-input>
+    </div>
+  </div>
 
-    <tui-input class="!inline-block min-w-[250px] me-2" [tuiAutoFocus]="true" [formControl]="query">
-      <ng-container i18n>Filtra prenotazioni</ng-container>
-      <input tuiTextfield>
-    </tui-input>
+  <div class="col-6 md:col-4">
+    <app-reservation-date-select [inputSize]="inputSize" [formControl]="date">
+      <ng-container i18n>Data</ng-container>
+    </app-reservation-date-select>
+  </div>
 
+  <div class="col-6 md:col-4 px-1">
+    <app-reservation-turn-select [showCleaner]="true" [filters]="{date: dateStr()}" [inputSize]="inputSize" style="min-width: 150px;"
+      class="mx-2" [formControl]="turn">
+      <ng-container i18n>Turno</ng-container>
+    </app-reservation-turn-select>
+  </div>
+
+  <div class="col-6 md:col-4 px-1">
+    <app-reservation-status-select [showCleaner]="true" [inputSize]="inputSize" [formControl]="status">
+      <ng-container i18n>Stato</ng-container>
+    </app-reservation-status-select>
+  </div>
+
+  <div class="col-6 md:col-4">
     <a routerLink="new" tuiLink>
       <span class="flex items-center">
         <mat-icon>add</mat-icon>
@@ -17,42 +40,31 @@
     </a>
   </div>
 
+  <!-- <div class="col-6 md:col-4">
+    <button tuiButton appearance="flat">
+      <ng-container i18n>Filtra</ng-container>
+    </button>
+  </div> -->
 
-  <div class="flex items-center justify-between">
-    <app-reservation-status-select [inputSize]="inputSize" [formControl]="status">
-      <ng-container i18n>Stato</ng-container>
-    </app-reservation-status-select>
-
-    <app-reservation-turn-select [filters]="{date: dateStr()}" [inputSize]="inputSize"
-                                 style="min-width: 150px;" class="mx-2" [formControl]="turn">
-      <ng-container i18n>Turno</ng-container>
-    </app-reservation-turn-select>
-
-    <app-reservation-date-select [inputSize]="inputSize" [formControl]="date">
-      <ng-container i18n>Data</ng-container>
-    </app-reservation-date-select>
-  </div>
 </div>
+<!-- </div> -->
 
 <ng-content></ng-content>
 
-  <tui-table-pagination class="my-2"
-                        [items]="[10, 20, 50, 100]" [total]="data?.metadata?.total_count ?? 0"
-                        (paginationChange)="paginationChange($event)">
-  </tui-table-pagination>
+<tui-table-pagination class="my-2" [items]="[10, 20, 50, 100]" [total]="data?.metadata?.total_count ?? 0"
+  (paginationChange)="paginationChange($event)">
+</tui-table-pagination>
 
-  <div class="flex items-center mb-2">
-    <a routerLink="export" tuiLink>
-      <span class="flex items-center">
-        <mat-icon>download_file</mat-icon>
-        <ng-container i18n>Esporta prenotazioni</ng-container>
-      </span>
-    </a>
-  </div>
+<div class="flex items-center mb-2">
+  <a routerLink="export" tuiLink>
+    <span class="flex items-center">
+      <mat-icon>download_file</mat-icon>
+      <ng-container i18n>Esporta prenotazioni</ng-container>
+    </span>
+  </a>
+</div>
 
 @if(dateStr()) {
-  <app-reservation-tables-summary
-      [showLoader]="false"
-      [filters]="{ date: dateStr() ?? '' }"
-  ></app-reservation-tables-summary>
+<app-reservation-tables-summary [showLoader]="false"
+  [filters]="{ date: dateStr() ?? '' }"></app-reservation-tables-summary>
 }

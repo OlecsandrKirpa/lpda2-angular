@@ -56,6 +56,7 @@ const componentInputs: string[] = [
   `showCreateNew`,
   `nativeOptionTemplate`,
   `filters`,
+  `showCleaner`,
 ];
 
 export {componentInputs as CommonDynamicSelectComponentInputs};

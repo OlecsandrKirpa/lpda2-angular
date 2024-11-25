@@ -6,6 +6,7 @@ import {distinctUntilChanged, filter, Observable, takeUntil} from "rxjs";
 import {TuiDataListWrapperModule, TuiSelectModule} from "@taiga-ui/kit";
 import {TuiDataListModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {NgForOf} from "@angular/common";
+import { ReservationStatusComponent } from "../reservation-status/reservation-status.component";
 
 @Component({
   selector: 'app-reservation-status-select',
@@ -16,7 +17,8 @@ import {NgForOf} from "@angular/common";
     TuiDataListModule,
     NgForOf,
     TuiTextfieldControllerModule,
-  ],
+    ReservationStatusComponent
+],
   templateUrl: './reservation-status-select.component.html',
   styleUrl: './reservation-status-select.component.scss',
   providers: [

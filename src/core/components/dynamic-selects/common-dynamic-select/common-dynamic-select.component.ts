@@ -87,6 +87,9 @@ export class CommonDynamicSelectComponent<T> implements ControlValueAccessor, On
   outputType: 'id' | 'object' = 'object';
 
   /* @Input() */
+  showCleaner: boolean = false;
+
+  /* @Input() */
   filters: Record<string, any> | null = null;
 
   /* @Input() */

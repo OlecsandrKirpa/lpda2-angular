@@ -44,13 +44,14 @@
 
 <app-list-reservations-filters [loading]="loading()" (filtersChanged)="filtersChanged($event)" [data]="data()">
   @for(item of items(); track item.id) {
+    <tui-loader [overlay]="true" [showLoader]="loading()">
       <div class="p-3 m-2 flex items-center justify-between border rounded-md border-slate-400">
 
         <!-- Left side -->
         <div>
-          <span class="flex items-center text-lg mb-2">
+          <span (click)="expand.expanded = !expand.expanded" class="flex items-center text-lg mb-2">
             <!-- TODO remove id!!! -->
-            [ {{ item.id }} ]
+            <!-- [ {{ item.id }} ] -->
 
             <span class="me-2">{{ item.datetime | date: 'HH:mm' }}</span>
 
@@ -75,15 +76,24 @@
               <p class="block mb-2 text-slate-400" > {{ item.notes }} </p>
             }
 
-            <div class="block mb-2">
-              <app-admin-reservation-payment [reservation]="item"></app-admin-reservation-payment>
-            </div>
+            @if(item.table) {
+              <span class="block mb-2 text-slate-400" >
+                <span class="me-1" i18n>Tavolo</span>
+                {{ item.table }}
+              </span>
+            }
 
             <div class="block mb-2">
               <a tuiLink routerLink="{{ item.id }}">
                 <ng-container i18n>Modifica prenotazione</ng-container>
               </a>
             </div>
+
+            <div class="block mb-2">
+              <app-admin-reservation-payment [reservation]="item"></app-admin-reservation-payment>
+            </div>
+
+            <app-reservation-events class="my-auto" [reservation]="item"></app-reservation-events>
           </tui-expand>
 
           <button type="button" size="s" tuiButton appearance="outline" (click)="expand.expanded = !expand.expanded">
@@ -104,6 +114,7 @@
           <app-eip-reservation-status [buttonAppearance]="'flat'" class="mb-3" (statusChange)="updateStatus(item, $event)" [reservation]="item" ></app-eip-reservation-status>
          </div>
       </div>
+    </tui-loader>
   } @empty {
     <ng-container *ngTemplateOutlet="noItems"></ng-container>
   }
