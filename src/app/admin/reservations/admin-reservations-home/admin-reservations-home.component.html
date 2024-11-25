@@ -47,13 +47,15 @@
   @for(item of items(); track item.id) {
       <div class="p-3 m-2 flex items-center justify-between border rounded-md border-slate-400">
 
-        <!-- Left side -->
         <div>
           <span (click)="expand.expanded = !expand.expanded" class="flex items-center text-lg mb-2">
-            <!-- TODO remove id!!! -->
-            <!-- [ {{ item.id }} ] -->
+            <ng-template #detailDatetime>
+              {{ item.datetime | date: 'full' }}
+            </ng-template>
 
-            <span class="me-2">{{ item.datetime | date: 'HH:mm' }}</span>
+            <span [tuiHint]="detailDatetime" class="me-2">
+              {{ item.datetime | date: 'HH:mm' }}
+            </span>
 
             <span class="me-2">{{ item.fullname }}</span>
 
@@ -169,6 +171,7 @@
             <ng-template #detailDatetime>
               {{ item.datetime | date: 'full' }}
             </ng-template>
+            [tuiHint]="detailDatetime"
 
             <span [tuiHint]="detailDatetime"> {{ item.datetime | date: 'HH:mm' }} </span>
           </td>

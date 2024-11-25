@@ -38,6 +38,8 @@ export class ReservationDateSelectComponent implements OnInit, ControlValueAcces
 
   @Input() inputSize: 's' | 'm' | 'l' = 'm';
 
+  @Input() minToday: boolean = true;
+
   private readonly valueChanges$: Observable<null | Date> = this.control.valueChanges.pipe(
     takeUntil(this.destroy$),
     distinctUntilChanged(),

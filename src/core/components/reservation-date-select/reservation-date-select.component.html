@@ -3,7 +3,7 @@
     <mat-icon>arrow_back</mat-icon>
   </button>
 
-      <tui-input-date [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="today" class="mx-2 grow"
+      <tui-input-date [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="minToday ? today : null" class="mx-2 grow"
                       [formControl]="control">
         <ng-content></ng-content>
       </tui-input-date>
