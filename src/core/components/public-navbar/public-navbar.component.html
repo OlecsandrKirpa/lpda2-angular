@@ -16,14 +16,14 @@
   </ng-template>
 
   <tui-hosted-dropdown [content]="dataList">
-    <button class="md:me-2" tuiButton appearance="custom" size="m">
-       <span class="flex items-center flex-row">
-        <span class="me-1" [innerText]="currentLanguage().name"></span>
-        <img class="flag" [src]="currentLanguage().iso | tuiFlag" />
-        <!-- <span class="material-icons">expand_more</span> -->
+    <span type="button" role="button" >
+      <span class="flex items-center flex-row">
+        <span class="text-xl inline-block md:hidden me-1" [innerText]="currentLanguage().iso"></span>
+        <span class="text-xl hidden md:inline-block me-1" [innerText]="currentLanguage().name"></span>
+        <img class="hidden md:inline-block flag" [src]="currentLanguage().iso | tuiFlag" />
          <mat-icon>expand_more</mat-icon>
        </span>
-    </button>
+    </span>
   </tui-hosted-dropdown>
 </ng-template>
 
