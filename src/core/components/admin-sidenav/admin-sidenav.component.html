@@ -86,6 +86,14 @@
          class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
         <span class="ms-5 text-md" i18n>Allergeni</span>
       </a>
+
+      <a routerLink="/admin/menu/update-dish-prices"
+         [ngClass]="{'hidden': !menuLink.isActive && !menuTagsLink.isActive && !menuIngredientsLink.isActive && !menuAllergensLink.isActive}"
+         #menuAllergensLink="routerLinkActive"
+         [routerLinkActive]="'bg-slate-100 active-link'"
+         class="flex items-center no-underline text-slate-700 hover:bg-slate-200 p-3">
+        <span class="ms-5 text-md" i18n>Modifica prezzi piatti</span>
+      </a>
     </div>
 
     <div class="flex flex-col">

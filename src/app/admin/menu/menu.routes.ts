@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadChildren: () => import(`./allergens/allergens.routes`).then(m => m.routes),
   },
   {
+    path: `update-dish-prices`,
+    loadComponent: () => import(`./update-dish-prices/update-dish-prices.component`).then(m => m.UpdateDishPricesComponent)
+  },
+  {
     path: ``,
     loadChildren: () => import(`@core/components/menu-dashboard/menu-dashboard-routes`).then(m => m.routes),
   },

@@ -17,6 +17,12 @@ export class DishesService extends CommonHttpService<Dish> {
     super(Dish, `admin/menu/dishes`);
   }
 
+  updatePrices(data: { amount: number, filters?: Record<string, string | number | boolean> } |  { percent: number, filters?: Record<string, string | number | boolean> }): Observable<{ success: true, details: {id: number, price: number}[] }> {
+    if (data.filters == undefined || data.filters == null) delete data.filters;
+
+    return this.patch<{ success: true, details: {id: number, price: number}[] }>(`update_prices`, data);
+  };
+
   copy(id: number, params: CopyDishParams): Observable<Dish> {
     return this.post(`${id}/copy`, params).pipe(
       map((data: unknown) => this.mapItem(data))
