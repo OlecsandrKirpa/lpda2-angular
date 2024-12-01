@@ -99,7 +99,7 @@ export class AdminReservationFormComponent implements OnInit {
     time: new FormControl(null, [Validators.required]),
     fullname: new FormControl(null, [Validators.required]),
     adults: new FormControl(null, [Validators.required, Validators.min(0)]),
-    children: new FormControl(null, [Validators.required, Validators.min(0)]),
+    children: new FormControl(0, [Validators.required, Validators.min(0)]),
 
     email: new FormControl(null, [Validators.email]),
     table: new FormControl(null),
