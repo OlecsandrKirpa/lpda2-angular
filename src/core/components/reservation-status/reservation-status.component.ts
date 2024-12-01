@@ -12,21 +12,4 @@ export class ReservationStatusComponent {
   @Input({required: true}) status?: ReservationStatus | null;
 
   readonly translations: Record<ReservationStatus, { title: string }> = ReservationStatusTranslations;
-  // readonly translations: Record<ReservationStatus, { title: string }> = {
-  //   active: {
-  //     title: $localize`In attesa`
-  //   },
-  //   arrived: {
-  //     title: $localize`Arrivato`
-  //   },
-  //   cancelled: {
-  //     title: $localize`Annullato`
-  //   },
-  //   deleted: {
-  //     title: $localize`Eliminato`
-  //   },
-  //   noshow: {
-  //     title: $localize`No show`
-  //   }
-  // };
 }

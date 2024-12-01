@@ -139,19 +139,7 @@ export class AdminReservationsHomeComponent implements OnInit {
     this.notifications.confirm(`La prenotazione verrà aggiornata.`, { title: $localize`Prenotazione ${item.fullname} x ${(item.adults || 0) + (item.children || 0)} in stato ${ReservationStatusTranslations[status].title}` }).subscribe({
       next: (confirmed: boolean): void => {
         if (confirmed) {
-          this.loading.set(true);
-          this.service.updateStatus(id, status).pipe(
-            takeUntil(this.destroy$),
-            finalize(() => this.loading.set(false)),
-          ).subscribe({
-            next: () => {
-              this.notifications.fireSnackBar($localize`Stato aggiornato con successo.`);
-              this.search();
-            },
-            error: (error: HttpErrorResponse) => {
-              this.notifications.error(parseHttpErrorMessage(error) || $localize`Qualcosa è andato storto nell'aggiornamento dello stato.`);
-            }
-          });
+          this.confirmedUpdateStatus(id, status);
         }
       }
     });
@@ -172,15 +160,23 @@ export class AdminReservationsHomeComponent implements OnInit {
     this.search(filters);
   }
 
-  // triggerOrder(field: string, asc: boolean | null): void {
-  //   if (asc == null) {
-  //     this.order = undefined;
-  //     return this.search();
-  //   }
-  //
-  //   this.order = { field, asc };
-  //   this.search();
-  // }
+  private confirmedUpdateStatus(id: number, status: ReservationStatus): void {
+    this.loading.set(true);
+    const req = status == "deleted" ? this.service.destroy(id) : this.service.updateStatus(id, status);
+
+    req.pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: () => {
+        this.notifications.fireSnackBar($localize`Stato aggiornato con successo.`);
+        this.search();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.notifications.error(parseHttpErrorMessage(error) || $localize`Qualcosa è andato storto nell'aggiornamento dello stato.`);
+      }
+    });
+  }
 
   private confirmedDelete(id: number): void {
     this.loading.set(true);

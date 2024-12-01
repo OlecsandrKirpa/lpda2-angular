@@ -39,7 +39,8 @@ export class EipReservationStatusComponent {
 
   readonly options: ReservationStatus[] = [
     "arrived",
-    "noshow"
+    "noshow",
+    "deleted"
   ];
 
   @Input() buttonAppearance: "outline" | "flat" = "outline";
