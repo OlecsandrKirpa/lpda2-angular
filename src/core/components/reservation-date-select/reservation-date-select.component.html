@@ -1,14 +1,51 @@
-<div class="flex items-center">
-  <button class="!border !border-solid !rounded-full !border-slate-400" (click)="prevDay()" tuiIconButton type="button" size="m" appearance="icon">
-    <mat-icon>arrow_back</mat-icon>
+<ng-template #rangeHint>
+  @if(control.value && control.value.from && control.value.to) {
+    <span class="me-1" i18n>Dal giorno</span>
+    <span class="me-1">{{ control.value.from | fromTuiDay | date: 'fullDate' }}</span>
+    <span class="me-1" i18n>fino al giorno</span>
+    <span class="me-1">{{ control.value.to | fromTuiDay | date: 'fullDate' }}</span>
+  }
+</ng-template>
+
+<ng-template #editDateModal let-obs>
+	<tui-calendar-range
+    [items]="periodOptions"
+    [value]="control.value"
+    (valueChange)="selectRange($event)"
+></tui-calendar-range>
+
+@if(control.value && control.valid) {
+  <p class="text-slate-400 block mb-3">
+    <span [tuiHint]="rangeHint" >{{ control.value | stringifyTuiDayRange }}</span>
+  </p>
+} @else {
+  <p class="block text-red-200">
+    <ng-container i18n>Nessuna data selezionata.</ng-container>
+  </p>
+}
+
+</ng-template>
+
+<div class="flex border rounded border-slate-200 items-center justify-between">
+  <div class="h-full border-r border-slate-200">
+    <button class="h-full flex items-center justify-center p-2" type="button" (click)="prevDay()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+
+  <button (click)="fireModal(editDateModal)" type="button" class="flex items-center justify-center grow">
+    @if(control.valid && control.value) {
+      <span [tuiHint]="rangeHint" >{{ control.value | stringifyTuiDayRange }}</span>
+    } @else {
+      <ng-content></ng-content>
+    }
+
+    <mat-icon class="ms-1" >event</mat-icon>
   </button>
 
-      <tui-input-date [tuiAutoFocus]="true" [tuiTextfieldSize]="inputSize" [min]="minToday ? today : null" class="mx-2 grow"
-                      [formControl]="control">
-        <ng-content></ng-content>
-      </tui-input-date>
-
-  <button class="!border !border-solid !rounded-full !border-slate-400" (click)="nextDay()" tuiIconButton type="button" size="m" appearance="icon">
-    <mat-icon>arrow_forward</mat-icon>
-  </button>
+  <div class="h-full border-l border-slate-200">
+    <button class="h-full flex items-center justify-center p-2" type="button" (click)="nextDay()">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </div>
 </div>

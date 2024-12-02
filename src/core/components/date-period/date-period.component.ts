@@ -24,7 +24,6 @@ import { Observable, map, takeUntil } from 'rxjs';
     // TuiRangeModule,
     ReactiveFormsModule,
     DatePeriodSummaryPipe,
-    JsonPipe,
   ]
 })
 export class DatePeriodComponent implements ControlValueAccessor {

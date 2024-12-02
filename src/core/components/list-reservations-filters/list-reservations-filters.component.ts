@@ -13,7 +13,7 @@ import {
 import { TuiButtonModule, TuiDialogService, TuiHostedDropdownModule, TuiLinkModule, TuiTextfieldControllerModule } from "@taiga-ui/core";
 import { MatIcon } from "@angular/material/icon";
 import { TuiInputModule } from "@taiga-ui/kit";
-import { TuiAutoFocusModule, TuiDestroyService } from "@taiga-ui/cdk";
+import { TuiAutoFocusModule, TuiDay, TuiDayRange, TuiDestroyService } from "@taiga-ui/cdk";
 import { RouterLink } from "@angular/router";
 import {
   ReservationStatusSelectComponent
@@ -93,7 +93,7 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
 
   readonly query: FormControl<string | null> = new FormControl<string | null>(null);
   readonly turn: FormControl<ReservationTurn | null> = new FormControl<ReservationTurn | null>(null);
-  readonly date: FormControl<Date | null> = new FormControl<Date | null>(new Date());
+  readonly date: FormControl<TuiDayRange | null> = new FormControl<TuiDayRange | null>(new TuiDayRange(TuiDay.currentLocal(), TuiDay.currentLocal()));
   readonly status: FormControl<ReservationStatus | null> = new FormControl<ReservationStatus | null>(`active`);
 
   readonly hiddenFormGroup = new FormGroup({
@@ -115,10 +115,10 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
     this.date.valueChanges.pipe(
       takeUntil(this.destroy$),
     ).subscribe({
-      next: (date: Date | null): void => {
+      next: (date: TuiDayRange | null): void => {
         this.turn.setValue(null);
 
-        if (!date) this.turn.disable();
+        if (!date || !date.isSingleDay) this.turn.disable();
         else if (this.turn.disabled) this.turn.enable();
 
         this.dateStr.set(this.formatDate(date));
@@ -190,15 +190,27 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
 
     // When has turn specified, use the date + turn starts_at and ends_at.
     // Otherwise, use only the date.
-    if (this.date.value instanceof Date && this.date.valid) {
-      const date: string | null = this.datePipe.transform(this.date.value, 'YYYY-MM-dd');
-      const turn: ReservationTurn | null = this.turn.value;
+    if (this.date.value instanceof TuiDayRange && this.date.valid) {
+      // Single date selected.
+      if (this.date.value.isSingleDay) {
+        const date: string | null = this.datePipe.transform(this.date.value.from.toUtcNativeDate(), 'YYYY-MM-dd');
+        const turn: ReservationTurn | null = this.turn.value;
+  
+        if (this.turn.valid && turn instanceof ReservationTurn && turn.starts_at && turn.ends_at) {
+          filters['datetime_from'] = `${date} ${strToUTC(turn.starts_at)}`;
+          filters['datetime_to'] = `${date} ${strToUTC(turn.ends_at)}`;
+        } else if (date) filters['date'] = date;
+      } else {
+        const from: string | null = this.datePipe.transform(this.date.value.from.toUtcNativeDate(), 'YYYY-MM-dd');
+        const to: string | null = this.datePipe.transform(this.date.value.to.toUtcNativeDate(), 'YYYY-MM-dd');
 
-      if (this.turn.valid && turn instanceof ReservationTurn && turn.starts_at && turn.ends_at) {
-        filters['datetime_from'] = `${date} ${strToUTC(turn.starts_at)}`;
-        filters['datetime_to'] = `${date} ${strToUTC(turn.ends_at)}`;
-      } else if (date) filters['date'] = date;
+        if (from && to) {
+          filters['datetime_from'] = `${from} 00:00`;
+          filters['datetime_to'] = `${to} 23:59`;
+        }
+      }
     }
+    // if (this.date.value instanceof TuiDayRange && this.date.valid) {}
 
     if (typeof this.status.value == 'string' && this.status.valid) {
       filters.status = this.status.value;
@@ -239,9 +251,17 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
     return changed;
   }
 
-  private formatDate(date: Date | null): string | null {
+  private formatDate(date: TuiDayRange | null): string | null {
     if (date instanceof Date) {
       return this.datePipe.transform(date, 'YYYY-MM-dd');
+    }
+
+    if (date instanceof TuiDayRange) {
+      if (date.isSingleDay) {
+        return this.datePipe.transform(date.from.toUtcNativeDate(), 'YYYY-MM-dd');
+      }
+
+      return `${this.datePipe.transform(date.from.toUtcNativeDate(), 'YYYY-MM-dd')} - ${this.datePipe.transform(date.to.toUtcNativeDate(), 'YYYY-MM-dd')}`;
     }
 
     return null;
