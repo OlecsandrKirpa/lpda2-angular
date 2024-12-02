@@ -1,0 +1,16 @@
+@if (item()) {
+  <div class="flex items-center p-2">
+    <app-show-image class="max-h-[100px] max-w-[100px]" [image]="(item()?.images ?? [])[0]" ></app-show-image>
+
+    <span class="ms-2 text-slate-400">
+      #{{ item()?.id }}
+    </span>
+
+    <span class="ms-2 text-lg">
+      {{ item()?.name }}
+    </span>
+  </div>
+
+} @else {
+  invalid input.
+}

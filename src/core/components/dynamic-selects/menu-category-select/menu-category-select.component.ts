@@ -13,6 +13,8 @@ import {
 } from "@core/components/dynamic-selects/common-dynamic-select/common-dynamic-select.component";
 import {MenuCategory} from "@core/models/menu-category";
 import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
+import { PolymorpheusModule, PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { MenuCategorySelectOptionComponent } from './menu-category-select-option/menu-category-select-option.component';
 
 @Component({
   templateUrl: `../common-dynamic-select/common-dynamic-select.component.html`,
@@ -35,11 +37,13 @@ import {MenuCategoriesService} from "@core/services/http/menu-categories.service
 })
 export class MenuCategorySelectComponent extends CommonDynamicSelectComponent<MenuCategory> {
 
-  override stringify = (c: MenuCategory): string => `${c.name}` ?? ``;
+  override stringify = (c: MenuCategory): string => c.name ?? ``;
 
   override readonly service: MenuCategoriesService = inject(MenuCategoriesService);
 
   constructor() {
     super();
+
+    this.nativeOptionTemplate$.set(new PolymorpheusComponent(MenuCategorySelectOptionComponent));
   }
 }
