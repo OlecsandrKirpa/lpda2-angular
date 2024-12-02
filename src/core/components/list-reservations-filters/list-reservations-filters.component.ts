@@ -47,6 +47,10 @@ export interface ReservationsFilters {
   status: ReservationStatus;
   date: string;
   datetime_from: string;
+  time_from: string;
+  time_to: string;
+  date_from: string;
+  date_to: string;
   datetime_to: string;
   order_by_field: string;
   order_by_direction: "ASC" | "DESC";
@@ -67,12 +71,11 @@ export interface ReservationsFilters {
     ReservationDateSelectComponent,
     TuiTablePaginationModule,
     ReactiveFormsModule,
-    ReservationTablesSummaryComponent,
     TuiHostedDropdownModule,
     TuiTextfieldControllerModule,
     ReservationStatusComponent,
     ChipComponent
-],
+  ],
   templateUrl: './list-reservations-filters.component.html',
   providers: [
     TuiDestroyService
@@ -188,28 +191,23 @@ export class ListReservationsFiltersComponent implements OnInit, AfterViewInit {
       filters['query'] = this.query.value;
     }
 
-    // When has turn specified, use the date + turn starts_at and ends_at.
-    // Otherwise, use only the date.
     if (this.date.value instanceof TuiDayRange && this.date.valid) {
-      // Single date selected.
-      if (this.date.value.isSingleDay) {
-        const date: string | null = this.datePipe.transform(this.date.value.from.toUtcNativeDate(), 'YYYY-MM-dd');
-        const turn: ReservationTurn | null = this.turn.value;
-  
-        if (this.turn.valid && turn instanceof ReservationTurn && turn.starts_at && turn.ends_at) {
-          filters['datetime_from'] = `${date} ${strToUTC(turn.starts_at)}`;
-          filters['datetime_to'] = `${date} ${strToUTC(turn.ends_at)}`;
-        } else if (date) filters['date'] = date;
-      } else {
-        const from: string | null = this.datePipe.transform(this.date.value.from.toUtcNativeDate(), 'YYYY-MM-dd');
-        const to: string | null = this.datePipe.transform(this.date.value.to.toUtcNativeDate(), 'YYYY-MM-dd');
+      const from: string | null = this.datePipe.transform(this.date.value.from.toUtcNativeDate(), 'YYYY-MM-dd');
+      const to: string | null = this.datePipe.transform(this.date.value.to.toUtcNativeDate(), 'YYYY-MM-dd');
 
-        if (from && to) {
-          filters['datetime_from'] = `${from} 00:00`;
-          filters['datetime_to'] = `${to} 23:59`;
-        }
+      if (from && to) {
+        filters['date_from'] = `${from}`;
+        filters['date_to'] = `${to}`;
       }
     }
+
+    const turn: ReservationTurn | null = this.turn.value;
+
+    if (this.turn.valid && turn instanceof ReservationTurn && turn.starts_at && turn.ends_at) {
+      filters['time_from'] = `${strToUTC(turn.starts_at)}`;
+      filters['time_to'] = `${strToUTC(turn.ends_at)}`;
+    }
+
     // if (this.date.value instanceof TuiDayRange && this.date.valid) {}
 
     if (typeof this.status.value == 'string' && this.status.valid) {

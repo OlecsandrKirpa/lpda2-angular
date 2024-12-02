@@ -5,7 +5,7 @@ import {Reservation} from "@core/models/reservation";
 import {catchError, map, Observable, Observer} from "rxjs";
 import {ReservationTurnData} from "@core/lib/interfaces/reservation-turn-data";
 import {ReservationTurn} from "@core/models/reservation-turn";
-import {ReservationTableSummary} from "@core/lib/interfaces/reservation-table-summary";
+import {ReservationTableSummary, UngroupedTablesSummary} from "@core/lib/interfaces/reservation-table-summary";
 import {PublicReservationsService} from "@core/services/http/public-reservations.service";
 import { HttpResponse } from '@angular/common/http';
 import { exportFilenameFromContentDisposition } from '@core/lib/export-filename-from-content-disposition';
@@ -28,6 +28,10 @@ export class ReservationsService extends CommonHttpService<Reservation> {
 
   tablesSummary(params: Record<string, string|number|boolean> = {}): Observable<ReservationTableSummary[]> {
     return this.get<ReservationTableSummary[]>(`tables_summary`, { params });
+  }
+
+  ungroupedTablesSummary(params: Record<string, string|number|boolean> = {}): Observable<UngroupedTablesSummary> {
+    return this.get<UngroupedTablesSummary>(`ungrouped_tables_summary`, { params });
   }
 
   deliverConfirmationEmail(id: number): Observable<Reservation> {

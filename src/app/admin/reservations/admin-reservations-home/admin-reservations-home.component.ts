@@ -62,6 +62,7 @@ import { NoItemsComponent } from "../../../../core/components/no-items/no-items.
 import { AdminReservationPaymentComponent } from "../../../../core/components/admin-reservation-payment/admin-reservation-payment.component";
 import { EipReservationStatusComponent } from "../../../../core/components/eip-reservation-status/eip-reservation-status.component";
 import { ReservationStatus, ReservationStatusTranslations } from '@core/lib/interfaces/reservation-data';
+import { ReservationTablesSummaryComponent } from "../../../../core/components/reservation-tables-summary/reservation-tables-summary.component";
 
 @Component({
   selector: 'app-admin-reservations-home',
@@ -95,6 +96,7 @@ import { ReservationStatus, ReservationStatusTranslations } from '@core/lib/inte
     FormsModule,
     EipReservationStatusComponent,
     TuiExpandModule,
+    ReservationTablesSummaryComponent
 ],
   templateUrl: './admin-reservations-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
