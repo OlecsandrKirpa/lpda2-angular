@@ -10,7 +10,7 @@ import {
   WritableSignal
 } from '@angular/core';
 import { TuiBooleanHandler, TuiDay, TuiDestroyService, TuiMonth, TuiScrollService, TuiTime } from "@taiga-ui/cdk";
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from "@angular/forms";
 import { TuiButtonModule, TuiCalendarModule, TuiExpandModule, TuiLoaderModule } from "@taiga-ui/core";
 import { filter, finalize, merge, switchMap, take, takeUntil, tap } from "rxjs";
 import { isoStringToTuiDay, isoStringToTuiTime, tuiDatetimeToIsoString } from "@core/lib/tui-datetime-to-iso-string";
@@ -25,7 +25,7 @@ import { parseHttpErrorMessage } from "@core/lib/parse-http-error-message";
 import { SOMETHING_WENT_WRONG_MESSAGE } from "@core/lib/something-went-wrong-message";
 import { PublicReservationsService } from "@core/services/http/public-reservations.service";
 import { PreorderReservationGroup } from '@core/models/preorder-reservation-group';
-import { TuiCheckboxBlockModule } from '@taiga-ui/kit';
+import { TuiCheckboxBlockModule, TuiCheckboxModule } from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-datetime-input',
@@ -42,6 +42,8 @@ import { TuiCheckboxBlockModule } from '@taiga-ui/kit';
     ReactiveFormsModule,
     JsonPipe,
     CurrencyPipe,
+    TuiCheckboxModule,
+    FormsModule,
   ],
   templateUrl: './datetime-input.component.html',
   styleUrl: './datetime-input.component.scss',
@@ -62,6 +64,10 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly datePipe: DatePipe = inject(DatePipe);
+
+  // At first, user can select any date. After the user requests so, only valid dates will be shown.
+  readonly showOnlyValidDates: WritableSignal<boolean> = signal(false);
+  readonly hasSeenInvalidDateMessage: WritableSignal<boolean> = signal(false);
 
   @Output() readonly valueChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() readonly inputTouch: EventEmitter<void> = new EventEmitter<void>();
@@ -88,6 +94,8 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   @ViewChild("groupDiv") groupDiv?: ElementRef<HTMLDivElement>;
 
   readonly disabledDates: TuiBooleanHandler<TuiDay> = (day: TuiDay): boolean => {
+    if (!this.showOnlyValidDates()) return false;
+
     if (day.dayBefore(this.today())) return true;
     if (day.dayAfter(this.today().append({ day: this.maxDaysInAdvance }))) return true;
 
@@ -190,6 +198,12 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
         this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);
       }
     });
+  }
+
+  findValidDate(): void {
+    this.hasSeenInvalidDateMessage.set(true);
+    this.showOnlyValidDates.set(true);
+    this.date.reset();
   }
 
   writeValue(obj: unknown): void {
