@@ -3,6 +3,7 @@ import {PublicMessageLocation} from "@core/lib/interfaces/public-message";
 import {PublicPagesDataService} from "@core/services/http/public-pages-data.service";
 import {TuiExpandModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
+import { LinkifyPipe } from '@core/pipes/linkify.pipe';
 
 export type PublicMessages = Record<string, string | null>;
 
@@ -11,7 +12,8 @@ export type PublicMessages = Record<string, string | null>;
   standalone: true,
   imports: [
     TuiExpandModule,
-    MatIcon
+    MatIcon,
+    LinkifyPipe,
   ],
   templateUrl: './public-message.component.html',
   styleUrl: './public-message.component.scss'
