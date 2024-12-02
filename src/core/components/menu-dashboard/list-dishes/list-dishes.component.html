@@ -161,7 +161,7 @@
       <div>
         <a tuiLink [routerLink]="{ categoryId: parentCategoryId, itemId: item.id } | urlTo: 'dish.show'"
            class="text-lg">{{ item.name }}</a>
-        <p class="tui-island__category">{{ item.status }}</p>
+        <p class="tui-island__category" [ngClass]="{'text-warning': item.status === 'inactive'}" >{{ item.status }}</p>
       </div>
         </span>
 

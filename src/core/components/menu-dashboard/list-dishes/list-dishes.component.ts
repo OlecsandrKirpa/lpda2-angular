@@ -69,7 +69,7 @@ import {nue} from "@core/lib/nue";
     TuiHintModule,
     TuiProgressModule,
     RouterOutlet,
-  ],
+],
   templateUrl: './list-dishes.component.html',
   styleUrl: './list-dishes.component.scss',
   providers: [

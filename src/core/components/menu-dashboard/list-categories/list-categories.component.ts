@@ -35,6 +35,8 @@ import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-tabl
 import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {nue} from "@core/lib/nue";
 import {ExportMenuService} from "@core/services/http/export-menu.service";
+import { ObjectValuesPipe } from "../../../pipes/object-values.pipe";
+import { SumPipe } from '@core/pipes/sum.pipe';
 
 @Component({
   selector: 'app-list-categories',
@@ -65,7 +67,9 @@ import {ExportMenuService} from "@core/services/http/export-menu.service";
     CdkDragHandle,
     TuiHintModule,
     TuiProgressModule,
-  ],
+    ObjectValuesPipe,
+    SumPipe,
+],
   templateUrl: './list-categories.component.html',
   styleUrl: './list-categories.component.scss',
   providers: [

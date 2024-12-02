@@ -2,6 +2,7 @@ import {BaseModel} from "@core/lib/base-model";
 import {MenuVisibility} from "@core/models/menu-visibility";
 import {MenuCategoryData, MenuCategoryStatus} from "@core/lib/interfaces/menu-category-data";
 import {Image} from "@core/models/image";
+import { DishStatus } from "@core/lib/interfaces/dish-data";
 
 export class MenuCategory extends BaseModel {
   name?: string;
@@ -25,9 +26,13 @@ export class MenuCategory extends BaseModel {
     description?: Record<string, string>;
   }
 
+  stats?: {
+    dishes: Partial<Record<DishStatus, number>>;
+    children: Partial<Record<MenuCategoryStatus, number>>;
+  }
+
   constructor(data: MenuCategoryData) {
     super(data);
-
 
     this.name = data.name;
     this.description = data.description;
@@ -46,5 +51,7 @@ export class MenuCategory extends BaseModel {
     this.images = data.images ? data.images.map((image) => new Image(image)) : [];
 
     this.translations = data.translations;
+
+    this.stats = data.stats;
   }
 }

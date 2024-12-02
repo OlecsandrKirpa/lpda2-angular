@@ -1,6 +1,7 @@
 import {BaseModelData} from "@core/lib/interfaces/base-model-data";
 import {MenuVisibilityData} from "@core/lib/interfaces/menu-visibility-data";
 import { ImageData } from '@core/lib/interfaces/image-data';
+import { DishStatus } from "./dish-data";
 
 export interface MenuCategoryData extends BaseModelData {
   name?: string;
@@ -22,6 +23,11 @@ export interface MenuCategoryData extends BaseModelData {
   translations?: {
     name?: Record<string, string>;
     description?: Record<string, string>;
+  }
+
+  stats?: {
+    dishes: Partial<Record<DishStatus, number>>;
+    children: Partial<Record<MenuCategoryStatus, number>>;
   }
 }
 
