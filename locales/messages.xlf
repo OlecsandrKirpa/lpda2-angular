@@ -238,7 +238,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>195</context>
+          <context context-type='linenumber'>193</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.ts</context>
@@ -247,6 +247,10 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/preorder-reservation-groups/list/list.component.ts</context>
           <context context-type='linenumber'>103</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.ts</context>
+          <context context-type='linenumber'>106</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
@@ -476,6 +480,195 @@
           <context context-type='linenumber'>61</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='7663190030741271465' datatype='html'>
+        <source>Modifica massiva prezzi piatti</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='342918222899482457' datatype='html'>
+        <source>Indietro</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>7</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
+          </context>
+          <context context-type='linenumber'>119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2968162645627162144' datatype='html'>
+        <source>Percentuale</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>15</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2744470240870281230' datatype='html'>
+        <source>Valore assoluto</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>19</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6295591387072053962' datatype='html'>
+        <source>Conferma</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.html</context>
+          <context context-type='linenumber'>53</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/contacts/update/update.component.html</context>
+          <context context-type='linenumber'>21</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/settings/public_messages/edit-public-message/edit-public-message.component.html 
+          </context>
+          <context context-type='linenumber'>49</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/users/new-user/new-user.component.html</context>
+          <context context-type='linenumber'>38</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
+          <context context-type='linenumber'>27</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/allergen-form/allergen-form.component.html</context>
+          <context context-type='linenumber'>28</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/eip-category-visibility/timestamps-modal/timestamps-modal.component.html 
+          </context>
+          <context context-type='linenumber'>166</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>58</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
+          </context>
+          <context context-type='linenumber'>64</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html 
+          </context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/ingredient-form/ingredient-form.component.html</context>
+          <context context-type='linenumber'>28</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/menu-dashboard/create-category/create-category.component.html 
+          </context>
+          <context context-type='linenumber'>30</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/create-dish/create-dish.component.html</context>
+          <context context-type='linenumber'>26</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/menu-dashboard/duplicate-category/duplicate-category.component.html 
+          </context>
+          <context context-type='linenumber'>160</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/duplicate-dish/duplicate-dish.component.html</context>
+          <context context-type='linenumber'>158</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/link-category/link-category.component.html</context>
+          <context context-type='linenumber'>45</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/link-dish/link-dish.component.html</context>
+          <context context-type='linenumber'>31</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/name-desc-eip/edit-name-desc-modal/edit-name-desc-modal.component.html 
+          </context>
+          <context context-type='linenumber'>20</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/preorder-reservation-group-form/preorder-reservation-group-form.component.html 
+          </context>
+          <context context-type='linenumber'>56</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
+          </context>
+          <context context-type='linenumber'>58</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>49</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservations-creation/admin-reservation-form/admin-reservation-form.component.html 
+          </context>
+          <context context-type='linenumber'>99</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/submit-expand/submit-expand.component.html</context>
+          <context context-type='linenumber'>4</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/tag-form/tag-form.component.html</context>
+          <context context-type='linenumber'>28</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/services/notifications.service.ts</context>
+          <context context-type='linenumber'>66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='645341352713076080' datatype='html'>
+        <source>Prezzi aggiornati</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/menu/update-dish-prices/update-dish-prices.component.ts</context>
+          <context context-type='linenumber'>73</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='5908086098149433746' datatype='html'>
         <source>Prenotazioni</source>
         <context-group purpose='location'>
@@ -596,7 +789,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
           </context>
-          <context context-type='linenumber'>81</context>
+          <context context-type='linenumber'>83</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -679,7 +872,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
           </context>
-          <context context-type='linenumber'>88</context>
+          <context context-type='linenumber'>90</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/reservations/edit-reservation/edit-reservation.component.html</context>
@@ -693,7 +886,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
           </context>
-          <context context-type='linenumber'>102</context>
+          <context context-type='linenumber'>104</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7156597206608384051' datatype='html'>
@@ -703,7 +896,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.html 
           </context>
-          <context context-type='linenumber'>104</context>
+          <context context-type='linenumber'>106</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8272843536846027906' datatype='html'>
@@ -713,7 +906,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>114</context>
+          <context context-type='linenumber'>116</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1265862338076652065' datatype='html'>
@@ -730,27 +923,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>139</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='1405502572574239258' datatype='html'>
-        <source>Stato aggiornato con successo.</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
-          </context>
-          <context context-type='linenumber'>148</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='3564020598943330712' datatype='html'>
-        <source>Qualcosa è andato storto nell&apos;aggiornamento dello stato.</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
-          </context>
-          <context context-type='linenumber'>152</context>
+          <context context-type='linenumber'>141</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6923005459778676818' datatype='html'>
@@ -760,7 +933,27 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>163</context>
+          <context context-type='linenumber'>153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1405502572574239258' datatype='html'>
+        <source>Stato aggiornato con successo.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3564020598943330712' datatype='html'>
+        <source>Qualcosa è andato storto nell&apos;aggiornamento dello stato.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
+          </context>
+          <context context-type='linenumber'>178</context>
         </context-group>
       </trans-unit>
       <trans-unit id='941321116787164262' datatype='html'>
@@ -770,7 +963,7 @@
             
             src/app/admin/reservations/admin-reservations-home/admin-reservations-home.component.ts 
           </context>
-          <context context-type='linenumber'>218</context>
+          <context context-type='linenumber'>216</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.ts</context>
@@ -786,6 +979,10 @@
             src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
           </context>
           <context context-type='linenumber'>104</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.ts</context>
+          <context context-type='linenumber'>124</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/users/list-users/list-users.component.ts</context>
@@ -1017,7 +1214,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>170</context>
+          <context context-type='linenumber'>174</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.html</context>
@@ -1044,6 +1241,13 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
           <context context-type='linenumber'>80</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>53</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1091,7 +1295,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
-          <context context-type='linenumber'>106</context>
+          <context context-type='linenumber'>114</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3494434884988819045' datatype='html'>
@@ -1172,18 +1376,43 @@
           <context context-type='linenumber'>81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='5527059129967157670' datatype='html'>
-        <source>Mostra messaggi personalizzati nelle pagine pubbliche</source>
+      <trans-unit id='1530662789259045302' datatype='html'>
+        <source>
+           Mostra messaggi personalizzati nelle pagine pubbliche. Questi
+          messaggi sono sempre visibili nelle pagine pubbliche. 
+        </source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
           <context context-type='linenumber'>82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9123062835691929410' datatype='html'>
+        <source>Messaggi alla prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>90</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='9047636043966369325' datatype='html'>
+        <source>
+           Mostra messaggi personalizzati alle persone che cercano di prenotare
+          per date specifiche. Per esempio, potresti voler avvertire che sono
+          disponibili solo tavoli all&apos;aperto per una data specifica. 
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
+          <context context-type='linenumber'>91</context>
         </context-group>
       </trans-unit>
       <trans-unit id='9183737104737580919' datatype='html'>
         <source>Chiusure</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>90</context>
+          <context context-type='linenumber'>99</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/holidays/list/list.component.html</context>
@@ -1194,21 +1423,21 @@
         <source>Modifica chiusure</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>91</context>
+          <context context-type='linenumber'>100</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5812077413088934272' datatype='html'>
         <source>Turni di prenotazione</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>99</context>
+          <context context-type='linenumber'>108</context>
         </context-group>
       </trans-unit>
       <trans-unit id='9056045263588730219' datatype='html'>
         <source>Configura gli orari in cui è possibile creare prenotazioni</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/admin-settings-home/admin-settings-home.component.ts</context>
-          <context context-type='linenumber'>100</context>
+          <context context-type='linenumber'>109</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8829154745535913278' datatype='html'>
@@ -1248,134 +1477,6 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/contacts/update/update.component.html</context>
           <context context-type='linenumber'>1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='6295591387072053962' datatype='html'>
-        <source>Conferma</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/contacts/update/update.component.html</context>
-          <context context-type='linenumber'>21</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/app/admin/settings/public_messages/edit-public-message/edit-public-message.component.html 
-          </context>
-          <context context-type='linenumber'>49</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/users/new-user/new-user.component.html</context>
-          <context context-type='linenumber'>38</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/user-profile/confirm-delete/confirm-delete.page.html</context>
-          <context context-type='linenumber'>27</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/allergen-form/allergen-form.component.html</context>
-          <context context-type='linenumber'>28</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/eip-category-visibility/timestamps-modal/timestamps-modal.component.html 
-          </context>
-          <context context-type='linenumber'>166</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/holiday-form/once-holiday-form/once-holiday-form.component.html 
-          </context>
-          <context context-type='linenumber'>58</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/holiday-form/weekly-holiday-form/weekly-holiday-form.component.html 
-          </context>
-          <context context-type='linenumber'>64</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/image-input/resize-image-modal/resize-image-modal.component.html 
-          </context>
-          <context context-type='linenumber'>50</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/ingredient-form/ingredient-form.component.html</context>
-          <context context-type='linenumber'>28</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/menu-dashboard/create-category/create-category.component.html 
-          </context>
-          <context context-type='linenumber'>30</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/create-dish/create-dish.component.html</context>
-          <context context-type='linenumber'>26</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/menu-dashboard/duplicate-category/duplicate-category.component.html 
-          </context>
-          <context context-type='linenumber'>160</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/duplicate-dish/duplicate-dish.component.html</context>
-          <context context-type='linenumber'>158</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/link-category/link-category.component.html</context>
-          <context context-type='linenumber'>45</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/link-dish/link-dish.component.html</context>
-          <context context-type='linenumber'>31</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/name-desc-eip/edit-name-desc-modal/edit-name-desc-modal.component.html 
-          </context>
-          <context context-type='linenumber'>20</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/preorder-reservation-group-form/preorder-reservation-group-form.component.html 
-          </context>
-          <context context-type='linenumber'>56</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
-          </context>
-          <context context-type='linenumber'>48</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/reservations-creation/admin-reservation-form/admin-reservation-form.component.html 
-          </context>
-          <context context-type='linenumber'>99</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/submit-expand/submit-expand.component.html</context>
-          <context context-type='linenumber'>4</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/tag-form/tag-form.component.html</context>
-          <context context-type='linenumber'>28</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/services/notifications.service.ts</context>
-          <context context-type='linenumber'>66</context>
         </context-group>
       </trans-unit>
       <trans-unit id='102315019901629185' datatype='html'>
@@ -1437,6 +1538,10 @@
             src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.html 
           </context>
           <context context-type='linenumber'>21</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>8</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1602,6 +1707,10 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/preorder-reservation-groups/show/show.component.html</context>
           <context context-type='linenumber'>74</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>25</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -1915,6 +2024,122 @@
             src/app/admin/settings/public_messages/list-public-messages/list-public-messages.component.ts 
           </context>
           <context context-type='linenumber'>64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8947599252438124912' datatype='html'>
+        <source>Modifica messaggio alla prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/edit/edit.component.html</context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8273300523588209725' datatype='html'>
+        <source>Modifica messaggio alla prenotazione | La Porta D&apos;Acqua</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/edit/edit.component.ts</context>
+          <context context-type='linenumber'>32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6181146098978047736' datatype='html'>
+        <source>Aggiornato.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/edit/edit.component.ts</context>
+          <context context-type='linenumber'>68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4857007125237124143' datatype='html'>
+        <source>Dettagli</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>19</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/menu-dashboard/duplicate-dish/duplicate-dish.component.html</context>
+          <context context-type='linenumber'>23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6520561070532383856' datatype='html'>
+        <source>Visibilità</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>50</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
+          </context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
+          </context>
+          <context context-type='linenumber'>6</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
+          </context>
+          <context context-type='linenumber'>64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='2758735473780519202' datatype='html'>
+        <source>dal giorno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8598195146616950223' datatype='html'>
+        <source>fino al</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7015309831340551509' datatype='html'>
+        <source>Tutti i giorni</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='5315813978653030945' datatype='html'>
+        <source>di</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.html</context>
+          <context context-type='linenumber'>71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1654115477737866120' datatype='html'>
+        <source>Messaggi alla prenotazione | La Porta D&apos;Acqua</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.ts</context>
+          <context context-type='linenumber'>59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8944648068628592326' datatype='html'>
+        <source>Sei sicuro di voler cancellare questo messaggio?</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/list/list.component.ts</context>
+          <context context-type='linenumber'>84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4080017972287018023' datatype='html'>
+        <source>Nuovo messaggio alla prenotazione</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/new/new.component.html</context>
+          <context context-type='linenumber'>1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3321974805584321614' datatype='html'>
+        <source>Nuovo messaggio alla prenotazione | La Porta D&apos;Acqua</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/reservation-turn-messages/new/new.component.ts</context>
+          <context context-type='linenumber'>30</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3817825423737046185' datatype='html'>
@@ -3795,11 +4020,18 @@
           <context context-type='linenumber'>71</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='6875598403774141807' datatype='html'>
+        <source>Modifica prezzi piatti</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
+          <context context-type='linenumber'>95</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='3431435607484849201' datatype='html'>
         <source>Crea prenotazione</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/admin-sidenav/admin-sidenav.component.html</context>
-          <context context-type='linenumber'>97</context>
+          <context context-type='linenumber'>105</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2373315999307732380' datatype='html'>
@@ -3860,21 +4092,21 @@
         <source>Ultimo mese</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/date-period/date-period.component.ts</context>
-          <context context-type='linenumber'>46</context>
+          <context context-type='linenumber'>45</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7186827624683018152' datatype='html'>
         <source>Ultimo anno</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/date-period/date-period.component.ts</context>
-          <context context-type='linenumber'>47</context>
+          <context context-type='linenumber'>46</context>
         </context-group>
       </trans-unit>
       <trans-unit id='7944007263378778636' datatype='html'>
         <source>Seleziona il periodo temporale</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/date-period/date-period.component.ts</context>
-          <context context-type='linenumber'>63</context>
+          <context context-type='linenumber'>62</context>
         </context-group>
       </trans-unit>
       <trans-unit id='1760787029744825311' datatype='html'>
@@ -3986,30 +4218,6 @@
             src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
           </context>
           <context context-type='linenumber'>53</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id='6520561070532383856' datatype='html'>
-        <source>Visibilità</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
-          </context>
-          <context context-type='linenumber'>1</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
-          </context>
-          <context context-type='linenumber'>6</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/eip-category-visibility/eip-category-visibility.component.html 
-          </context>
-          <context context-type='linenumber'>64</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6964330292623887797' datatype='html'>
@@ -4824,7 +5032,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>148</context>
+          <context context-type='linenumber'>152</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.ts</context>
@@ -5034,11 +5242,11 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>194</context>
+          <context context-type='linenumber'>198</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>212</context>
+          <context context-type='linenumber'>216</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.ts</context>
@@ -5126,7 +5334,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>190</context>
+          <context context-type='linenumber'>194</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4163242963927875832' datatype='html'>
@@ -5140,7 +5348,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>168</context>
+          <context context-type='linenumber'>172</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -5161,7 +5369,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>169</context>
+          <context context-type='linenumber'>173</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -5380,7 +5588,7 @@
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>218</context>
+          <context context-type='linenumber'>222</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.ts</context>
@@ -5696,13 +5904,6 @@
           <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='4857007125237124143' datatype='html'>
-        <source>Dettagli</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/core/components/menu-dashboard/duplicate-dish/duplicate-dish.component.html</context>
-          <context context-type='linenumber'>23</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='5154740855702363155' datatype='html'>
         <source>Copiare ingredienti?</source>
         <context-group purpose='location'>
@@ -6007,6 +6208,16 @@
           <context context-type='linenumber'>145</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='8242398469950799609' datatype='html'>
+        <source>Piatti disattivati</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/menu-dashboard/list-categories/list-categories.component.html 
+          </context>
+          <context context-type='linenumber'>178</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='3954652026696692024' datatype='html'>
         <source>Non ci sono categorie</source>
         <context-group purpose='location'>
@@ -6014,7 +6225,7 @@
             
             src/core/components/menu-dashboard/list-categories/list-categories.component.html 
           </context>
-          <context context-type='linenumber'>197</context>
+          <context context-type='linenumber'>205</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-dishes/list-dishes.component.html</context>
@@ -6028,7 +6239,7 @@
         </source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/menu-dashboard/list-categories/list-categories.component.ts</context>
-          <context context-type='linenumber'>218</context>
+          <context context-type='linenumber'>222</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8129789210020016209' datatype='html'>
@@ -6578,16 +6789,6 @@
           <context context-type='linenumber'>101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='342918222899482457' datatype='html'>
-        <source>Indietro</source>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/public-navigate-menu-v1/public-navigate-menu-v1.component.html 
-          </context>
-          <context context-type='linenumber'>119</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id='2894917011682469879' datatype='html'>
         <source>
            Il pagamento di conferma della prenotazione 
@@ -6762,6 +6963,16 @@
           <context context-type='linenumber'>3</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='4032239407284671079' datatype='html'>
+        <source>Solo date selezionabili</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
+          </context>
+          <context context-type='linenumber'>20</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='8105745215361610460' datatype='html'>
         <source>Seleziona l&apos;orario per il giorno</source>
         <context-group purpose='location'>
@@ -6769,34 +6980,27 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>22</context>
+          <context context-type='linenumber'>30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='6701110116492379168' datatype='html'>
-        <source>
-           Gli orari indicati fanno riferimento all&apos;orario del luogo in cui
-          ti trovi. Gli orari nella mail di conferma, invece, faranno
-          riferimento all&apos;orario in Italia. 
-        </source>
+      <trans-unit id='2388271405761123535' datatype='html'>
+        <source>Siamo spiacenti, non sono disponibili orari per la data selezionata.</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>54</context>
+          <context context-type='linenumber'>68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='4840364776377555516' datatype='html'>
-        <source>
-           Siamo spiacenti, non sono disponibili orari per la data selezionata.
-          Modifica la data e riprova. 
-        </source>
+      <trans-unit id='4694451381856984215' datatype='html'>
+        <source>Trova una data</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>58</context>
+          <context context-type='linenumber'>71</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4314074257183741214' datatype='html'>
@@ -6809,7 +7013,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.ts 
           </context>
-          <context context-type='linenumber'>103</context>
+          <context context-type='linenumber'>115</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6906621436677072340' datatype='html'>
@@ -6887,13 +7091,6 @@
             src/core/components/public-reservation-form/public-reservation-form.component.html 
           </context>
           <context context-type='linenumber'>46</context>
-        </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>
-            
-            src/core/components/public-reservation-form/public-reservation-form.component.html 
-          </context>
-          <context context-type='linenumber'>63</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -7028,6 +7225,60 @@
           <context context-type='linenumber'>78</context>
         </context-group>
       </trans-unit>
+      <trans-unit id='9108411300329344904' datatype='html'>
+        <source>Dal giorno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-date-select/reservation-date-select.component.html 
+          </context>
+          <context context-type='linenumber'>3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='3321999079763655246' datatype='html'>
+        <source>fino al giorno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-date-select/reservation-date-select.component.html 
+          </context>
+          <context context-type='linenumber'>5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8942519196123962375' datatype='html'>
+        <source>Nessuna data selezionata.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-date-select/reservation-date-select.component.html 
+          </context>
+          <context context-type='linenumber'>23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7587116765861869107' datatype='html'>
+        <source>Oggi</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-date-select/reservation-date-select.component.ts 
+          </context>
+          <context context-type='linenumber'>52</context>
+        </context-group>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/core/pipes/stringify-tui-day-range.pipe.ts</context>
+          <context context-type='linenumber'>36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1272463148023797955' datatype='html'>
+        <source>Ultima settimana</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-date-select/reservation-date-select.component.ts 
+          </context>
+          <context context-type='linenumber'>53</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id='3049698905427545302' datatype='html'>
         <source>Invia conferma prenotazione</source>
         <context-group purpose='location'>
@@ -7063,34 +7314,44 @@
           <context context-type='linenumber'>3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='1395022319740174102' datatype='html'>
-        <source>Tipo:</source>
+      <trans-unit id='846430899565402617' datatype='html'>
+        <source>Totale persone</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/reservation-tables-summary/reservation-tables-summary.component.html 
           </context>
-          <context context-type='linenumber'>19</context>
+          <context context-type='linenumber'>44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='2722011117668717888' datatype='html'>
-        <source>persone</source>
+      <trans-unit id='2774586529427193218' datatype='html'>
+        <source>Distribuzione tavoli</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/reservation-tables-summary/reservation-tables-summary.component.html 
           </context>
-          <context context-type='linenumber'>24</context>
+          <context context-type='linenumber'>49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id='3338450619802087688' datatype='html'>
-        <source>Quantità:</source>
+      <trans-unit id='5860696062942698647' datatype='html'>
+        <source>tavoli da</source>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
             
             src/core/components/reservation-tables-summary/reservation-tables-summary.component.html 
           </context>
-          <context context-type='linenumber'>35</context>
+          <context context-type='linenumber'>55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7998535168343361320' datatype='html'>
+        <source> persone</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-tables-summary/reservation-tables-summary.component.html 
+          </context>
+          <context context-type='linenumber'>57</context>
         </context-group>
       </trans-unit>
       <trans-unit id='3751149526186668089' datatype='html'>
@@ -7130,6 +7391,60 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/core/components/reservation-turn-form/reservation-turn-form.component.html</context>
           <context context-type='linenumber'>76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='4926115447699149093' datatype='html'>
+        <source>Messaggio da mostrare</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='6950454229618575965' datatype='html'>
+        <source>Visibile dal giorno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='7457035483195799351' datatype='html'>
+        <source>visibile fino al giorno</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='1090163453664081837' datatype='html'>
+        <source>
+           Il primo e l&apos;ultimo giorno in questione sono entrambi inclusi.
+          Quindi, se vuoi mostrare un messaggio per un solo giorno, seleziona lo
+          stesso giorno in entrambi i campi. 
+        </source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>30,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8885363497398703077' datatype='html'>
+        <source>Per quali turni mostrare il messaggio?</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/reservation-turn-message-form/reservation-turn-message-form.component.html 
+          </context>
+          <context context-type='linenumber'>36</context>
         </context-group>
       </trans-unit>
       <trans-unit id='526024287872795331' datatype='html'>
