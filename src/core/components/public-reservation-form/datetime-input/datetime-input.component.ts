@@ -26,6 +26,7 @@ import { SOMETHING_WENT_WRONG_MESSAGE } from "@core/lib/something-went-wrong-mes
 import { PublicReservationsService } from "@core/services/http/public-reservations.service";
 import { PreorderReservationGroup } from '@core/models/preorder-reservation-group';
 import { TuiCheckboxBlockModule, TuiCheckboxModule } from '@taiga-ui/kit';
+import { PublicReservationsV2Service, vtimes } from '@core/services/http/public-reservationsv2.service';
 
 @Component({
   selector: 'app-datetime-input',
@@ -61,6 +62,7 @@ import { TuiCheckboxBlockModule, TuiCheckboxModule } from '@taiga-ui/kit';
 export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   private readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly reservationsService: PublicReservationsService = inject(PublicReservationsService);
+  private readonly reservationsv2: PublicReservationsV2Service = inject(PublicReservationsV2Service);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly datePipe: DatePipe = inject(DatePipe);
@@ -76,10 +78,12 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   readonly date: FormControl<TuiDay | null> = new FormControl(null, [Validators.required]);
   readonly time: FormControl<TuiTime | null> = new FormControl(null, [Validators.required]);
-  readonly group: WritableSignal<PreorderReservationGroup | null> = signal<PreorderReservationGroup | null>(null);
+  // readonly group: WritableSignal<PreorderReservationGroup | null> = signal<PreorderReservationGroup | null>(null);
 
-  readonly paymentAccepted: FormControl<boolean | null> = new FormControl<boolean | null>(false);
+  readonly warningAccepted: FormControl<boolean | null> = new FormControl<boolean | null>(false);
   readonly groups: WritableSignal<{ [time: string]: PreorderReservationGroup }> = signal<{ [time: string]: PreorderReservationGroup }>({});
+  readonly messages: WritableSignal<{ [time: string]: string[] }> = signal<{ [time: string]: string[] }>({});
+  readonly warningsToShow: WritableSignal<string[]> = signal<string[]>([]);
   readonly validDates: WritableSignal<readonly TuiDay[]> = signal<readonly TuiDay[]>([]);
   readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
@@ -91,7 +95,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
 
   readonly maxDate: WritableSignal<TuiDay | null> = signal(null);
 
-  @ViewChild("groupDiv") groupDiv?: ElementRef<HTMLDivElement>;
+  @ViewChild("warningsDiv") warningsDiv?: ElementRef<HTMLDivElement>;
 
   readonly disabledDates: TuiBooleanHandler<TuiDay> = (day: TuiDay): boolean => {
     if (!this.showOnlyValidDates()) return false;
@@ -108,7 +112,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
     return (this.validDates().find((d: TuiDay) => d.daySame(day))) ? false : true;
   };
 
-  readonly defaultMessage: string = $localize`Per assicurarti uno dei nostro vavoli sarà necessario un pagamento che verrà scalato dal conto finale al ristorante.`;
+  private readonly paymentGroupDefaultMessage: string = $localize`Per assicurarti uno dei nostro vavoli sarà necessario un pagamento che verrà scalato dal conto finale al ristorante.`;
 
   ngOnInit(): void {
     this.updateMaxDate();
@@ -124,20 +128,31 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (p: TuiTime | null): void => {
-        this.paymentAccepted.setValue(false);
+        this.warningAccepted.setValue(false);
+
+        let warnings: string[] = [];
 
         const groups = { ...this.groups() };
         if (p) {
-          const v = groups[p.toString()];
+          const paymentGrp: PreorderReservationGroup = groups[p.toString()];
 
-          this.group.set(v);
-        } else {
-          this.group.set(null);
+          if (paymentGrp) {
+            warnings.push(
+              paymentGrp?.message || this.paymentGroupDefaultMessage
+            );
+          }
+
+          const msg: string[] = this.messages()[p.toString()];
+          if (msg) {
+            warnings = [...warnings, ...msg];
+          }
         }
 
+        this.warningsToShow.set(warnings);
+
         setTimeout(() => {
-          if (this.group() && this.groupDiv?.nativeElement) {
-            this.groupDiv.nativeElement.scrollIntoView({
+          if (this.warningsToShow().length && this.warningsDiv?.nativeElement) {
+            this.warningsDiv.nativeElement.scrollIntoView({
               behavior: "smooth",
               block: "center",
               inline: "center"
@@ -156,9 +171,9 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
         takeUntil(this.destroy$),
         filter(() => this.time.valid)
       ),
-      this.paymentAccepted.valueChanges.pipe(
+      this.warningAccepted.valueChanges.pipe(
         takeUntil(this.destroy$),
-        filter(() => this.paymentAccepted.value === true),
+        filter(() => this.warningAccepted.value === true),
       )
     ).subscribe({
       next: (): void => {
@@ -166,7 +181,7 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
         const date: TuiDay | null = this.date.value;
         const time: TuiTime | null = this.time.value;
         if (date && time) {
-          if (!this.group() || this.paymentAccepted.value) {
+          if (this.warningsToShow().length === 0 || this.warningAccepted.value) {
             this.emit(tuiDatetimeToIsoString(date, time));
           }
         }
@@ -177,22 +192,36 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       takeUntil(this.destroy$),
       filter((date: TuiDay | null): date is TuiDay => date instanceof TuiDay),
       tap(() => this.loadingTimes.set(true)),
-      switchMap((date: TuiDay) => this.reservationsService.getValidTimes(date).pipe(
+      switchMap((date: TuiDay) => this.reservationsv2.getValidTimes(date).pipe(
         finalize(() => this.loadingTimes.set(false)),
       ))
     ).subscribe({
-      next: (turns: ReservationTurn[]) => {
-        const times: string[] = turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
+      next: (data: vtimes) => {
+        const times: string[] = data.turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
         this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))).sort((a: TuiTime, b: TuiTime) => a.toAbsoluteMilliseconds() - b.toAbsoluteMilliseconds()));
 
         this.groups.set(
-          turns.reduce((acc: { [time: string]: PreorderReservationGroup }, turn: ReservationTurn) => {
+          data.turns.reduce((acc: { [time: string]: PreorderReservationGroup }, turn: ReservationTurn) => {
             turn.valid_times?.forEach((time: string) => {
               if (turn.preorder_reservation_group) acc[strTimeTimezone(time)] = turn.preorder_reservation_group;
             });
             return acc;
           }, {})
-        )
+        );
+
+
+        const messages: Record<string, string[]> = {};
+        data.turns.forEach((turn: ReservationTurn) => {
+          turn.valid_times?.forEach((time: string) => {
+            (turn.messages || []).forEach((msg) => {
+              if (msg && typeof msg.message === "string" && msg.message.length > 0) {
+                messages[strTimeTimezone(time)] ||= [];
+                messages[strTimeTimezone(time)].push(msg.message);
+              }
+            });
+          });
+        });
+        this.messages.set(messages);
       },
       error: (error: unknown): void => {
         this.notifications.error(error instanceof HttpErrorResponse ? parseHttpErrorMessage(error) : SOMETHING_WENT_WRONG_MESSAGE);

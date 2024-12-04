@@ -49,18 +49,20 @@
         }
       </div>
 
-      @if(group()){
-        <div #groupDiv class="w-full my-5 border border-primary p-3 rounded-lg">
-          <div class="w-full text-pretty my-3 text-xl">{{ group()?.message || defaultMessage }}</div>
-          <button class="mb-3" tuiButton (click)="paymentAccepted.setValue(true)" appearance="primary" size="m" type="button">
+      @if(warningsToShow().length > 0){
+        <div #warningsDiv class="w-full my-5 border border-primary p-3 rounded-lg">
+          @for(w of warningsToShow(); track w){
+            <div class="w-full text-pretty my-3 text-xl">{{ w }}</div>
+          }
+          <button class="mb-3" tuiButton (click)="warningAccepted.setValue(true)" appearance="primary" size="m" type="button">
             <ng-container i18n>Conferma</ng-container>
           </button>
         </div>
       }
 
-      <span class="text-slate-400 text-lg">
+      <!-- <span class="text-slate-400 text-lg">
         <ng-container i18n>Gli orari indicati fanno riferimento all'orario del luogo in cui ti trovi. Gli orari nella mail di conferma, invece, faranno riferimento all'orario in Italia.</ng-container>
-      </span>
+      </span> -->
     } @else {
       <div>
         <p class="text-xl text-danger block mb-2" i18n>Siamo spiacenti, non sono disponibili orari per la data selezionata.</p>
