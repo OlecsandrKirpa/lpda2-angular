@@ -1,0 +1,88 @@
+<h1>
+  <ng-container i18n>Messaggi alla prenotazione</ng-container>
+</h1>
+
+<a class="mb-3 me-3" tuiButton appearance="flat" routerLink="new">
+  <span class="flex items-center">
+    <mat-icon>add</mat-icon>
+    <span i18n>Crea nuovo</span>
+  </span>
+</a>
+
+@if(items().length > 0){
+@for(item of items(); track item.id){
+<ng-template #actions>
+
+  <tui-data-list size="m">
+    <button tuiOption type="button" [routerLink]="[item.id]">
+      <span class="flex items-center">
+        <span class="me-1" i18n>Dettagli</span>
+      </span>
+    </button>
+
+    <button tuiOption type="button" (click)="delete(item.id)">
+      <span class="flex items-center">
+        <span class="me-1" i18n>Elimina</span>
+      </span>
+    </button>
+  </tui-data-list>
+
+
+</ng-template>
+
+<div class="border rounded-lg flex flex-col mb-5">
+  <div class="w-full p-4 border-b">
+    <div class="flex items-center">
+      <a tuiLink [routerLink]="[item.id]">
+        <span class="text-3xl">{{ item.message }}</span>
+      </a>
+
+      <tui-hosted-dropdown [content]="actions">
+        <button tuiButton appearance="flat">
+          <mat-icon>expand_more</mat-icon>
+        </button>
+      </tui-hosted-dropdown>
+    </div>
+  </div>
+
+  <div class="p-2">
+    <div class="block">
+      <span i18n class="font-bold me-1">Visibilità</span>:
+      <span class="text-xl">
+        @if(item.from_date || item.to_date) {
+        @if(item.from_date) {
+        <ng-container i18n>dal giorno</ng-container>
+        {{ item.from_date | date: 'shortDate' }}
+        }
+  
+        @if(item.to_date) {
+        <ng-container i18n>fino al</ng-container>
+        {{ item.to_date | date: 'shortDate' }}
+        }
+        } @else {
+        <ng-container i18n>Tutti i giorni</ng-container>
+        }
+      </span>
+    </div>
+
+    <div>
+      @for(t of item.turns; track t.id){
+      <div class="inline-block p-3 border me-2 rounded border-md border-slate-400">
+        {{ t.name }} <ng-container i18n>di</ng-container> {{ t.weekday | weekday | downcase }}
+      </div>
+      }
+    </div>
+  </div>
+
+</div>
+}
+
+<tui-table-pagination class="my-2" [items]="[10, 20, 50, 100]" [total]="data()?.metadata?.total_count ?? 0"
+  (paginationChange)="paginationChange($event)">
+</tui-table-pagination>
+
+} @else {
+<app-no-items></app-no-items>
+}
+
+<router-outlet></router-outlet>

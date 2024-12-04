@@ -1,0 +1,56 @@
+<form class="block mb-3" (ngSubmit)="submitForm()" [formGroup]="form">
+  <div class="block mb-3">
+    <app-i18n-input [formControl]="form.controls['message']">
+      <ng-container i18n>Messaggio da mostrare</ng-container>
+    </app-i18n-input>
+
+    <app-errors [errors]="form.controls['message'].errors"></app-errors>
+  </div>
+
+  <div class="block mb-1">
+    <div class="flex items-center">
+      <div class="grow me-1">
+        <tui-input-date [formControl]="form.controls['from_date']">
+          <ng-container i18n>Visibile dal giorno</ng-container>
+        </tui-input-date>
+
+        <app-errors [errors]="form.controls['from_date'].errors"></app-errors>
+      </div>
+
+      <div class="grow ms-1">
+        <tui-input-date [formControl]="form.controls['to_date']">
+          <ng-container i18n>visibile fino al giorno</ng-container>
+        </tui-input-date>
+  
+        <app-errors [errors]="form.controls['to_date'].errors"></app-errors>
+      </div>
+    </div>
+  </div>
+
+  <span i18n class="block mb-3 text-slate-400">
+    Il primo e l'ultimo giorno in questione sono entrambi inclusi. Quindi, se vuoi mostrare un messaggio per un solo
+    giorno, seleziona lo stesso giorno in entrambi i campi.
+  </span>
+
+  <div class="block mb-3">
+    <h3 class="text-2xl" i18n>Per quali turni mostrare il messaggio?</h3>
+
+    <app-select-turns
+      [formControl]="form.controls['turns']"
+    ></app-select-turns>
+
+    <app-errors [errors]="form.controls['turns'].errors"></app-errors>
+  </div>
+
+  <!-- <pre [innerText]="form.value | json" ></pre> -->
+
+  <div class="block mb-3">
+    <button class="inline-block" tuiButton type="submit">
+      <ng-container i18n>Conferma</ng-container>
+    </button>
+
+    <button class="inline-block" tuiButton type="button" appearance="icon" (click)="cancelForm()">
+      <ng-container i18n>Annulla</ng-container>
+    </button>
+  </div>
+</form>

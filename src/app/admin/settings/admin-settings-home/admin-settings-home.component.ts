@@ -79,11 +79,20 @@ export class AdminSettingsHomeComponent {
     },
     {
       name: $localize`Comunicazioni pubbliche`,
-      description: $localize`Mostra messaggi personalizzati nelle pagine pubbliche`,
+      description: $localize`Mostra messaggi personalizzati nelle pagine pubbliche. Questi messaggi sono sempre visibili nelle pagine pubbliche.`,
       path: `public_messages`,
       icon: {
         source: `material`,
         name: `chat`
+      }
+    },
+    {
+      name: $localize`Messaggi alla prenotazione`,
+      description: $localize`Mostra messaggi personalizzati alle persone che cercano di prenotare per date specifiche. Per esempio, potresti voler avvertire che sono disponibili solo tavoli all'aperto per una data specifica.`,
+      path: `reservation-turn-messages`,
+      icon: {
+        source: `material`,
+        name: `feedback`
       }
     },
     {

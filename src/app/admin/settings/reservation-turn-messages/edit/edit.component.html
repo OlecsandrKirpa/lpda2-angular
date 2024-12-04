@@ -1,0 +1,7 @@
+<h1 i18n>Modifica messaggio alla prenotazione</h1>
+
+<app-reservation-turn-message-form
+  (onSubmit)="submit($event)"
+  (onCancel)="close()"
+  [data]="item()"
+></app-reservation-turn-message-form>

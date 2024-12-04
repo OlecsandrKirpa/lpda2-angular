@@ -34,6 +34,10 @@ export const routes: Routes = [
     loadChildren: () => import(`./reservation-turns/routes`).then(m => m.routes)
   },
   {
+    path: `reservation-turn-messages`,
+    loadChildren: () => import(`./reservation-turn-messages/routes`).then(m => m.routes)
+  },
+  {
     path: `contacts`,
     loadChildren: () => import(`./contacts/routes`).then(m => m.routes)
   }
