@@ -49,7 +49,7 @@
   @if(holidayMessages().length){
   <div class="w-full my-5 border border-primary p-3 rounded-lg">
     @for(w of holidayMessages(); track w){
-    <div class="w-full text-pretty my-3 text-xl">{{ w | linkify }}</div>
+    <div class="w-full text-pretty my-3 text-xl" [innerHTML]="w | linkify" ></div>
     }
   </div>
   }
@@ -57,7 +57,7 @@
   @if(warningsToShow().length > 0){
   <div #warningsDiv class="w-full my-5 border border-primary p-3 rounded-lg">
     @for(w of warningsToShow(); track w){
-    <div class="w-full text-pretty my-3 text-xl">{{ w | linkify }}</div>
+    <div class="w-full text-pretty my-3 text-xl" [innerHTML]="w | linkify" ></div>
     }
     <button class="mb-3" tuiButton (click)="warningAccepted.setValue(true)" appearance="primary" size="m" type="button">
       <ng-container i18n>Conferma</ng-container>
