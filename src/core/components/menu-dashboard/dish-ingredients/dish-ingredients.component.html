@@ -50,7 +50,7 @@
     <tui-loader [overlay]="true" [showLoader]="associatingIngredient()">
       <form [formGroup]="newIngredientForm" (ngSubmit)="addIngredient()">
         <div class="mb-4">
-          <app-ingredient-select [filters]="{avoid_associated_dish_id: this.dish.id}" [formControlName]="'ingredient'">
+          <app-ingredient-select [autofocus]="true" [filters]="{avoid_associated_dish_id: this.dish.id}" [formControlName]="'ingredient'">
             <ng-container i18n>Cerca ingrediente</ng-container>
           </app-ingredient-select>
         </div>

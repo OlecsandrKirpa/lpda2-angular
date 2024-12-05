@@ -93,6 +93,7 @@ export class EditPublicMessageComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.notifications.fireSnackBar($localize`Salvato`);
+        this.router.navigate(['../'], {relativeTo: this.route});
       },
       error: (error: unknown): void => {
         if (error instanceof HttpErrorResponse && error.status == 422) {

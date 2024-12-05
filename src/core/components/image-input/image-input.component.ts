@@ -27,11 +27,6 @@ import { ResizeImageModalComponent } from './resize-image-modal/resize-image-mod
 import { PolymorpheusContent, PolymorpheusComponent } from "@tinkoff/ng-polymorpheus";
 import { SOMETHING_WENT_WRONG_MESSAGE } from '@core/lib/something-went-wrong-message';
 
-/**
- * TODO:
- * - manage multiple images
- */
-
 @Component({
   selector: 'app-image-input',
   standalone: true,
@@ -66,6 +61,8 @@ export class ImageInputComponent implements OnInit, ControlValueAccessor {
   private readonly imagesService: ImagesService = inject(ImagesService);
 
   readonly control: FormControl<Blob | null> = new FormControl<Blob | null>(null);
+
+  @Input() showBorder: boolean = true;
 
   @Input() loading: boolean = false;
 

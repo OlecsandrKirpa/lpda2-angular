@@ -58,7 +58,7 @@ export class DishSuggestionsComponent {
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly dialogs: TuiDialogService = inject(TuiDialogService);
 
-  @Output() dishChange: EventEmitter<Dish> = new EventEmitter<Dish>();
+  @Output() dishChange: EventEmitter<void> = new EventEmitter<void>();
 
   @Input() set dish(v: null | Dish | undefined) {
     this.dish$.set(v ?? null);
@@ -92,14 +92,17 @@ export class DishSuggestionsComponent {
     this.removingDish.set(true);
     this.dishesService.removeSuggestion(dishId, suggestion.id).pipe(
       takeUntil(this.destroy$),
-      finalize(() => this.removingDish.set(false)),
-      // TODO update current status.
+      finalize(() => {
+        this.removingDish.set(false),
+        this.dishChange.emit();
+      }),
     ).subscribe(nue());
   }
 
   dismissAddDish(): void {
     this.addDishModal?.unsubscribe();
     this.newDishForm.reset();
+    this.dishChange.emit();
   }
 
   private addDishModal?: Subscription;
@@ -117,7 +120,6 @@ export class DishSuggestionsComponent {
     this.dishesService.addSuggestion(dishId, suggestionId).pipe(
       takeUntil(this.destroy$),
       finalize(() => this.dismissAddDish()),
-      // finalize(() => this.search()),
       finalize(() => this.addingDish.set(false))
     ).subscribe({
       error: (r: HttpErrorResponse) => this.notifications.error(parseHttpErrorMessage(r) || SOMETHING_WENT_WRONG_MESSAGE)

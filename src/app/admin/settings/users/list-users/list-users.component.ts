@@ -8,7 +8,7 @@ import {
   signal, ViewChild,
   WritableSignal
 } from '@angular/core';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {CommonModule, DatePipe} from "@angular/common";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {TuiInputModule} from "@taiga-ui/kit";
@@ -61,19 +61,26 @@ export class ListUsersComponent implements OnInit {
   readonly data: WritableSignal<SearchResult<User> | null> = signal(null);
   readonly items: Signal<User[]> = computed(() => this.data()?.items || []);
   private readonly service: UsersService = inject(UsersService);
+  private readonly router: Router = inject(Router);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
 
   readonly _ = inject(Title).setTitle($localize`Impostazioni utenti | La Porta D'Acqua`);
 
-  // @ViewChild(UserTurnSelectComponent, {static: true}) turnSelect?: UserTurnSelectComponent;
-
   readonly inputSize: "s" | "m" | "l" = 'm';
 
   filters: Partial<UsersFilters> = {};
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (e: unknown) => {
+        if (e instanceof NavigationEnd) this.search();
+      }
+    });
+  }
 
   delete(userId: number | undefined): void {
     if (!(userId)) return;
@@ -89,16 +96,6 @@ export class ListUsersComponent implements OnInit {
     this.filters = filters;
     this.search(filters);
   }
-
-  // triggerOrder(field: string, asc: boolean | null): void {
-  //   if (asc == null) {
-  //     this.order = undefined;
-  //     return this.search();
-  //   }
-  //
-  //   this.order = { field, asc };
-  //   this.search();
-  // }
 
   private confirmedDelete(id: number): void {
     this.loading.set(true);
@@ -118,11 +115,6 @@ export class ListUsersComponent implements OnInit {
   private search(filters: Partial<UsersFilters> = this.filters): void {
     filters ||= {};
     filters = {...filters};
-    // const order: orderBy | null = this.order.value;
-    // if (this.order.valid && order) {
-    //   filters.order_by_field = order.field;
-    //   filters.order_by_direction = order.asc ? "ASC" : "DESC";
-    // }
 
     this.loading.set(true);
     this.service.search(filters).pipe(

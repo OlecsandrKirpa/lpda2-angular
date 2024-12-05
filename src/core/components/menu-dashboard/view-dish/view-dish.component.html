@@ -63,7 +63,7 @@
     </div>
 
     <div class="mb-3">
-      <app-dish-suggestions [dish]="dish()" (dishChange)="dish.set($event)"></app-dish-suggestions>
+      <app-dish-suggestions [dish]="dish()" (dishChange)="reload()"></app-dish-suggestions>
     </div>
 
     <button tuiButton [appearance]="'secondary-destructive'" type="button" (click)="confirmAndDelete()">

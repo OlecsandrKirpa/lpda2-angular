@@ -66,12 +66,17 @@ export class ViewDishComponent implements OnInit {
       distinctUntilChanged(),
       tap((dishId: number) => this.dishId.set(dishId))
     ).subscribe({
-      next: (dishId: number) => this.loadDish(dishId),
+      next: (dishId: number) => this.reload(),
       error: (error: unknown) => {
         this.dishId.set(null);
         this.dish.set(null);
       }
     })
+  }
+
+  reload(): void {
+    const id: number | null | undefined = this.dishId();
+    if (id) this.loadDish(id);
   }
 
   delete(): void {

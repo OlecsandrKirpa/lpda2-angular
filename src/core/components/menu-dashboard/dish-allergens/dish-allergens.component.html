@@ -50,7 +50,7 @@
     <tui-loader [overlay]="true" [showLoader]="addingAllergen()">
       <form [formGroup]="newAllergenForm" (ngSubmit)="addAllergen()">
         <div class="mb-4">
-          <app-allergen-select [filters]="{avoid_associated_dish_id: this.dish.id}" [formControlName]="'allergen'">
+          <app-allergen-select [autofocus]="true" [filters]="{avoid_associated_dish_id: this.dish.id}" [formControlName]="'allergen'">
             <ng-container i18n>Cerca allergene</ng-container>
           </app-allergen-select>
         </div>

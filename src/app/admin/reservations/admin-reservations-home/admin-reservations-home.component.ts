@@ -14,7 +14,7 @@ import {TuiInputModule} from "@taiga-ui/kit";
 import {TuiAutoFocusModule, TuiDay, TuiDestroyService} from "@taiga-ui/cdk";
 import {TuiButtonModule, TuiExpandModule, TuiHintModule, TuiLinkModule, TuiLoaderModule} from "@taiga-ui/core";
 import {MatIcon} from "@angular/material/icon";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {ShowImageComponent} from "@core/components/show-image/show-image.component";
 import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import {SearchResult} from "@core/lib/search-result.model";
@@ -77,15 +77,10 @@ import { ReservationTablesSummaryComponent } from "../../../../core/components/r
     RouterLink,
     TuiLinkModule,
     RouterOutlet,
-    ShowImageComponent,
     TuiTablePaginationModule,
     TuiHintModule,
-    ReservationStatusSelectComponent,
-    ReservationTurnSelectComponent,
-    ReservationDateSelectComponent,
     ListReservationsFiltersComponent,
     ListReservationsFiltersComponent,
-    OrderByComponent,
     ReservationEventsComponent,
     PhoneToComponent,
     MailToComponent,
@@ -110,6 +105,7 @@ export class AdminReservationsHomeComponent implements OnInit {
   readonly data: WritableSignal<SearchResult<Reservation> | null> = signal(null);
   readonly items: Signal<Reservation[]> = computed(() => this.data()?.items || []);
   private readonly service: ReservationsService = inject(ReservationsService);
+  private readonly router = inject(Router);
   private readonly notifications: NotificationsService = inject(NotificationsService);
   private readonly date = inject(DatePipe);
   private readonly destroy$: TuiDestroyService = inject(TuiDestroyService);
@@ -128,7 +124,15 @@ export class AdminReservationsHomeComponent implements OnInit {
       next: (value: any) => {
         this.search();
       }
-    })
+    });
+
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (e: unknown) => {
+        if (e instanceof NavigationEnd) this.search();
+      }
+    });
   }
 
   updateStatus(item: Reservation, status: ReservationStatus): void {

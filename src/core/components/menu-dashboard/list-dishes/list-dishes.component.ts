@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   WritableSignal
 } from '@angular/core';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {
   TuiButtonModule,
   TuiDataListModule, TuiDialogContext, TuiDialogService, TuiDropdownContextDirective,
@@ -81,6 +81,7 @@ export class ListDishesComponent implements OnInit, OnChanges {
   private readonly categoriesService: MenuCategoriesService = inject(MenuCategoriesService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
+  private readonly router: Router = inject(Router);
   // @Inject(TuiDialogService)
   private readonly dialogs: TuiDialogService = inject(TuiDialogService);
 
@@ -114,6 +115,14 @@ export class ListDishesComponent implements OnInit, OnChanges {
       debounceTime(200),
       tap(() => this.offset = 0),
     ).subscribe({next: () => this.search()});
+
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (e: unknown) => {
+        if (e instanceof NavigationEnd) this.search();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

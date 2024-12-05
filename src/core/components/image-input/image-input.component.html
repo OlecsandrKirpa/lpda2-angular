@@ -1,7 +1,7 @@
 <ng-content></ng-content>
 
 @if (control.value) {
-  <div class="block items-center border border-solid rounded-sm border-slate-200 relative my-1 p-2">
+  <div [ngClass]="{'border border-solid rounded-sm border-slate-200': showBorder}" class="block items-center relative my-1 p-2">
     <div class="!absolute me-1 mt-1 top-0 right-0">
       <div class="flex flex-col bg-white bg-opacity-50 ps-2 rounded-md">
         <button [tuiHint]="'Ridimensiona e ritaglia'" i18n-tuiHint class="mb-2" [disabled]="control.disabled" [showLoader]="loading" (click)="fireResizeModal()" size="m" appearance="outline" tuiIconButton type="button">

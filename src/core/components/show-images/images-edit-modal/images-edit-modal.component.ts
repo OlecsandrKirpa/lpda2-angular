@@ -205,7 +205,7 @@ export class ImagesEditModalComponent implements OnInit {
       takeUntil(this.destroy$),
       finalize(() => this.loadingImages.set(false)),
     ).subscribe({
-      next: (data) => {
+      next: (data: SearchResult<Image>) => {
         this.data.set(data);
       },
       error: (r: HttpErrorResponse) => {

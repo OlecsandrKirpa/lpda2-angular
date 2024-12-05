@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   WritableSignal
 } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import { NavigationEnd, Router, RouterLink } from "@angular/router";
 import {
   TuiButtonModule,
   TuiDataListModule, TuiDropdownContextDirective,
@@ -17,24 +17,24 @@ import {
   TuiHostedDropdownModule,
   TuiLinkModule, TuiLoaderModule, TuiTextfieldControllerModule
 } from "@taiga-ui/core";
-import {MatIcon} from "@angular/material/icon";
-import {SearchResult} from "@core/lib/search-result.model";
-import {MenuCategory} from "@core/models/menu-category";
-import {TuiActionModule, TuiInputModule, TuiIslandModule, TuiProgressModule} from "@taiga-ui/kit";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {MenuCategoriesService} from "@core/services/http/menu-categories.service";
-import {TuiAutoFocusModule, TuiDestroyService} from "@taiga-ui/cdk";
-import {debounceTime, distinctUntilChanged, finalize, Subscription, takeUntil, tap} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
-import {NotificationsService} from "@core/services/notifications.service";
-import {parseHttpErrorMessage} from "@core/lib/parse-http-error-message";
-import {ShowImageComponent} from "@core/components/show-image/show-image.component";
-import {UrlToPipe} from "@core/pipes/url-to.pipe";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {TuiTablePagination, TuiTablePaginationModule} from "@taiga-ui/addon-table";
-import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
-import {nue} from "@core/lib/nue";
-import {ExportMenuService} from "@core/services/http/export-menu.service";
+import { MatIcon } from "@angular/material/icon";
+import { SearchResult } from "@core/lib/search-result.model";
+import { MenuCategory } from "@core/models/menu-category";
+import { TuiActionModule, TuiInputModule, TuiIslandModule, TuiProgressModule } from "@taiga-ui/kit";
+import { NgClass, NgForOf, NgIf } from "@angular/common";
+import { MenuCategoriesService } from "@core/services/http/menu-categories.service";
+import { TuiAutoFocusModule, TuiDestroyService } from "@taiga-ui/cdk";
+import { debounceTime, distinctUntilChanged, finalize, Subscription, takeUntil, tap } from "rxjs";
+import { HttpErrorResponse } from "@angular/common/http";
+import { NotificationsService } from "@core/services/notifications.service";
+import { parseHttpErrorMessage } from "@core/lib/parse-http-error-message";
+import { ShowImageComponent } from "@core/components/show-image/show-image.component";
+import { UrlToPipe } from "@core/pipes/url-to.pipe";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { TuiTablePagination, TuiTablePaginationModule } from "@taiga-ui/addon-table";
+import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from "@angular/cdk/drag-drop";
+import { nue } from "@core/lib/nue";
+import { ExportMenuService } from "@core/services/http/export-menu.service";
 import { ObjectValuesPipe } from "../../../pipes/object-values.pipe";
 import { SumPipe } from '@core/pipes/sum.pipe';
 
@@ -69,17 +69,18 @@ import { SumPipe } from '@core/pipes/sum.pipe';
     TuiProgressModule,
     ObjectValuesPipe,
     SumPipe,
-],
+  ],
   templateUrl: './list-categories.component.html',
   styleUrl: './list-categories.component.scss',
   providers: [
-    MenuCategoriesService,
+    TuiDestroyService,
   ]
 })
 export class ListCategoriesComponent implements OnInit, OnChanges {
   private readonly service = inject(MenuCategoriesService);
   private readonly destroy$ = inject(TuiDestroyService);
   private readonly notifications = inject(NotificationsService);
+  private readonly router: Router = inject(Router);
   private readonly exportService: ExportMenuService = inject(ExportMenuService);
 
   readonly data: WritableSignal<SearchResult<MenuCategory> | null> = signal(null);
@@ -112,7 +113,15 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
       distinctUntilChanged(),
       debounceTime(200),
       tap(() => this.offset = 0),
-    ).subscribe({next: () => this.search()});
+    ).subscribe({ next: () => this.search() });
+
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (e: unknown) => {
+        if (e instanceof NavigationEnd) this.search();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -156,7 +165,7 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
 
   private parseFilters(): Record<string, string | number> {
     const filters = this.filters.value;
-    const result: Record<string, string | number> = {per_page: this.per_page, offset: this.offset};
+    const result: Record<string, string | number> = { per_page: this.per_page, offset: this.offset };
 
     if (this.filtering()) {
       if (filters['query']) result['query'] = filters['query'];
@@ -170,9 +179,9 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
   remove(item: MenuCategory) {
     this.notifications.confirm(
       $localize`Sei sicuro di voler eliminare la categoria?`, {
-        yes: $localize`Sì, elimina la categoria`,
-        no: $localize`Annulla`
-      }).pipe(
+      yes: $localize`Sì, elimina la categoria`,
+      no: $localize`Annulla`
+    }).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (result: boolean) => {
@@ -218,8 +227,8 @@ export class ListCategoriesComponent implements OnInit, OnChanges {
   }
 
   triggerOrdering(): void {
-    if (!(this.ordering())){
-      this.notifications.fireSnackBar($localize`Sposta le categorie trascinandole con il bottone sul lato destro di ciascuna categoria.`, $localize`Capito`, {duration: 5000})
+    if (!(this.ordering())) {
+      this.notifications.fireSnackBar($localize`Sposta le categorie trascinandole con il bottone sul lato destro di ciascuna categoria.`, $localize`Capito`, { duration: 5000 })
     }
     this.ordering.set(!this.ordering());
   }
