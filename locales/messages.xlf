@@ -633,7 +633,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>58</context>
+          <context context-type='linenumber'>63</context>
         </context-group>
         <context-group purpose='location'>
           <context context-type='sourcefile'>
@@ -2451,10 +2451,6 @@
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>120</context>
         </context-group>
-        <context-group purpose='location'>
-          <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
-          <context context-type='linenumber'>134</context>
-        </context-group>
       </trans-unit>
       <trans-unit id='8044846806605701516' datatype='html'>
         <source>Costo coperto</source>
@@ -2471,6 +2467,13 @@
         <context-group purpose='location'>
           <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
           <context context-type='linenumber'>126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='8329093696522550897' datatype='html'>
+        <source>Costo del coperto.</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>src/app/admin/settings/settings/list-settings/list-settings.component.html</context>
+          <context context-type='linenumber'>134</context>
         </context-group>
       </trans-unit>
       <trans-unit id='5839221142595345888' datatype='html'>
@@ -6973,7 +6976,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>20</context>
+          <context context-type='linenumber'>15</context>
         </context-group>
       </trans-unit>
       <trans-unit id='8105745215361610460' datatype='html'>
@@ -6983,7 +6986,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>30</context>
+          <context context-type='linenumber'>25</context>
         </context-group>
       </trans-unit>
       <trans-unit id='2388271405761123535' datatype='html'>
@@ -6993,7 +6996,17 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>68</context>
+          <context context-type='linenumber'>71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id='145922827076637502' datatype='html'>
+        <source>L&apos;ultimo giorno prenotabile è</source>
+        <context-group purpose='location'>
+          <context context-type='sourcefile'>
+            
+            src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
+          </context>
+          <context context-type='linenumber'>74</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4694451381856984215' datatype='html'>
@@ -7003,7 +7016,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.html 
           </context>
-          <context context-type='linenumber'>71</context>
+          <context context-type='linenumber'>81</context>
         </context-group>
       </trans-unit>
       <trans-unit id='4314074257183741214' datatype='html'>
@@ -7016,7 +7029,7 @@
             
             src/core/components/public-reservation-form/datetime-input/datetime-input.component.ts 
           </context>
-          <context context-type='linenumber'>115</context>
+          <context context-type='linenumber'>125</context>
         </context-group>
       </trans-unit>
       <trans-unit id='6906621436677072340' datatype='html'>
