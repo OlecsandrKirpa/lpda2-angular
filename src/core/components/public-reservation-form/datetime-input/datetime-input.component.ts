@@ -7,7 +7,8 @@ import {
   Output,
   signal,
   SimpleChanges,
-  WritableSignal
+  WritableSignal,
+  computed
 } from '@angular/core';
 import { TuiBooleanHandler, TuiDay, TuiDestroyService, TuiMonth, TuiScrollService, TuiTime } from "@taiga-ui/cdk";
 import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -27,6 +28,7 @@ import { PublicReservationsService } from "@core/services/http/public-reservatio
 import { PreorderReservationGroup } from '@core/models/preorder-reservation-group';
 import { TuiCheckboxBlockModule, TuiCheckboxModule } from '@taiga-ui/kit';
 import { PublicReservationsV2Service, vtimes } from '@core/services/http/public-reservationsv2.service';
+import { LinkifyPipe } from "../../../pipes/linkify.pipe";
 
 @Component({
   selector: 'app-datetime-input',
@@ -45,9 +47,9 @@ import { PublicReservationsV2Service, vtimes } from '@core/services/http/public-
     CurrencyPipe,
     TuiCheckboxModule,
     FormsModule,
-  ],
+    LinkifyPipe
+],
   templateUrl: './datetime-input.component.html',
-  styleUrl: './datetime-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TuiDestroyService,
@@ -88,12 +90,20 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
   readonly validTimes: WritableSignal<readonly TuiTime[]> = signal<readonly TuiTime[]>([]);
   readonly loadingTimes: WritableSignal<boolean> = signal(false);
   readonly loadingDates: WritableSignal<boolean> = signal(false);
+  readonly holidayMessages: WritableSignal<string[]> = signal<string[]>([]);
 
   readonly today: WritableSignal<TuiDay> = signal(TuiDay.currentLocal());
 
   @Input() maxDaysInAdvance: number = 300;
 
   readonly maxDate: WritableSignal<TuiDay | null> = signal(null);
+  readonly lastDateAfterMaxDate = computed(() => {
+    const last = this.lastDate();
+    const max = this.maxDate();
+    if (last && max) return last.dayAfter(max);
+
+    return false;
+  });
 
   @ViewChild("warningsDiv") warningsDiv?: ElementRef<HTMLDivElement>;
 
@@ -197,6 +207,15 @@ export class DatetimeInputComponent implements OnInit, ControlValueAccessor {
       ))
     ).subscribe({
       next: (data: vtimes) => {
+        const hmessages: string[] = [];
+        data.holidays.forEach((holiday) => {
+          if (holiday.message && typeof holiday.message === "string" && holiday.message.length > 0) {
+            hmessages.push(holiday.message);
+          }
+        });
+
+        this.holidayMessages.set(hmessages);
+
         const times: string[] = data.turns.map((turn: ReservationTurn) => turn.valid_times).filter((times: string[] | undefined): times is string[] => Array.isArray(times) && times.length > 0).flat();
         this.validTimes.set(times.map((time: string) => TuiTime.fromString(strTimeTimezone(time))).sort((a: TuiTime, b: TuiTime) => a.toAbsoluteMilliseconds() - b.toAbsoluteMilliseconds()));
 
